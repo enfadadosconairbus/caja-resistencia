@@ -120,7 +120,8 @@ function crearPedido(data) {
     var hojaLineas = ss.getSheetByName(SH.LINEAS);
     lineas.forEach(function (l) { hojaLineas.appendRow([id, ahora, l.producto, l.sku, l.talla, l.cantidad, '']); });
 
-    try { emailPedidoRecibido(email, id, nombre, lineas, productos, aportacion, total, cfg); } catch (e) {}
+    try { emailPedidoRecibido(email, id, nombre, lineas, productos, aportacion, total, cfg); }
+    catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'recibido ' + id + ': ' + e); }
     registrarLog(ss, 'PEDIDO', id + ' · ' + unidades + ' uds · ' + eur(total));
     return respuestaPedido(id, total, cfg);
   } finally { lock.releaseLock(); }
@@ -170,7 +171,8 @@ function marcarPedidoPagado(ss, p, cfg) {
   var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
   sh.getRange(p.fila, H.indexOf('ESTADO') + 1).setValue('PAGO_CONCILIADO');
   sh.getRange(p.fila, H.indexOf('FECHA_CONFIRMADO') + 1).setValue(new Date());
-  try { emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg); } catch (e) {}
+  try { emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg); return true; }
+  catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'confirmado ' + p.id + ': ' + e); return false; }
 }
 
 /* ===========================  LOTES / PROVEEDOR  ======================== */
@@ -250,7 +252,8 @@ function avisarPedidosListos(ss) {
     if (c.total > 0 && c.listos === c.total) {
       shP.getRange(p.fila, HP.indexOf('ESTADO') + 1).setValue('LISTO_RECOGIDA');
       shP.getRange(p.fila, HP.indexOf('FECHA_LISTO') + 1).setValue(new Date());
-      try { emailListoRecoger(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg); n++; } catch (e) {}
+      try { emailListoRecoger(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg); n++; }
+      catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'listo ' + p.id + ': ' + e); }
     }
   }
   return n;
@@ -260,10 +263,25 @@ function avisarPedidosListos(ss) {
 
 function confirmarPagoSeleccion() {
   var r = pedidoSeleccionado(); if (!r) return;
-  marcarPedidoPagado(SpreadsheetApp.getActive(), r, leerConfig());
+  var ok = marcarPedidoPagado(SpreadsheetApp.getActive(), r, leerConfig());
   registrarLog(SpreadsheetApp.getActive(), 'PAGO_MANUAL', r.id);
   refrescarDashboard();
-  ui().alert('Pedido ' + r.id + ' → PAGO_CONCILIADO. Email enviado.');
+  ui().alert('Pedido ' + r.id + ' → PAGO_CONCILIADO.\n' +
+    (ok ? 'Email de confirmación enviado a ' + r.email + '.' : '⚠️ El email NO se pudo enviar. Revisa la hoja LOG (fila EMAIL_ERROR).'));
+}
+
+// Envía los 3 emails de ejemplo a EMAIL_CONTACTO para revisar el diseño sin recorrer el flujo.
+function enviarEmailsPrueba() {
+  var cfg = leerConfig(), to = cfg.EMAIL_CONTACTO;
+  if (!to) { ui().alert('Pon EMAIL_CONTACTO en la hoja CONFIG.'); return; }
+  var lineas = [{ producto: 'Camiseta', sku: 'CAMISETA-M', talla: 'M', cantidad: 2 },
+                { producto: 'Camiseta', sku: 'CAMISETA-XL', talla: 'XL', cantidad: 1 }];
+  try {
+    emailPedidoRecibido(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
+    emailPagoConfirmado(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
+    emailListoRecoger(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
+    ui().alert('3 emails de prueba enviados a ' + to + '\n(recibido, confirmado y listo).');
+  } catch (e) { ui().alert('No se pudieron enviar los emails de prueba:\n' + e); }
 }
 function marcarEntregadoSeleccion() {
   var r = pedidoSeleccionado(); if (!r) return;
@@ -738,6 +756,7 @@ function onOpen() {
     .addItem('📊 Actualizar panel', 'refrescarDashboard')
     .addItem('📗 Exportar a Excel (.xlsx)', 'exportarExcel')
     .addSeparator()
+    .addItem('✉️ Enviar emails de prueba', 'enviarEmailsPrueba')
     .addItem('🔑 Mostrar TOKEN backend', 'mostrarToken')
     .addToUi();
 }
