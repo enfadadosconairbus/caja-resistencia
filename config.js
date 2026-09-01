@@ -16,11 +16,11 @@
    ========================================================================== */
 window.TIENDA_CONFIG = {
   // URL pública del Cloudflare Worker (el proxy). Nunca la URL /exec directa.
-  API_URL: 'https://TU-WORKER.workers.dev',
+  API_URL: 'https://tienda-airbus.enfadadosconairbus-tienda.workers.dev',
 
   // true  = no llama al backend; simula el pedido en el navegador (para probar diseño).
   // false = pedidos reales contra el Worker. Ponlo en false antes de compartir la URL.
-  DEMO_MODE: true,
+  DEMO_MODE: false,
 
   // Producto único de momento (arquitectura preparada para multiproducto).
   PRODUCT: { nombre: 'Camiseta', skuPrefix: 'CAMISETA' },
