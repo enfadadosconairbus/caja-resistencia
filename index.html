@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#17120f">
+  <meta name="description" content="Tienda solidaria de la Caja de Resistencia — Huelga Airbus 2026.">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Tienda solidaria — Caja de Resistencia Huelga Airbus 2026</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#pedido">Ir directamente al pedido</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="mark" aria-hidden="true">CR</div>
+      <div>
+        <div class="eyebrow">GETAFE · HUELGA AIRBUS 2026</div>
+        <div class="brand">TIENDA SOLIDARIA</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow orange">CAJA DE RESISTENCIA</p>
+      <h1>Una camiseta.<br><span>Dos destinos.</span></h1>
+      <p class="lead">Haz tu pedido, realiza una transferencia con tu código <strong>AIR26-XXXXX</strong> y te avisaremos cuando esté listo para recoger en Getafe.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#producto">VER CAMISETA</a>
+        <a class="btn btn-ghost" href="#pedido">HACER PEDIDO</a>
+      </div>
+    </section>
+
+    <div class="hazard" aria-hidden="true"></div>
+
+    <section id="producto" class="section wrap product-section">
+      <div class="product-media card-dark">
+        <img src="./assets/camiseta-solidaria.jpg" alt="Camiseta solidaria, vista delantera y trasera" loading="eager">
+      </div>
+      <div class="product-info">
+        <p class="eyebrow orange">PRODUCTO 01</p>
+        <h2>Camiseta solidaria</h2>
+        <p class="muted">Modelo unisex · blanco · tallas XS a 5XL</p>
+        <div class="price-block">
+          <div class="price">10 €</div>
+          <div class="price-split"><span>5 € coste de fabricación</span><strong>5 € directos a la Caja de Resistencia</strong></div>
+        </div>
+        <p class="small">Puedes pedir hasta 20 unidades en un mismo pedido y combinar varias tallas.</p>
+      </div>
+    </section>
+
+    <div class="hazard" aria-hidden="true"></div>
+
+    <section class="section wrap">
+      <p class="eyebrow orange">PROCESO</p>
+      <h2>Cómo funciona</h2>
+      <ol class="steps">
+        <li><span>1</span><div><strong>Elige talla y cantidad.</strong><p>Puedes combinar varias tallas dentro del mismo pedido.</p></div></li>
+        <li><span>2</span><div><strong>Introduce tus datos y envía el pedido.</strong><p>El sistema generará tu código único AIR26-XXXXX.</p></div></li>
+        <li><span>3</span><div><strong>Haz la transferencia.</strong><p>Usa exactamente tu código AIR26-XXXXX como concepto. No hace falta enviar justificante.</p></div></li>
+        <li><span>4</span><div><strong>Confirmamos el pago.</strong><p>Recibirás un email cuando el movimiento bancario quede confirmado.</p></div></li>
+        <li><span>5</span><div><strong>Recoge tu pedido.</strong><p>Te avisaremos por email cuando esté disponible en Getafe.</p></div></li>
+      </ol>
+    </section>
+
+    <div class="hazard" aria-hidden="true"></div>
+
+    <section class="section wrap size-section">
+      <div>
+        <p class="eyebrow orange">GUÍA DE TALLAS · UNISEX</p>
+        <h2>Acertar con la talla es fácil</h2>
+        <p class="muted">Coloca una camiseta que te quede bien sobre una superficie plana. Mide de axila a axila para el ancho y desde el hombro hasta el borde inferior para el alto.</p>
+        <div class="size-table-wrap" aria-label="Tabla de tallas">
+          <table class="size-table">
+            <thead><tr><th>Talla</th><th>Ancho</th><th>Alto</th></tr></thead>
+            <tbody>
+              <tr><td>XS</td><td>46 cm</td><td>66 cm</td></tr><tr><td>S</td><td>49 cm</td><td>69 cm</td></tr>
+              <tr><td>M</td><td>52 cm</td><td>71 cm</td></tr><tr><td>L</td><td>55 cm</td><td>73 cm</td></tr>
+              <tr><td>XL</td><td>58 cm</td><td>75 cm</td></tr><tr><td>2XL</td><td>62 cm</td><td>77 cm</td></tr>
+              <tr><td>3XL</td><td>66 cm</td><td>79 cm</td></tr><tr><td>4XL</td><td>70 cm</td><td>81 cm</td></tr>
+              <tr><td>5XL</td><td>74 cm</td><td>83 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <figure class="size-image card-light">
+        <img src="./assets/guia-tallas.jpg" alt="Esquema visual para medir ancho y alto de la camiseta y tabla de tallas" loading="lazy">
+      </figure>
+    </section>
+
+    <div class="hazard" aria-hidden="true"></div>
+
+    <section id="pedido" class="section wrap order-section">
+      <p class="eyebrow orange">FORMULARIO DE PEDIDO</p>
+      <h2>Prepara tu pedido</h2>
+      <p class="muted">Selecciona una talla, elige cantidad y añádela. Puedes repetir el proceso con otras tallas.</p>
+
+      <div class="order-grid">
+        <div class="panel">
+          <div class="field-group">
+            <label for="sizeSelect">Talla</label>
+            <div id="sizeChips" class="size-chips" role="group" aria-label="Selecciona talla"></div>
+            <select id="sizeSelect" class="sr-only" aria-label="Talla"></select>
+          </div>
+          <div class="field-group qty-row">
+            <div>
+              <label>Cantidad</label>
+              <div class="qty-control">
+                <button type="button" id="minusQty" aria-label="Restar una unidad">−</button>
+                <output id="qtyOutput" aria-live="polite">1</output>
+                <button type="button" id="plusQty" aria-label="Añadir una unidad">+</button>
+              </div>
+            </div>
+            <button type="button" id="addToCart" class="btn btn-primary add-btn">AÑADIR AL PEDIDO</button>
+          </div>
+          <p id="catalogStatus" class="micro" role="status"></p>
+        </div>
+
+        <aside class="cart panel" aria-labelledby="cartTitle">
+          <div class="cart-head"><h3 id="cartTitle">Tu pedido</h3><span id="unitCount" class="badge">0 uds.</span></div>
+          <div id="cartEmpty" class="cart-empty">Todavía no has añadido productos.</div>
+          <div id="cartLines" class="cart-lines"></div>
+          <div class="donation">
+            <div class="donation-title">Aportación adicional a la Caja</div>
+            <div id="donationButtons" class="donation-buttons" role="group" aria-label="Aportación adicional">
+              <button type="button" data-donation="0" class="active">0 €</button>
+              <button type="button" data-donation="5">+5 €</button>
+              <button type="button" data-donation="10">+10 €</button>
+              <button type="button" data-donation="20">+20 €</button>
+              <button type="button" data-donation="50">+50 €</button>
+            </div>
+          </div>
+          <div class="totals">
+            <div><span>Productos</span><strong id="productsTotal">0,00 €</strong></div>
+            <div><span>Aportación</span><strong id="donationTotal">0,00 €</strong></div>
+            <div class="grand"><span>TOTAL</span><strong id="grandTotal">0,00 €</strong></div>
+          </div>
+        </aside>
+      </div>
+
+      <form id="checkoutForm" novalidate>
+        <div class="panel customer-panel">
+          <div class="section-label"><span>01</span> Tus datos</div>
+          <div class="fields-grid">
+            <label>Nombre<input name="nombre" autocomplete="given-name" maxlength="60" required></label>
+            <label>Apellidos<input name="apellidos" autocomplete="family-name" maxlength="100" required></label>
+            <label>Email<input name="email" type="email" autocomplete="email" maxlength="120" required></label>
+            <label>Teléfono<input name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required></label>
+          </div>
+          <label class="honeypot" aria-hidden="true">Web<input name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="panel pickup-panel">
+          <div class="section-label"><span>02</span> Recogida</div>
+          <div class="pickup-card">
+            <div class="pickup-kicker">PUNTO DE RECOGIDA · GETAFE</div>
+            <strong id="pickupText">Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)</strong>
+          </div>
+        </div>
+
+        <div class="panel privacy-panel">
+          <div class="section-label"><span>03</span> Privacidad</div>
+          <label class="check-row"><input type="checkbox" name="privacy" required><span>He leído la información básica y acepto que mis datos se utilicen para gestionar el pedido, confirmar el pago y coordinar la recogida.</span></label>
+          <p class="micro">No pedimos DNI ni número de empleado. Contacto: <a id="contactEmail" href="mailto:enfadadosconairbus.tienda@gmail.com">enfadadosconairbus.tienda@gmail.com</a>.</p>
+        </div>
+
+        <div id="formError" class="form-error" role="alert" hidden></div>
+        <button id="submitOrder" class="btn btn-submit" type="submit">REALIZAR PEDIDO</button>
+      </form>
+    </section>
+
+    <section id="success" class="success-section" hidden aria-live="polite">
+      <div class="wrap success-inner">
+        <p class="eyebrow orange">PEDIDO REGISTRADO</p>
+        <h2>Pedido realizado</h2>
+        <div class="order-code-label">CÓDIGO DE PEDIDO</div>
+        <div id="successOrderId" class="order-code">AIR26-00000</div>
+        <p>También recibirás esta información por email.</p>
+        <div class="bank-card">
+          <div><span>Beneficiario</span><strong id="successBeneficiary"></strong></div>
+          <div><span>IBAN</span><strong id="successIban" class="mono"></strong><button type="button" class="copy-btn" data-copy="successIban">COPIAR</button></div>
+          <div><span>Importe exacto</span><strong id="successTotal" class="big-money"></strong></div>
+          <div class="concept"><span>CONCEPTO OBLIGATORIO</span><strong id="successConcept" class="mono"></strong><button type="button" class="copy-btn inverse" data-copy="successConcept">COPIAR</button></div>
+        </div>
+        <div class="notice ok"><strong>No hace falta enviar justificante.</strong> Confirmaremos el pago mediante los movimientos reales de la cuenta.</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="stickyCart" class="sticky-cart" hidden>
+    <div><span id="stickyUnits">0 uds.</span><strong id="stickyTotal">0,00 €</strong></div>
+    <button type="button" id="stickyGo">VER PEDIDO</button>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap"><strong>TIENDA · CAJA DE RESISTENCIA · HUELGA AIRBUS 2026</strong><p>Página no oficial de Airbus. Esta página no procesa pagos: el pago se realiza mediante transferencia bancaria.</p></div>
+  </footer>
+
+  <script src="./config.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

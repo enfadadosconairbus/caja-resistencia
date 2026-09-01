@@ -1,0 +1,51 @@
+/* =============================================================================
+   config.js — CONFIGURACIÓN PÚBLICA de la tienda
+   -----------------------------------------------------------------------------
+   Este fichero SÍ se publica en GitHub. Por eso aquí NO va ningún secreto:
+   ni el token del backend, ni la URL /exec de Apps Script, ni el IBAN real.
+
+   - El IBAN, el beneficiario y el importe los devuelve el BACKEND al crear el
+     pedido (así el navegador nunca decide el dinero).
+   - El catálogo de aquí es solo para PINTAR tallas y precios en pantalla; el
+     backend vuelve a validar cada precio contra la hoja CATALOGO (fuente de
+     verdad). Si alguien manipula el JavaScript, el servidor manda.
+
+   ANTES DE PUBLICAR:
+     1) API_URL  -> pon la URL real de tu Cloudflare Worker.
+     2) DEMO_MODE -> false.
+   ========================================================================== */
+window.TIENDA_CONFIG = {
+  // URL pública del Cloudflare Worker (el proxy). Nunca la URL /exec directa.
+  API_URL: 'https://TU-WORKER.workers.dev',
+
+  // true  = no llama al backend; simula el pedido en el navegador (para probar diseño).
+  // false = pedidos reales contra el Worker. Ponlo en false antes de compartir la URL.
+  DEMO_MODE: true,
+
+  // Producto único de momento (arquitectura preparada para multiproducto).
+  PRODUCT: { nombre: 'Camiseta', skuPrefix: 'CAMISETA' },
+
+  MAX_UNITS: 20,               // tope de unidades por pedido
+  DONATIONS: [0, 5, 10, 20, 50],
+
+  // Catálogo visible (talla, medidas, precio). El backend re-valida el precio.
+  CATALOG: [
+    { sku: 'CAMISETA-XS',  talla: 'XS',  ancho: 46, alto: 66, precio: 10, activo: true },
+    { sku: 'CAMISETA-S',   talla: 'S',   ancho: 49, alto: 69, precio: 10, activo: true },
+    { sku: 'CAMISETA-M',   talla: 'M',   ancho: 52, alto: 71, precio: 10, activo: true },
+    { sku: 'CAMISETA-L',   talla: 'L',   ancho: 55, alto: 73, precio: 10, activo: true },
+    { sku: 'CAMISETA-XL',  talla: 'XL',  ancho: 58, alto: 75, precio: 10, activo: true },
+    { sku: 'CAMISETA-2XL', talla: '2XL', ancho: 62, alto: 77, precio: 10, activo: true },
+    { sku: 'CAMISETA-3XL', talla: '3XL', ancho: 66, alto: 79, precio: 10, activo: true },
+    { sku: 'CAMISETA-4XL', talla: '4XL', ancho: 70, alto: 81, precio: 10, activo: true },
+    { sku: 'CAMISETA-5XL', talla: '5XL', ancho: 74, alto: 83, precio: 10, activo: true }
+  ],
+
+  PICKUP: 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)',
+  CONTACT_EMAIL: 'enfadadosconairbus.tienda@gmail.com',
+
+  // Solo se usan cuando DEMO_MODE = true, para poder ver la pantalla final.
+  // En pedidos reales estos datos llegan del backend (hoja CONFIG).
+  DEMO_BENEFICIARIO: 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil',
+  DEMO_IBAN: 'ESXX XXXX XXXX XXXX XXXX XXXX'
+};

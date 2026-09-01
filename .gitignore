@@ -1,0 +1,21 @@
+# --- Sistema operativo / editores ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+.vscode/
+.idea/
+
+# --- Nada de secretos en el repo ---
+# El token del backend y la URL /exec viven SOLO en el Cloudflare Worker.
+# Si algún día creas un fichero local con secretos, ígnoralo aquí:
+*.secret
+*.local
+.env
+.env.*
+
+# --- Config real opcional ---
+# config.js se versiona con PLACEHOLDERS. Si prefieres guardar tu versión con la
+# URL real del Worker en local sin subirla, úsala como config.local.js y añade
+# aquí su nombre. (Por defecto config.js SÍ se sube; su URL de Worker es pública.)
+config.local.js
