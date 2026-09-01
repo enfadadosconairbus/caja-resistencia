@@ -371,34 +371,53 @@ function emailListoRecoger(email, id, nombre, lineas, productos, aportacion, tot
     htmlBody: plantillaEmail('Listo para recoger', 'Hola ' + escapar(nombre) + ', tu pedido <strong>' + id + '</strong> ya está disponible. Recógelo en: <strong>' + escapar(cfg.RECOGIDA || '') + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER') });
 }
 function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total, cfg, estado) {
-  var filas = lineas.map(function (l) {
-    return '<tr><td style="padding:8px 10px;border-bottom:1px solid #3a2f27">' + escapar(l.producto) + '</td>' +
-      '<td style="padding:8px 10px;border-bottom:1px solid #3a2f27">' + escapar(l.talla) + '</td>' +
-      '<td style="padding:8px 10px;border-bottom:1px solid #3a2f27;text-align:center">' + l.cantidad + '</td>' +
-      '<td style="padding:8px 10px;border-bottom:1px solid #3a2f27;text-align:right">' + eur(precioSku(l.sku) * l.cantidad) + '</td></tr>';
+  var pill = ({
+    'PENDIENTE DE PAGO': ['#fbe9e7', '#9c2c20'],
+    'CONFIRMADA':        ['#e4f1e8', '#2e7d52'],
+    'LISTO PARA RECOGER':['#e6ecf5', '#16233b']
+  })[estado] || ['#efeadf', '#6f6a60'];
+
+  var filas = lineas.map(function (l, i) {
+    var bg = (i % 2) ? '#faf7f0' : '#ffffff';
+    return '<tr>' +
+      '<td style="padding:10px 12px;border-bottom:1px solid #e4ddce;background:' + bg + ';color:#1a1d21;font-size:14px">' + escapar(l.producto) + '</td>' +
+      '<td style="padding:10px 12px;border-bottom:1px solid #e4ddce;background:' + bg + ';color:#1a1d21;font-size:14px">' + escapar(l.talla) + '</td>' +
+      '<td style="padding:10px 12px;border-bottom:1px solid #e4ddce;background:' + bg + ';color:#1a1d21;font-size:14px;text-align:center">' + l.cantidad + '</td>' +
+      '<td style="padding:10px 12px;border-bottom:1px solid #e4ddce;background:' + bg + ';color:#1a1d21;font-size:14px;text-align:right;font-weight:700">' + eur(precioSku(l.sku) * l.cantidad) + '</td></tr>';
   }).join('');
-  return '<div style="font-family:Arial,Helvetica,sans-serif;background:#15110f;padding:24px;color:#f4eee5">' +
-    '<div style="max-width:560px;margin:0 auto;background:#221b17;border:1px solid #3a2f27;border-radius:14px;overflow:hidden">' +
-    '<div style="background:#c75b12;color:#fff;padding:18px 22px;font-weight:900;text-transform:uppercase;letter-spacing:.04em">Caja de Resistencia · Huelga Airbus 2026</div>' +
-    '<div style="padding:22px">' +
-    '<div style="color:#ff8a3d;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:12px">' + escapar(estado) + '</div>' +
-    '<h1 style="margin:6px 0 12px;font-size:22px;color:#f4eee5">' + escapar(titulo) + '</h1>' +
-    '<p style="color:#d9cec0;font-size:14px;line-height:1.6">' + intro + '</p>' +
-    '<table style="width:100%;border-collapse:collapse;margin:14px 0;background:#2a221d;border-radius:8px">' +
-    '<thead><tr><th style="text-align:left;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Producto</th>' +
-    '<th style="text-align:left;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Talla</th>' +
-    '<th style="text-align:center;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Uds.</th>' +
-    '<th style="text-align:right;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Subtotal</th></tr></thead><tbody>' + filas + '</tbody></table>' +
-    '<div style="color:#d9cec0;font-size:14px">Productos: <strong>' + eur(productos) + '</strong></div>' +
-    (aportacion > 0 ? '<div style="color:#d9cec0;font-size:14px">Aportación adicional: <strong>' + eur(aportacion) + '</strong></div>' : '') +
-    '<div style="font-size:20px;color:#ff8a3d;font-weight:900;margin-top:6px">TOTAL: ' + eur(total) + '</div>' +
-    '<div style="margin-top:18px;padding:16px;background:#2a221d;border-radius:10px;border-left:4px solid #c75b12">' +
-    '<div style="font-size:11px;color:#b9ac9d;text-transform:uppercase;letter-spacing:.08em">Datos de la transferencia</div>' +
-    '<div style="margin-top:6px;font-size:14px">Beneficiario: <strong>' + escapar(cfg.BENEFICIARIO || '') + '</strong></div>' +
-    '<div style="font-size:14px">IBAN: <strong>' + escapar(cfg.IBAN || '') + '</strong></div>' +
-    '<div style="font-size:14px">Concepto obligatorio: <strong style="color:#ff8a3d">' + id + '</strong></div></div>' +
-    '<p style="color:#8f8478;font-size:11px;margin-top:18px">Página no oficial de Airbus. El pago se realiza por transferencia; esta web no procesa pagos.</p>' +
-    '</div></div></div>';
+
+  var transferencia = (estado === 'PENDIENTE DE PAGO') ?
+    '<div style="margin-top:18px;padding:16px 18px;background:#faf6ee;border:1px solid #e4ddce;border-left:4px solid #c0392b;border-radius:12px">' +
+    '<div style="font-size:11px;color:#6f6a60;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Datos de la transferencia</div>' +
+    '<div style="margin-top:8px;font-size:14px;color:#1a1d21">Beneficiario: <strong>' + escapar(cfg.BENEFICIARIO || '') + '</strong></div>' +
+    '<div style="font-size:14px;color:#1a1d21">IBAN: <strong style="font-family:Consolas,monospace">' + escapar(cfg.IBAN || '') + '</strong></div>' +
+    '<div style="font-size:14px;color:#1a1d21;margin-top:4px">Concepto obligatorio: <strong style="font-family:Consolas,monospace;color:#c0392b;font-size:16px">' + id + '</strong></div>' +
+    '<div style="margin-top:8px;font-size:12px;color:#6f6a60">Revisamos las transferencias una vez al día: la confirmación puede tardar hasta 24 h. No hace falta enviar justificante.</div>' +
+    '</div>' : '';
+
+  return '' +
+  '<div style="font-family:Arial,Helvetica,sans-serif;background:#f7f4ee;padding:24px 12px">' +
+  '<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e4ddce;border-radius:16px;overflow:hidden">' +
+  '<div style="height:6px;background:#c0392b;line-height:6px;font-size:6px">&nbsp;</div>' +
+  '<div style="background:#16233b;color:#f3ede1;padding:18px 22px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:15px">Tienda · Caja de Resistencia' +
+  '<span style="display:block;font-size:11px;font-weight:600;color:#b7ad9c;letter-spacing:.12em;margin-top:3px">Huelga Airbus 2026 · Getafe</span></div>' +
+  '<div style="padding:24px 22px">' +
+  '<span style="display:inline-block;background:' + pill[0] + ';color:' + pill[1] + ';font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;padding:5px 12px;border-radius:999px">' + escapar(estado) + '</span>' +
+  '<h1 style="margin:12px 0;font-size:24px;color:#1a1d21;text-transform:uppercase;letter-spacing:-.01em">' + escapar(titulo) + '</h1>' +
+  '<p style="color:#4b4740;font-size:14px;line-height:1.6;margin:0 0 16px">' + intro + '</p>' +
+  '<table style="width:100%;border-collapse:collapse;margin:6px 0 14px;border:1px solid #e4ddce;border-radius:10px;overflow:hidden">' +
+  '<thead><tr>' +
+  '<th style="text-align:left;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Producto</th>' +
+  '<th style="text-align:left;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Talla</th>' +
+  '<th style="text-align:center;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Uds.</th>' +
+  '<th style="text-align:right;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Subtotal</th>' +
+  '</tr></thead><tbody>' + filas + '</tbody></table>' +
+  '<div style="text-align:right;color:#6f6a60;font-size:14px">Productos: <strong style="color:#1a1d21">' + eur(productos) + '</strong></div>' +
+  (aportacion > 0 ? '<div style="text-align:right;color:#6f6a60;font-size:14px">Aportación a la Caja: <strong style="color:#1a1d21">' + eur(aportacion) + '</strong></div>' : '') +
+  '<div style="text-align:right;font-size:22px;color:#c0392b;font-weight:800;margin-top:6px">TOTAL: ' + eur(total) + '</div>' +
+  transferencia +
+  '<p style="color:#9a9387;font-size:11px;margin-top:22px;line-height:1.5">Página no oficial de Airbus. El pago se realiza por transferencia bancaria; esta web no procesa pagos.</p>' +
+  '</div></div></div>';
 }
 
 /* ===========================  LECTURAS / ÍNDICES  ====================== */
