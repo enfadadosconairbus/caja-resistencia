@@ -1,23 +1,20 @@
 /* =============================================================================
-   Code.gs — Backend Apps Script V4.1 · Tienda Caja de Resistencia (Airbus 2026)
+   Code.gs — Backend Apps Script V4.2 · Tienda Caja de Resistencia (Airbus 2026)
    -----------------------------------------------------------------------------
-   Panel de operaciones sobre Google Sheet. Reúne y mejora el sistema V3.5:
-     · Alta de pedidos desde la web (sin Google Forms).
-     · Estados de pedido y caducidad 12 h.
-     · Conciliación bancaria AUTOMÁTICA importando el extracto del banco
-       (casa por concepto AIR26-XXXXX + importe exacto).
+   Panel de operaciones sobre Google Sheet, con estética "centro de operaciones":
+     · DASHBOARD con KPIs en tarjetas de color + 2 gráficos (dónut y barras).
+     · Conciliación bancaria automática (código AIR26-XXXXX + importe exacto).
      · LOTES y PROVEEDOR por PRODUCTO + SKU + TALLA.
-     · Emails: pedido recibido / pago confirmado / listo para recoger.
-     · DASHBOARD con KPIs (recaudado, caja de resistencia, pendientes…).
-     · Exportar a Excel (.xlsx) real con un clic.
+     · Estados con formato condicional por color · validaciones · hoja LOG.
+     · Emails (recibido / confirmado / listo) · Exportar a Excel (.xlsx).
 
    Puesta en marcha:
      1) Pega este fichero en Apps Script del Sheet (cuenta operativa).
-     2) Ejecuta setupTiendaV4()  (crea hojas + catálogo + panel).
+     2) Menú 👕 Tienda Airbus 2026 → 🛠️ Preparar backend (setup).
      3) Revisa CONFIG: IBAN y BENEFICIARIO reales.
-     4) Implementar → Nueva implementación → Aplicación web
-          Ejecutar como: tú · Acceso: Cualquiera → copia la URL /exec (al Worker)
-     5) Menú → Mostrar TOKEN backend (al Worker, nunca a GitHub).
+     4) Implementar → Aplicación web (Ejecutar como: tú · Acceso: cualquiera)
+        → copia la URL /exec (al Worker).
+     5) Menú → 🔑 Mostrar TOKEN backend (al Worker, nunca a GitHub).
 
    El navegador NUNCA decide el precio: se recalcula aquí contra CATALOGO.
    ========================================================================== */
@@ -29,9 +26,11 @@ var SH = {
   CATALOGO: 'CATALOGO',
   PEDIDOS: 'PEDIDOS',
   LINEAS: 'LINEAS_PEDIDO',
-  BANCO: 'BANCO',
+  BANCO: 'MOVIMIENTOS_BANCO',
   LOTES: 'LOTES',
-  PROVEEDOR: 'PROVEEDOR'
+  PROVEEDOR: 'PROVEEDOR',
+  LOG: 'LOG',
+  DATA: '_PANEL_DATA'   // hoja oculta: datos de los gráficos
 };
 
 var HEAD = {
@@ -43,11 +42,23 @@ var HEAD = {
   CATALOGO: ['ACTIVO', 'PRODUCTO', 'SKU', 'TALLA', 'MEDIDAS', 'PRECIO', 'COSTE', 'APORTE_CAJA'],
   BANCO: ['FECHA', 'CONCEPTO', 'IMPORTE', 'REFERENCIA', 'PEDIDO_DETECTADO', 'RESULTADO', 'PROCESADO', 'FECHA_CONCILIACION'],
   LOTES: ['LOTE', 'FECHA_GENERACION', 'PRODUCTO', 'SKU', 'TALLA', 'CANTIDAD', 'ESTADO', 'FECHA_RECEPCION'],
-  PROVEEDOR: ['LOTE', 'PRODUCTO', 'SKU', 'TALLA', 'CANTIDAD']
+  PROVEEDOR: ['LOTE', 'PRODUCTO', 'SKU', 'TALLA', 'CANTIDAD'],
+  LOG: ['TIMESTAMP', 'TIPO', 'DETALLE']
 };
 
-// Estados que cuentan como "pagado" (para KPIs y flujos).
-var ESTADOS_PAGADOS = ['PAGO_CONCILIADO', 'EN_PRODUCCION', 'RECIBIDO', 'LISTO', 'ENTREGADO'];
+// Flujo de estados de un pedido.
+var ESTADOS = ['PENDIENTE_PAGO', 'PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO', 'CADUCADO'];
+var ESTADOS_PAGADOS = ['PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO'];
+
+// Paleta (siguiendo la estela del Excel de referencia, con el naranja de marca).
+var COL = {
+  ink: '#211E1A', orange: '#C75B12', orangeDark: '#9F4309', slate: '#596573',
+  paper: '#FFFDF9', cream: '#FBF7EF', line: '#E7E0D5', white: '#FFFFFF',
+  tGray: '#F5F6F7', tGreen: '#DFF1E8', tGreen2: '#E2F1E9', tBlue: '#E2EEF7',
+  tBlue2: '#E7EEF6', tPeach: '#F6E1D2', tRed: '#F7E1DE', tYellow: '#FAEBC9'
+};
+var FMT_FECHA = 'dd/MM/yyyy HH:mm';
+var FMT_EUR = '#,##0.00 €';
 
 /* ===========================  ENDPOINT WEB  ================================ */
 
@@ -61,12 +72,8 @@ function doPost(e) {
     return jsonOut({ ok: false, error: 'Error del servidor: ' + err });
   }
 }
-
-function doGet() { return jsonOut({ ok: true, service: 'tienda-airbus', version: 'V4.1' }); }
-
-function jsonOut(obj) {
-  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
-}
+function doGet() { return jsonOut({ ok: true, service: 'tienda-airbus', version: 'V4.2' }); }
+function jsonOut(obj) { return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON); }
 
 /* ===========================  CREAR PEDIDO  =============================== */
 
@@ -77,12 +84,8 @@ function crearPedido(data) {
     var ss = SpreadsheetApp.getActive();
     var cfg = leerConfig();
 
-    // Idempotencia por client_request_id (reintentos, doble pulsación).
     var crid = String(data.client_request_id || '');
-    if (crid) {
-      var ex = buscarPorCRID(ss, crid);
-      if (ex) return respuestaPedido(ex.id, ex.total, cfg);
-    }
+    if (crid) { var ex = buscarPorCRID(ss, crid); if (ex) return respuestaPedido(ex.id, ex.total, cfg); }
 
     var catalogo = leerCatalogo(ss);
     var lineas = [], unidades = 0, productos = 0;
@@ -91,8 +94,7 @@ function crearPedido(data) {
       if (!item || item.activo !== true) return;
       var cant = Math.max(0, Math.floor(Number(l.cantidad) || 0));
       if (cant <= 0) return;
-      unidades += cant;
-      productos += item.precio * cant;
+      unidades += cant; productos += item.precio * cant;
       lineas.push({ producto: item.producto, sku: item.sku, talla: item.talla, cantidad: cant });
     });
     if (!lineas.length) return { ok: false, error: 'El pedido no contiene productos válidos.' };
@@ -106,151 +108,107 @@ function crearPedido(data) {
     var c = (data.cliente || {});
     var nombre = limpiar(c.nombre, 60), apellidos = limpiar(c.apellidos, 100);
     var email = limpiar(c.email, 120), telefono = limpiar(c.telefono, 30);
-    if (!nombre || !apellidos || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return { ok: false, error: 'Datos de cliente incompletos.' };
-    }
+    if (!nombre || !apellidos || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, error: 'Datos de cliente incompletos.' };
 
     var id = siguienteId(cfg);
     var ahora = new Date();
     var caduca = new Date(ahora.getTime() + Number(cfg.CADUCIDAD_HORAS || 12) * 3600 * 1000);
     var recogida = limpiar(data.recogida || cfg.RECOGIDA || '', 200);
 
-    ss.getSheetByName(SH.PEDIDOS).appendRow([
-      id, ahora, nombre, apellidos, email, telefono,
-      unidades, productos, aportacion, total, 'PENDIENTE_PAGO',
-      crid, recogida, caduca, '', '', ''
-    ]);
-
+    ss.getSheetByName(SH.PEDIDOS).appendRow([id, ahora, nombre, apellidos, email, telefono,
+      unidades, productos, aportacion, total, 'PENDIENTE_PAGO', crid, recogida, caduca, '', '', '']);
     var hojaLineas = ss.getSheetByName(SH.LINEAS);
     lineas.forEach(function (l) { hojaLineas.appendRow([id, ahora, l.producto, l.sku, l.talla, l.cantidad, '']); });
 
     try { emailPedidoRecibido(email, id, nombre, lineas, productos, aportacion, total, cfg); } catch (e) {}
-
+    registrarLog(ss, 'PEDIDO', id + ' · ' + unidades + ' uds · ' + eur(total));
     return respuestaPedido(id, total, cfg);
-  } finally {
-    lock.releaseLock();
-  }
+  } finally { lock.releaseLock(); }
 }
-
 function respuestaPedido(id, total, cfg) {
   return { ok: true, order_id: id, total: Number(total), beneficiario: cfg.BENEFICIARIO || '', iban: cfg.IBAN || '', concepto: id };
 }
 
 /* ===========================  CONCILIACIÓN BANCARIA  ===================== */
-/*
-   Flujo "más digital": pegas el extracto del banco en la hoja BANCO
-   (columnas FECHA·CONCEPTO·IMPORTE·REFERENCIA) y pulsas "Conciliar banco".
-   El sistema casa cada movimiento por código AIR26-XXXXX + importe exacto,
-   marca el pedido como PAGO_CONCILIADO y envía el email de confirmación.
-   Los que no cuadran quedan como REVISAR para mirarlos a mano.
-*/
+
 function conciliarBanco() {
   var ss = SpreadsheetApp.getActive();
   var sh = ss.getSheetByName(SH.BANCO);
   var last = sh.getLastRow();
-  if (last < 2) { ui().alert('No hay movimientos en la hoja BANCO. Pega el extracto (FECHA, CONCEPTO, IMPORTE, REFERENCIA).'); return; }
+  if (last < 2) { ui().alert('No hay movimientos en ' + SH.BANCO + '. Pega el extracto (FECHA, CONCEPTO, IMPORTE, REFERENCIA).'); return; }
 
   var H = HEAD.BANCO, col = function (k) { return H.indexOf(k); };
-  var rango = sh.getRange(2, 1, last - 1, H.length);
-  var vals = rango.getValues();
-  var pedidos = indicePedidos(ss);
-  var cfg = leerConfig();
+  var rango = sh.getRange(2, 1, last - 1, H.length), vals = rango.getValues();
+  var pedidos = indicePedidos(ss), cfg = leerConfig();
   var conc = 0, rev = 0, ya = 0, ahora = new Date();
 
   for (var r = 0; r < vals.length; r++) {
     if (String(vals[r][col('PROCESADO')]).toUpperCase() === 'SI') continue;
-
     var concepto = String(vals[r][col('CONCEPTO')] || '');
     var importe = parseImporte(vals[r][col('IMPORTE')]);
     var m = concepto.toUpperCase().match(/AIR26[-\s]?0*\d{1,6}/);
     var id = m ? normalizarId(m[0], cfg) : '';
-
     if (!id) { vals[r][col('RESULTADO')] = 'REVISAR_SIN_CODIGO'; rev++; continue; }
     var p = pedidos[id];
     if (!p) { vals[r][col('RESULTADO')] = 'REVISAR_CODIGO_INEXISTENTE'; vals[r][col('PEDIDO_DETECTADO')] = id; rev++; continue; }
-
     vals[r][col('PEDIDO_DETECTADO')] = id;
-
-    if (ESTADOS_PAGADOS.indexOf(p.estado) >= 0) {
-      vals[r][col('RESULTADO')] = 'YA_PAGADO';
-      vals[r][col('PROCESADO')] = 'SI'; vals[r][col('FECHA_CONCILIACION')] = ahora; ya++; continue;
-    }
+    if (ESTADOS_PAGADOS.indexOf(p.estado) >= 0) { vals[r][col('RESULTADO')] = 'YA_PAGADO'; vals[r][col('PROCESADO')] = 'SI'; vals[r][col('FECHA_CONCILIACION')] = ahora; ya++; continue; }
     if (p.estado === 'CADUCADO') { vals[r][col('RESULTADO')] = 'REVISAR_CADUCADO'; rev++; continue; }
-
     if (Math.round(importe * 100) === Math.round(p.total * 100)) {
-      // Cuadra: marcar pedido pagado + email
       marcarPedidoPagado(ss, p, cfg);
-      vals[r][col('RESULTADO')] = 'PAGO_CONCILIADO';
-      vals[r][col('PROCESADO')] = 'SI'; vals[r][col('FECHA_CONCILIACION')] = ahora;
-      pedidos[id].estado = 'PAGO_CONCILIADO';
-      conc++;
-    } else {
-      vals[r][col('RESULTADO')] = 'REVISAR_IMPORTE (' + eur(importe) + ' vs ' + eur(p.total) + ')';
-      rev++;
-    }
+      vals[r][col('RESULTADO')] = 'PAGO_CONCILIADO'; vals[r][col('PROCESADO')] = 'SI'; vals[r][col('FECHA_CONCILIACION')] = ahora;
+      pedidos[id].estado = 'PAGO_CONCILIADO'; conc++;
+    } else { vals[r][col('RESULTADO')] = 'REVISAR_IMPORTE (' + eur(importe) + ' vs ' + eur(p.total) + ')'; rev++; }
   }
-
   rango.setValues(vals);
+  registrarLog(ss, 'CONCILIACION', 'conciliados ' + conc + ' · revisar ' + rev + ' · ya ' + ya);
   refrescarDashboard();
-  ui().alert('Conciliación terminada.\n\nConciliados: ' + conc + '\nYa estaban pagados: ' + ya + '\nPara revisar: ' + rev);
+  ui().alert('Conciliación terminada.\n\nConciliados: ' + conc + '\nYa pagados: ' + ya + '\nPara revisar: ' + rev);
 }
 
 function marcarPedidoPagado(ss, p, cfg) {
-  var sh = ss.getSheetByName(SH.PEDIDOS);
-  var H = HEAD.PEDIDOS;
+  var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
   sh.getRange(p.fila, H.indexOf('ESTADO') + 1).setValue('PAGO_CONCILIADO');
   sh.getRange(p.fila, H.indexOf('FECHA_CONFIRMADO') + 1).setValue(new Date());
-  try {
-    var lineas = lineasDePedido(ss, p.id);
-    emailPagoConfirmado(p.email, p.id, p.nombre, lineas, p.productos, p.aportacion, p.total, cfg);
-  } catch (e) {}
+  try { emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg); } catch (e) {}
 }
 
 /* ===========================  LOTES / PROVEEDOR  ======================== */
 
 function generarPedidoProveedor() {
-  var ss = SpreadsheetApp.getActive();
-  var pedidos = indicePedidos(ss);
-
-  // Pedidos pagados aún no enviados a producción.
+  var ss = SpreadsheetApp.getActive(), pedidos = indicePedidos(ss);
   var ids = [];
   for (var id in pedidos) if (pedidos[id].estado === 'PAGO_CONCILIADO') ids.push(id);
   if (!ids.length) { ui().alert('No hay pedidos PAGO_CONCILIADO pendientes de lote.'); return; }
 
-  // Agregar líneas sin lote por PRODUCTO+SKU+TALLA.
-  var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS;
-  var lastL = shL.getLastRow();
+  var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, lastL = shL.getLastRow();
   var lin = shL.getRange(2, 1, lastL - 1, H.length).getValues();
-  var agg = {}, filasToStamp = [];
+  var agg = {}, filas = [];
   for (var i = 0; i < lin.length; i++) {
-    var row = lin[i];
-    var pid = String(row[H.indexOf('ID')]);
+    var row = lin[i], pid = String(row[H.indexOf('ID')]);
     if (ids.indexOf(pid) < 0) continue;
-    if (String(row[H.indexOf('LOTE')])) continue; // ya loteada
+    if (String(row[H.indexOf('LOTE')])) continue;
     var key = row[H.indexOf('PRODUCTO')] + '||' + row[H.indexOf('SKU')] + '||' + row[H.indexOf('TALLA')];
     if (!agg[key]) agg[key] = { producto: row[H.indexOf('PRODUCTO')], sku: row[H.indexOf('SKU')], talla: row[H.indexOf('TALLA')], cantidad: 0 };
     agg[key].cantidad += Number(row[H.indexOf('CANTIDAD')]) || 0;
-    filasToStamp.push(i + 2); // fila real
+    filas.push(i + 2);
   }
   var keys = Object.keys(agg);
   if (!keys.length) { ui().alert('Los pedidos pagados ya estaban loteados.'); return; }
 
-  var lote = nuevoLoteId(ss);
-  var ahora = new Date();
+  var lote = nuevoLoteId(ss), ahora = new Date();
   var shLot = ss.getSheetByName(SH.LOTES), shProv = ss.getSheetByName(SH.PROVEEDOR);
-  keys.forEach(function (k) {
-    var a = agg[k];
+  keys.forEach(function (k) { var a = agg[k];
     shLot.appendRow([lote, ahora, a.producto, a.sku, a.talla, a.cantidad, 'PEDIDO', '']);
     shProv.appendRow([lote, a.producto, a.sku, a.talla, a.cantidad]);
   });
-
-  // Sellar LOTE en las líneas y pasar pedidos a EN_PRODUCCION.
-  filasToStamp.forEach(function (f) { shL.getRange(f, H.indexOf('LOTE') + 1).setValue(lote); });
+  filas.forEach(function (f) { shL.getRange(f, H.indexOf('LOTE') + 1).setValue(lote); });
   var shP = ss.getSheetByName(SH.PEDIDOS), HP = HEAD.PEDIDOS;
-  ids.forEach(function (id) { shP.getRange(pedidos[id].fila, HP.indexOf('ESTADO') + 1).setValue('EN_PRODUCCION'); });
+  ids.forEach(function (id) { shP.getRange(pedidos[id].fila, HP.indexOf('ESTADO') + 1).setValue('ENVIADO_PROVEEDOR'); });
 
-  refrescarDashboard();
   var totalUds = keys.reduce(function (s, k) { return s + agg[k].cantidad; }, 0);
+  registrarLog(ss, 'LOTE', lote + ' · ' + keys.length + ' líneas · ' + totalUds + ' uds');
+  refrescarDashboard();
   ui().alert('Lote ' + lote + ' generado.\n\n' + keys.length + ' líneas de proveedor · ' + totalUds + ' uds.\nRevisa la hoja PROVEEDOR (puedes exportarla a Excel).');
 }
 
@@ -259,56 +217,38 @@ function marcarLoteRecibidoSeleccion() {
   if (sh.getName() !== SH.LOTES) { ui().alert('Ponte en la hoja LOTES y selecciona una fila del lote a recibir.'); return; }
   var fila = sh.getActiveCell().getRow();
   if (fila < 2) { ui().alert('Selecciona una fila de lote.'); return; }
-  var H = HEAD.LOTES;
-  var lote = sh.getRange(fila, H.indexOf('LOTE') + 1).getValue();
+  var H = HEAD.LOTES, lote = sh.getRange(fila, H.indexOf('LOTE') + 1).getValue();
   if (!lote) return;
-
-  // Marca todas las filas de ese LOTE como RECIBIDO.
-  var last = sh.getLastRow();
-  var vals = sh.getRange(2, 1, last - 1, H.length).getValues();
-  var ahora = new Date();
+  var last = sh.getLastRow(), vals = sh.getRange(2, 1, last - 1, H.length).getValues(), ahora = new Date();
   for (var r = 0; r < vals.length; r++) {
     if (String(vals[r][H.indexOf('LOTE')]) === String(lote)) {
       sh.getRange(r + 2, H.indexOf('ESTADO') + 1).setValue('RECIBIDO');
       sh.getRange(r + 2, H.indexOf('FECHA_RECEPCION') + 1).setValue(ahora);
     }
   }
-
   var avisados = avisarPedidosListos(ss);
+  registrarLog(ss, 'RECEPCION', lote + ' · avisados ' + avisados);
   refrescarDashboard();
   ui().alert('Lote ' + lote + ' marcado como RECIBIDO.\nPedidos avisados para recoger: ' + avisados);
 }
 
-// Un pedido pasa a LISTO (y se avisa) cuando TODAS sus líneas tienen lote y
-// todos esos lotes están RECIBIDOS.
 function avisarPedidosListos(ss) {
-  var lotesRecibidos = {};
-  var shLot = ss.getSheetByName(SH.LOTES), HL = HEAD.LOTES, lastLot = shLot.getLastRow();
-  if (lastLot >= 2) {
-    shLot.getRange(2, 1, lastLot - 1, HL.length).getValues().forEach(function (r) {
-      if (String(r[HL.indexOf('ESTADO')]) === 'RECIBIDO') lotesRecibidos[String(r[HL.indexOf('LOTE')])] = true;
-    });
-  }
-  var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, lastL = shL.getLastRow();
-  var porPedido = {};
-  if (lastL >= 2) {
-    shL.getRange(2, 1, lastL - 1, H.length).getValues().forEach(function (r) {
-      var pid = String(r[H.indexOf('ID')]);
-      var lote = String(r[H.indexOf('LOTE')]);
-      if (!porPedido[pid]) porPedido[pid] = { total: 0, listos: 0 };
-      porPedido[pid].total++;
-      if (lote && lotesRecibidos[lote]) porPedido[pid].listos++;
-    });
-  }
-  var pedidos = indicePedidos(ss), cfg = leerConfig();
-  var shP = ss.getSheetByName(SH.PEDIDOS), HP = HEAD.PEDIDOS;
-  var n = 0;
+  var lotesRec = {}, shLot = ss.getSheetByName(SH.LOTES), HL = HEAD.LOTES, lastLot = shLot.getLastRow();
+  if (lastLot >= 2) shLot.getRange(2, 1, lastLot - 1, HL.length).getValues().forEach(function (r) {
+    if (String(r[HL.indexOf('ESTADO')]) === 'RECIBIDO') lotesRec[String(r[HL.indexOf('LOTE')])] = true;
+  });
+  var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, lastL = shL.getLastRow(), porPedido = {};
+  if (lastL >= 2) shL.getRange(2, 1, lastL - 1, H.length).getValues().forEach(function (r) {
+    var pid = String(r[H.indexOf('ID')]), lote = String(r[H.indexOf('LOTE')]);
+    if (!porPedido[pid]) porPedido[pid] = { total: 0, listos: 0 };
+    porPedido[pid].total++; if (lote && lotesRec[lote]) porPedido[pid].listos++;
+  });
+  var pedidos = indicePedidos(ss), cfg = leerConfig(), shP = ss.getSheetByName(SH.PEDIDOS), HP = HEAD.PEDIDOS, n = 0;
   for (var pid in porPedido) {
-    var p = pedidos[pid];
-    if (!p || p.estado !== 'EN_PRODUCCION') continue;
+    var p = pedidos[pid]; if (!p || p.estado !== 'ENVIADO_PROVEEDOR') continue;
     var c = porPedido[pid];
     if (c.total > 0 && c.listos === c.total) {
-      shP.getRange(p.fila, HP.indexOf('ESTADO') + 1).setValue('LISTO');
+      shP.getRange(p.fila, HP.indexOf('ESTADO') + 1).setValue('LISTO_RECOGIDA');
       shP.getRange(p.fila, HP.indexOf('FECHA_LISTO') + 1).setValue(new Date());
       try { emailListoRecoger(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg); n++; } catch (e) {}
     }
@@ -318,38 +258,34 @@ function avisarPedidosListos(ss) {
 
 /* ===========================  ACCIONES MANUALES  ======================== */
 
-function confirmarPagoSeleccion() {  // override manual (transferencia vista a mano)
+function confirmarPagoSeleccion() {
   var r = pedidoSeleccionado(); if (!r) return;
-  var ss = SpreadsheetApp.getActive();
-  marcarPedidoPagado(ss, r, leerConfig());
+  marcarPedidoPagado(SpreadsheetApp.getActive(), r, leerConfig());
+  registrarLog(SpreadsheetApp.getActive(), 'PAGO_MANUAL', r.id);
   refrescarDashboard();
   ui().alert('Pedido ' + r.id + ' → PAGO_CONCILIADO. Email enviado.');
 }
-
 function marcarEntregadoSeleccion() {
   var r = pedidoSeleccionado(); if (!r) return;
   var ss = SpreadsheetApp.getActive(), sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
   sh.getRange(r.fila, H.indexOf('ESTADO') + 1).setValue('ENTREGADO');
   sh.getRange(r.fila, H.indexOf('FECHA_ENTREGADO') + 1).setValue(new Date());
-  refrescarDashboard();
+  registrarLog(ss, 'ENTREGA', r.id); refrescarDashboard();
   ui().alert('Pedido ' + r.id + ' → ENTREGADO.');
 }
-
 function caducarPendientes() {
-  var ss = SpreadsheetApp.getActive(), sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
-  var last = sh.getLastRow(); if (last < 2) return;
-  var vals = sh.getRange(2, 1, last - 1, H.length).getValues();
-  var ahora = new Date(), n = 0;
+  var ss = SpreadsheetApp.getActive(), sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS, last = sh.getLastRow();
+  if (last < 2) return;
+  var vals = sh.getRange(2, 1, last - 1, H.length).getValues(), ahora = new Date(), n = 0;
   for (var r = 0; r < vals.length; r++) {
     if (String(vals[r][H.indexOf('ESTADO')]) === 'PENDIENTE_PAGO') {
       var cad = vals[r][H.indexOf('CADUCA')];
       if (cad instanceof Date && cad < ahora) { sh.getRange(r + 2, H.indexOf('ESTADO') + 1).setValue('CADUCADO'); n++; }
     }
   }
-  refrescarDashboard();
+  registrarLog(ss, 'CADUCIDAD', n + ' caducados'); refrescarDashboard();
   ui().alert(n + ' pedido(s) marcados como CADUCADO.');
 }
-
 function pedidoSeleccionado() {
   var ss = SpreadsheetApp.getActive(), sh = ss.getActiveSheet();
   if (sh.getName() !== SH.PEDIDOS) { ui().alert('Ponte en la hoja PEDIDOS y selecciona la fila del pedido.'); return null; }
@@ -362,333 +298,428 @@ function pedidoSeleccionado() {
 
 function exportarExcel() {
   var ss = SpreadsheetApp.getActive();
-  var id = ss.getId();
-  var url = 'https://docs.google.com/spreadsheets/d/' + id + '/export?format=xlsx';
-  var token = ScriptApp.getOAuthToken();
-  var resp = UrlFetchApp.fetch(url, { headers: { Authorization: 'Bearer ' + token }, muteHttpExceptions: true });
+  var url = 'https://docs.google.com/spreadsheets/d/' + ss.getId() + '/export?format=xlsx';
+  var resp = UrlFetchApp.fetch(url, { headers: { Authorization: 'Bearer ' + ScriptApp.getOAuthToken() }, muteHttpExceptions: true });
   if (resp.getResponseCode() !== 200) { ui().alert('No se pudo exportar (código ' + resp.getResponseCode() + ').'); return; }
-
-  var carpeta = carpetaExport_();
+  var it = DriveApp.getFoldersByName('Tienda Airbus - Export');
+  var carpeta = it.hasNext() ? it.next() : DriveApp.createFolder('Tienda Airbus - Export');
   var stamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd-HHmm');
-  var blob = resp.getBlob().setName('Tienda-Airbus-' + stamp + '.xlsx');
-  var file = carpeta.createFile(blob);
-  ui().alert('Excel generado:\n\n' + file.getName() + '\n\nCarpeta "Tienda Airbus - Export" en tu Drive.\nEnlace:\n' + file.getUrl());
+  var file = carpeta.createFile(resp.getBlob().setName('Tienda-Airbus-' + stamp + '.xlsx'));
+  registrarLog(ss, 'EXPORT', file.getName());
+  ui().alert('Excel generado:\n\n' + file.getName() + '\n\nCarpeta "Tienda Airbus - Export" en tu Drive.\n' + file.getUrl());
 }
 
-function carpetaExport_() {
-  var nombre = 'Tienda Airbus - Export';
-  var it = DriveApp.getFoldersByName(nombre);
-  return it.hasNext() ? it.next() : DriveApp.createFolder(nombre);
-}
-
-/* ===========================  DASHBOARD  =============================== */
+/* ===========================  DASHBOARD (datos + gráficos)  ============= */
 
 function refrescarDashboard() {
   var ss = SpreadsheetApp.getActive();
-  var sh = ss.getSheetByName(SH.DASH);
-  if (!sh) return;
-  // Los KPIs son fórmulas vivas; aquí solo sellamos la marca de tiempo (fila "Actualizado").
-  sh.getRange('B2').setValue(new Date());
+  var dash = ss.getSheetByName(SH.DASH); if (dash) dash.getRange('B2').setValue(new Date());
+  actualizarDatosPanel(ss);   // rellena _PANEL_DATA (fuente de los gráficos)
 }
 
-function construirDashboard_(ss) {
-  var sh = ss.getSheetByName(SH.DASH) || ss.insertSheet(SH.DASH, 1);
-  sh.clear();
-  var P = SH.PEDIDOS;
-  // Máscara "pagado" = estado no vacío que no es PENDIENTE_PAGO ni CADUCADO.
-  // (los pedidos nunca toman estado REVISAR; eso solo ocurre en la hoja BANCO)
-  var K = P + "!K2:K5000";
-  var mask = "(" + K + "<>\"PENDIENTE_PAGO\")*(" + K + "<>\"CADUCADO\")*(" + K + "<>\"\")";
-  var filas = [
-    ['PANEL · TIENDA CAJA DE RESISTENCIA', ''],
-    ['Actualizado', ''],
-    ['', ''],
-    ['Pedidos totales', '=COUNTA(' + P + '!A2:A5000)'],
-    ['· Pendientes de pago', '=COUNTIF(' + P + '!K2:K5000,"PENDIENTE_PAGO")'],
-    ['· Pagados (conciliados)', '=SUMPRODUCT(' + mask + ')'],
-    ['· En producción', '=COUNTIF(' + P + '!K2:K5000,"EN_PRODUCCION")'],
-    ['· Listos para recoger', '=COUNTIF(' + P + '!K2:K5000,"LISTO")'],
-    ['· Entregados', '=COUNTIF(' + P + '!K2:K5000,"ENTREGADO")'],
-    ['· Caducados', '=COUNTIF(' + P + '!K2:K5000,"CADUCADO")'],
-    ['', ''],
-    ['Unidades vendidas (pagadas)', '=SUMPRODUCT(' + mask + '*' + P + '!G2:G5000)'],
-    ['Recaudado total (pagado)', '=SUMPRODUCT(' + mask + '*' + P + '!J2:J5000)'],
-    ['→ a la Caja de Resistencia', '=SUMPRODUCT(' + mask + '*' + P + '!I2:I5000)+5*SUMPRODUCT(' + mask + '*' + P + '!G2:G5000)'],
-    ['→ coste de fabricación', '=5*SUMPRODUCT(' + mask + '*' + P + '!G2:G5000)'],
-    ['', ''],
-    ['Importe pendiente de cobro', '=SUMIF(' + P + '!K2:K5000,"PENDIENTE_PAGO",' + P + '!J2:J5000)']
-  ];
-  sh.getRange(1, 1, filas.length, 2).setValues(filas);
-  sh.getRange('B4:B17').setNumberFormat('#,##0');
-  sh.getRange('B12').setNumberFormat('#,##0');
-  sh.getRange('B13:B15').setNumberFormat('#,##0.00 €');
-  sh.getRange('B17').setNumberFormat('#,##0.00 €');
-  sh.getRange('B2').setNumberFormat('yyyy-mm-dd hh:mm');
-  sh.getRange('A1:B1').merge().setFontWeight('bold').setFontSize(14).setBackground('#ff7417').setFontColor('#1a1206');
-  sh.getRange('A4:A17').setFontWeight('bold');
-  sh.setColumnWidth(1, 260); sh.setColumnWidth(2, 160);
-  sh.getRange('B2').setValue(new Date());
+// Cuenta pedidos por estado y camisetas conciliadas por talla → hoja oculta.
+function actualizarDatosPanel(ss) {
+  var data = ss.getSheetByName(SH.DATA); if (!data) return;
+
+  // Distribución por estado.
+  var pedidos = indicePedidos(ss), porEstado = {};
+  ESTADOS.forEach(function (e) { porEstado[e] = 0; });
+  for (var id in pedidos) { var e = pedidos[id].estado; if (porEstado[e] === undefined) porEstado[e] = 0; porEstado[e]++; }
+  var filasEstado = ESTADOS.filter(function (e) { return porEstado[e] > 0; }).map(function (e) { return [e, porEstado[e]]; });
+  if (!filasEstado.length) filasEstado = [['(sin pedidos)', 0]];
+
+  // Camisetas conciliadas (pagadas) por talla.
+  var pagados = {}; for (var id2 in pedidos) if (ESTADOS_PAGADOS.indexOf(pedidos[id2].estado) >= 0) pagados[id2] = true;
+  var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, lastL = shL.getLastRow(), porTalla = {};
+  if (lastL >= 2) shL.getRange(2, 1, lastL - 1, H.length).getValues().forEach(function (r) {
+    if (!pagados[String(r[H.indexOf('ID')])]) return;
+    var t = String(r[H.indexOf('TALLA')]); porTalla[t] = (porTalla[t] || 0) + (Number(r[H.indexOf('CANTIDAD')]) || 0);
+  });
+  var ordenTallas = ['XS','S','M','L','XL','2XL','3XL','4XL','5XL'];
+  var filasTalla = ordenTallas.filter(function (t) { return porTalla[t]; }).map(function (t) { return [t, porTalla[t]]; });
+  if (!filasTalla.length) filasTalla = [['(sin datos)', 0]];
+
+  data.clearContents();
+  data.getRange(1, 1, 1, 2).setValues([['ESTADO', 'PEDIDOS']]);
+  data.getRange(2, 1, filasEstado.length, 2).setValues(filasEstado);
+  data.getRange(1, 4, 1, 2).setValues([['TALLA', 'UDS']]);
+  data.getRange(2, 4, filasTalla.length, 2).setValues(filasTalla);
 }
 
 /* ===========================  TOKEN  =================================== */
 
-function tokenValido(t) {
-  var real = PropertiesService.getScriptProperties().getProperty('BACKEND_TOKEN');
-  return real && t && String(t) === String(real);
-}
+function tokenValido(t) { var real = PropertiesService.getScriptProperties().getProperty('BACKEND_TOKEN'); return real && t && String(t) === String(real); }
 function asegurarToken() {
-  var props = PropertiesService.getScriptProperties();
-  var t = props.getProperty('BACKEND_TOKEN');
+  var props = PropertiesService.getScriptProperties(), t = props.getProperty('BACKEND_TOKEN');
   if (!t) { t = Utilities.getUuid().replace(/-/g, '') + Utilities.getUuid().replace(/-/g, ''); props.setProperty('BACKEND_TOKEN', t); }
   return t;
 }
-function mostrarToken() {
-  ui().alert('TOKEN backend (solo para el Cloudflare Worker):\n\n' + asegurarToken() + '\n\nNo lo pongas en GitHub ni en config.js.');
-}
+function mostrarToken() { ui().alert('TOKEN backend (solo para el Cloudflare Worker):\n\n' + asegurarToken() + '\n\nNo lo pongas en GitHub ni en config.js.'); }
 
 /* ===========================  EMAILS  =================================== */
 
 function emailPedidoRecibido(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia',
-    subject: 'Pedido ' + id + ' recibido · Caja de Resistencia',
-    htmlBody: plantillaEmail('Pedido recibido',
-      'Hola ' + escapar(nombre) + ', hemos registrado tu pedido <strong>' + id + '</strong>. ' +
-      'Haz una transferencia por el importe exacto usando <strong>' + id + '</strong> como concepto. ' +
-      'No hace falta enviar justificante: confirmamos con los movimientos reales de la cuenta.',
-      id, lineas, productos, aportacion, total, cfg, 'PENDIENTE DE PAGO') });
+  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia', subject: 'Pedido ' + id + ' recibido · Caja de Resistencia',
+    htmlBody: plantillaEmail('Pedido recibido', 'Hola ' + escapar(nombre) + ', hemos registrado tu pedido <strong>' + id + '</strong>. Haz una transferencia por el importe exacto usando <strong>' + id + '</strong> como concepto. No hace falta enviar justificante: confirmamos con los movimientos reales de la cuenta.', id, lineas, productos, aportacion, total, cfg, 'PENDIENTE DE PAGO') });
 }
 function emailPagoConfirmado(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia',
-    subject: 'Pedido ' + id + ' confirmado · Caja de Resistencia',
-    htmlBody: plantillaEmail('Pago confirmado',
-      'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. ' +
-      'Te avisaremos por email cuando tu pedido esté listo para recoger en Getafe.',
-      id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA') });
+  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia', subject: 'Pedido ' + id + ' confirmado · Caja de Resistencia',
+    htmlBody: plantillaEmail('Pago confirmado', 'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. Te avisaremos por email cuando tu pedido esté listo para recoger en Getafe.', id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA') });
 }
 function emailListoRecoger(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia',
-    subject: 'Pedido ' + id + ' listo para recoger · Caja de Resistencia',
-    htmlBody: plantillaEmail('Listo para recoger',
-      'Hola ' + escapar(nombre) + ', tu pedido <strong>' + id + '</strong> ya está disponible. ' +
-      'Recógelo en: <strong>' + escapar(cfg.RECOGIDA || '') + '</strong>.',
-      id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER') });
+  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia', subject: 'Pedido ' + id + ' listo para recoger · Caja de Resistencia',
+    htmlBody: plantillaEmail('Listo para recoger', 'Hola ' + escapar(nombre) + ', tu pedido <strong>' + id + '</strong> ya está disponible. Recógelo en: <strong>' + escapar(cfg.RECOGIDA || '') + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER') });
 }
-
 function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total, cfg, estado) {
   var filas = lineas.map(function (l) {
-    var precio = precioSku(l.sku) * l.cantidad;
-    return '<tr>' +
-      '<td style="padding:8px 10px;border-bottom:1px solid #3a2f27">' + escapar(l.producto) + '</td>' +
+    return '<tr><td style="padding:8px 10px;border-bottom:1px solid #3a2f27">' + escapar(l.producto) + '</td>' +
       '<td style="padding:8px 10px;border-bottom:1px solid #3a2f27">' + escapar(l.talla) + '</td>' +
       '<td style="padding:8px 10px;border-bottom:1px solid #3a2f27;text-align:center">' + l.cantidad + '</td>' +
-      '<td style="padding:8px 10px;border-bottom:1px solid #3a2f27;text-align:right">' + eur(precio) + '</td></tr>';
+      '<td style="padding:8px 10px;border-bottom:1px solid #3a2f27;text-align:right">' + eur(precioSku(l.sku) * l.cantidad) + '</td></tr>';
   }).join('');
-  return '' +
-  '<div style="font-family:Arial,Helvetica,sans-serif;background:#15110f;padding:24px;color:#f4eee5">' +
+  return '<div style="font-family:Arial,Helvetica,sans-serif;background:#15110f;padding:24px;color:#f4eee5">' +
     '<div style="max-width:560px;margin:0 auto;background:#221b17;border:1px solid #3a2f27;border-radius:14px;overflow:hidden">' +
-      '<div style="background:#ff7417;color:#1a1206;padding:18px 22px;font-weight:900;text-transform:uppercase;letter-spacing:.04em">Caja de Resistencia · Huelga Airbus 2026</div>' +
-      '<div style="padding:22px">' +
-        '<div style="color:#ff7417;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:12px">' + escapar(estado) + '</div>' +
-        '<h1 style="margin:6px 0 12px;font-size:22px;color:#f4eee5">' + escapar(titulo) + '</h1>' +
-        '<p style="color:#d9cec0;font-size:14px;line-height:1.6">' + intro + '</p>' +
-        '<table style="width:100%;border-collapse:collapse;margin:14px 0;background:#2a221d;border-radius:8px">' +
-          '<thead><tr>' +
-            '<th style="text-align:left;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Producto</th>' +
-            '<th style="text-align:left;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Talla</th>' +
-            '<th style="text-align:center;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Uds.</th>' +
-            '<th style="text-align:right;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Subtotal</th>' +
-          '</tr></thead><tbody>' + filas + '</tbody></table>' +
-        '<div style="color:#d9cec0;font-size:14px">Productos: <strong>' + eur(productos) + '</strong></div>' +
-        (aportacion > 0 ? '<div style="color:#d9cec0;font-size:14px">Aportación adicional: <strong>' + eur(aportacion) + '</strong></div>' : '') +
-        '<div style="font-size:20px;color:#ff7417;font-weight:900;margin-top:6px">TOTAL: ' + eur(total) + '</div>' +
-        '<div style="margin-top:18px;padding:16px;background:#2a221d;border-radius:10px;border-left:4px solid #ff7417">' +
-          '<div style="font-size:11px;color:#b9ac9d;text-transform:uppercase;letter-spacing:.08em">Datos de la transferencia</div>' +
-          '<div style="margin-top:6px;font-size:14px">Beneficiario: <strong>' + escapar(cfg.BENEFICIARIO || '') + '</strong></div>' +
-          '<div style="font-size:14px">IBAN: <strong>' + escapar(cfg.IBAN || '') + '</strong></div>' +
-          '<div style="font-size:14px">Concepto obligatorio: <strong style="color:#ff7417">' + id + '</strong></div>' +
-        '</div>' +
-        '<p style="color:#8f8478;font-size:11px;margin-top:18px">Página no oficial de Airbus. El pago se realiza por transferencia; esta web no procesa pagos.</p>' +
-      '</div></div></div>';
+    '<div style="background:#c75b12;color:#fff;padding:18px 22px;font-weight:900;text-transform:uppercase;letter-spacing:.04em">Caja de Resistencia · Huelga Airbus 2026</div>' +
+    '<div style="padding:22px">' +
+    '<div style="color:#ff8a3d;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:12px">' + escapar(estado) + '</div>' +
+    '<h1 style="margin:6px 0 12px;font-size:22px;color:#f4eee5">' + escapar(titulo) + '</h1>' +
+    '<p style="color:#d9cec0;font-size:14px;line-height:1.6">' + intro + '</p>' +
+    '<table style="width:100%;border-collapse:collapse;margin:14px 0;background:#2a221d;border-radius:8px">' +
+    '<thead><tr><th style="text-align:left;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Producto</th>' +
+    '<th style="text-align:left;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Talla</th>' +
+    '<th style="text-align:center;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Uds.</th>' +
+    '<th style="text-align:right;padding:8px 10px;color:#b9ac9d;font-size:11px;text-transform:uppercase">Subtotal</th></tr></thead><tbody>' + filas + '</tbody></table>' +
+    '<div style="color:#d9cec0;font-size:14px">Productos: <strong>' + eur(productos) + '</strong></div>' +
+    (aportacion > 0 ? '<div style="color:#d9cec0;font-size:14px">Aportación adicional: <strong>' + eur(aportacion) + '</strong></div>' : '') +
+    '<div style="font-size:20px;color:#ff8a3d;font-weight:900;margin-top:6px">TOTAL: ' + eur(total) + '</div>' +
+    '<div style="margin-top:18px;padding:16px;background:#2a221d;border-radius:10px;border-left:4px solid #c75b12">' +
+    '<div style="font-size:11px;color:#b9ac9d;text-transform:uppercase;letter-spacing:.08em">Datos de la transferencia</div>' +
+    '<div style="margin-top:6px;font-size:14px">Beneficiario: <strong>' + escapar(cfg.BENEFICIARIO || '') + '</strong></div>' +
+    '<div style="font-size:14px">IBAN: <strong>' + escapar(cfg.IBAN || '') + '</strong></div>' +
+    '<div style="font-size:14px">Concepto obligatorio: <strong style="color:#ff8a3d">' + id + '</strong></div></div>' +
+    '<p style="color:#8f8478;font-size:11px;margin-top:18px">Página no oficial de Airbus. El pago se realiza por transferencia; esta web no procesa pagos.</p>' +
+    '</div></div></div>';
 }
 
 /* ===========================  LECTURAS / ÍNDICES  ====================== */
 
 function indicePedidos(ss) {
-  var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS, out = {};
-  var last = sh.getLastRow(); if (last < 2) return out;
+  var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS, out = {}, last = sh.getLastRow();
+  if (last < 2) return out;
   var vals = sh.getRange(2, 1, last - 1, H.length).getValues();
-  for (var r = 0; r < vals.length; r++) {
-    var id = String(vals[r][H.indexOf('ID')]); if (!id) continue;
-    out[id] = filaAObjeto(vals[r], r + 2);
-  }
+  for (var r = 0; r < vals.length; r++) { var id = String(vals[r][H.indexOf('ID')]); if (id) out[id] = filaAObjeto(vals[r], r + 2); }
   return out;
 }
-function pedidoDeFila(ss, fila) {
-  var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
-  return filaAObjeto(sh.getRange(fila, 1, 1, H.length).getValues()[0], fila);
-}
+function pedidoDeFila(ss, fila) { var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS; return filaAObjeto(sh.getRange(fila, 1, 1, H.length).getValues()[0], fila); }
 function filaAObjeto(row, fila) {
   var H = HEAD.PEDIDOS, g = function (k) { return row[H.indexOf(k)]; };
-  return { fila: fila, id: String(g('ID')), nombre: g('NOMBRE'), email: g('EMAIL'),
-    unidades: Number(g('UNIDADES')) || 0, productos: Number(g('PRODUCTOS_EUR')) || 0,
-    aportacion: Number(g('APORTACION_EUR')) || 0, total: Number(g('TOTAL_EUR')) || 0,
-    estado: String(g('ESTADO')) };
+  return { fila: fila, id: String(g('ID')), nombre: g('NOMBRE'), email: g('EMAIL'), unidades: Number(g('UNIDADES')) || 0,
+    productos: Number(g('PRODUCTOS_EUR')) || 0, aportacion: Number(g('APORTACION_EUR')) || 0, total: Number(g('TOTAL_EUR')) || 0, estado: String(g('ESTADO')) };
 }
 function buscarPorCRID(ss, crid) {
-  var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS, last = sh.getLastRow();
-  if (last < 2) return null;
+  var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS, last = sh.getLastRow(); if (last < 2) return null;
   var vals = sh.getRange(2, 1, last - 1, H.length).getValues();
-  for (var r = 0; r < vals.length; r++) if (String(vals[r][H.indexOf('CLIENT_REQUEST_ID')]) === crid)
-    return { id: vals[r][H.indexOf('ID')], total: vals[r][H.indexOf('TOTAL_EUR')] };
+  for (var r = 0; r < vals.length; r++) if (String(vals[r][H.indexOf('CLIENT_REQUEST_ID')]) === crid) return { id: vals[r][H.indexOf('ID')], total: vals[r][H.indexOf('TOTAL_EUR')] };
   return null;
 }
 function lineasDePedido(ss, id) {
-  var sh = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, last = sh.getLastRow(), out = [];
-  if (last < 2) return out;
+  var sh = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, last = sh.getLastRow(), out = []; if (last < 2) return out;
   sh.getRange(2, 1, last - 1, H.length).getValues().forEach(function (r) {
-    if (String(r[H.indexOf('ID')]) === String(id))
-      out.push({ producto: r[H.indexOf('PRODUCTO')], sku: r[H.indexOf('SKU')], talla: r[H.indexOf('TALLA')], cantidad: Number(r[H.indexOf('CANTIDAD')]) || 0 });
+    if (String(r[H.indexOf('ID')]) === String(id)) out.push({ producto: r[H.indexOf('PRODUCTO')], sku: r[H.indexOf('SKU')], talla: r[H.indexOf('TALLA')], cantidad: Number(r[H.indexOf('CANTIDAD')]) || 0 });
   });
   return out;
 }
 var _catCache = null;
 function leerCatalogo(ss) {
-  var sh = ss.getSheetByName(SH.CATALOGO), out = {}, last = sh.getLastRow();
-  if (last < 2) return out;
+  var sh = ss.getSheetByName(SH.CATALOGO), out = {}, last = sh.getLastRow(); if (last < 2) return out;
   sh.getRange(2, 1, last - 1, HEAD.CATALOGO.length).getValues().forEach(function (row) {
     var sku = String(row[2]).trim(); if (!sku) return;
-    out[sku] = { activo: row[0] === true || String(row[0]).toUpperCase() === 'TRUE',
-      producto: row[1], sku: sku, talla: row[3], medidas: row[4],
-      precio: Number(row[5]) || 0, coste: Number(row[6]) || 0, aporte: Number(row[7]) || 0 };
+    out[sku] = { activo: row[0] === true || String(row[0]).toUpperCase() === 'TRUE', producto: row[1], sku: sku, talla: row[3], medidas: row[4], precio: Number(row[5]) || 0, coste: Number(row[6]) || 0, aporte: Number(row[7]) || 0 };
   });
   _catCache = out; return out;
 }
-function precioSku(sku) {
-  if (!_catCache) leerCatalogo(SpreadsheetApp.getActive());
-  var it = _catCache[sku]; return it ? it.precio : 0;
-}
+function precioSku(sku) { if (!_catCache) leerCatalogo(SpreadsheetApp.getActive()); var it = _catCache[sku]; return it ? it.precio : 0; }
 function leerConfig() {
-  var sh = SpreadsheetApp.getActive().getSheetByName(SH.CONFIG), out = {};
-  if (!sh) return out;
+  var sh = SpreadsheetApp.getActive().getSheetByName(SH.CONFIG), out = {}; if (!sh) return out;
   var last = sh.getLastRow(); if (last < 2) return out;
   sh.getRange(2, 1, last - 1, 2).getValues().forEach(function (r) { if (r[0]) out[String(r[0]).trim()] = r[1]; });
   return out;
+}
+function registrarLog(ss, tipo, detalle) {
+  try { var sh = ss.getSheetByName(SH.LOG); if (sh) sh.appendRow([new Date(), tipo, detalle]); } catch (e) {}
 }
 
 /* ===========================  IDs  ==================================== */
 
 function siguienteId(cfg) {
-  var props = PropertiesService.getScriptProperties();
-  var n = Number(props.getProperty('ULTIMO_NUM') || '0') + 1;
+  var props = PropertiesService.getScriptProperties(), n = Number(props.getProperty('ULTIMO_NUM') || '0') + 1;
   props.setProperty('ULTIMO_NUM', String(n));
   return (cfg.PREFIJO || 'AIR26') + '-' + pad(n, 5);
 }
 function nuevoLoteId(ss) {
-  var props = PropertiesService.getScriptProperties();
-  var n = Number(props.getProperty('ULTIMO_LOTE') || '0') + 1;
+  var props = PropertiesService.getScriptProperties(), n = Number(props.getProperty('ULTIMO_LOTE') || '0') + 1;
   props.setProperty('ULTIMO_LOTE', String(n));
   return 'LOTE-' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd') + '-' + pad(n, 3);
 }
-function normalizarId(bruto, cfg) {
-  var m = String(bruto).toUpperCase().match(/0*(\d{1,6})/);
-  if (!m) return '';
-  return (cfg.PREFIJO || 'AIR26') + '-' + pad(Number(m[1]), 5);
-}
+function normalizarId(bruto, cfg) { var m = String(bruto).toUpperCase().match(/0*(\d{1,6})/); return m ? (cfg.PREFIJO || 'AIR26') + '-' + pad(Number(m[1]), 5) : ''; }
 function pad(n, len) { var s = String(n); while (s.length < len) s = '0' + s; return s; }
 
-/* ===========================  SETUP + MENÚ  =========================== */
+/* ===========================  SETUP + FORMATO  ======================== */
 
 function setupTiendaV4() {
   var ss = SpreadsheetApp.getActive();
-  crearHoja(ss, SH.CONFIG, ['CLAVE', 'VALOR']);
-  crearHoja(ss, SH.CATALOGO, HEAD.CATALOGO);
-  crearHoja(ss, SH.PEDIDOS, HEAD.PEDIDOS);
-  crearHoja(ss, SH.LINEAS, HEAD.LINEAS);
-  crearHoja(ss, SH.BANCO, HEAD.BANCO);
-  crearHoja(ss, SH.LOTES, HEAD.LOTES);
-  crearHoja(ss, SH.PROVEEDOR, HEAD.PROVEEDOR);
+
+  // Limpia el nombre antiguo 'BANCO' (versión previa) si está vacío.
+  var viejo = ss.getSheetByName('BANCO');
+  if (viejo && viejo.getLastRow() <= 1) ss.deleteSheet(viejo);
+
+  hoja(ss, SH.CONFIG, ['CLAVE', 'VALOR']);
+  hoja(ss, SH.CATALOGO, HEAD.CATALOGO);
+  hoja(ss, SH.PEDIDOS, HEAD.PEDIDOS);
+  hoja(ss, SH.LINEAS, HEAD.LINEAS);
+  hoja(ss, SH.BANCO, HEAD.BANCO);
+  hoja(ss, SH.LOTES, HEAD.LOTES);
+  hoja(ss, SH.PROVEEDOR, HEAD.PROVEEDOR);
+  hoja(ss, SH.LOG, HEAD.LOG);
 
   var cfg = ss.getSheetByName(SH.CONFIG);
-  if (cfg.getLastRow() < 2) {
-    cfg.getRange(2, 1, 7, 2).setValues([
-      ['BENEFICIARIO', 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil'],
-      ['IBAN', 'ESXX XXXX XXXX XXXX XXXX XXXX'],
-      ['EMAIL_CONTACTO', 'enfadadosconairbus.tienda@gmail.com'],
-      ['RECOGIDA', 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)'],
-      ['CADUCIDAD_HORAS', 12],
-      ['MAX_UNIDADES', 20],
-      ['PREFIJO', 'AIR26']
-    ]);
-  }
+  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 7, 2).setValues([
+    ['BENEFICIARIO', 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil'],
+    ['IBAN', 'ESXX XXXX XXXX XXXX XXXX XXXX  [COMPLETAR ANTES DE PUBLICAR]'],
+    ['EMAIL_CONTACTO', 'enfadadosconairbus.tienda@gmail.com'],
+    ['RECOGIDA', 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)'],
+    ['CADUCIDAD_HORAS', 12], ['MAX_UNIDADES', 20], ['PREFIJO', 'AIR26']
+  ]);
 
   var cat = ss.getSheetByName(SH.CATALOGO);
   if (cat.getLastRow() < 2) {
-    var tallas = [['XS','46×66'],['S','49×69'],['M','52×71'],['L','55×73'],['XL','58×75'],
-                  ['2XL','62×77'],['3XL','66×79'],['4XL','70×81'],['5XL','74×83']];
-    var rows = tallas.map(function (t) { return [true, 'Camiseta', 'CAMISETA-' + t[0], t[0], t[1], 10, 5, 5]; });
-    cat.getRange(2, 1, rows.length, HEAD.CATALOGO.length).setValues(rows);
+    var tallas = [['XS','46×66'],['S','49×69'],['M','52×71'],['L','55×73'],['XL','58×75'],['2XL','62×77'],['3XL','66×79'],['4XL','70×81'],['5XL','74×83']];
+    cat.getRange(2, 1, 9, HEAD.CATALOGO.length).setValues(tallas.map(function (t) { return [true, 'Camiseta', 'CAMISETA-' + t[0], t[0], t[1], 10, 5, 5]; }));
   }
 
-  construirHowTo_(ss);
-  construirDashboard_(ss);
   asegurarToken();
-
-  // Ordena las pestañas clave al principio.
-  try { ss.setActiveSheet(ss.getSheetByName(SH.HOWTO)); ss.moveActiveSheet(1); } catch (e) {}
-
-  ui().alert('Backend V4.1 preparado.\n\n1) Revisa CONFIG (IBAN y beneficiario reales).\n2) Implementa como Aplicación web.\n3) Menú → Mostrar TOKEN backend.');
+  reconstruirEstetica();  // formato + panel + gráficos + how_to
+  ui().alert('Backend V4.2 preparado (con panel y gráficos).\n\n1) Revisa CONFIG (IBAN y beneficiario reales).\n2) Implementa como Aplicación web.\n3) Menú → 🔑 Mostrar TOKEN backend.');
 }
 
-function construirHowTo_(ss) {
+// Reaplica todo el formato/estética sin tocar los datos (se puede correr cuando quieras).
+function reconstruirEstetica() {
+  var ss = SpreadsheetApp.getActive();
+  hoja(ss, SH.DATA, ['ESTADO', 'PEDIDOS']);
+  formatearHojasDatos(ss);
+  formatoCondicionalEstados(ss);
+  validaciones(ss);
+  construirHowTo(ss);
+  construirDashboard(ss);
+  actualizarDatosPanel(ss);
+  insertarGraficos(ss);
+  ordenarPestanas(ss);
+  ss.getSheetByName(SH.DATA).hideSheet();
+}
+
+function formatearHojasDatos(ss) {
+  var mapa = [
+    [SH.PEDIDOS, HEAD.PEDIDOS, { moneda: ['PRODUCTOS_EUR','APORTACION_EUR','TOTAL_EUR'], fecha: ['FECHA_PEDIDO','CADUCA','FECHA_CONFIRMADO','FECHA_LISTO','FECHA_ENTREGADO'] }],
+    [SH.LINEAS, HEAD.LINEAS, { fecha: ['FECHA_PEDIDO'] }],
+    [SH.CATALOGO, HEAD.CATALOGO, { moneda: ['PRECIO','COSTE','APORTE_CAJA'] }],
+    [SH.BANCO, HEAD.BANCO, { moneda: ['IMPORTE'], fecha: ['FECHA','FECHA_CONCILIACION'] }],
+    [SH.LOTES, HEAD.LOTES, { fecha: ['FECHA_GENERACION','FECHA_RECEPCION'] }],
+    [SH.PROVEEDOR, HEAD.PROVEEDOR, {}],
+    [SH.LOG, HEAD.LOG, { fecha: ['TIMESTAMP'] }]
+  ];
+  mapa.forEach(function (m) {
+    var sh = ss.getSheetByName(m[0]); if (!sh) return;
+    var H = m[1], fmt = m[2];
+    sh.setFrozenRows(1);
+    sh.getRange(1, 1, 1, H.length).setValues([H]).setFontWeight('bold').setFontColor(COL.paper).setBackground(COL.ink).setVerticalAlignment('middle');
+    sh.setRowHeight(1, 28);
+    (fmt.moneda || []).forEach(function (c) { sh.getRange(2, H.indexOf(c) + 1, 5000, 1).setNumberFormat(FMT_EUR); });
+    (fmt.fecha || []).forEach(function (c) { sh.getRange(2, H.indexOf(c) + 1, 5000, 1).setNumberFormat(FMT_FECHA); });
+    sh.autoResizeColumns(1, H.length);
+    for (var c = 1; c <= H.length; c++) { var w = sh.getColumnWidth(c); if (w < 90) sh.setColumnWidth(c, 90); if (w > 260) sh.setColumnWidth(c, 260); }
+  });
+}
+
+function formatoCondicionalEstados(ss) {
+  var pares = [
+    ['PENDIENTE_PAGO', COL.tPeach], ['PAGO_CONCILIADO', COL.tGreen], ['ENVIADO_PROVEEDOR', COL.tBlue],
+    ['RECIBIDO', COL.tBlue2], ['LISTO_RECOGIDA', COL.tYellow], ['ENTREGADO', COL.tGray], ['CADUCADO', COL.tRed]
+  ];
+  var sh = ss.getSheetByName(SH.PEDIDOS), col = HEAD.PEDIDOS.indexOf('ESTADO') + 1;
+  var rango = sh.getRange(2, col, 5000, 1), reglas = [];
+  pares.forEach(function (p) {
+    reglas.push(SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo(p[0]).setBackground(p[1]).setRanges([rango]).build());
+  });
+  sh.setConditionalFormatRules(reglas);
+
+  // Banco: REVISAR en rojo, conciliado en verde.
+  var b = ss.getSheetByName(SH.BANCO), cb = HEAD.BANCO.indexOf('RESULTADO') + 1, rb = b.getRange(2, cb, 5000, 1);
+  b.setConditionalFormatRules([
+    SpreadsheetApp.newConditionalFormatRule().whenTextContains('REVISAR').setBackground(COL.tRed).setRanges([rb]).build(),
+    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('PAGO_CONCILIADO').setBackground(COL.tGreen).setRanges([rb]).build()
+  ]);
+}
+
+function validaciones(ss) {
+  var pe = ss.getSheetByName(SH.PEDIDOS);
+  pe.getRange(2, HEAD.PEDIDOS.indexOf('ESTADO') + 1, 5000, 1)
+    .setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(ESTADOS, true).setAllowInvalid(true).build());
+  var cat = ss.getSheetByName(SH.CATALOGO);
+  cat.getRange(2, 1, 100, 1).insertCheckboxes();  // ACTIVO
+}
+
+function construirHowTo(ss) {
   var sh = ss.getSheetByName(SH.HOWTO) || ss.insertSheet(SH.HOWTO, 0);
   sh.clear();
-  var txt = [
-    ['TIENDA CAJA DE RESISTENCIA · HUELGA AIRBUS 2026 — Cómo operar'],
-    [''],
-    ['1. Los pedidos entran solos desde la web (estado PENDIENTE_PAGO) y se envía email con el código AIR26-XXXXX.'],
-    ['2. Cada día: pega el extracto del banco en la hoja BANCO (FECHA, CONCEPTO, IMPORTE, REFERENCIA) y pulsa'],
-    ['   menú "Tienda Airbus 2026 → Conciliar banco". Los que cuadran pasan a PAGO_CONCILIADO y reciben email.'],
-    ['3. Los que no cuadran quedan como REVISAR: míralos a mano y usa "Confirmar PAGO del seleccionado" si procede.'],
-    ['4. "Generar pedido a proveedor" agrupa lo pagado por PRODUCTO+SKU+TALLA, crea un LOTE y llena PROVEEDOR.'],
-    ['5. Cuando llegue la mercancía: en la hoja LOTES selecciona el lote y pulsa "Marcar lote recibido".'],
-    ['   Los pedidos completos pasan a LISTO y reciben email de recogida automáticamente.'],
-    ['6. Al entregar: en PEDIDOS selecciona la fila y "Marcar ENTREGADO".'],
-    ['7. "Exportar a Excel (.xlsx)" guarda una copia en tu Drive cuando la necesites (proveedor, contabilidad).'],
-    [''],
-    ['Estados: PENDIENTE_PAGO → PAGO_CONCILIADO → EN_PRODUCCION → LISTO → ENTREGADO. (CADUCADO / REVISAR aparte)'],
-    ['El panel 01_DASHBOARD muestra recaudado, importe a la Caja y unidades en tiempo real.']
+  sh.getRange(1, 1, Math.max(sh.getMaxRows(), 20), Math.max(sh.getMaxColumns(), 8)).breakApart();
+  sh.setHiddenGridlines(true);
+  banner(sh, 'A1:H1', 'CAMISETAS SOLIDARIAS · CENTRO DE OPERACIONES', 16);
+  sub(sh, 'A2:H2', 'Cómo operar, en qué orden y qué no tocar');
+  var secciones = [
+    ['🏦 IMPORTAR BANCO', 'Pega el extracto (FECHA · CONCEPTO · IMPORTE · REFERENCIA) en la hoja MOVIMIENTOS_BANCO.'],
+    ['🔄 CONCILIAR', 'Menú 👕 → 🏦 Conciliar banco. Los matches exactos (código + importe) pasan a PAGO_CONCILIADO y reciben email.'],
+    ['⚠️ REVISAR', 'Filtra RESULTADO = REVISAR. No fuerces matches dudosos por nombre; usa "Confirmar PAGO (manual)" solo si lo verificas.'],
+    ['📦 CERRAR LOTE', 'Menú 👕 → 📦 Generar pedido a proveedor. Solo entran PAGO_CONCILIADO sin lote. Agrega por PRODUCTO+SKU+TALLA.'],
+    ['📤 ENVIAR PROVEEDOR', 'Usa la hoja PROVEEDOR (resumen limpio por talla del lote). Exporta a Excel si lo necesitas.'],
+    ['📥 RECIBIR', 'Cuando llegue la mercancía: hoja LOTES → selecciona el lote → 📥 Marcar lote recibido. Los pedidos completos pasan a LISTO_RECOGIDA y avisan por email.'],
+    ['🤝 ENTREGAR', 'Al entregar en mano: hoja PEDIDOS → selecciona la fila → 🤝 Marcar ENTREGADO.']
   ];
-  sh.getRange(1, 1, txt.length, 1).setValues(txt);
-  sh.getRange('A1').setFontWeight('bold').setFontSize(13).setFontColor('#1a1206').setBackground('#ff7417');
-  sh.setColumnWidth(1, 900);
+  var r = 4;
+  secciones.forEach(function (s) {
+    sh.getRange(r, 1).setValue(s[0]).setFontWeight('bold').setFontColor(COL.orange).setFontSize(12);
+    sh.getRange(r, 2, 1, 7).merge().setValue(s[1]).setWrap(true).setVerticalAlignment('middle').setFontColor(COL.ink);
+    sh.setRowHeight(r, 34); r++;
+  });
+  r++;
+  sh.getRange(r, 1, 1, 8).merge()
+    .setValue('REGLA DE ORO · El Google Sheet es la fuente de verdad. Un pedido solo entra al proveedor cuando está en PAGO_CONCILIADO y sin lote. No conciliamos por nombre: código AIR26-XXXXX + importe exacto.')
+    .setWrap(true).setBackground(COL.tYellow).setFontColor(COL.ink).setFontWeight('bold').setVerticalAlignment('middle');
+  sh.setRowHeight(r, 54);
+  sh.setColumnWidth(1, 190); for (var c = 2; c <= 8; c++) sh.setColumnWidth(c, 150);
 }
 
-function crearHoja(ss, nombre, cabecera) {
-  var sh = ss.getSheetByName(nombre) || ss.insertSheet(nombre);
-  if (sh.getLastRow() === 0) {
-    sh.getRange(1, 1, 1, cabecera.length).setValues([cabecera]);
-    sh.setFrozenRows(1);
-    sh.getRange(1, 1, 1, cabecera.length).setFontWeight('bold').setBackground('#2a221d').setFontColor('#f4eee5');
+function construirDashboard(ss) {
+  var sh = ss.getSheetByName(SH.DASH) || ss.insertSheet(SH.DASH, 1);
+  sh.clear(); sh.getCharts().forEach(function (ch) { sh.removeChart(ch); });
+  sh.getRange(1, 1, Math.max(sh.getMaxRows(), 40), Math.max(sh.getMaxColumns(), 9)).breakApart();
+  sh.setHiddenGridlines(true);
+  for (var c = 1; c <= 9; c++) sh.setColumnWidth(c, c === 1 ? 24 : 150);
+
+  banner(sh, 'A1:I1', 'DASHBOARD · CAMISETAS SOLIDARIAS AIRBUS 2026', 16);
+  sh.getRange('A2').setValue('Actualizado:').setFontColor(COL.slate).setFontStyle('italic');
+  sh.getRange('B2').setNumberFormat(FMT_FECHA);
+
+  var P = SH.PEDIDOS, K = P + '!K2:K5000';
+  var mask = '(' + K + '<>"PENDIENTE_PAGO")*(' + K + '<>"CADUCADO")*(' + K + '<>"")';
+  var tiles = [
+    ['PEDIDOS TOTALES', '=COUNTA(' + P + '!A2:A5000)', COL.tGray, false],
+    ['PAGOS CONCILIADOS', '=SUMPRODUCT(' + mask + ')', COL.tGreen, false],
+    ['CAMISETAS CONCILIADAS', '=SUMPRODUCT(' + mask + '*' + P + '!G2:G5000)', COL.tGreen2, false],
+    ['CAJA GENERADA', '=SUMPRODUCT(' + mask + '*' + P + '!I2:I5000)+5*SUMPRODUCT(' + mask + '*' + P + '!G2:G5000)', COL.tYellow, true],
+    ['PENDIENTES', '=COUNTIF(' + P + '!K2:K5000,"PENDIENTE_PAGO")', COL.tPeach, false],
+    ['CADUCADOS', '=COUNTIF(' + P + '!K2:K5000,"CADUCADO")', COL.tRed, false],
+    ['A REVISAR BANCO', '=COUNTIF(' + SH.BANCO + '!F2:F5000,"*REVISAR*")', COL.tRed, false],
+    ['INGRESO CONCILIADO', '=SUMPRODUCT(' + mask + '*' + P + '!J2:J5000)', COL.tBlue, true]
+  ];
+  // 4 tarjetas por fila, cada una 2 columnas (B:C, D:E, F:G, H:I), 2 filas (label/valor).
+  var startCols = [2, 4, 6, 8];
+  for (var t = 0; t < tiles.length; t++) {
+    var fila = t < 4 ? 4 : 7, ci = startCols[t % 4];
+    tarjeta(sh, fila, ci, tiles[t][0], tiles[t][1], tiles[t][2], tiles[t][3]);
   }
+
+  sh.getRange('B10:D10').merge().setValue('DISTRIBUCIÓN POR ESTADO').setFontWeight('bold').setFontColor(COL.ink);
+  sh.getRange('F10:I10').merge().setValue('CAMISETAS CONCILIADAS POR TALLA').setFontWeight('bold').setFontColor(COL.ink);
+
+  // Regla de oro
+  sh.getRange('A26:I26').merge().setValue('REGLA DE ORO · Un pedido solo entra al proveedor cuando está en PAGO_CONCILIADO y sin lote. Conciliamos por código AIR26-XXXXX + importe exacto, nunca por nombre.')
+    .setWrap(true).setBackground(COL.tYellow).setFontColor(COL.ink).setFontWeight('bold').setVerticalAlignment('middle');
+  sh.setRowHeight(26, 46);
+
+  // Accesos rápidos
+  sh.getRange('A28').setValue('ACCESOS RÁPIDOS').setFontWeight('bold').setFontColor(COL.orange);
+  var links = [['⚙️ CONFIG', SH.CONFIG], ['🧾 PEDIDOS', SH.PEDIDOS], ['🏦 BANCO', SH.BANCO], ['📦 LOTES', SH.LOTES], ['🏭 PROVEEDOR', SH.PROVEEDOR], ['🧬 LÍNEAS', SH.LINEAS], ['🗒️ LOG', SH.LOG]];
+  var cc = 2;
+  links.forEach(function (lk) {
+    var target = ss.getSheetByName(lk[1]); if (!target) return;
+    sh.getRange(29, cc).setFormula('=HYPERLINK("#gid=' + target.getSheetId() + '","' + lk[0] + '")').setFontColor(COL.orangeDark);
+    cc++;
+  });
+
+  // Leyenda
+  sh.getRange('A31').setValue('LECTURA RÁPIDA').setFontWeight('bold').setFontColor(COL.orange);
+  sh.getRange('A32:I32').merge().setValue('🟠 PENDIENTE_PAGO: creado, sin pago.   🟢 PAGO_CONCILIADO: puede entrar al lote.   🔵 ENVIADO_PROVEEDOR: bloqueado para nuevos lotes.   🟡 LISTO_RECOGIDA: avisado.   ⚪ ENTREGADO.   ⚠️ REVISAR: intervención humana.')
+    .setWrap(true).setVerticalAlignment('middle').setFontColor(COL.slate);
+  sh.setRowHeight(32, 40);
+}
+
+function insertarGraficos(ss) {
+  var sh = ss.getSheetByName(SH.DASH), data = ss.getSheetByName(SH.DATA);
+  if (!sh || !data) return;
+  sh.getCharts().forEach(function (ch) { sh.removeChart(ch); });
+
+  var dona = sh.newChart().asPieChart().setOption('pieHole', 0.55)
+    .addRange(data.getRange('A1:B20')).setNumHeaders(1)
+    .setOption('title', 'Distribución por estado').setOption('legend', { position: 'right' })
+    .setOption('width', 430).setOption('height', 240).setPosition(11, 2, 0, 0).build();
+  sh.insertChart(dona);
+
+  var barras = sh.newChart().asColumnChart()
+    .addRange(data.getRange('D1:E20')).setNumHeaders(1)
+    .setOption('title', 'Camisetas conciliadas por talla').setOption('legend', { position: 'none' })
+    .setOption('colors', [COL.orange]).setOption('width', 470).setOption('height', 240).setPosition(11, 6, 0, 0).build();
+  sh.insertChart(barras);
+}
+
+function ordenarPestanas(ss) {
+  var orden = [SH.HOWTO, SH.DASH, SH.CONFIG, SH.CATALOGO, SH.PEDIDOS, SH.LINEAS, SH.BANCO, SH.LOTES, SH.PROVEEDOR, SH.LOG];
+  orden.forEach(function (n, i) { var s = ss.getSheetByName(n); if (s) { ss.setActiveSheet(s); ss.moveActiveSheet(i + 1); } });
+  ss.setActiveSheet(ss.getSheetByName(SH.DASH));
+}
+
+/* ---- helpers de estilo ---- */
+
+function hoja(ss, nombre, cabecera) {
+  var sh = ss.getSheetByName(nombre) || ss.insertSheet(nombre);
+  if (sh.getLastRow() === 0 && cabecera) sh.getRange(1, 1, 1, cabecera.length).setValues([cabecera]);
   return sh;
 }
+function banner(sh, a1, texto, size) {
+  sh.getRange(a1).merge().setValue(texto).setBackground(COL.orange).setFontColor(COL.white)
+    .setFontWeight('bold').setFontSize(size || 14).setVerticalAlignment('middle').setHorizontalAlignment('left');
+  sh.setRowHeight(sh.getRange(a1).getRow(), 40);
+}
+function sub(sh, a1, texto) { sh.getRange(a1).merge().setValue(texto).setFontColor(COL.slate).setFontStyle('italic'); }
+function tarjeta(sh, fila, colIni, label, formula, tint, esMoneda) {
+  var lab = sh.getRange(fila, colIni, 1, 2).merge();
+  var val = sh.getRange(fila + 1, colIni, 1, 2).merge();
+  lab.setValue(label).setBackground(tint).setFontColor(COL.slate).setFontSize(9).setFontWeight('bold')
+     .setHorizontalAlignment('center').setVerticalAlignment('middle');
+  val.setFormula(formula).setBackground(tint).setFontColor(COL.ink).setFontSize(20).setFontWeight('bold')
+     .setHorizontalAlignment('center').setVerticalAlignment('middle');
+  if (esMoneda) val.setNumberFormat(FMT_EUR);
+  sh.setRowHeight(fila, 22); sh.setRowHeight(fila + 1, 40);
+}
+
+/* ===========================  MENÚ  =================================== */
 
 function onOpen() {
-  ui().createMenu('Tienda Airbus 2026')
-    .addItem('Preparar backend V4.1 (setup)', 'setupTiendaV4')
+  ui().createMenu('👕 Tienda Airbus 2026')
+    .addItem('🛠️ Preparar backend (setup)', 'setupTiendaV4')
+    .addItem('🎨 Reconstruir panel y formato', 'reconstruirEstetica')
     .addSeparator()
-    .addItem('Conciliar banco', 'conciliarBanco')
-    .addItem('Confirmar PAGO del seleccionado (manual)', 'confirmarPagoSeleccion')
-    .addItem('Caducar pendientes vencidos', 'caducarPendientes')
+    .addItem('🏦 Conciliar banco', 'conciliarBanco')
+    .addItem('✅ Confirmar PAGO del seleccionado (manual)', 'confirmarPagoSeleccion')
+    .addItem('⏳ Caducar pendientes vencidos', 'caducarPendientes')
     .addSeparator()
-    .addItem('Generar pedido a proveedor', 'generarPedidoProveedor')
-    .addItem('Marcar lote recibido (seleccionado)', 'marcarLoteRecibidoSeleccion')
-    .addItem('Marcar ENTREGADO (seleccionado)', 'marcarEntregadoSeleccion')
+    .addItem('📦 Generar pedido a proveedor', 'generarPedidoProveedor')
+    .addItem('📥 Marcar lote recibido (seleccionado)', 'marcarLoteRecibidoSeleccion')
+    .addItem('🤝 Marcar ENTREGADO (seleccionado)', 'marcarEntregadoSeleccion')
     .addSeparator()
-    .addItem('Actualizar panel', 'refrescarDashboard')
-    .addItem('Exportar a Excel (.xlsx)', 'exportarExcel')
+    .addItem('📊 Actualizar panel', 'refrescarDashboard')
+    .addItem('📗 Exportar a Excel (.xlsx)', 'exportarExcel')
     .addSeparator()
-    .addItem('Mostrar TOKEN backend', 'mostrarToken')
+    .addItem('🔑 Mostrar TOKEN backend', 'mostrarToken')
     .addToUi();
 }
 
@@ -701,7 +732,6 @@ function eur(n) { return (Number(n) || 0).toFixed(2).replace('.', ',') + ' €';
 function parseImporte(v) {
   if (typeof v === 'number') return v;
   var s = String(v == null ? '' : v).replace(/[^\d,.\-]/g, '');
-  if (s.indexOf(',') >= 0 && s.indexOf('.') >= 0) s = s.replace(/\./g, '').replace(',', '.'); // 1.234,56
-  else s = s.replace(',', '.');
+  if (s.indexOf(',') >= 0 && s.indexOf('.') >= 0) s = s.replace(/\./g, '').replace(',', '.'); else s = s.replace(',', '.');
   return Number(s) || 0;
 }

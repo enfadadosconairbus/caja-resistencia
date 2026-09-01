@@ -8,8 +8,8 @@
 - [ ] Ni nombres ni emails personales aparecen en el repo ni en los commits (revisa `git log`).
 
 ## Backend (Google Sheet + Apps Script)
-- [ ] `setupTiendaV4()` ejecutado: existen `00_HOW_TO`, `01_DASHBOARD`, `CONFIG`,
-      `CATALOGO`, `PEDIDOS`, `LINEAS_PEDIDO`, `BANCO`, `LOTES`, `PROVEEDOR`.
+- [ ] Setup ejecutado: existen `00_HOW_TO`, `01_DASHBOARD` (con gráficos), `CONFIG`,
+      `CATALOGO`, `PEDIDOS`, `LINEAS_PEDIDO`, `MOVIMIENTOS_BANCO`, `LOTES`, `PROVEEDOR`, `LOG`.
 - [ ] `CONFIG` con **IBAN real** y **BENEFICIARIO** correcto.
 - [ ] `CATALOGO`: 9 tallas, `PRECIO=10`, `COSTE=5`, `APORTE_CAJA=5`.
 - [ ] Aplicación web implementada (*Ejecutar como: yo* · *Acceso: Cualquiera*), URL `/exec` guardada.
@@ -34,7 +34,7 @@
 - [ ] El concepto obligatorio es exactamente el código, sin pedir justificante.
 
 ## Conciliación bancaria
-- [ ] Pego un movimiento con el código + importe exacto en `BANCO` → **Conciliar banco**
+- [ ] Pego un movimiento con el código + importe exacto en `MOVIMIENTOS_BANCO` → **Conciliar banco**
       → pedido a `PAGO_CONCILIADO` + email de confirmación.
 - [ ] Importe distinto → queda `REVISAR_IMPORTE`.
 - [ ] Concepto sin código → `REVISAR_SIN_CODIGO`.
@@ -43,7 +43,7 @@
 ## Proveedor y entrega
 - [ ] **Generar pedido a proveedor** solo toma pedidos `PAGO_CONCILIADO`.
 - [ ] `PROVEEDOR` agrega bien por `PRODUCTO+SKU+TALLA`; un pedido ya loteado no repite.
-- [ ] **Marcar lote recibido** pasa pedidos completos a `LISTO` + email de recogida.
+- [ ] **Marcar lote recibido** pasa pedidos completos a `LISTO_RECOGIDA` + email de recogida.
 - [ ] **Marcar ENTREGADO** funciona.
 
 ## Excel / respaldo

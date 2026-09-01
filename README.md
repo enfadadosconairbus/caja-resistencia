@@ -22,8 +22,8 @@ retirar o redirigir.
   Google Apps Script (/exec)  ── valida precios, genera AIR26-XXXXX, idempotencia
         │
         ├── Google Sheet — panel de operaciones:
-        │     00_HOW_TO · 01_DASHBOARD · CONFIG · CATALOGO
-        │     PEDIDOS · LINEAS_PEDIDO · BANCO · LOTES · PROVEEDOR
+        │     00_HOW_TO · 01_DASHBOARD · CONFIG · CATALOGO · PEDIDOS
+        │     LINEAS_PEDIDO · MOVIMIENTOS_BANCO · LOTES · PROVEEDOR · LOG
         └── Gmail (email de pedido recibido / confirmado / listo)
 ```
 
@@ -32,7 +32,8 @@ la hoja `CATALOGO`. El IBAN y el beneficiario viven en la hoja `CONFIG` y llegan
 al navegador solo en la respuesta del pedido; **no están en el repo**.
 
 El Sheet **no es un simple listado**: es un panel con KPIs en vivo
-(`01_DASHBOARD`), **conciliación bancaria automática** (`BANCO`), generación de
+(`01_DASHBOARD`, con gráficos), **conciliación bancaria automática**
+(`MOVIMIENTOS_BANCO`), generación de
 **pedido a proveedor** por lotes (`LOTES`/`PROVEEDOR`) y **exportación a Excel
 real** (.xlsx) con un clic. Un Google Sheet ya se descarga como `.xlsx`, así que
 "exportable a Excel" está cubierto de fábrica; el botón deja además copias
@@ -119,13 +120,17 @@ Todo se hace desde el menú **Tienda Airbus 2026**. La guía está también en l
 pestaña `00_HOW_TO`, y `01_DASHBOARD` muestra recaudado, importe a la Caja y
 unidades en vivo.
 
+El panel `01_DASHBOARD` trae KPIs en tarjetas + dos gráficos (dónut de estados y
+barras de camisetas por talla). Si tocas el formato, **🎨 Reconstruir panel y
+formato** lo regenera sin perder datos.
+
 **Flujo de estados:**
-`PENDIENTE_PAGO → PAGO_CONCILIADO → EN_PRODUCCION → LISTO → ENTREGADO`
-(aparte: `CADUCADO`, `REVISAR`).
+`PENDIENTE_PAGO → PAGO_CONCILIADO → ENVIADO_PROVEEDOR → RECIBIDO → LISTO_RECOGIDA → ENTREGADO`
+(aparte: `CADUCADO`; `REVISAR` solo en el banco).
 
 1. **Los pedidos entran solos** desde la web (`PENDIENTE_PAGO`) y el comprador
    recibe el email con su código `AIR26-XXXXX`.
-2. **Conciliar banco** (a diario): pega el extracto en la hoja `BANCO`
+2. **Conciliar banco** (a diario): pega el extracto en la hoja `MOVIMIENTOS_BANCO`
    (columnas `FECHA, CONCEPTO, IMPORTE, REFERENCIA` — ver
    `backend/PLANTILLA_MOVIMIENTOS_BANCO.csv`) y pulsa **Conciliar banco**. El
    sistema casa por código + **importe exacto**, pasa los pedidos a
@@ -137,8 +142,8 @@ unidades en vivo.
    crea un `LOTE` y rellena la hoja `PROVEEDOR`. Expórtala a Excel si el
    proveedor la quiere en `.xlsx`.
 5. **Marcar lote recibido**: en la hoja `LOTES` selecciona el lote que llegó y
-   pulsa la opción. Los pedidos completos pasan a `LISTO` y reciben el **email de
-   recogida** solos.
+   pulsa la opción. Los pedidos completos pasan a `LISTO_RECOGIDA` y reciben el
+   **email de recogida** solos.
 6. **Marcar ENTREGADO**: en `PEDIDOS`, selecciona la fila al entregar en mano.
 7. **Caducar pendientes vencidos**: los `PENDIENTE_PAGO` de más de 12 h pasan a
    `CADUCADO`. Puedes automatizarlo con un activador horario sobre
