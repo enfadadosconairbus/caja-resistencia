@@ -283,6 +283,42 @@ function enviarEmailsPrueba() {
     ui().alert('3 emails de prueba enviados a ' + to + '\n(recibido, confirmado y listo).');
   } catch (e) { ui().alert('No se pudieron enviar los emails de prueba:\n' + e); }
 }
+
+// Vacía los datos de prueba. Doble protección: interruptor MODO_PRUEBAS + confirmación escrita.
+function resetearPruebas() {
+  var ss = SpreadsheetApp.getActive(), cfgSh = ss.getSheetByName(SH.CONFIG), cfg = leerConfig();
+
+  // Protección 1: interruptor MODO_PRUEBAS. Si no existe, lo crea en SI y pide volver a pulsar.
+  if (cfg.MODO_PRUEBAS === undefined || cfg.MODO_PRUEBAS === '') {
+    cfgSh.appendRow(['MODO_PRUEBAS', 'SI']);
+    ui().alert('He añadido "MODO_PRUEBAS = SI" a CONFIG.\n\nMientras esté en SI podrás resetear.\nCuando salgas a producción, ponlo en NO para bloquear el borrado.\n\nVuelve a pulsar el botón para borrar ahora.');
+    return;
+  }
+  if (String(cfg.MODO_PRUEBAS).trim().toUpperCase() !== 'SI') {
+    ui().alert('🔒 RESETEO BLOQUEADO\n\nEn CONFIG, MODO_PRUEBAS = "' + cfg.MODO_PRUEBAS + '" (no es "SI").\nEsto protege los pedidos reales.\n\nSi de verdad quieres borrar, pon MODO_PRUEBAS = SI en CONFIG y vuelve a pulsar.');
+    return;
+  }
+
+  // Protección 2: confirmación escrita.
+  var resp = ui().prompt('⚠️ BORRAR DATOS DE PRUEBA',
+    'Se vaciarán PEDIDOS, LINEAS_PEDIDO, MOVIMIENTOS_BANCO, LOTES, PROVEEDOR y LOG, y el contador AIR26 volverá a 0.\nNo se tocan CONFIG ni CATALOGO.\n\nEscribe BORRAR (mayúsculas) para confirmar:',
+    ui().ButtonSet.OK_CANCEL);
+  if (resp.getSelectedButton() !== ui().Button.OK || String(resp.getResponseText()).trim().toUpperCase() !== 'BORRAR') {
+    ui().alert('Cancelado. No se ha borrado nada.'); return;
+  }
+
+  [SH.PEDIDOS, SH.LINEAS, SH.BANCO, SH.LOTES, SH.PROVEEDOR, SH.LOG].forEach(function (n) {
+    var sh = ss.getSheetByName(n); if (!sh) return;
+    var last = sh.getLastRow();
+    if (last > 1) sh.getRange(2, 1, last - 1, Math.max(1, sh.getLastColumn())).clearContent();
+  });
+  var props = PropertiesService.getScriptProperties();
+  props.setProperty('ULTIMO_NUM', '0');
+  props.setProperty('ULTIMO_LOTE', '0');
+  actualizarDatosPanel(ss); refrescarDashboard();
+  ui().alert('✅ Datos de prueba borrados. Contador AIR26 reiniciado.\n\n⚠️ Antes de compartir la URL, pon MODO_PRUEBAS = NO en CONFIG para bloquear futuros borrados.');
+}
+
 function marcarEntregadoSeleccion() {
   var r = pedidoSeleccionado(); if (!r) return;
   var ss = SpreadsheetApp.getActive(), sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
@@ -520,12 +556,13 @@ function setupTiendaV4() {
   hoja(ss, SH.LOG, HEAD.LOG);
 
   var cfg = ss.getSheetByName(SH.CONFIG);
-  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 7, 2).setValues([
+  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 8, 2).setValues([
     ['BENEFICIARIO', 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil'],
     ['IBAN', 'ESXX XXXX XXXX XXXX XXXX XXXX  [COMPLETAR ANTES DE PUBLICAR]'],
     ['EMAIL_CONTACTO', 'enfadadosconairbus.tienda@gmail.com'],
     ['RECOGIDA', 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)'],
-    ['CADUCIDAD_HORAS', 12], ['MAX_UNIDADES', 20], ['PREFIJO', 'AIR26']
+    ['CADUCIDAD_HORAS', 12], ['MAX_UNIDADES', 20], ['PREFIJO', 'AIR26'],
+    ['MODO_PRUEBAS', 'SI']
   ]);
 
   var cat = ss.getSheetByName(SH.CATALOGO);
@@ -758,6 +795,8 @@ function onOpen() {
     .addSeparator()
     .addItem('✉️ Enviar emails de prueba', 'enviarEmailsPrueba')
     .addItem('🔑 Mostrar TOKEN backend', 'mostrarToken')
+    .addSeparator()
+    .addItem('🧨 Resetear datos de prueba', 'resetearPruebas')
     .addToUi();
 }
 
