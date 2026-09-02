@@ -63,6 +63,7 @@
         </div>
         <p class="small">Con tu aportación colaboras con la caja y, como agradecimiento, recibes la camiseta. Puedes aportar por varias y combinar tallas (hasta 20).</p>
         <p class="plazo"><span aria-hidden="true">⏱️</span> <strong>Producción: 4-5 días</strong> (fines de semana incluidos). Para tenerla lista para la <strong>marcha a los Ministerios del 10 de septiembre</strong>, aporta cuanto antes.</p>
+        <p class="recogida-nota"><span aria-hidden="true">💛</span> <strong>¿De otro site de Airbus?</strong> (Albacete · Cádiz · Illescas · San Pablo · Tablada). La recogida es en <strong>Getafe</strong>; a los demás sites enviaríamos <strong>por lotes</strong> (no de una en una) y <strong>después del 10-S</strong>. Tu aportación cuenta exactamente igual.</p>
       </div>
     </section>
 
@@ -151,12 +152,25 @@
       <form id="checkoutForm" novalidate>
         <div class="panel customer-panel">
           <div class="section-label"><span>01</span> Tus datos</div>
+          <p class="req-note"><b class="req" aria-hidden="true">*</b> Todos los campos son obligatorios para hacer tu aportación.</p>
           <div class="fields-grid">
-            <label>Nombre<input name="nombre" autocomplete="given-name" maxlength="60" required></label>
-            <label>Apellidos<input name="apellidos" autocomplete="family-name" maxlength="100" required></label>
-            <label>Email<input name="email" type="email" autocomplete="email" maxlength="120" required></label>
-            <label>Teléfono<input name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required></label>
+            <label><span class="cap">Nombre <b class="req" aria-hidden="true">*</b></span><input name="nombre" autocomplete="given-name" maxlength="60" required></label>
+            <label><span class="cap">Apellidos <b class="req" aria-hidden="true">*</b></span><input name="apellidos" autocomplete="family-name" maxlength="100" required></label>
+            <label><span class="cap">Email <b class="req" aria-hidden="true">*</b></span><input name="email" type="email" autocomplete="email" maxlength="120" required></label>
+            <label><span class="cap">Teléfono <b class="req" aria-hidden="true">*</b></span><input name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required></label>
+            <label class="field-full"><span class="cap">Site de recogida <b class="req" aria-hidden="true">*</b></span>
+              <select name="site" id="siteSelect" required>
+                <option value="" selected disabled>— Elige tu site —</option>
+                <option value="Getafe">Getafe (recogida en persona)</option>
+                <option value="Albacete">Albacete</option>
+                <option value="Cádiz">Cádiz</option>
+                <option value="Illescas">Illescas</option>
+                <option value="Tablada">Tablada</option>
+                <option value="San Pablo">San Pablo</option>
+              </select>
+            </label>
           </div>
+          <p class="site-nota"><span aria-hidden="true">ℹ️</span> En <strong>Getafe</strong> recoges en persona. En el resto de sites, los envíos se harán <strong>por lotes</strong> (no de una en una) y <strong>después de la marcha del 10-S</strong>.</p>
           <label class="honeypot" aria-hidden="true">Web<input name="website" tabindex="-1" autocomplete="off"></label>
         </div>
 
@@ -171,7 +185,7 @@
 
         <div class="panel privacy-panel">
           <div class="section-label"><span>03</span> Privacidad</div>
-          <label class="check-row"><input type="checkbox" name="privacy" required><span>He leído la información básica y acepto que mis datos se utilicen para gestionar mi aportación, confirmar la transferencia y coordinar la recogida.</span></label>
+          <label class="check-row"><input type="checkbox" name="privacy" required><span>He leído la información básica y acepto que mis datos se utilicen para gestionar mi aportación, confirmar la transferencia y coordinar la recogida. <b class="req" aria-hidden="true">*</b></span></label>
           <p class="micro">No pedimos DNI ni número de empleado. Contacto: <a id="contactEmail" href="mailto:enfadadosconairbus.contacto@gmail.com">enfadadosconairbus.contacto@gmail.com</a>.</p>
         </div>
 

@@ -37,7 +37,7 @@ var HEAD = {
   PEDIDOS: ['ID', 'FECHA_PEDIDO', 'NOMBRE', 'APELLIDOS', 'EMAIL', 'TELEFONO',
             'UNIDADES', 'PRODUCTOS_EUR', 'APORTACION_EUR', 'TOTAL_EUR', 'ESTADO',
             'CLIENT_REQUEST_ID', 'RECOGIDA', 'CADUCA', 'FECHA_CONFIRMADO',
-            'FECHA_LISTO', 'FECHA_ENTREGADO'],
+            'FECHA_LISTO', 'FECHA_ENTREGADO', 'SITE'],
   LINEAS: ['ID', 'FECHA_PEDIDO', 'PRODUCTO', 'SKU', 'TALLA', 'CANTIDAD', 'LOTE'],
   CATALOGO: ['ACTIVO', 'PRODUCTO', 'SKU', 'TALLA', 'MEDIDAS', 'PRECIO', 'COSTE', 'APORTE_CAJA'],
   BANCO: ['FECHA', 'CONCEPTO', 'IMPORTE', 'REFERENCIA', 'PEDIDO_DETECTADO', 'RESULTADO', 'PROCESADO', 'FECHA_CONCILIACION'],
@@ -109,6 +109,7 @@ function crearPedido(data) {
     var c = (data.cliente || {});
     var nombre = limpiar(c.nombre, 60), apellidos = limpiar(c.apellidos, 100);
     var email = limpiar(c.email, 120), telefono = limpiar(c.telefono, 30);
+    var site = limpiar(data.site, 40);
     if (!nombre || !apellidos || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, error: 'Datos de cliente incompletos.' };
 
     var id = siguienteId(cfg);
@@ -117,7 +118,7 @@ function crearPedido(data) {
     var recogida = limpiar(data.recogida || cfg.RECOGIDA || '', 200);
 
     ss.getSheetByName(SH.PEDIDOS).appendRow([id, ahora, nombre, apellidos, email, telefono,
-      unidades, productos, aportacion, total, 'PENDIENTE_PAGO', crid, recogida, caduca, '', '', '']);
+      unidades, productos, aportacion, total, 'PENDIENTE_PAGO', crid, recogida, caduca, '', '', '', site]);
     var hojaLineas = ss.getSheetByName(SH.LINEAS);
     lineas.forEach(function (l) { hojaLineas.appendRow([id, ahora, l.producto, l.sku, l.talla, l.cantidad, '']); });
 

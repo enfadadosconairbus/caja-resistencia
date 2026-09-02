@@ -194,8 +194,13 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .section-label span { width: 30px; height: 30px; display: grid; place-items: center; background: var(--red); color: #fff; border-radius: 7px; font-size: .85rem; }
 .fields-grid { display: grid; gap: 14px; }
 .fields-grid label { display: grid; gap: 6px; text-transform: uppercase; letter-spacing: .05em; font-size: .74rem; font-weight: 700; color: var(--muted); }
-.fields-grid input { padding: 14px; background: #fff; border: 2px solid var(--line-2); border-radius: 10px; color: var(--ink); font-size: 1rem; font-family: var(--fb); }
-.fields-grid input:focus { outline: none; border-color: var(--red); }
+.fields-grid input, .fields-grid select { padding: 14px; background: #fff; border: 2px solid var(--line-2); border-radius: 10px; color: var(--ink); font-size: 1rem; font-family: var(--fb); }
+.fields-grid input:focus, .fields-grid select:focus { outline: none; border-color: var(--red); }
+.fields-grid .field-full { grid-column: 1 / -1; }
+.req { color: var(--red); font-weight: 800; font-style: normal; }
+.req-note { margin: 0 0 14px; font-size: .82rem; color: var(--muted); text-transform: none; letter-spacing: 0; font-weight: 600; }
+.site-nota { margin: 12px 0 0; font-size: .86rem; color: var(--muted); line-height: 1.5; }
+.site-nota strong { color: var(--ink); }
 .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 .pickup-card { background: #faf6ee; border: 1px solid var(--line); border-left: 4px solid var(--red); border-radius: 10px; padding: 16px 18px; }

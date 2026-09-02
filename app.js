@@ -179,6 +179,7 @@
     if (!nombre || !apellidos) return 'Indica tu nombre y apellidos.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Revisa tu email.';
     if (telefono.replace(/\D/g, '').length < 9) return 'Revisa tu teléfono.';
+    if (form.site && !form.site.value) return 'Elige tu site de recogida.';
     if (!form.privacy.checked) return 'Debes aceptar la información de privacidad.';
     return null;
   }
@@ -193,6 +194,7 @@
         email: form.email.value.trim(),
         telefono: form.telefono.value.trim()
       },
+      site: form.site ? form.site.value : '',
       lineas: Object.keys(state.lines).map(function (sku) {
         var l = state.lines[sku];
         return { producto: CFG.PRODUCT.nombre, sku: l.sku, talla: l.talla, cantidad: l.qty };
