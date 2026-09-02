@@ -93,7 +93,7 @@ fechadas en tu Drive.
 
 ### 3. Web (GitHub Pages)
 
-1. En la cuenta neutral, crea el repo (p. ej. `tienda-caja-resistencia`).
+1. En la cuenta neutral, crea el repo (p. ej. `caja-resistencia`).
 2. Sube el contenido de esta carpeta **excepto** `worker/` y `backend/` si
    quieres mantenerlos fuera del repo público (o déjalos, no exponen secretos).
 3. Coloca las dos fotos en `assets/` (ver `assets/LEEME-IMAGENES.md`).
@@ -102,7 +102,7 @@ fechadas en tu Drive.
    - `DEMO_MODE: false`
 5. `Settings → Pages → Deploy from branch → main → /(root)`.
 6. La URL será algo como
-   `https://enfadadosconairbus.github.io/tienda-caja-resistencia/`.
+   `https://enfadadosconairbus.github.io/caja-resistencia/`.
 
 ### 4. Prueba antes de difundir
 
