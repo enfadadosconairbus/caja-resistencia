@@ -16,7 +16,7 @@
    ========================================================================== */
 window.TIENDA_CONFIG = {
   // URL pública del Cloudflare Worker (el proxy). Nunca la URL /exec directa.
-  API_URL: 'https://tienda-airbus.enfadadosconairbus-tienda.workers.dev',
+  API_URL: 'https://caja-resistencia.enfadadosconairbus-contacto.workers.dev',
 
   // true  = no llama al backend; simula el pedido en el navegador (para probar diseño).
   // false = pedidos reales contra el Worker. Ponlo en false antes de compartir la URL.
