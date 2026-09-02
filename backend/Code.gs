@@ -195,10 +195,24 @@ function marcarPedidoPagado(ss, p, cfg) {
 /* ===========================  LOTES / PROVEEDOR  ======================== */
 
 function generarPedidoProveedor() {
-  var ss = SpreadsheetApp.getActive(), pedidos = indicePedidos(ss);
-  var ids = [];
-  for (var id in pedidos) if (pedidos[id].estado === 'PAGO_CONCILIADO') ids.push(id);
-  if (!ids.length) { ui().alert('No hay pedidos PAGO_CONCILIADO pendientes de lote.'); return; }
+  var ss = SpreadsheetApp.getActive(), pedidos = indicePedidos(ss), cfg = leerConfig();
+  // Hasta esta fecha, a producción SOLO van los pedidos de Getafe (recogida en la marcha);
+  // los de otros sites quedan en espera y se producen a partir de aquí.
+  var desde = cfg.PROD_TODOS_SITES_DESDE || '2026-09-10';
+  var cutoff = new Date(desde);
+  var permitirTodos = !isNaN(cutoff.getTime()) && new Date() >= cutoff;
+
+  var ids = [], enEspera = 0;
+  for (var id in pedidos) {
+    if (pedidos[id].estado !== 'PAGO_CONCILIADO') continue;
+    var esGetafe = String(pedidos[id].site).trim().toLowerCase() === 'getafe';
+    if (permitirTodos || esGetafe) ids.push(id); else enEspera++;
+  }
+  if (!ids.length) {
+    ui().alert('No hay pedidos listos para producir.' +
+      (enEspera ? '\n\n' + enEspera + ' pedido(s) de OTROS sites en espera: se producirán a partir del ' + desde + ' (tras la marcha).' : ''));
+    return;
+  }
 
   var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, lastL = shL.getLastRow();
   var lin = shL.getRange(2, 1, lastL - 1, H.length).getValues();
@@ -228,7 +242,9 @@ function generarPedidoProveedor() {
   var totalUds = keys.reduce(function (s, k) { return s + agg[k].cantidad; }, 0);
   registrarLog(ss, 'LOTE', lote + ' · ' + keys.length + ' líneas · ' + totalUds + ' uds');
   refrescarDashboard();
-  ui().alert('Lote ' + lote + ' generado.\n\n' + keys.length + ' líneas de proveedor · ' + totalUds + ' uds.\nRevisa la hoja PROVEEDOR (puedes exportarla a Excel).');
+  ui().alert('Lote ' + lote + ' generado.\n\n' + keys.length + ' líneas de proveedor · ' + totalUds + ' uds.' +
+    (enEspera ? '\n\n(' + enEspera + ' pedido(s) de otros sites quedan en espera hasta el ' + desde + '.)' : '') +
+    '\nRevisa la hoja PROVEEDOR (puedes exportarla a Excel).');
 }
 
 function marcarLoteRecibidoSeleccion() {
@@ -547,7 +563,8 @@ function pedidoDeFila(ss, fila) { var sh = ss.getSheetByName(SH.PEDIDOS), H = HE
 function filaAObjeto(row, fila) {
   var H = HEAD.PEDIDOS, g = function (k) { return row[H.indexOf(k)]; };
   return { fila: fila, id: String(g('ID')), nombre: g('NOMBRE'), email: g('EMAIL'), unidades: Number(g('UNIDADES')) || 0,
-    productos: Number(g('PRODUCTOS_EUR')) || 0, aportacion: Number(g('APORTACION_EUR')) || 0, total: Number(g('TOTAL_EUR')) || 0, estado: String(g('ESTADO')) };
+    productos: Number(g('PRODUCTOS_EUR')) || 0, aportacion: Number(g('APORTACION_EUR')) || 0, total: Number(g('TOTAL_EUR')) || 0,
+    estado: String(g('ESTADO')), site: String(g('SITE') || '') };
 }
 function buscarPorCRID(ss, crid) {
   var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS, last = sh.getLastRow(); if (last < 2) return null;
@@ -616,7 +633,7 @@ function setupTiendaV4() {
   hoja(ss, SH.LOG, HEAD.LOG);
 
   var cfg = ss.getSheetByName(SH.CONFIG);
-  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 10, 2).setValues([
+  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 12, 2).setValues([
     ['BENEFICIARIO', 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil'],
     ['IBAN', 'ESXX XXXX XXXX XXXX XXXX XXXX  [COMPLETAR ANTES DE PUBLICAR]'],
     ['EMAIL_CONTACTO', 'enfadadosconairbus.contacto@gmail.com'],
@@ -624,7 +641,8 @@ function setupTiendaV4() {
     ['CADUCIDAD_HORAS', 12], ['MAX_UNIDADES', 20], ['PREFIJO', 'AIR26'],
     ['MODO_PRUEBAS', 'SI'],
     ['EMAIL_REMITENTE', 'enfadadosconairbus.contacto@gmail.com'],
-    ['EMAIL_REMITENTE_NOMBRE', 'Caja de Resistencia · Huelga Airbus']
+    ['EMAIL_REMITENTE_NOMBRE', 'Caja de Resistencia · Huelga Airbus'],
+    ['PROD_TODOS_SITES_DESDE', '2026-09-10']
   ]);
 
   var cat = ss.getSheetByName(SH.CATALOGO);
