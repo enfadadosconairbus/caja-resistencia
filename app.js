@@ -160,8 +160,8 @@
       renderCart();
     });
     if (custom) custom.addEventListener('input', function () {
-      var v = Math.max(0, Math.floor(Number(custom.value) || 0));
-      state.donation = v;                          // cantidad libre: desmarca los botones
+      var n = parseFloat(String(custom.value).replace(',', '.')) || 0;   // admite coma o punto
+      state.donation = Math.max(0, Math.round(n * 100) / 100);           // conserva céntimos
       clearButtons();
       renderCart();
     });
@@ -303,6 +303,36 @@
     else if (btn.dataset.label) { btn.textContent = btn.dataset.label; }
   }
 
+  // ---- avisos de entrega (fecha / stock) -------------------------------------
+  function evaluarAvisoEntrega(tardePorStock) {
+    var limite = CFG.AVISO_FECHA_LIMITE ? new Date(CFG.AVISO_FECHA_LIMITE) : null;
+    var tardePorFecha = !!(limite && !isNaN(limite.getTime()) && new Date() >= limite);
+    var tarde = tardePorFecha || !!tardePorStock;
+    var html, urgente;
+    if (tarde) {
+      urgente = true;
+      html = '<span aria-hidden="true">⚠️</span> <strong>Posible entrega después de la marcha.</strong> Por los plazos de producción, tu camiseta podría llegar <strong>después de la marcha al Ministerio del 10-Septiembre</strong>. Tu aportación sigue sosteniendo la caja de resistencia.';
+    } else {
+      urgente = false;
+      html = '<span aria-hidden="true">⏱️</span> <strong>Pide antes del domingo 6 de septiembre a las 19:00</strong> para recibir la camiseta antes de la <strong>marcha al Ministerio del 10-Septiembre</strong>. Después de esa hora podría llegarte tras la marcha (producción 4-5 días).';
+    }
+    [$('avisoEntregaPedido'), $('avisoEntregaExito')].forEach(function (el) {
+      if (!el) return;
+      el.innerHTML = html;
+      if (urgente) el.classList.add('urgente'); else el.classList.remove('urgente');
+      el.hidden = false;
+    });
+  }
+
+  function comprobarStock() {
+    if (CFG.APORTACIONES_ACTIVAS !== true) return;        // solo con la adquisición abierta
+    var umbral = Number(CFG.AVISO_STOCK_UMBRAL) || 0; if (umbral <= 0) return;
+    fetch(CFG.API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'estado' }) })
+      .then(function (r) { return r.json(); })
+      .then(function (resp) { if (resp && resp.ok && Number(resp.camisetas) >= umbral) evaluarAvisoEntrega(true); })
+      .catch(function () {});
+  }
+
   // ---- init ------------------------------------------------------------------
   function init() {
     // textos de config
@@ -330,6 +360,9 @@
       var oc = $('ordenNoDisponible'); if (oc) oc.hidden = false;
       var sub = $('submitOrder'); if (sub) { sub.disabled = true; sub.textContent = 'DISPONIBLE MUY PRONTO'; }
     }
+
+    evaluarAvisoEntrega(false);   // aviso de entrega por fecha (visible desde ya)
+    comprobarStock();             // y por stock, si la adquisición está abierta
 
     if (CFG.DEMO_MODE) flashCatalog('MODO DEMO: los pedidos no se registran. Pon DEMO_MODE:false para producción.');
   }

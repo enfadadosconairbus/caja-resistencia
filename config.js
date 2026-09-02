@@ -26,6 +26,12 @@ window.TIENDA_CONFIG = {
   // Cuando la tengáis: pon true, guarda y haz push → se abre todo (y desaparece el aviso).
   APORTACIONES_ACTIVAS: false,
 
+  // Avisos de entrega ("puede llegar después de la marcha del 10-S"):
+  // 1) por fecha: pedidos a partir de este instante (Sept 6, 19:00 hora peninsular).
+  AVISO_FECHA_LIMITE: '2026-09-06T19:00:00+02:00',
+  // 2) por stock: cuando se alcanzan estas camisetas pedidas (solo si las aportaciones están activas).
+  AVISO_STOCK_UMBRAL: 2500,
+
   // Producto único de momento (arquitectura preparada para multiproducto).
   PRODUCT: { nombre: 'Camiseta', skuPrefix: 'CAMISETA' },
 

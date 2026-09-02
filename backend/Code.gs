@@ -67,6 +67,7 @@ function doPost(e) {
     var data = JSON.parse(e.postData.contents);
     if (!tokenValido(data.token)) return jsonOut({ ok: false, error: 'No autorizado' });
     if (data.action === 'crear_pedido') return jsonOut(crearPedido(data));
+    if (data.action === 'estado') return jsonOut(estadoPublico());
     return jsonOut({ ok: false, error: 'Acción no reconocida' });
   } catch (err) {
     return jsonOut({ ok: false, error: 'Error del servidor: ' + err });
@@ -128,6 +129,21 @@ function crearPedido(data) {
 }
 function respuestaPedido(id, total, cfg) {
   return { ok: true, order_id: id, total: Number(total), beneficiario: cfg.BENEFICIARIO || '', iban: cfg.IBAN || '', concepto: id };
+}
+
+// Camisetas pedidas (unidades, excluyendo caducados) para el aviso de stock de la web.
+function estadoPublico() {
+  var sh = SpreadsheetApp.getActive().getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
+  var last = sh.getLastRow(), total = 0;
+  if (last >= 2) {
+    var vals = sh.getRange(2, 1, last - 1, H.length).getValues();
+    var iU = H.indexOf('UNIDADES'), iE = H.indexOf('ESTADO');
+    for (var r = 0; r < vals.length; r++) {
+      if (String(vals[r][iE]) === 'CADUCADO') continue;
+      total += Number(vals[r][iU]) || 0;
+    }
+  }
+  return { ok: true, camisetas: total };
 }
 
 /* ===========================  CONCILIACIÓN BANCARIA  ===================== */

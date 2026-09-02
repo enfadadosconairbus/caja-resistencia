@@ -14,7 +14,7 @@
    ========================================================================== */
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = request.headers.get('Origin') || '';
     const allow = allowedOrigin(origin, env.ALLOWED_ORIGIN);
 
@@ -39,6 +39,23 @@ export default {
       // el frontend envía text/plain con JSON dentro
       try { payload = JSON.parse(await request.text()); }
       catch (e2) { return json({ ok: false, error: 'JSON inválido' }, 400, allow); }
+    }
+
+    // Conteo público 'estado': cacheado 45 s en el edge para no saturar Apps Script.
+    if (payload && payload.action === 'estado') {
+      const cache = caches.default;
+      const cacheKey = new Request('https://cache.tienda/estado', { method: 'GET' });
+      const hit = await cache.match(cacheKey);
+      if (hit) {
+        return new Response(await hit.text(), { status: 200, headers: Object.assign({ 'Content-Type': 'application/json; charset=utf-8' }, corsHeaders(allow)) });
+      }
+      payload.token = env.BACKEND_TOKEN;
+      let up;
+      try { up = await fetch(env.APPS_SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), redirect: 'follow' }); }
+      catch (e) { return json({ ok: false, error: 'No se pudo contactar con el backend' }, 502, allow); }
+      const body = await up.text();
+      if (up.status === 200) ctx.waitUntil(cache.put(cacheKey, new Response(body, { headers: { 'Cache-Control': 'max-age=45', 'Content-Type': 'application/json; charset=utf-8' } })));
+      return new Response(body, { status: up.status, headers: Object.assign({ 'Content-Type': 'application/json; charset=utf-8' }, corsHeaders(allow)) });
     }
 
     // Se inyecta el token en el cuerpo (el navegador nunca lo ve).

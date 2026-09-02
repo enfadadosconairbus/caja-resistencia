@@ -99,6 +99,7 @@
       <h2>Prepara tu aportación</h2>
       <p class="muted">Selecciona una talla, elige cantidad y añádela. Puedes repetir el proceso con otras tallas.</p>
       <div id="ordenNoDisponible" class="orden-cerrada" hidden><span aria-hidden="true">🔒</span> <strong>Las aportaciones se activarán muy pronto</strong>, en cuanto la cuenta bancaria esté disponible. Puedes ir viendo la camiseta y las tallas; el envío de aportaciones estará habilitado en unos días.</div>
+      <div id="avisoEntregaPedido" class="aviso-entrega" hidden></div>
 
       <div class="order-grid">
         <div class="panel">
@@ -136,7 +137,7 @@
             </div>
             <div class="donation-custom">
               <label for="donationCustom">O escribe otra cantidad</label>
-              <div class="custom-input"><input type="number" id="donationCustom" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Otra cantidad de aportación en euros"><span>€</span></div>
+              <div class="custom-input"><input type="text" id="donationCustom" inputmode="decimal" placeholder="0,00" aria-label="Otra cantidad de aportación en euros"><span>€</span></div>
             </div>
           </div>
           <div class="totals">
@@ -185,6 +186,7 @@
         <div class="order-code-label">CÓDIGO DE APORTACIÓN</div>
         <div id="successOrderId" class="order-code">AIR26-00000</div>
         <div class="save-code"><strong>📌 Guarda este código.</strong> Lo necesitarás para <strong>recoger tu camiseta</strong>: haz una captura o apúntalo. También te lo enviamos por email.</div>
+        <div id="avisoEntregaExito" class="aviso-entrega" hidden></div>
         <div class="bank-card">
           <div><span>Beneficiario</span><strong id="successBeneficiary"></strong></div>
           <div><span>IBAN</span><strong id="successIban" class="mono"></strong><button type="button" class="copy-btn" data-copy="successIban">COPIAR</button></div>
