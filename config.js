@@ -42,7 +42,7 @@ window.TIENDA_CONFIG = {
   ],
 
   PICKUP: 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)',
-  CONTACT_EMAIL: 'enfadadosconairbus.tienda@gmail.com',
+  CONTACT_EMAIL: 'enfadadosconairbus.contacto@gmail.com',
 
   // Solo se usan cuando DEMO_MODE = true, para poder ver la pantalla final.
   // En pedidos reales estos datos llegan del backend (hoja CONFIG).

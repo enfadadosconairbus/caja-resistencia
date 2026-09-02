@@ -559,7 +559,7 @@ function setupTiendaV4() {
   if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 8, 2).setValues([
     ['BENEFICIARIO', 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil'],
     ['IBAN', 'ESXX XXXX XXXX XXXX XXXX XXXX  [COMPLETAR ANTES DE PUBLICAR]'],
-    ['EMAIL_CONTACTO', 'enfadadosconairbus.tienda@gmail.com'],
+    ['EMAIL_CONTACTO', 'enfadadosconairbus.contacto@gmail.com'],
     ['RECOGIDA', 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)'],
     ['CADUCIDAD_HORAS', 12], ['MAX_UNIDADES', 20], ['PREFIJO', 'AIR26'],
     ['MODO_PRUEBAS', 'SI']
