@@ -413,22 +413,22 @@ function mostrarToken() { ui().alert('TOKEN backend (solo para el Cloudflare Wor
 /* ===========================  EMAILS  =================================== */
 
 function emailPedidoRecibido(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia', subject: 'Pedido ' + id + ' recibido · Caja de Resistencia',
-    htmlBody: plantillaEmail('Pedido recibido', 'Hola ' + escapar(nombre) + ', hemos registrado tu pedido <strong>' + id + '</strong>. Haz una transferencia por el importe exacto usando <strong>' + id + '</strong> como concepto. No hace falta enviar justificante: confirmamos con los movimientos reales de la cuenta.', id, lineas, productos, aportacion, total, cfg, 'PENDIENTE DE PAGO') });
+  MailApp.sendEmail({ to: email, name: 'Caja de Resistencia · Huelga Airbus', subject: 'Aportación ' + id + ' recibida · Caja de Resistencia',
+    htmlBody: plantillaEmail('Aportación recibida', 'Hola ' + escapar(nombre) + ', hemos registrado tu aportación <strong>' + id + '</strong>. Realiza una transferencia por el importe exacto usando <strong>' + id + '</strong> como concepto. No hace falta enviar justificante: confirmamos con los movimientos reales de la cuenta. ¡Gracias por colaborar con la caja de resistencia!', id, lineas, productos, aportacion, total, cfg, 'PENDIENTE DE TRANSFERENCIA') });
 }
 function emailPagoConfirmado(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia', subject: 'Pedido ' + id + ' confirmado · Caja de Resistencia',
-    htmlBody: plantillaEmail('Pago confirmado', 'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. Te avisaremos por email cuando tu pedido esté listo para recoger en Getafe.', id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA') });
+  MailApp.sendEmail({ to: email, name: 'Caja de Resistencia · Huelga Airbus', subject: 'Aportación ' + id + ' confirmada · Caja de Resistencia',
+    htmlBody: plantillaEmail('Aportación confirmada', 'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. Te avisaremos por email cuando tu camiseta esté lista para recoger en Getafe. ¡Gracias por tu apoyo!', id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA') });
 }
 function emailListoRecoger(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Tienda Caja de Resistencia', subject: 'Pedido ' + id + ' listo para recoger · Caja de Resistencia',
-    htmlBody: plantillaEmail('Listo para recoger', 'Hola ' + escapar(nombre) + ', tu pedido <strong>' + id + '</strong> ya está disponible. Recógelo en: <strong>' + escapar(cfg.RECOGIDA || '') + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER') });
+  MailApp.sendEmail({ to: email, name: 'Caja de Resistencia · Huelga Airbus', subject: 'Tu camiseta ' + id + ' está lista para recoger',
+    htmlBody: plantillaEmail('Lista para recoger', 'Hola ' + escapar(nombre) + ', tu camiseta de la aportación <strong>' + id + '</strong> ya está disponible. Recógela en: <strong>' + escapar(cfg.RECOGIDA || '') + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER') });
 }
 function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total, cfg, estado) {
   var pill = ({
-    'PENDIENTE DE PAGO': ['#fbe9e7', '#9c2c20'],
-    'CONFIRMADA':        ['#e4f1e8', '#2e7d52'],
-    'LISTO PARA RECOGER':['#e6ecf5', '#16233b']
+    'PENDIENTE DE TRANSFERENCIA': ['#fbe9e7', '#9c2c20'],
+    'CONFIRMADA':                 ['#e4f1e8', '#2e7d52'],
+    'LISTO PARA RECOGER':         ['#e6ecf5', '#16233b']
   })[estado] || ['#efeadf', '#6f6a60'];
 
   var filas = lineas.map(function (l, i) {
@@ -440,7 +440,7 @@ function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total,
       '<td style="padding:10px 12px;border-bottom:1px solid #e4ddce;background:' + bg + ';color:#1a1d21;font-size:14px;text-align:right;font-weight:700">' + eur(precioSku(l.sku) * l.cantidad) + '</td></tr>';
   }).join('');
 
-  var transferencia = (estado === 'PENDIENTE DE PAGO') ?
+  var transferencia = (estado === 'PENDIENTE DE TRANSFERENCIA') ?
     '<div style="margin-top:18px;padding:16px 18px;background:#faf6ee;border:1px solid #e4ddce;border-left:4px solid #c0392b;border-radius:12px">' +
     '<div style="font-size:11px;color:#6f6a60;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Datos de la transferencia</div>' +
     '<div style="margin-top:8px;font-size:14px;color:#1a1d21">Beneficiario: <strong>' + escapar(cfg.BENEFICIARIO || '') + '</strong></div>' +
@@ -453,7 +453,7 @@ function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total,
   '<div style="font-family:Arial,Helvetica,sans-serif;background:#f7f4ee;padding:24px 12px">' +
   '<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e4ddce;border-radius:16px;overflow:hidden">' +
   '<div style="height:6px;background:#c0392b;line-height:6px;font-size:6px">&nbsp;</div>' +
-  '<div style="background:#16233b;color:#f3ede1;padding:18px 22px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:15px">Tienda · Caja de Resistencia' +
+  '<div style="background:#16233b;color:#f3ede1;padding:18px 22px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:15px">Plataforma Solidaria · Caja de Resistencia' +
   '<span style="display:block;font-size:11px;font-weight:600;color:#b7ad9c;letter-spacing:.12em;margin-top:3px">Huelga Airbus 2026 · Getafe</span></div>' +
   '<div style="padding:24px 22px">' +
   '<span style="display:inline-block;background:' + pill[0] + ';color:' + pill[1] + ';font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;padding:5px 12px;border-radius:999px">' + escapar(estado) + '</span>' +
@@ -466,11 +466,11 @@ function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total,
   '<th style="text-align:center;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Uds.</th>' +
   '<th style="text-align:right;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Subtotal</th>' +
   '</tr></thead><tbody>' + filas + '</tbody></table>' +
-  '<div style="text-align:right;color:#6f6a60;font-size:14px">Productos: <strong style="color:#1a1d21">' + eur(productos) + '</strong></div>' +
+  '<div style="text-align:right;color:#6f6a60;font-size:14px">Camisetas: <strong style="color:#1a1d21">' + eur(productos) + '</strong></div>' +
   (aportacion > 0 ? '<div style="text-align:right;color:#6f6a60;font-size:14px">Aportación a la Caja: <strong style="color:#1a1d21">' + eur(aportacion) + '</strong></div>' : '') +
   '<div style="text-align:right;font-size:22px;color:#c0392b;font-weight:800;margin-top:6px">TOTAL: ' + eur(total) + '</div>' +
   transferencia +
-  '<p style="color:#9a9387;font-size:11px;margin-top:22px;line-height:1.5">Página no oficial de Airbus. El pago se realiza por transferencia bancaria; esta web no procesa pagos.</p>' +
+  '<p style="color:#9a9387;font-size:11px;margin-top:22px;line-height:1.5">Aportación solidaria a la Caja de Resistencia (Sindicato Útil); la camiseta es un agradecimiento por tu colaboración. Página no oficial de Airbus. No se procesan pagos: la aportación se realiza por transferencia bancaria.</p>' +
   '</div></div></div>';
 }
 

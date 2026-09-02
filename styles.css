@@ -109,7 +109,9 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .steps li p { margin: 4px 0 0; color: var(--muted); font-size: .92rem; }
 
 /* ---- tallas ---- */
-.size-section { display: grid; gap: 30px; align-items: start; }
+.size-image { max-width: 640px; margin: 22px auto 4px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+.size-note { max-width: 640px; margin: 10px auto 0; text-align: center; color: var(--muted); font-size: .92rem; }
+.size-note strong { color: var(--ink); }
 .size-table-wrap { overflow-x: auto; margin-top: 16px; border: 1px solid var(--line); border-radius: var(--radius); }
 .size-table { width: 100%; border-collapse: collapse; min-width: 320px; background: var(--paper-2); }
 .size-table th, .size-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); }
@@ -221,7 +223,6 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 /* ---- responsive ---- */
 @media (min-width: 720px) {
   .product-section { grid-template-columns: 1fr 1fr; }
-  .size-section { grid-template-columns: 1.15fr .85fr; }
   .order-grid { grid-template-columns: 1fr 1fr; }
   .fields-grid { grid-template-columns: 1fr 1fr; }
   .sticky-cart { display: none; }
