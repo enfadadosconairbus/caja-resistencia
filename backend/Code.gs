@@ -410,19 +410,62 @@ function asegurarToken() {
 }
 function mostrarToken() { ui().alert('TOKEN backend (solo para el Cloudflare Worker):\n\n' + asegurarToken() + '\n\nNo lo pongas en GitHub ni en config.js.'); }
 
+// Guarda la API key del proveedor de email (Brevo) en Script Properties.
+function configurarEmailProveedor() {
+  var u = ui();
+  var resp = u.prompt('Proveedor de email (Brevo)',
+    'Pega tu API key de Brevo (empieza por "xkeysib-").\n\nDéjalo vacío + Aceptar para BORRAR la key y volver a Gmail (100/día).',
+    u.ButtonSet.OK_CANCEL);
+  if (resp.getSelectedButton() !== u.Button.OK) return;
+  var key = String(resp.getResponseText()).trim();
+  var props = PropertiesService.getScriptProperties();
+  if (!key) { props.deleteProperty('EMAIL_API_KEY'); u.alert('Key borrada. Los emails saldrán por Gmail (límite 100/día).'); return; }
+  props.setProperty('EMAIL_API_KEY', key);
+  u.alert('API key guardada. Los emails saldrán por el proveedor.\n\nComprueba con "✉️ Enviar emails de prueba".\nOJO: el remitente (CONFIG → EMAIL_REMITENTE) debe estar VERIFICADO en Brevo.');
+}
+
 /* ===========================  EMAILS  =================================== */
 
+// Envío de email a través de proveedor transaccional (Brevo). Si no hay API key
+// configurada, cae a Gmail/MailApp (solo válido para bajo volumen / pruebas).
+// El límite de volumen pasa a ser el del proveedor: se evita el bloqueo de Gmail.
+function enviarEmail(to, subject, html) {
+  var props = PropertiesService.getScriptProperties();
+  var key = props.getProperty('EMAIL_API_KEY');
+  var cfg = leerConfig();
+  var fromEmail = cfg.EMAIL_REMITENTE || cfg.EMAIL_CONTACTO || 'enfadadosconairbus.contacto@gmail.com';
+  var fromName = cfg.EMAIL_REMITENTE_NOMBRE || 'Caja de Resistencia · Huelga Airbus';
+
+  if (!key) {  // sin proveedor: Gmail (100/día, solo pruebas o bajo volumen)
+    MailApp.sendEmail({ to: to, name: fromName, subject: subject, htmlBody: html });
+    return;
+  }
+  // Brevo (https://developers.brevo.com). Para SES u otro, cambia SOLO esta llamada.
+  var resp = UrlFetchApp.fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+    headers: { 'api-key': key, 'accept': 'application/json' },
+    payload: JSON.stringify({
+      sender: { email: fromEmail, name: fromName },
+      to: [{ email: to }],
+      subject: subject,
+      htmlContent: html
+    })
+  });
+  var code = resp.getResponseCode();
+  if (code >= 300) throw new Error('Proveedor email HTTP ' + code + ': ' + resp.getContentText().slice(0, 300));
+}
+
 function emailPedidoRecibido(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Caja de Resistencia · Huelga Airbus', subject: 'Aportación ' + id + ' recibida · Caja de Resistencia',
-    htmlBody: plantillaEmail('Aportación recibida', 'Hola ' + escapar(nombre) + ', hemos registrado tu aportación <strong>' + id + '</strong>. Realiza una transferencia por el importe exacto usando <strong>' + id + '</strong> como concepto. No hace falta enviar justificante: confirmamos con los movimientos reales de la cuenta. ¡Gracias por colaborar con la caja de resistencia!', id, lineas, productos, aportacion, total, cfg, 'PENDIENTE DE TRANSFERENCIA') });
+  enviarEmail(email, 'Aportación ' + id + ' recibida · Caja de Resistencia',
+    plantillaEmail('Aportación recibida', 'Hola ' + escapar(nombre) + ', hemos registrado tu aportación <strong>' + id + '</strong>. Realiza una transferencia por el importe exacto usando <strong>' + id + '</strong> como concepto. No hace falta enviar justificante: confirmamos con los movimientos reales de la cuenta. ¡Gracias por colaborar con la caja de resistencia!', id, lineas, productos, aportacion, total, cfg, 'PENDIENTE DE TRANSFERENCIA'));
 }
 function emailPagoConfirmado(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Caja de Resistencia · Huelga Airbus', subject: 'Aportación ' + id + ' confirmada · Caja de Resistencia',
-    htmlBody: plantillaEmail('Aportación confirmada', 'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. Te avisaremos por email cuando tu camiseta esté lista para recoger en Getafe. ¡Gracias por tu apoyo!', id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA') });
+  enviarEmail(email, 'Aportación ' + id + ' confirmada · Caja de Resistencia',
+    plantillaEmail('Aportación confirmada', 'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. Te avisaremos por email cuando tu camiseta esté lista para recoger en Getafe. ¡Gracias por tu apoyo!', id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA'));
 }
 function emailListoRecoger(email, id, nombre, lineas, productos, aportacion, total, cfg) {
-  MailApp.sendEmail({ to: email, name: 'Caja de Resistencia · Huelga Airbus', subject: 'Tu camiseta ' + id + ' está lista para recoger',
-    htmlBody: plantillaEmail('Lista para recoger', 'Hola ' + escapar(nombre) + ', tu camiseta de la aportación <strong>' + id + '</strong> ya está disponible. Recógela en: <strong>' + escapar(cfg.RECOGIDA || '') + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER') });
+  enviarEmail(email, 'Tu camiseta ' + id + ' está lista para recoger',
+    plantillaEmail('Lista para recoger', 'Hola ' + escapar(nombre) + ', tu camiseta de la aportación <strong>' + id + '</strong> ya está disponible. Recógela en: <strong>' + escapar(cfg.RECOGIDA || '') + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER'));
 }
 function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total, cfg, estado) {
   var pill = ({
@@ -556,13 +599,15 @@ function setupTiendaV4() {
   hoja(ss, SH.LOG, HEAD.LOG);
 
   var cfg = ss.getSheetByName(SH.CONFIG);
-  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 8, 2).setValues([
+  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 10, 2).setValues([
     ['BENEFICIARIO', 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil'],
     ['IBAN', 'ESXX XXXX XXXX XXXX XXXX XXXX  [COMPLETAR ANTES DE PUBLICAR]'],
     ['EMAIL_CONTACTO', 'enfadadosconairbus.contacto@gmail.com'],
     ['RECOGIDA', 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)'],
     ['CADUCIDAD_HORAS', 12], ['MAX_UNIDADES', 20], ['PREFIJO', 'AIR26'],
-    ['MODO_PRUEBAS', 'SI']
+    ['MODO_PRUEBAS', 'SI'],
+    ['EMAIL_REMITENTE', 'enfadadosconairbus.contacto@gmail.com'],
+    ['EMAIL_REMITENTE_NOMBRE', 'Caja de Resistencia · Huelga Airbus']
   ]);
 
   var cat = ss.getSheetByName(SH.CATALOGO);
@@ -794,6 +839,7 @@ function onOpen() {
     .addItem('📗 Exportar a Excel (.xlsx)', 'exportarExcel')
     .addSeparator()
     .addItem('✉️ Enviar emails de prueba', 'enviarEmailsPrueba')
+    .addItem('📮 Configurar email (proveedor)', 'configurarEmailProveedor')
     .addItem('🔑 Mostrar TOKEN backend', 'mostrarToken')
     .addSeparator()
     .addItem('🧨 Resetear datos de prueba', 'resetearPruebas')
