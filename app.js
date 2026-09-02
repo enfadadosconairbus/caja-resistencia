@@ -197,6 +197,10 @@
     e.preventDefault();
     var form = e.target;
     var err = $('formError');
+    if (CFG.APORTACIONES_ACTIVAS === false) {
+      showError(err, 'Las aportaciones aún no están activas. Se abrirán muy pronto, cuando la cuenta bancaria esté disponible.');
+      return;
+    }
     var problem = validate(form);
     if (problem === '__bot__') return;          // silencio ante bots
     if (problem) { showError(err, problem); return; }
@@ -310,6 +314,13 @@
     var go = $('stickyGo'); if (go) go.addEventListener('click', function () {
       var p = $('pedido'); if (p) p.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+    // Pre-lanzamiento: aportaciones aún no activas (falta la cuenta bancaria).
+    if (CFG.APORTACIONES_ACTIVAS === false) {
+      var av = $('avisoBanner'); if (av) av.hidden = false;
+      var oc = $('ordenNoDisponible'); if (oc) oc.hidden = false;
+      var sub = $('submitOrder'); if (sub) { sub.disabled = true; sub.textContent = 'DISPONIBLE MUY PRONTO'; }
+    }
 
     if (CFG.DEMO_MODE) flashCatalog('MODO DEMO: los pedidos no se registran. Pon DEMO_MODE:false para producción.');
   }

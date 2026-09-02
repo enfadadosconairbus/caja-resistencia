@@ -22,6 +22,10 @@ window.TIENDA_CONFIG = {
   // false = pedidos reales contra el Worker. Ponlo en false antes de compartir la URL.
   DEMO_MODE: false,
 
+  // Aportaciones DESACTIVADAS hasta tener la cuenta bancaria lista.
+  // Cuando la tengáis: pon true, guarda y haz push → se abre todo (y desaparece el aviso).
+  APORTACIONES_ACTIVAS: false,
+
   // Producto único de momento (arquitectura preparada para multiproducto).
   PRODUCT: { nombre: 'Camiseta', skuPrefix: 'CAMISETA' },
 
