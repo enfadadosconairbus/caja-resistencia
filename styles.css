@@ -94,6 +94,10 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; position: relative; z-index: 1; }
 .hero .btn-ghost { color: #f3ede1; border-color: rgba(243,237,225,.35); }
 .hero .btn-ghost:hover { border-color: #f3ede1; }
+.btn-cream { background: #f3ede1; color: var(--ink); border-color: transparent; text-transform: none; letter-spacing: 0; font-weight: 700; }
+.btn-cream:hover { background: #fff; }
+.btn-cream .arrow { color: var(--red); font-weight: 800; }
+.hero-context { position: relative; z-index: 1; margin-top: 14px; }
 
 /* ---- separador ---- */
 .hazard { height: 8px; margin-block: 6px; background: repeating-linear-gradient(45deg, var(--red) 0 20px, var(--ink) 20px 40px); opacity: .85; border-radius: 4px; }
