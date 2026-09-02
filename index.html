@@ -23,7 +23,7 @@
 
   <div class="sticky-top">
     <div id="avisoBanner" class="aviso" hidden>
-      <div class="wrap"><span aria-hidden="true">⏳</span> <strong>Las aportaciones aún no están activas.</strong> Se abrirán en cuanto la cuenta bancaria esté disponible (muy pronto). Ve preparándote: cuando abran, hay que ser ágil para llegar al 10-S.</div>
+      <div class="wrap"><span aria-hidden="true">⏳</span> <strong>Las aportaciones aún no están activas.</strong> Se abrirán muy pronto, en cuanto la cuenta bancaria esté disponible. Ve preparándote: cuando abran, hay que ser ágil para llegar al <span class="nb">10-S</span>.</div>
     </div>
     <header class="site-header">
       <div class="wrap header-inner">
@@ -133,6 +133,10 @@
               <button type="button" data-donation="10">+10 €</button>
               <button type="button" data-donation="20">+20 €</button>
               <button type="button" data-donation="50">+50 €</button>
+            </div>
+            <div class="donation-custom">
+              <label for="donationCustom">O escribe otra cantidad</label>
+              <div class="custom-input"><input type="number" id="donationCustom" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Otra cantidad de aportación en euros"><span>€</span></div>
             </div>
           </div>
           <div class="totals">

@@ -149,11 +149,20 @@
   // ---- aportación ------------------------------------------------------------
   function wireDonations() {
     var box = $('donationButtons'); if (!box) return;
+    var custom = $('donationCustom');
+    function clearButtons() { Array.prototype.forEach.call(box.querySelectorAll('button'), function (b) { b.classList.remove('active'); }); }
     box.addEventListener('click', function (e) {
       var btn = e.target.closest('button[data-donation]'); if (!btn) return;
       state.donation = Number(btn.getAttribute('data-donation')) || 0;
-      Array.prototype.forEach.call(box.querySelectorAll('button'), function (b) { b.classList.remove('active'); });
+      if (custom) custom.value = '';               // el botón fijo manda: limpia el campo libre
+      clearButtons();
       btn.classList.add('active');
+      renderCart();
+    });
+    if (custom) custom.addEventListener('input', function () {
+      var v = Math.max(0, Math.floor(Number(custom.value) || 0));
+      state.donation = v;                          // cantidad libre: desmarca los botones
+      clearButtons();
       renderCart();
     });
   }

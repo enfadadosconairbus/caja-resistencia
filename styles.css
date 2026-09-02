@@ -61,8 +61,9 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 /* ---- aviso pre-lanzamiento (sticky) ---- */
 .sticky-top { position: sticky; top: 0; z-index: 50; }
 .aviso { background: #f4c542; color: #1a1d21; border-bottom: 1px solid #d9a92a; }
-.aviso .wrap { padding-block: 9px; font-size: .86rem; line-height: 1.35; text-align: center; }
+.aviso .wrap { max-width: 780px; padding-block: 11px; font-size: 1rem; line-height: 1.4; text-align: center; text-wrap: balance; }
 .aviso strong { font-weight: 800; }
+.aviso .nb { white-space: nowrap; }
 
 /* ---- cabecera ---- */
 .site-header { background: rgba(247,244,238,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
@@ -168,6 +169,14 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .donation-buttons button { padding: 10px 16px; background: #fff; border: 2px solid var(--line-2); color: var(--ink); border-radius: 10px; font-family: var(--fh); font-weight: 800; cursor: pointer; }
 .donation-buttons button:hover { border-color: var(--red); }
 .donation-buttons button.active { background: var(--red); color: #fff; border-color: var(--red); }
+.donation-custom { margin-top: 12px; }
+.donation-custom label { display: block; text-transform: uppercase; letter-spacing: .06em; font-size: .72rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.custom-input { display: inline-flex; align-items: center; gap: 6px; border: 2px solid var(--line-2); border-radius: 10px; background: #fff; padding: 0 14px; }
+.custom-input:focus-within { border-color: var(--red); }
+.custom-input span { font-family: var(--fh); font-weight: 800; color: var(--muted); }
+.custom-input input { width: 96px; border: 0; outline: none; padding: 11px 0; font-family: var(--fb); font-weight: 700; font-size: 1.05rem; color: var(--ink); background: transparent; }
+.custom-input input::-webkit-outer-spin-button, .custom-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.custom-input input { -moz-appearance: textfield; appearance: textfield; }
 
 .totals { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 8px; }
 .totals > div { display: flex; justify-content: space-between; align-items: baseline; color: var(--muted); }
