@@ -13,8 +13,8 @@
                                      Ej: https://TU-CUENTA.github.io
 
    Binding OPCIONAL para el ESPEJO de pedidos (A1 — backup independiente de Google):
-     - PEDIDOS_KV (KV namespace) -> si existe, cada pedido registrado se copia a KV.
-                                    Si no existe, el Worker funciona igual (sin espejo).
+     - PEDIDOS_DB (D1 database) -> si existe, cada pedido registrado se copia a D1.
+                                   Si no existe, el Worker funciona igual (sin espejo).
    ========================================================================== */
 
 export default {
@@ -79,11 +79,11 @@ export default {
 
     const text = await upstream.text();
 
-    // A1 — ESPEJO INDEPENDIENTE en Cloudflare KV. Copia cada pedido registrado a
-    // un almacén fuera de Google, para que un bloqueo de la cuenta de Google no
+    // A1 — ESPEJO INDEPENDIENTE en Cloudflare D1. Copia cada pedido registrado a
+    // una base fuera de Google, para que un bloqueo de la cuenta de Google no
     // borre los datos. Nunca debe afectar al pedido: va en waitUntil y traga
     // cualquier error (si el espejo falla, el cliente ni se entera).
-    if (payload && payload.action === 'crear_pedido' && env.PEDIDOS_KV) {
+    if (payload && payload.action === 'crear_pedido' && env.PEDIDOS_DB) {
       ctx.waitUntil(espejarPedido(env, payload, text).catch(() => {}));
     }
 
@@ -99,11 +99,21 @@ export default {
 };
 
 /* ---------------------------------------------------------------------------
-   A1 · Espejo de pedidos en KV. Guarda una copia solo de los pedidos REALMENTE
-   registrados por el backend (resp.ok con order_id). La clave es el order_id
-   (AIR26-XXXXX), así que un reintento sobrescribe la misma entrada, no duplica.
-   Cada valor lleva el pedido completo + la respuesta del backend: suficiente
-   para reconstruir el Sheet si algún día se pierde Google.
+   A1 · Espejo de pedidos en D1. Guarda una copia solo de los pedidos REALMENTE
+   registrados por el backend (resp.ok con order_id). Idempotente por
+   client_request_id: un reintento actualiza la misma fila, no duplica.
+   Tabla esperada (créala una vez, ver instrucciones):
+     CREATE TABLE IF NOT EXISTS pedidos_backup (
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       created_at TEXT NOT NULL,
+       client_request_id TEXT UNIQUE,
+       order_id TEXT,
+       email TEXT,
+       nombre TEXT,
+       total_eur REAL,
+       payload_json TEXT NOT NULL,
+       response_json TEXT
+     );
 --------------------------------------------------------------------------- */
 async function espejarPedido(env, payload, responseText) {
   let resp = {};
@@ -111,21 +121,27 @@ async function espejarPedido(env, payload, responseText) {
   if (!resp || !resp.ok || !resp.order_id) return;   // solo pedidos confirmados
 
   const c = payload.cliente || {};
-  const record = {
-    created_at: new Date().toISOString(),
-    order_id: resp.order_id,
-    client_request_id: payload.client_request_id || null,
-    cliente: c,
-    site: payload.site || null,
-    lineas: payload.lineas || null,
-    aportacion: (payload.aportacion != null ? payload.aportacion : null),
-    total_eur: (typeof resp.total === 'number') ? resp.total : null,
-    response: resp
-  };
+  const nombre = ((c.nombre || '') + ' ' + (c.apellidos || '')).trim() || null;
+  const total = (typeof resp.total === 'number') ? resp.total : null;
 
-  await env.PEDIDOS_KV.put('order:' + resp.order_id, JSON.stringify(record), {
-    metadata: { email: c.email || '', total: record.total_eur, at: record.created_at }
-  });
+  await env.PEDIDOS_DB.prepare(
+    `INSERT INTO pedidos_backup
+       (created_at, client_request_id, order_id, email, nombre, total_eur, payload_json, response_json)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)
+     ON CONFLICT(client_request_id) DO UPDATE SET
+       order_id      = excluded.order_id,
+       total_eur     = excluded.total_eur,
+       response_json = excluded.response_json`
+  ).bind(
+    new Date().toISOString(),
+    payload.client_request_id || null,
+    resp.order_id,
+    c.email || null,
+    nombre,
+    total,
+    JSON.stringify(payload),
+    responseText || null
+  ).run();
 }
 
 function allowedOrigin(origin, allowedList) {
