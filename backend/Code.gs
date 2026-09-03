@@ -582,7 +582,7 @@ function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total,
   '<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e4ddce;border-radius:16px;overflow:hidden">' +
   '<div style="height:6px;background:#c0392b;line-height:6px;font-size:6px">&nbsp;</div>' +
   '<div style="background:#16233b;color:#f3ede1;padding:18px 22px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:15px">Plataforma Solidaria · Caja de Resistencia' +
-  '<span style="display:block;font-size:11px;font-weight:600;color:#b7ad9c;letter-spacing:.12em;margin-top:3px">Huelga Airbus 2026 · Getafe</span></div>' +
+  '<span style="display:block;font-size:11px;font-weight:600;color:#b7ad9c;letter-spacing:.12em;margin-top:3px">Huelga Airbus 2026 · Albacete · Cádiz · Getafe · Illescas · San Pablo · Tablada</span></div>' +
   '<div style="padding:24px 22px">' +
   '<span style="display:inline-block;background:' + pill[0] + ';color:' + pill[1] + ';font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;padding:5px 12px;border-radius:999px">' + escapar(estado) + '</span>' +
   '<h1 style="margin:12px 0;font-size:24px;color:#1a1d21;text-transform:uppercase;letter-spacing:-.01em">' + escapar(titulo) + '</h1>' +
