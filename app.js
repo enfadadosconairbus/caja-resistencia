@@ -295,6 +295,26 @@
     ta.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta);
   }
 
+  // ---- textos legales (modales) ---------------------------------------------
+  function wireLegal() {
+    var openers = document.querySelectorAll('[data-legal]');
+    Array.prototype.forEach.call(openers, function (btn) {
+      btn.addEventListener('click', function () {
+        var dlg = $('dlg-' + btn.getAttribute('data-legal'));
+        if (!dlg) return;
+        if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      });
+    });
+    var dialogs = document.querySelectorAll('dialog.legal-dialog');
+    Array.prototype.forEach.call(dialogs, function (dlg) {
+      Array.prototype.forEach.call(dlg.querySelectorAll('[data-close]'), function (b) {
+        b.addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+      });
+      // cerrar al pulsar el fondo (fuera del contenido)
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close && dlg.close(); });
+    });
+  }
+
   // ---- utilidades UI ---------------------------------------------------------
   function showError(el, msg) { if (!el) return; el.textContent = msg; el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   function hideError(el) { if (!el) return; el.hidden = true; el.textContent = ''; }
@@ -347,6 +367,7 @@
     renderCart();
     wireDonations();
     wireCopy();
+    wireLegal();
 
     var minus = $('minusQty'); if (minus) minus.addEventListener('click', function () { setQty(state.qty - 1); });
     var plus = $('plusQty'); if (plus) plus.addEventListener('click', function () { setQty(state.qty + 1); });
