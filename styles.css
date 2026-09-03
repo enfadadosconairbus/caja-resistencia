@@ -290,23 +290,6 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .sticky-cart button { background: var(--red); color: #fff; border: 0; border-radius: 10px; padding: 12px 18px; font-family: var(--fh); font-weight: 800; cursor: pointer; }
 
 /* ---- gobernanza / transparencia ---- */
-.governance-section .gov-intro { max-width: 62ch; margin-top: -2px; }
-.gov-grid { display: grid; gap: 18px; margin-top: 24px; }
-.gov-block { display: flex; flex-direction: column; }
-.gov-block h3 { font-family: var(--fh); text-transform: uppercase; letter-spacing: .03em; font-size: 1.02rem; color: var(--ink); margin-bottom: 12px; }
-.gov-block p { margin: 0 0 10px; font-size: .96rem; line-height: 1.6; color: var(--ink-2); }
-.gov-block p:last-child { margin-bottom: 0; }
-.gov-block a { color: var(--red-dark); }
-.gov-list, .gov-ol { margin: 0 0 10px; padding-left: 1.2em; display: grid; gap: 8px; }
-.gov-list li, .gov-ol li { font-size: .96rem; line-height: 1.55; color: var(--ink-2); }
-.gov-list li::marker { color: var(--red); }
-.gov-ol li::marker { color: var(--red); font-family: var(--fh); font-weight: 800; }
-.gov-coda { font-style: italic; color: var(--muted) !important; font-size: .9rem !important; }
-@media (min-width: 860px) {
-  .gov-grid { grid-template-columns: 1fr 1fr; }
-  .gov-block--wide { grid-column: 1 / -1; }
-}
-
 /* ---- textos legales (modales nativos) ---- */
 .legal-dialog { width: min(92vw, 640px); max-height: 86vh; padding: 0; border: 1px solid var(--line-2); border-radius: var(--radius); background: var(--paper); color: var(--ink); box-shadow: 0 24px 60px rgba(22,35,59,.35); overflow: auto; }
 .legal-dialog::backdrop { background: rgba(22,35,59,.55); }
@@ -316,9 +299,16 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .legal-close:hover { border-color: var(--red); color: var(--red); }
 .legal-nota { margin: 14px 22px 0; padding: 10px 14px; background: rgba(192,57,43,.07); border: 1px solid rgba(192,57,43,.35); border-radius: 10px; color: var(--red-dark); font-family: var(--fm); font-size: .78rem; line-height: 1.5; }
 .legal-body { padding: 16px 22px 24px; }
-.legal-body p { margin: 0 0 12px; font-size: .92rem; line-height: 1.62; color: var(--ink-2); }
+.legal-body p { margin: 0 0 12px; font-size: .92rem; line-height: 1.62; color: var(--ink-2); text-align: justify; hyphens: auto; }
 .legal-body p:last-child { margin-bottom: 0; }
 .legal-body strong { color: var(--ink); }
+.legal-body a { color: var(--red-dark); }
+.legal-body h3 { font-family: var(--fh); text-transform: uppercase; letter-spacing: .03em; font-size: 1rem; color: var(--ink); margin: 22px 0 10px; }
+.legal-body ul, .legal-body ol { margin: 0 0 12px; padding-left: 1.2em; display: grid; gap: 8px; }
+.legal-body li { font-size: .92rem; line-height: 1.55; color: var(--ink-2); text-align: justify; }
+.legal-body ul li::marker { color: var(--red); }
+.legal-body ol li::marker { color: var(--red); font-family: var(--fh); font-weight: 800; }
+.legal-body .gov-coda { font-style: italic; color: var(--muted); text-align: left; }
 
 /* ---- pie ---- */
 .site-footer { background: var(--navy); color: #cfc7b8; padding-block: 34px; margin-top: 20px; }
