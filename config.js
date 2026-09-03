@@ -24,7 +24,7 @@ window.TIENDA_CONFIG = {
 
   // Aportaciones DESACTIVADAS hasta tener la cuenta bancaria lista.
   // Cuando la tengáis: pon true, guarda y haz push → se abre todo (y desaparece el aviso).
-  APORTACIONES_ACTIVAS: false,
+  APORTACIONES_ACTIVAS: true,
 
   // Avisos de entrega ("puede llegar después de la marcha del 10-S"):
   // 1) por fecha: pedidos a partir de este instante (Sept 6, 19:00 hora peninsular).
