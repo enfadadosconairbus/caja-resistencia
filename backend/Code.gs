@@ -396,6 +396,55 @@ function exportarExcel() {
   ui().alert('Excel generado:\n\n' + file.getName() + '\n\nCarpeta "Tienda Airbus - Export" en tu Drive.\n' + file.getUrl());
 }
 
+/* ===========================  A2 · BACKUP DIARIO FUERA DE GOOGLE  ========= */
+/* Envía el libro completo (.xlsx) por email a una dirección de OTRO proveedor
+   (NO un @gmail de esta cuenta), para que un bloqueo de Google no borre los datos.
+   El destino se lee de CONFIG (fila BACKUP_EMAIL); admite varios separados por comas.
+   Un solo email al día: irrelevante para las cuotas de Gmail. */
+
+function backupDiario() {
+  var ss = SpreadsheetApp.getActive();
+  var cfg = leerConfig();
+  var dest = String(cfg.BACKUP_EMAIL || '').trim();
+  if (!dest) { registrarLog(ss, 'BACKUP_OMITIDO', 'Falta la fila BACKUP_EMAIL en CONFIG'); return; }
+
+  var url = 'https://docs.google.com/spreadsheets/d/' + ss.getId() + '/export?format=xlsx';
+  var resp = UrlFetchApp.fetch(url, { headers: { Authorization: 'Bearer ' + ScriptApp.getOAuthToken() }, muteHttpExceptions: true });
+  if (resp.getResponseCode() !== 200) { registrarLog(ss, 'BACKUP_ERROR', 'export ' + resp.getResponseCode()); return; }
+
+  var tz = Session.getScriptTimeZone();
+  var stamp = Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd HH:mm');
+  var stampFile = Utilities.formatDate(new Date(), tz, 'yyyyMMdd-HHmm');
+  var blob = resp.getBlob().setName('Backup-Tienda-Airbus-' + stampFile + '.xlsx');
+
+  var shP = ss.getSheetByName(SH.PEDIDOS);
+  var nPedidos = shP ? Math.max(0, shP.getLastRow() - 1) : 0;
+
+  MailApp.sendEmail({
+    to: dest,
+    subject: 'Backup tienda · ' + stamp + ' · ' + nPedidos + ' pedidos',
+    body: 'Copia de seguridad automática del libro de la tienda (Caja de Resistencia).\n\n'
+        + 'Fecha: ' + stamp + '\n'
+        + 'Pedidos en el libro: ' + nPedidos + '\n\n'
+        + 'Guarda este correo con su adjunto: es tu copia FUERA de la cuenta de Google.\n'
+        + 'Si un día dejas de recibir este backup, revisa el disparador o el estado de la cuenta.',
+    attachments: [blob],
+    name: 'Backup Tienda Airbus'
+  });
+  registrarLog(ss, 'BACKUP_OK', dest + ' · ' + nPedidos + ' pedidos');
+}
+
+/* Crea (o recrea) el disparador diario de backupDiario, ~3:00. Un clic desde el menú. */
+function programarBackupDiario() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'backupDiario') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('backupDiario').timeBased().everyDays(1).atHour(3).create();
+  var dest = String(leerConfig().BACKUP_EMAIL || '').trim();
+  ui().alert('✅ Backup diario programado (~3:00).\n\n'
+    + (dest ? ('Se enviará a: ' + dest) : '⚠️ Falta la fila BACKUP_EMAIL en CONFIG: añádela con un correo que NO sea de esta cuenta de Google.'));
+}
+
 /* ===========================  DASHBOARD (datos + gráficos)  ============= */
 
 function refrescarDashboard() {
@@ -872,6 +921,9 @@ function onOpen() {
     .addSeparator()
     .addItem('📊 Actualizar panel', 'refrescarDashboard')
     .addItem('📗 Exportar a Excel (.xlsx)', 'exportarExcel')
+    .addSeparator()
+    .addItem('💾 Backup ahora (email fuera de Google)', 'backupDiario')
+    .addItem('⏰ Programar backup diario', 'programarBackupDiario')
     .addSeparator()
     .addItem('✉️ Enviar emails de prueba', 'enviarEmailsPrueba')
     .addItem('📮 Configurar email (proveedor)', 'configurarEmailProveedor')

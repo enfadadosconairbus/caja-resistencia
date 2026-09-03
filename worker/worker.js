@@ -11,6 +11,10 @@
      - BACKEND_TOKEN    (Secret)  -> el token que muestra el menú del Sheet
      - ALLOWED_ORIGIN   (Variable)-> orígenes permitidos, separados por comas.
                                      Ej: https://TU-CUENTA.github.io
+
+   Binding OPCIONAL para el ESPEJO de pedidos (A1 — backup independiente de Google):
+     - PEDIDOS_DB (D1 database) -> si existe, cada pedido registrado se copia a D1.
+                                   Si no existe, el Worker funciona igual (sin espejo).
    ========================================================================== */
 
 export default {
@@ -74,6 +78,15 @@ export default {
     }
 
     const text = await upstream.text();
+
+    // A1 — ESPEJO INDEPENDIENTE en Cloudflare D1. Copia cada pedido registrado a
+    // una base fuera de Google, para que un bloqueo de la cuenta de Google no
+    // borre los datos. Nunca debe afectar al pedido: va en waitUntil y traga
+    // cualquier error (si el espejo falla, el cliente ni se entera).
+    if (payload && payload.action === 'crear_pedido' && env.PEDIDOS_DB) {
+      ctx.waitUntil(espejarPedido(env, payload, text).catch(() => {}));
+    }
+
     // Se reenvía tal cual la respuesta del backend, con cabeceras CORS.
     return new Response(text, {
       status: upstream.status,
@@ -84,6 +97,52 @@ export default {
     });
   }
 };
+
+/* ---------------------------------------------------------------------------
+   A1 · Espejo de pedidos en D1. Guarda una copia solo de los pedidos REALMENTE
+   registrados por el backend (resp.ok con order_id). Idempotente por
+   client_request_id: un reintento actualiza la misma fila, no duplica.
+   Tabla esperada (créala una vez, ver instrucciones):
+     CREATE TABLE IF NOT EXISTS pedidos_backup (
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       created_at TEXT NOT NULL,
+       client_request_id TEXT UNIQUE,
+       order_id TEXT,
+       email TEXT,
+       nombre TEXT,
+       total_eur REAL,
+       payload_json TEXT NOT NULL,
+       response_json TEXT
+     );
+--------------------------------------------------------------------------- */
+async function espejarPedido(env, payload, responseText) {
+  let resp = {};
+  try { resp = JSON.parse(responseText); } catch (e) { return; }
+  if (!resp || !resp.ok || !resp.order_id) return;   // solo pedidos confirmados
+
+  const c = payload.cliente || {};
+  const nombre = ((c.nombre || '') + ' ' + (c.apellidos || '')).trim() || null;
+  const total = (typeof resp.total === 'number') ? resp.total : null;
+
+  await env.PEDIDOS_DB.prepare(
+    `INSERT INTO pedidos_backup
+       (created_at, client_request_id, order_id, email, nombre, total_eur, payload_json, response_json)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)
+     ON CONFLICT(client_request_id) DO UPDATE SET
+       order_id      = excluded.order_id,
+       total_eur     = excluded.total_eur,
+       response_json = excluded.response_json`
+  ).bind(
+    new Date().toISOString(),
+    payload.client_request_id || null,
+    resp.order_id,
+    c.email || null,
+    nombre,
+    total,
+    JSON.stringify(payload),
+    responseText || null
+  ).run();
+}
 
 function allowedOrigin(origin, allowedList) {
   if (!allowedList) return '';
