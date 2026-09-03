@@ -9,9 +9,9 @@
   <title>Plataforma Solidaria · Caja de Resistencia · Huelga Airbus 2026</title>
   <link rel="icon" type="image/png" href="./assets/favicon.png">
   <link rel="apple-touch-icon" href="./assets/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Tipografías autoalojadas (OFL). Sin llamadas a Google Fonts: cero terceros al cargar. -->
+  <link rel="preload" href="./assets/fonts/sourcesans3-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -267,7 +267,7 @@
 
         <article class="panel gov-block">
           <h3>Datos de quienes aportan y reciben</h3>
-          <p>El proyecto minimiza los datos personales. Quien aporta puede elegir que su aportación no figure públicamente. La información de quienes solicitan o reciben ayuda es siempre privada: no se publica, y solo la maneja la comisión gestora para resolver la solicitud.</p>
+          <p>El proyecto minimiza los datos personales. Quien aporta puede elegir que su aportación no figure públicamente. La información de quienes solicitan o reciben ayuda es siempre privada: no se publica, y solo la manejan los Grupos de Trabajo para resolver la solicitud.</p>
         </article>
 
         <article class="panel gov-block">
@@ -278,7 +278,7 @@
 
         <article class="panel gov-block gov-block--wide">
           <h3>Contacto de la gestión de la caja</h3>
-          <p>Para la comisión gestora del fondo —dudas de aportantes, organizaciones y grandes donantes—: <a href="mailto:syndicat.util.interempresas@airbus.com">syndicat.util.interempresas@airbus.com</a>.</p>
+          <p>Para los Grupos de Trabajo que gestionan el fondo —dudas de aportantes, organizaciones y grandes donantes—: <a href="mailto:syndicat.util.interempresas@airbus.com">syndicat.util.interempresas@airbus.com</a>.</p>
         </article>
       </div>
     </section>
@@ -334,7 +334,7 @@
       <p>1. <strong>Aportación / pedido.</strong> Al enviar tu aportación se tratan tu nombre, apellidos, email, teléfono, site de recogida y el detalle del pedido, con la única finalidad de gestionar la aportación, confirmar la transferencia y coordinar la recogida de la camiseta. Base jurídica: la ejecución de tu solicitud y tu consentimiento. No pedimos DNI ni número de empleado.</p>
       <p>2. <strong>Confirmación por transferencia.</strong> Para casar tu pago identificamos el ingreso por tu código AIR26-XXXXX y el importe. No accedemos a más datos de tu cuenta que los que figuran en el propio movimiento bancario.</p>
       <p>3. <strong>Correo de contacto.</strong> Si escribes a la dirección de contacto, se trata tu correo y el contenido del mensaje con la única finalidad de responderte.</p>
-      <p><strong>Encargados y terceros.</strong> Para funcionar, esta web utiliza: Cloudflare (un Worker que intermedia las peticiones) y Google (Apps Script, Google Sheets y Gmail), que procesan los datos del pedido para registrarlo y enviarte los correos de confirmación y recogida; y Google Fonts, cuyos servidores tu navegador contacta al cargar la página para descargar las tipografías, y que pueden registrar tu dirección IP a efectos técnicos. Estos proveedores pueden tratar datos en servidores dentro y fuera del Espacio Económico Europeo, con las garantías previstas en el RGPD. Los datos no se ceden ni se venden con fines comerciales.</p>
+      <p><strong>Encargados y terceros.</strong> Al cargar la página, tu navegador no contacta con ningún servidor de terceros: las tipografías, los estilos y las imágenes se sirven desde este mismo dominio. Solo cuando envías una aportación, los datos del pedido viajan a Cloudflare (un Worker que intermedia las peticiones) y a Google (Apps Script, Google Sheets y Gmail), que los procesan para registrar el pedido y enviarte los correos de confirmación y recogida. Estos proveedores pueden tratar datos en servidores dentro y fuera del Espacio Económico Europeo, con las garantías previstas en el RGPD. Los datos no se ceden ni se venden con fines comerciales.</p>
       <p><strong>Conservación.</strong> Los datos del pedido se conservan mientras dure la gestión de tu aportación y la recogida, y el plazo legal exigible; después se suprimen o anonimizan.</p>
       <p><strong>Tus derechos.</strong> Puedes solicitar acceso, rectificación, supresión, limitación, oposición y portabilidad escribiendo a enfadadosconairbus.contacto@gmail.com. Si consideras que tus derechos no han sido atendidos, puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
       <p><strong>Menores.</strong> Esta plataforma no está dirigida a menores de 14 años ni recoge datos de ellos conscientemente.</p>
@@ -348,9 +348,8 @@
     </div>
     <div class="legal-body">
       <p>Esta web no utiliza cookies de seguimiento, ni publicitarias, ni de analítica. No instala cookies propias ni de terceros, y no guarda información en tu navegador para identificarte.</p>
-      <p><strong>Peticiones a terceros.</strong> Para mostrar las tipografías, tu navegador solicita fuentes a Google Fonts (fonts.googleapis.com y fonts.gstatic.com); en esa petición Google puede registrar tu IP por motivos técnicos. Al enviar una aportación, los datos del pedido viajan a un Worker de Cloudflare y a Google Apps Script para registrarla. No se cargan píxeles, balizas ni scripts de publicidad.</p>
+      <p><strong>Peticiones a terceros.</strong> Ninguna al cargar la página. Todos los recursos —tipografías, estilos e imágenes— se sirven desde este mismo dominio; tu navegador no contacta con ningún servidor externo para mostrar la web. Solo al enviar una aportación los datos del pedido viajan a un Worker de Cloudflare y a Google Apps Script para registrarla. No se cargan píxeles, balizas ni scripts de publicidad.</p>
       <p><strong>Sin analítica.</strong> No medimos visitas ni elaboramos perfiles de navegación.</p>
-      <p><strong>Cómo limitarlo.</strong> Puedes bloquear las peticiones a terceros con las preferencias o extensiones de tu navegador; la página seguirá funcionando, con las tipografías del sistema.</p>
     </div>
   </dialog>
 
