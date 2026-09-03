@@ -167,8 +167,7 @@ function conciliarBanco() {
     if (String(vals[r][col('PROCESADO')]).toUpperCase() === 'SI') continue;
     var concepto = String(vals[r][col('CONCEPTO')] || '');
     var importe = parseImporte(vals[r][col('IMPORTE')]);
-    var m = concepto.toUpperCase().match(/AIR26[-\s]?0*\d{1,6}/);
-    var id = m ? normalizarId(m[0], cfg) : '';
+    var id = detectarId(concepto, cfg);
     if (!id) { vals[r][col('RESULTADO')] = 'REVISAR_SIN_CODIGO'; rev++; continue; }
     var p = pedidos[id];
     if (!p) { vals[r][col('RESULTADO')] = 'REVISAR_CODIGO_INEXISTENTE'; vals[r][col('PEDIDO_DETECTADO')] = id; rev++; continue; }
@@ -574,6 +573,7 @@ function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total,
     '<div style="margin-top:8px;font-size:14px;color:#1a1d21">Beneficiario: <strong>' + escapar(cfg.BENEFICIARIO || '') + '</strong></div>' +
     '<div style="font-size:14px;color:#1a1d21">IBAN: <strong style="font-family:Consolas,monospace">' + escapar(cfg.IBAN || '') + '</strong></div>' +
     '<div style="font-size:14px;color:#1a1d21;margin-top:4px">Concepto obligatorio: <strong style="font-family:Consolas,monospace;color:#c0392b;font-size:16px">' + id + '</strong></div>' +
+    '<div style="margin-top:6px;font-size:12px;color:#6f6a60">Si tu banco no admite el guion, puedes ponerlo sin él (' + escapar(String(id).replace(/-/g, '')) + ') o con un espacio. Lo importante es que aparezca <strong>' + escapar(String(id).replace('-', ' ').split(' ')[0]) + '</strong> y el número.</div>' +
     '<div style="margin-top:8px;font-size:12px;color:#6f6a60">Revisamos las transferencias una vez al día: la confirmación puede tardar hasta 24 h. No hace falta enviar justificante.</div>' +
     '</div>' : '';
 
@@ -664,7 +664,18 @@ function nuevoLoteId(ss) {
   props.setProperty('ULTIMO_LOTE', String(n));
   return 'LOTE-' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd') + '-' + pad(n, 3);
 }
-function normalizarId(bruto, cfg) { var m = String(bruto).toUpperCase().match(/0*(\d{1,6})/); return m ? (cfg.PREFIJO || 'AIR26') + '-' + pad(Number(m[1]), 5) : ''; }
+// Detecta el código de pedido en el concepto de un movimiento bancario, tolerando
+// las variantes que pone la gente cuando el banco no admite el guion: "AIR26-00123",
+// "AIR26 00123", "AIR26_00123", "AIR2600123", "AIR26.00123", varios espacios, etc.
+// Aplana el texto (quita todo lo no alfanumérico) y localiza el prefijo + el número real.
+// OJO: hay que saltar los ceros de relleno ANTES de capturar el número, y NO confundir
+// el "26" del prefijo con el número del pedido (bug de la versión anterior).
+function detectarId(concepto, cfg) {
+  var pref = String((cfg && cfg.PREFIJO) || 'AIR26').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  var flat = String(concepto).toUpperCase().replace(/[^A-Z0-9]/g, '');
+  var m = flat.match(new RegExp(pref + '0*(\\d{1,6})'));
+  return m ? pref + '-' + pad(Number(m[1]), 5) : '';
+}
 function pad(n, len) { var s = String(n); while (s.length < len) s = '0' + s; return s; }
 
 /* ===========================  SETUP + FORMATO  ======================== */
