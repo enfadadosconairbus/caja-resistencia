@@ -98,12 +98,15 @@ function crearPedido(data) {
       unidades += cant; productos += item.precio * cant;
       lineas.push({ producto: item.producto, sku: item.sku, talla: item.talla, cantidad: cant });
     });
-    if (!lineas.length) return { ok: false, error: 'El pedido no contiene productos válidos.' };
+    var aportacion = Math.max(0, Number(data.aportacion) || 0);
+
+    // Se permite aportar SIN camiseta (donación pura): basta con que haya aportación.
+    // Solo se rechaza si no hay ni camisetas válidas ni aportación.
+    if (!lineas.length && aportacion <= 0) return { ok: false, error: 'Indica una aportación o añade una camiseta.' };
 
     var maxUds = Number(cfg.MAX_UNIDADES || 20);
     if (unidades > maxUds) return { ok: false, error: 'Máximo ' + maxUds + ' unidades por pedido.' };
 
-    var aportacion = Math.max(0, Number(data.aportacion) || 0);
     var total = productos + aportacion;
 
     var c = (data.cliente || {});
@@ -584,6 +587,7 @@ function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total,
   '<span style="display:inline-block;background:' + pill[0] + ';color:' + pill[1] + ';font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;padding:5px 12px;border-radius:999px">' + escapar(estado) + '</span>' +
   '<h1 style="margin:12px 0;font-size:24px;color:#1a1d21;text-transform:uppercase;letter-spacing:-.01em">' + escapar(titulo) + '</h1>' +
   '<p style="color:#4b4740;font-size:14px;line-height:1.6;margin:0 0 16px">' + intro + '</p>' +
+  (lineas.length ?
   '<table style="width:100%;border-collapse:collapse;margin:6px 0 14px;border:1px solid #e4ddce;border-radius:10px;overflow:hidden">' +
   '<thead><tr>' +
   '<th style="text-align:left;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Producto</th>' +
@@ -591,7 +595,7 @@ function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total,
   '<th style="text-align:center;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Uds.</th>' +
   '<th style="text-align:right;padding:9px 12px;background:#16233b;color:#f3ede1;font-size:10px;text-transform:uppercase;letter-spacing:.06em">Subtotal</th>' +
   '</tr></thead><tbody>' + filas + '</tbody></table>' +
-  '<div style="text-align:right;color:#6f6a60;font-size:14px">Camisetas: <strong style="color:#1a1d21">' + eur(productos) + '</strong></div>' +
+  '<div style="text-align:right;color:#6f6a60;font-size:14px">Camisetas: <strong style="color:#1a1d21">' + eur(productos) + '</strong></div>' : '') +
   (aportacion > 0 ? '<div style="text-align:right;color:#6f6a60;font-size:14px">Aportación a la Caja: <strong style="color:#1a1d21">' + eur(aportacion) + '</strong></div>' : '') +
   '<div style="text-align:right;font-size:22px;color:#c0392b;font-weight:800;margin-top:6px">TOTAL: ' + eur(total) + '</div>' +
   transferencia +

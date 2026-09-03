@@ -171,7 +171,8 @@
   function validate(form) {
     if (form.website && form.website.value) return '__bot__'; // honeypot
     var units = unitsInCart();
-    if (units === 0) return 'Añade al menos una camiseta a tu pedido.';
+    var donation = Number(state.donation) || 0;
+    if (units === 0 && donation <= 0) return 'Añade una camiseta o indica una aportación.';
     var nombre = form.nombre.value.trim();
     var apellidos = form.apellidos.value.trim();
     var email = form.email.value.trim();
