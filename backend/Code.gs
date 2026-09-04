@@ -252,9 +252,67 @@ function generarPedidoProveedor() {
   });
 
   if (!nLotes) { ui().alert('Los pedidos pagados ya estaban loteados.'); return; }
+  regenerarResumenProveedor(ss);
   refrescarDashboard();
   ui().alert('Generados ' + nLotes + ' lote(s) — uno por site — · ' + udsTotal + ' uds en total:\n\n' + resumen.join('\n') +
-    '\n\nRevisa la hoja PROVEEDOR (exportable a Excel; ordénala por LOTE para ver cada site).');
+    '\n\nDetalle en la hoja PROVEEDOR (ordénala por LOTE) y totales por talla × site en RESUMEN_PROVEEDOR. Las dos se exportan con 📗 Exportar a Excel.');
+}
+
+// Pivote para el proveedor: filas = TALLA, columnas = cada SITE (del sufijo del LOTE),
+// con TOTAL por talla (última columna) y TOTAL por site (última fila) + total general.
+// Se regenera entero desde la hoja PROVEEDOR, así que siempre refleja todos los lotes.
+function regenerarResumenProveedor(ss) {
+  var shProv = ss.getSheetByName(SH.PROVEEDOR); if (!shProv) return;
+  var HP = HEAD.PROVEEDOR, last = shProv.getLastRow();
+  var rows = (last >= 2) ? shProv.getRange(2, 1, last - 1, HP.length).getValues() : [];
+
+  var ORDEN_TALLAS = ['XS','S','M','L','XL','2XL','3XL','4XL','5XL'];
+  var sites = [], tallas = [], mat = {}, totSite = {}, totTalla = {}, gran = 0;
+  rows.forEach(function (r) {
+    var lote = String(r[HP.indexOf('LOTE')] || '');
+    if (!lote) return;
+    var site = lote.split('-').pop();               // sufijo del lote = site
+    var talla = String(r[HP.indexOf('TALLA')] || ''); if (!talla) return;
+    var cant = Number(r[HP.indexOf('CANTIDAD')]) || 0;
+    if (sites.indexOf(site) < 0) sites.push(site);
+    if (tallas.indexOf(talla) < 0) tallas.push(talla);
+    mat[talla] = mat[talla] || {};
+    mat[talla][site] = (mat[talla][site] || 0) + cant;
+    totSite[site] = (totSite[site] || 0) + cant;
+    totTalla[talla] = (totTalla[talla] || 0) + cant;
+    gran += cant;
+  });
+
+  sites.sort();
+  tallas.sort(function (a, b) {
+    var ia = ORDEN_TALLAS.indexOf(a), ib = ORDEN_TALLAS.indexOf(b);
+    if (ia < 0) ia = 99; if (ib < 0) ib = 99;
+    return (ia - ib) || a.localeCompare(b);
+  });
+
+  var sh = ss.getSheetByName('RESUMEN_PROVEEDOR') || ss.insertSheet('RESUMEN_PROVEEDOR');
+  sh.clearContents();
+  if (!tallas.length) { sh.getRange(1, 1).setValue('Sin datos de proveedor todavía.'); return; }
+
+  var header = ['TALLA'].concat(sites).concat(['TOTAL']);
+  var out = [header];
+  tallas.forEach(function (t) {
+    var fila = [t];
+    sites.forEach(function (s) { fila.push((mat[t] && mat[t][s]) || 0); });
+    fila.push(totTalla[t] || 0);
+    out.push(fila);
+  });
+  var filaTotal = ['TOTAL'];
+  sites.forEach(function (s) { filaTotal.push(totSite[s] || 0); });
+  filaTotal.push(gran);
+  out.push(filaTotal);
+
+  sh.getRange(1, 1, out.length, header.length).setValues(out);
+  sh.getRange(1, 1, 1, header.length).setFontWeight('bold');                 // cabecera
+  sh.getRange(out.length, 1, 1, header.length).setFontWeight('bold');        // fila TOTAL
+  sh.getRange(1, header.length, out.length, 1).setFontWeight('bold');        // columna TOTAL
+  sh.setFrozenRows(1);
+  try { sh.autoResizeColumns(1, header.length); } catch (e) {}
 }
 
 function marcarLoteRecibidoSeleccion() {
