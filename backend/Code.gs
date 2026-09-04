@@ -199,43 +199,62 @@ function marcarPedidoPagado(ss, p, cfg) {
 function generarPedidoProveedor() {
   var ss = SpreadsheetApp.getActive(), pedidos = indicePedidos(ss);
 
-  // A producción entran TODOS los pedidos PAGO_CONCILIADO, de cualquier site.
-  var ids = [];
+  // UN LOTE POR SITE: agrupamos los pedidos PAGO_CONCILIADO por su site, para que
+  // el proveedor pueda producir y separar en cajas distintas por site.
+  var ORDEN = ['albacete','cádiz','cadiz','getafe','illescas','san pablo','tablada'];
+  var porSite = {};
   for (var id in pedidos) {
-    if (pedidos[id].estado === 'PAGO_CONCILIADO') ids.push(id);
+    if (pedidos[id].estado !== 'PAGO_CONCILIADO') continue;
+    var nombre = String(pedidos[id].site || '').trim() || 'Sin site';
+    var k = nombre.toLowerCase();
+    if (!porSite[k]) porSite[k] = { nombre: nombre, ids: [] };
+    porSite[k].ids.push(id);
   }
-  if (!ids.length) { ui().alert('No hay pedidos listos para producir.'); return; }
+  var claves = Object.keys(porSite).sort(function (a, b) {
+    var ia = ORDEN.indexOf(a), ib = ORDEN.indexOf(b);
+    if (ia < 0) ia = 99; if (ib < 0) ib = 99;
+    return (ia - ib) || a.localeCompare(b);
+  });
+  if (!claves.length) { ui().alert('No hay pedidos listos para producir.'); return; }
 
   var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, lastL = shL.getLastRow();
-  var lin = shL.getRange(2, 1, lastL - 1, H.length).getValues();
-  var agg = {}, filas = [];
-  for (var i = 0; i < lin.length; i++) {
-    var row = lin[i], pid = String(row[H.indexOf('ID')]);
-    if (ids.indexOf(pid) < 0) continue;
-    if (String(row[H.indexOf('LOTE')])) continue;
-    var key = row[H.indexOf('PRODUCTO')] + '||' + row[H.indexOf('SKU')] + '||' + row[H.indexOf('TALLA')];
-    if (!agg[key]) agg[key] = { producto: row[H.indexOf('PRODUCTO')], sku: row[H.indexOf('SKU')], talla: row[H.indexOf('TALLA')], cantidad: 0 };
-    agg[key].cantidad += Number(row[H.indexOf('CANTIDAD')]) || 0;
-    filas.push(i + 2);
-  }
-  var keys = Object.keys(agg);
-  if (!keys.length) { ui().alert('Los pedidos pagados ya estaban loteados.'); return; }
-
-  var lote = nuevoLoteId(ss), ahora = new Date();
+  var lin = (lastL >= 2) ? shL.getRange(2, 1, lastL - 1, H.length).getValues() : [];
   var shLot = ss.getSheetByName(SH.LOTES), shProv = ss.getSheetByName(SH.PROVEEDOR);
-  keys.forEach(function (k) { var a = agg[k];
-    shLot.appendRow([lote, ahora, a.producto, a.sku, a.talla, a.cantidad, 'PEDIDO', '']);
-    shProv.appendRow([lote, a.producto, a.sku, a.talla, a.cantidad]);
-  });
-  filas.forEach(function (f) { shL.getRange(f, H.indexOf('LOTE') + 1).setValue(lote); });
-  var shP = ss.getSheetByName(SH.PEDIDOS), HP = HEAD.PEDIDOS;
-  ids.forEach(function (id) { shP.getRange(pedidos[id].fila, HP.indexOf('ESTADO') + 1).setValue('ENVIADO_PROVEEDOR'); });
+  var shP = ss.getSheetByName(SH.PEDIDOS), HP = HEAD.PEDIDOS, ahora = new Date();
 
-  var totalUds = keys.reduce(function (s, k) { return s + agg[k].cantidad; }, 0);
-  registrarLog(ss, 'LOTE', lote + ' · ' + keys.length + ' líneas · ' + totalUds + ' uds');
+  var resumen = [], nLotes = 0, udsTotal = 0;
+  claves.forEach(function (ck) {
+    var grupo = porSite[ck], ids = grupo.ids, agg = {}, filas = [];
+    for (var i = 0; i < lin.length; i++) {
+      var row = lin[i], pid = String(row[H.indexOf('ID')]);
+      if (ids.indexOf(pid) < 0) continue;
+      if (String(row[H.indexOf('LOTE')])) continue;   // línea ya loteada: se salta
+      var key = row[H.indexOf('PRODUCTO')] + '||' + row[H.indexOf('SKU')] + '||' + row[H.indexOf('TALLA')];
+      if (!agg[key]) agg[key] = { producto: row[H.indexOf('PRODUCTO')], sku: row[H.indexOf('SKU')], talla: row[H.indexOf('TALLA')], cantidad: 0 };
+      agg[key].cantidad += Number(row[H.indexOf('CANTIDAD')]) || 0;
+      filas.push(i + 2);
+    }
+    var keys = Object.keys(agg);
+    if (!keys.length) return;   // este site ya estaba loteado
+
+    var lote = nuevoLoteId(ss) + '-' + slugSite(grupo.nombre);
+    keys.forEach(function (kk) { var a = agg[kk];
+      shLot.appendRow([lote, ahora, a.producto, a.sku, a.talla, a.cantidad, 'PEDIDO', '']);
+      shProv.appendRow([lote, a.producto, a.sku, a.talla, a.cantidad]);
+    });
+    filas.forEach(function (f) { shL.getRange(f, H.indexOf('LOTE') + 1).setValue(lote); });
+    ids.forEach(function (pid2) { shP.getRange(pedidos[pid2].fila, HP.indexOf('ESTADO') + 1).setValue('ENVIADO_PROVEEDOR'); });
+
+    var uds = keys.reduce(function (s, kk) { return s + agg[kk].cantidad; }, 0);
+    nLotes++; udsTotal += uds;
+    resumen.push('• ' + grupo.nombre + ' → ' + lote + '  (' + uds + ' uds · ' + keys.length + ' líneas)');
+    registrarLog(ss, 'LOTE', lote + ' · ' + grupo.nombre + ' · ' + keys.length + ' líneas · ' + uds + ' uds');
+  });
+
+  if (!nLotes) { ui().alert('Los pedidos pagados ya estaban loteados.'); return; }
   refrescarDashboard();
-  ui().alert('Lote ' + lote + ' generado.\n\n' + keys.length + ' líneas de proveedor · ' + totalUds + ' uds.' +
-    '\nRevisa la hoja PROVEEDOR (puedes exportarla a Excel).');
+  ui().alert('Generados ' + nLotes + ' lote(s) — uno por site — · ' + udsTotal + ' uds en total:\n\n' + resumen.join('\n') +
+    '\n\nRevisa la hoja PROVEEDOR (exportable a Excel; ordénala por LOTE para ver cada site).');
 }
 
 function marcarLoteRecibidoSeleccion() {
@@ -748,6 +767,13 @@ function detectarId(concepto, cfg) {
   return m ? pref + '-' + pad(Number(m[1]), 5) : '';
 }
 function pad(n, len) { var s = String(n); while (s.length < len) s = '0' + s; return s; }
+// Site → sufijo legible para el ID del lote: mayúsculas, sin acentos ni espacios.
+// "Cádiz" → "CADIZ", "San Pablo" → "SANPABLO".
+function slugSite(s) {
+  return String(s || 'SINSITE').toUpperCase()
+    .replace(/[ÁÀÄÂ]/g,'A').replace(/[ÉÈËÊ]/g,'E').replace(/[ÍÌÏÎ]/g,'I').replace(/[ÓÒÖÔ]/g,'O').replace(/[ÚÙÜÛ]/g,'U').replace(/Ñ/g,'N')
+    .replace(/[^A-Z0-9]+/g, '') || 'SINSITE';
+}
 
 /* ===========================  SETUP + FORMATO  ======================== */
 
