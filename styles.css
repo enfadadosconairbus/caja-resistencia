@@ -237,8 +237,6 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .fields-grid .field-full { grid-column: 1 / -1; }
 .req { color: var(--red); font-weight: 800; font-style: normal; }
 .req-note { margin: 0 0 14px; font-size: .82rem; color: var(--muted); text-transform: none; letter-spacing: 0; font-weight: 600; }
-.site-nota { margin: 12px 0 0; font-size: .86rem; color: var(--muted); line-height: 1.5; }
-.site-nota strong { color: var(--ink); }
 .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 .pickup-card { background: #faf6ee; border: 1px solid var(--line); border-left: 4px solid var(--red); border-radius: 10px; padding: 16px 18px; }
