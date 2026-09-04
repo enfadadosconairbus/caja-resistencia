@@ -271,6 +271,11 @@
     setText('successIban', resp.iban || '');
     setText('successTotal', eur(resp.total));
     setText('successConcept', resp.concepto || resp.order_id || '');
+    // Site de recogida: Getafe e Illescas se recogen en Getafe; el resto en su site.
+    var sel = document.getElementById('siteSelect');
+    var siteSel = sel ? String(sel.value || '').trim() : '';
+    var pickupSite = /^(getafe|illescas)$/i.test(siteSel) ? 'Getafe' : (siteSel || 'tu site');
+    setText('successPickup', pickupSite);
     var ok = $('success');
     var pedido = $('pedido');
     if (pedido) pedido.hidden = true;

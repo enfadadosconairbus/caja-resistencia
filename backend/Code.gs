@@ -190,7 +190,7 @@ function marcarPedidoPagado(ss, p, cfg) {
   var sh = ss.getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
   sh.getRange(p.fila, H.indexOf('ESTADO') + 1).setValue('PAGO_CONCILIADO');
   sh.getRange(p.fila, H.indexOf('FECHA_CONFIRMADO') + 1).setValue(new Date());
-  try { emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg); return true; }
+  try { emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg, p.site); return true; }
   catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'confirmado ' + p.id + ': ' + e); return false; }
 }
 
@@ -360,7 +360,7 @@ function avisarPedidosListos(ss) {
     if (c.total > 0 && c.listos === c.total) {
       shP.getRange(p.fila, HP.indexOf('ESTADO') + 1).setValue('LISTO_RECOGIDA');
       shP.getRange(p.fila, HP.indexOf('FECHA_LISTO') + 1).setValue(new Date());
-      try { emailListoRecoger(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg); n++; }
+      try { emailListoRecoger(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg, p.site); n++; }
       catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'listo ' + p.id + ': ' + e); }
     }
   }
@@ -468,8 +468,8 @@ function enviarEmailsPrueba() {
                 { producto: 'Camiseta', sku: 'CAMISETA-XL', talla: 'XL', cantidad: 1 }];
   try {
     emailPedidoRecibido(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
-    emailPagoConfirmado(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
-    emailListoRecoger(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
+    emailPagoConfirmado(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg, 'San Pablo');
+    emailListoRecoger(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg, 'San Pablo');
     ui().alert('3 emails de prueba enviados a ' + to + '\n(recibido, confirmado y listo).');
   } catch (e) { ui().alert('No se pudieron enviar los emails de prueba:\n' + e); }
 }
@@ -694,17 +694,43 @@ function enviarEmail(to, subject, html) {
   if (code >= 300) throw new Error('Proveedor email HTTP ' + code + ': ' + resp.getContentText().slice(0, 300));
 }
 
+// Nombre del site tal y como se enseña al colaborador ("San Pablo", "Getafe"...).
+// El formulario ya lo guarda en Título, pero normalizamos por si llega en un solo
+// caso (p. ej. "GETAFE" desde el sufijo de un lote, o "san pablo" de datos antiguos).
+function siteNombre(site) {
+  var s = String(site || '').trim();
+  if (!s) return 'tu site de recogida';
+  if (s === s.toUpperCase() || s === s.toLowerCase()) {
+    s = s.toLowerCase().replace(/(^|\s)\S/g, function (c) { return c.toUpperCase(); });
+  }
+  return s;
+}
+// Site DONDE SE RECOGE (regla de logística): Getafe e Illescas se recogen en
+// Getafe; el resto en su propio site (envío por lotes al coordinador de logística).
+// Vacío = pedidos antiguos sin SITE, que eran de Getafe.
+function nombreRecogida(site) {
+  var s = String(site || '').trim().toLowerCase();
+  if (!s || s === 'getafe' || s === 'illescas') return 'Getafe';
+  return siteNombre(site);
+}
+// Igual, pero para Getafe/Illescas devuelve la dirección completa de CONFIG (RECOGIDA).
+function lugarRecogida(cfg, site) {
+  var s = String(site || '').trim().toLowerCase();
+  if (!s || s === 'getafe' || s === 'illescas') return cfg.RECOGIDA || 'Getafe';
+  return siteNombre(site);
+}
+
 function emailPedidoRecibido(email, id, nombre, lineas, productos, aportacion, total, cfg) {
   enviarEmail(email, 'Aportación ' + id + ' recibida · Caja de Resistencia',
     plantillaEmail('Aportación recibida', 'Hola ' + escapar(nombre) + ', hemos registrado tu aportación <strong>' + id + '</strong>. Realiza una transferencia por el importe exacto usando <strong>' + id + '</strong> como concepto. No hace falta enviar justificante: confirmamos con los movimientos reales de la cuenta. ¡Gracias por colaborar con la caja de resistencia!', id, lineas, productos, aportacion, total, cfg, 'PENDIENTE DE TRANSFERENCIA'));
 }
-function emailPagoConfirmado(email, id, nombre, lineas, productos, aportacion, total, cfg) {
+function emailPagoConfirmado(email, id, nombre, lineas, productos, aportacion, total, cfg, site) {
   enviarEmail(email, 'Aportación ' + id + ' confirmada · Caja de Resistencia',
-    plantillaEmail('Aportación confirmada', 'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. Te avisaremos por email cuando tu camiseta esté lista para recoger en Getafe. ¡Gracias por tu apoyo!', id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA'));
+    plantillaEmail('Aportación confirmada', 'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. Te avisaremos por email cuando tu camiseta esté lista para recoger en <strong>' + escapar(nombreRecogida(site)) + '</strong>. ¡Gracias por tu apoyo!', id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA'));
 }
-function emailListoRecoger(email, id, nombre, lineas, productos, aportacion, total, cfg) {
+function emailListoRecoger(email, id, nombre, lineas, productos, aportacion, total, cfg, site) {
   enviarEmail(email, 'Tu camiseta ' + id + ' está lista para recoger',
-    plantillaEmail('Lista para recoger', 'Hola ' + escapar(nombre) + ', tu camiseta de la aportación <strong>' + id + '</strong> ya está disponible. Recógela en: <strong>' + escapar(cfg.RECOGIDA || '') + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER'));
+    plantillaEmail('Lista para recoger', 'Hola ' + escapar(nombre) + ', tu camiseta de la aportación <strong>' + id + '</strong> ya está disponible. Recógela en: <strong>' + escapar(lugarRecogida(cfg, site)) + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER'));
 }
 function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total, cfg, estado) {
   var pill = ({
@@ -817,7 +843,7 @@ function reenviarConfirmacionesFallidas() {
     var id = ids[i], p = pedidos[id];
     if (!p || ESTADOS_PAGADOS.indexOf(p.estado) < 0) { omit++; continue; }   // no existe / no pagado
     try {
-      emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg);
+      emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg, p.site);
       registrarLog(ss, 'EMAIL_REENVIADO', p.id);
       ok++;
     } catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'reenvio ' + p.id + ': ' + e); fail++; }
@@ -870,7 +896,7 @@ function enviarConfirmacionesPagoConciliado() {
     if (usaGmail && MailApp.getRemainingDailyQuota() <= 0) { parado = 'cuota'; break; }
     var p = pedidos[ids[i]];
     try {
-      emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg);
+      emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg, p.site);
       registrarLog(ss, 'EMAIL_CONF_MANUAL', p.id); ok++;
     } catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'conf-manual ' + p.id + ': ' + e); fail++; }
   }
