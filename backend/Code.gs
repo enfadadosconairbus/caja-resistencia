@@ -831,6 +831,52 @@ function reenviarConfirmacionesFallidas() {
   ui().alert(msg);
 }
 
+// Envía el email de "aportación confirmada" a TODOS los pedidos en PAGO_CONCILIADO.
+// Para cuando las confirmaciones no llegaron en su momento. Idempotente: deja
+// 'EMAIL_CONF_MANUAL <id>' en el LOG y no reenvía a ese pedido en futuras pasadas.
+// Respeta cuota de Gmail y límite de tiempo (re-ejecuta para continuar).
+// ANTES de usarlo: confirma con "✉️ Enviar emails de prueba" que el correo LLEGA (bandeja, no spam).
+function enviarConfirmacionesPagoConciliado() {
+  var ss = SpreadsheetApp.getActive();
+  var pedidos = indicePedidos(ss), cfg = leerConfig();
+
+  // Ya enviados por esta vía, para no duplicar en re-ejecuciones.
+  var enviados = {};
+  var shLog = ss.getSheetByName(SH.LOG);
+  if (shLog && shLog.getLastRow() >= 2) {
+    var HL = HEAD.LOG, il = shLog.getRange(2, 1, shLog.getLastRow() - 1, HL.length).getValues();
+    var iT = HL.indexOf('TIPO'), iD = HL.indexOf('DETALLE');
+    il.forEach(function (r) { if (String(r[iT]) === 'EMAIL_CONF_MANUAL') { var id0 = String(r[iD]).trim().split(/\s+/)[0]; if (id0) enviados[id0] = true; } });
+  }
+
+  var ids = [];
+  for (var id in pedidos) { if (pedidos[id].estado === 'PAGO_CONCILIADO' && !enviados[id]) ids.push(id); }
+  if (!ids.length) { ui().alert('No hay pedidos en PAGO_CONCILIADO pendientes de confirmar por email.'); return; }
+
+  var usaGmail = !PropertiesService.getScriptProperties().getProperty('EMAIL_API_KEY');
+  var aviso = usaGmail ? '\n\n⚠️ Sin Brevo: por Gmail (~100/día). Re-ejecuta mañana para continuar (es idempotente).' : '';
+  var resp = ui().alert('Enviar confirmación de pago',
+    'Se enviará el email de "aportación confirmada" a ' + ids.length + ' pedido(s) en PAGO_CONCILIADO.\n\n' +
+    '⚠️ Comprueba ANTES que un email de prueba te llega a la BANDEJA (no spam).' + aviso + '\n\n¿Continúas?', ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000, ok = 0, fail = 0, parado = '';
+  for (var i = 0; i < ids.length; i++) {
+    if (Date.now() - t0 > MAX_MS) { parado = 'tiempo'; break; }
+    if (usaGmail && MailApp.getRemainingDailyQuota() <= 0) { parado = 'cuota'; break; }
+    var p = pedidos[ids[i]];
+    try {
+      emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg);
+      registrarLog(ss, 'EMAIL_CONF_MANUAL', p.id); ok++;
+    } catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'conf-manual ' + p.id + ': ' + e); fail++; }
+  }
+  refrescarDashboard();
+  var msg = 'Envío terminado.\n\n✅ Enviados: ' + ok + (fail ? '\n❌ Fallaron: ' + fail + ' (mira el LOG)' : '');
+  if (parado === 'tiempo') msg += '\n\n⏱️ Parado por tiempo; vuelve a pulsar para continuar.';
+  if (parado === 'cuota') msg += '\n\n📭 Cuota de Gmail agotada; continúa mañana (o configura Brevo).';
+  ui().alert(msg);
+}
+
 function lineasDePedido(ss, id) {
   var sh = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, last = sh.getLastRow(), out = []; if (last < 2) return out;
   sh.getRange(2, 1, last - 1, H.length).getValues().forEach(function (r) {
@@ -1158,6 +1204,7 @@ function onOpen() {
     .addItem('✉️ Enviar emails de prueba', 'enviarEmailsPrueba')
     .addItem('📮 Configurar email (proveedor)', 'configurarEmailProveedor')
     .addItem('✉️ Reenviar confirmaciones fallidas', 'reenviarConfirmacionesFallidas')
+    .addItem('✉️ Enviar confirmación a PAGO_CONCILIADO', 'enviarConfirmacionesPagoConciliado')
     .addItem('🔑 Mostrar TOKEN backend', 'mostrarToken')
     .addSeparator()
     .addItem('🧨 Resetear datos de prueba', 'resetearPruebas')
