@@ -258,6 +258,13 @@ function generarPedidoProveedor() {
     '\n\nDetalle en la hoja PROVEEDOR (ordénala por LOTE) y totales por talla × site en RESUMEN_PROVEEDOR. Las dos se exportan con 📗 Exportar a Excel.');
 }
 
+// Ítem de menú: reconstruye RESUMEN_PROVEEDOR sin generar lotes nuevos (útil tras
+// editar/renombrar lotes a mano, p. ej. añadir el site a un lote antiguo).
+function refrescarResumenProveedor() {
+  regenerarResumenProveedor(SpreadsheetApp.getActive());
+  ui().alert('RESUMEN_PROVEEDOR actualizado (totales por talla × site).');
+}
+
 // Pivote para el proveedor: filas = TALLA, columnas = cada SITE (del sufijo del LOTE),
 // con TOTAL por talla (última columna) y TOTAL por site (última fila) + total general.
 // Se regenera entero desde la hoja PROVEEDOR, así que siempre refleja todos los lotes.
@@ -1087,6 +1094,7 @@ function onOpen() {
     .addItem('⏳ Caducar pendientes vencidos', 'caducarPendientes')
     .addSeparator()
     .addItem('📦 Generar pedido a proveedor', 'generarPedidoProveedor')
+    .addItem('🧾 Refrescar RESUMEN_PROVEEDOR', 'refrescarResumenProveedor')
     .addItem('📥 Marcar lote recibido (seleccionado)', 'marcarLoteRecibidoSeleccion')
     .addItem('🤝 Marcar ENTREGADO (seleccionado)', 'marcarEntregadoSeleccion')
     .addSeparator()
