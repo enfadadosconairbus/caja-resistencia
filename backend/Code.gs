@@ -780,6 +780,57 @@ function buscarPorCRID(ss, crid) {
   for (var r = 0; r < vals.length; r++) if (String(vals[r][H.indexOf('CLIENT_REQUEST_ID')]) === crid) return { id: vals[r][H.indexOf('ID')], total: vals[r][H.indexOf('TOTAL_EUR')] };
   return null;
 }
+// Reenvía SOLO las confirmaciones que fallaron: las que quedaron como
+// EMAIL_ERROR 'confirmado <id>' en el LOG. Idempotente — al reenviar con éxito
+// deja 'EMAIL_REENVIADO <id>' en el LOG y no lo vuelve a mandar. Respeta la cuota
+// de Gmail y el límite de tiempo de Apps Script (re-ejecuta para continuar).
+// Úsalo DESPUÉS de arreglar el canal de email (Brevo verificado o key puesta).
+function reenviarConfirmacionesFallidas() {
+  var ss = SpreadsheetApp.getActive();
+  var shLog = ss.getSheetByName(SH.LOG); if (!shLog) { ui().alert('No hay hoja LOG.'); return; }
+  var last = shLog.getLastRow(); if (last < 2) { ui().alert('El LOG está vacío.'); return; }
+  var HL = HEAD.LOG, iTipo = HL.indexOf('TIPO'), iDet = HL.indexOf('DETALLE');
+  var log = shLog.getRange(2, 1, last - 1, HL.length).getValues();
+
+  var fallidos = {}, reenviados = {};
+  log.forEach(function (r) {
+    var tipo = String(r[iTipo] || ''), det = String(r[iDet] || '');
+    if (tipo === 'EMAIL_ERROR') { var m = det.match(/^confirmado\s+(\S+?):/); if (m) fallidos[m[1]] = true; }
+    else if (tipo === 'EMAIL_REENVIADO') { var id0 = det.trim().split(/\s+/)[0]; if (id0) reenviados[id0] = true; }
+  });
+  var ids = Object.keys(fallidos).filter(function (id) { return !reenviados[id]; });
+  if (!ids.length) { ui().alert('No hay confirmaciones fallidas pendientes de reenviar.'); return; }
+
+  var usaGmail = !PropertiesService.getScriptProperties().getProperty('EMAIL_API_KEY');
+  var aviso = usaGmail ? '\n\n⚠️ Sin Brevo: salen por Gmail (~100/día). Si hay más, parará al agotar la cuota; re-ejecuta mañana (es idempotente).' : '';
+  var resp = ui().alert('Reenviar confirmaciones',
+    'Se reenviará el email de confirmación a ' + ids.length + ' pedido(s) cuyo correo había fallado.' + aviso +
+    '\n\nHazlo solo cuando el canal de email esté arreglado. ¿Continúas?', ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var pedidos = indicePedidos(ss), cfg = leerConfig();
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;
+  var ok = 0, fail = 0, omit = 0, parado = '';
+  for (var i = 0; i < ids.length; i++) {
+    if (Date.now() - t0 > MAX_MS) { parado = 'tiempo'; break; }
+    if (usaGmail && MailApp.getRemainingDailyQuota() <= 0) { parado = 'cuota'; break; }
+    var id = ids[i], p = pedidos[id];
+    if (!p || ESTADOS_PAGADOS.indexOf(p.estado) < 0) { omit++; continue; }   // no existe / no pagado
+    try {
+      emailPagoConfirmado(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg);
+      registrarLog(ss, 'EMAIL_REENVIADO', p.id);
+      ok++;
+    } catch (e) { registrarLog(ss, 'EMAIL_ERROR', 'reenvio ' + p.id + ': ' + e); fail++; }
+  }
+  refrescarDashboard();
+  var msg = 'Reenvío terminado.\n\n✅ Enviados: ' + ok +
+    (fail ? '\n❌ Fallaron otra vez: ' + fail + ' (mira el LOG)' : '') +
+    (omit ? '\n• Omitidos (no pagados / no encontrados): ' + omit : '');
+  if (parado === 'tiempo') msg += '\n\n⏱️ Parado por tiempo; vuelve a pulsar para continuar donde lo dejó.';
+  if (parado === 'cuota') msg += '\n\n📭 Cuota de Gmail agotada; continúa mañana (o configura Brevo con 📮).';
+  ui().alert(msg);
+}
+
 function lineasDePedido(ss, id) {
   var sh = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, last = sh.getLastRow(), out = []; if (last < 2) return out;
   sh.getRange(2, 1, last - 1, H.length).getValues().forEach(function (r) {
@@ -1106,6 +1157,7 @@ function onOpen() {
     .addSeparator()
     .addItem('✉️ Enviar emails de prueba', 'enviarEmailsPrueba')
     .addItem('📮 Configurar email (proveedor)', 'configurarEmailProveedor')
+    .addItem('✉️ Reenviar confirmaciones fallidas', 'reenviarConfirmacionesFallidas')
     .addItem('🔑 Mostrar TOKEN backend', 'mostrarToken')
     .addSeparator()
     .addItem('🧨 Resetear datos de prueba', 'resetearPruebas')
