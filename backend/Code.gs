@@ -305,6 +305,88 @@ function confirmarPagoSeleccion() {
     (ok ? 'Email de confirmación enviado a ' + r.email + '.' : '⚠️ El email NO se pudo enviar. Revisa la hoja LOG (fila EMAIL_ERROR).'));
 }
 
+/* Confirmación en BLOQUE por lista de IDs. Pensada para la conciliación por
+   NOMBRE + IMPORTE (cuando el extracto NO trae el código AIR26 y casas fuera con
+   scripts/casador.py → lista de IDs casados). Lee los IDs de la hoja CONFIRMAR_LOTE
+   (columna A) y marca cada pedido PAGO_CONCILIADO + email, con la MISMA lógica que
+   conciliarBanco: idempotente (los ya pagados se saltan), reanudable (si para por
+   tiempo o por cuota de Gmail, re-ejecutar continúa donde lo dejó). */
+var SH_CONFIRMAR = 'CONFIRMAR_LOTE';
+
+function confirmarPagosPorLista() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(SH_CONFIRMAR);
+  if (!sh) {
+    sh = ss.insertSheet(SH_CONFIRMAR);
+    sh.getRange(1, 1, 1, 2).setValues([['ID', 'RESULTADO']]).setFontWeight('bold');
+    sh.setFrozenRows(1);
+    sh.setColumnWidth(1, 140); sh.setColumnWidth(2, 180);
+    ui().alert('He creado la hoja "' + SH_CONFIRMAR + '".\n\n' +
+      'Pega en la columna A (debajo de "ID") los IDs de pedido a confirmar, uno por fila ' +
+      '(p. ej. AIR26-00001). Puedes pegar el .txt de casados tal cual. Deja la columna B ' +
+      'vacía: la rellena el script.\n\nLuego vuelve a pulsar "✅ Confirmar pagos por lista".');
+    return;
+  }
+  var last = sh.getLastRow();
+  if (last < 2) { ui().alert('La hoja "' + SH_CONFIRMAR + '" no tiene IDs. Pega los IDs en la columna A.'); return; }
+
+  var vals = sh.getRange(2, 1, last - 1, 2).getValues();   // [ID, RESULTADO]
+  var YA = { 'CONFIRMADO': 1, 'CONFIRMADO_SIN_EMAIL': 1, 'YA_PAGADO': 1 };
+  var pendientes = 0;
+  for (var i = 0; i < vals.length; i++) {
+    var idp = String(vals[i][0]).trim();
+    if (idp && !YA[String(vals[i][1]).trim().toUpperCase()]) pendientes++;
+  }
+  if (!pendientes) { ui().alert('No hay pedidos pendientes de confirmar en "' + SH_CONFIRMAR + '" (todos tienen ya un resultado).'); return; }
+
+  var usaGmail = !PropertiesService.getScriptProperties().getProperty('EMAIL_API_KEY');
+  var avisoQuota = usaGmail
+    ? '\n\n⚠️ Sin proveedor (Brevo): los emails salen por Gmail, con límite de ~100/día. Si hay más, el script parará al agotar la cuota; continúa mañana re-ejecutando (es idempotente), o configura Brevo (📮).'
+    : '';
+  var resp = ui().alert('Confirmar pagos por lista',
+    'Se van a CONFIRMAR ' + pendientes + ' pedido(s): pasan a PAGO_CONCILIADO y se envía el email ' +
+    'de confirmación a cada uno.\n\nEsto NO se puede deshacer (los emails se envían).' + avisoQuota +
+    '\n\n¿Continúas?', ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var pedidos = indicePedidos(ss), cfg = leerConfig();
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;   // margen bajo el límite de 6 min de Apps Script
+  var conc = 0, ya = 0, noenc = 0, cad = 0, sinmail = 0, interrumpido = '';
+
+  for (var r = 0; r < vals.length; r++) {
+    var id = String(vals[r][0]).trim();
+    if (!id || YA[String(vals[r][1]).trim().toUpperCase()]) continue;
+
+    if (Date.now() - t0 > MAX_MS) { interrumpido = 'tiempo'; break; }
+    if (usaGmail && MailApp.getRemainingDailyQuota() <= 0) { interrumpido = 'cuota'; break; }
+
+    var p = pedidos[id];
+    if (!p) { sh.getRange(r + 2, 2).setValue('NO_ENCONTRADO'); noenc++; continue; }
+    if (ESTADOS_PAGADOS.indexOf(p.estado) >= 0) { sh.getRange(r + 2, 2).setValue('YA_PAGADO'); ya++; continue; }
+    if (p.estado === 'CADUCADO') { sh.getRange(r + 2, 2).setValue('CADUCADO_OMITIDO'); cad++; continue; }
+
+    var ok = marcarPedidoPagado(ss, p, cfg);
+    pedidos[id].estado = 'PAGO_CONCILIADO';        // si el ID se repite en la lista, no re-dispara
+    sh.getRange(r + 2, 2).setValue(ok ? 'CONFIRMADO' : 'CONFIRMADO_SIN_EMAIL');
+    if (ok) conc++; else sinmail++;
+  }
+
+  registrarLog(ss, 'CONFIRMAR_LOTE', 'confirmados ' + conc + ' · sin email ' + sinmail +
+    ' · ya ' + ya + ' · caducados ' + cad + ' · no encontrados ' + noenc +
+    (interrumpido ? ' · PARADO(' + interrumpido + ')' : ''));
+  refrescarDashboard();
+
+  var msg = 'Confirmación por lista terminada.\n\n' +
+    '✅ Confirmados (email enviado): ' + conc + '\n' +
+    (sinmail ? '⚠️ Confirmados SIN email (revisa la hoja LOG): ' + sinmail + '\n' : '') +
+    'Ya estaban pagados: ' + ya + '\n' +
+    (cad ? 'Caducados (omitidos, revísalos a mano): ' + cad + '\n' : '') +
+    (noenc ? 'IDs no encontrados: ' + noenc + '\n' : '');
+  if (interrumpido === 'tiempo') msg += '\n⏱️ Parado por el límite de tiempo de Apps Script. Vuelve a pulsar para continuar donde lo dejó.';
+  if (interrumpido === 'cuota') msg += '\n📭 Parado: cuota diaria de Gmail agotada. Continúa mañana re-ejecutando, o configura Brevo (📮).';
+  ui().alert(msg);
+}
+
 // Envía los 3 emails de ejemplo a EMAIL_CONTACTO para revisar el diseño sin recorrer el flujo.
 function enviarEmailsPrueba() {
   var cfg = leerConfig(), to = cfg.EMAIL_CONTACTO;
@@ -928,6 +1010,7 @@ function onOpen() {
     .addSeparator()
     .addItem('🏦 Conciliar banco', 'conciliarBanco')
     .addItem('✅ Confirmar PAGO del seleccionado (manual)', 'confirmarPagoSeleccion')
+    .addItem('✅ Confirmar pagos por lista (CONFIRMAR_LOTE)', 'confirmarPagosPorLista')
     .addItem('⏳ Caducar pendientes vencidos', 'caducarPendientes')
     .addSeparator()
     .addItem('📦 Generar pedido a proveedor', 'generarPedidoProveedor')
