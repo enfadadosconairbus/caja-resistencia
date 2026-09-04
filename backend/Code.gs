@@ -197,24 +197,14 @@ function marcarPedidoPagado(ss, p, cfg) {
 /* ===========================  LOTES / PROVEEDOR  ======================== */
 
 function generarPedidoProveedor() {
-  var ss = SpreadsheetApp.getActive(), pedidos = indicePedidos(ss), cfg = leerConfig();
-  // Hasta esta fecha, a producción SOLO van los pedidos de Getafe (recogida en la marcha);
-  // los de otros sites quedan en espera y se producen a partir de aquí.
-  var desde = cfg.PROD_TODOS_SITES_DESDE || '2026-09-10';
-  var cutoff = new Date(desde);
-  var permitirTodos = !isNaN(cutoff.getTime()) && new Date() >= cutoff;
+  var ss = SpreadsheetApp.getActive(), pedidos = indicePedidos(ss);
 
-  var ids = [], enEspera = 0;
+  // A producción entran TODOS los pedidos PAGO_CONCILIADO, de cualquier site.
+  var ids = [];
   for (var id in pedidos) {
-    if (pedidos[id].estado !== 'PAGO_CONCILIADO') continue;
-    var esGetafe = String(pedidos[id].site).trim().toLowerCase() === 'getafe';
-    if (permitirTodos || esGetafe) ids.push(id); else enEspera++;
+    if (pedidos[id].estado === 'PAGO_CONCILIADO') ids.push(id);
   }
-  if (!ids.length) {
-    ui().alert('No hay pedidos listos para producir.' +
-      (enEspera ? '\n\n' + enEspera + ' pedido(s) de OTROS sites en espera: se producirán a partir del ' + desde + ' (tras la marcha).' : ''));
-    return;
-  }
+  if (!ids.length) { ui().alert('No hay pedidos listos para producir.'); return; }
 
   var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, lastL = shL.getLastRow();
   var lin = shL.getRange(2, 1, lastL - 1, H.length).getValues();
@@ -245,7 +235,6 @@ function generarPedidoProveedor() {
   registrarLog(ss, 'LOTE', lote + ' · ' + keys.length + ' líneas · ' + totalUds + ' uds');
   refrescarDashboard();
   ui().alert('Lote ' + lote + ' generado.\n\n' + keys.length + ' líneas de proveedor · ' + totalUds + ' uds.' +
-    (enEspera ? '\n\n(' + enEspera + ' pedido(s) de otros sites quedan en espera hasta el ' + desde + '.)' : '') +
     '\nRevisa la hoja PROVEEDOR (puedes exportarla a Excel).');
 }
 
