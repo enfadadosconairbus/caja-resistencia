@@ -831,7 +831,8 @@ function reenviarConfirmacionesFallidas() {
   ui().alert(msg);
 }
 
-// Envía el email de "aportación confirmada" a TODOS los pedidos en PAGO_CONCILIADO.
+// Envía el email de "aportación confirmada" a los pedidos pagados que aún no están
+// listos para recoger (PAGO_CONCILIADO y ENVIADO_PROVEEDOR — este último ya loteado).
 // Para cuando las confirmaciones no llegaron en su momento. Idempotente: deja
 // 'EMAIL_CONF_MANUAL <id>' en el LOG y no reenvía a ese pedido en futuras pasadas.
 // Respeta cuota de Gmail y límite de tiempo (re-ejecuta para continuar).
@@ -849,14 +850,17 @@ function enviarConfirmacionesPagoConciliado() {
     il.forEach(function (r) { if (String(r[iT]) === 'EMAIL_CONF_MANUAL') { var id0 = String(r[iD]).trim().split(/\s+/)[0]; if (id0) enviados[id0] = true; } });
   }
 
+  // Pagados a los que aplica la confirmación de transferencia: los que aún no han
+  // llegado a "listo para recoger". Incluye ENVIADO_PROVEEDOR (ya loteados).
+  var ESTADOS_CONF = ['PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR'];
   var ids = [];
-  for (var id in pedidos) { if (pedidos[id].estado === 'PAGO_CONCILIADO' && !enviados[id]) ids.push(id); }
-  if (!ids.length) { ui().alert('No hay pedidos en PAGO_CONCILIADO pendientes de confirmar por email.'); return; }
+  for (var id in pedidos) { if (ESTADOS_CONF.indexOf(pedidos[id].estado) >= 0 && !enviados[id]) ids.push(id); }
+  if (!ids.length) { ui().alert('No hay pedidos pagados (PAGO_CONCILIADO / ENVIADO_PROVEEDOR) pendientes de confirmar por email.'); return; }
 
   var usaGmail = !PropertiesService.getScriptProperties().getProperty('EMAIL_API_KEY');
   var aviso = usaGmail ? '\n\n⚠️ Sin Brevo: por Gmail (~100/día). Re-ejecuta mañana para continuar (es idempotente).' : '';
   var resp = ui().alert('Enviar confirmación de pago',
-    'Se enviará el email de "aportación confirmada" a ' + ids.length + ' pedido(s) en PAGO_CONCILIADO.\n\n' +
+    'Se enviará el email de "aportación confirmada" a ' + ids.length + ' pedido(s) pagados (PAGO_CONCILIADO y ENVIADO_PROVEEDOR).\n\n' +
     '⚠️ Comprueba ANTES que un email de prueba te llega a la BANDEJA (no spam).' + aviso + '\n\n¿Continúas?', ui().ButtonSet.YES_NO);
   if (resp !== ui().Button.YES) return;
 
@@ -1204,7 +1208,7 @@ function onOpen() {
     .addItem('✉️ Enviar emails de prueba', 'enviarEmailsPrueba')
     .addItem('📮 Configurar email (proveedor)', 'configurarEmailProveedor')
     .addItem('✉️ Reenviar confirmaciones fallidas', 'reenviarConfirmacionesFallidas')
-    .addItem('✉️ Enviar confirmación a PAGO_CONCILIADO', 'enviarConfirmacionesPagoConciliado')
+    .addItem('✉️ Enviar confirmación a pagados (recovery)', 'enviarConfirmacionesPagoConciliado')
     .addItem('🔑 Mostrar TOKEN backend', 'mostrarToken')
     .addSeparator()
     .addItem('🧨 Resetear datos de prueba', 'resetearPruebas')
