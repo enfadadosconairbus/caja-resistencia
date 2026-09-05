@@ -460,6 +460,81 @@ function confirmarPagosPorLista() {
   ui().alert(msg);
 }
 
+/* Aviso "pedido revisado por duplicados / en proceso" en BLOQUE. Para los clientes
+   cuya conciliación se resolvió A MANO (pedidos duplicados). Lee los IDs de la hoja
+   REVISADOS_LOTE (columna A) y envía a cada uno su email con el ID como número de
+   recogida, desde la cuenta del backend (enfadadosconairbus.contacto@gmail.com).
+   Idempotente y reanudable como confirmarPagosPorLista(); NO cambia el estado del
+   pedido, solo manda el aviso. */
+var SH_REVISADOS = 'REVISADOS_LOTE';
+
+function avisarPedidosRevisadosPorLista() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(SH_REVISADOS);
+  if (!sh) {
+    sh = ss.insertSheet(SH_REVISADOS);
+    sh.getRange(1, 1, 1, 2).setValues([['ID', 'RESULTADO']]).setFontWeight('bold');
+    sh.setFrozenRows(1); sh.setColumnWidth(1, 140); sh.setColumnWidth(2, 200);
+    ui().alert('He creado la hoja "' + SH_REVISADOS + '".\n\n' +
+      'Pega en la columna A los IDs de los pedidos revisados a mano (uno por fila). ' +
+      'Deja la columna B vacía.\n\nLuego vuelve a pulsar "📨 Avisar pedidos revisados (lista)".');
+    return;
+  }
+  var last = sh.getLastRow();
+  if (last < 2) { ui().alert('La hoja "' + SH_REVISADOS + '" no tiene IDs. Pega los IDs en la columna A.'); return; }
+
+  var vals = sh.getRange(2, 1, last - 1, 2).getValues();
+  var YA = { 'AVISADO': 1 };
+  var pend = 0;
+  for (var i = 0; i < vals.length; i++) {
+    var idp = String(vals[i][0]).trim();
+    if (idp && !YA[String(vals[i][1]).trim().toUpperCase()]) pend++;
+  }
+  if (!pend) { ui().alert('No hay pedidos pendientes de avisar en "' + SH_REVISADOS + '" (todos tienen ya un resultado).'); return; }
+
+  var usaGmail = !PropertiesService.getScriptProperties().getProperty('EMAIL_API_KEY');
+  var avisoQuota = usaGmail
+    ? '\n\n⚠️ Sin Brevo: salen por Gmail (límite ~100/día). Si hay más, para al agotar la cuota; re-ejecuta para continuar (es idempotente).'
+    : '';
+  var resp = ui().alert('Avisar pedidos revisados',
+    'Se van a ENVIAR ' + pend + ' email(s) de "pedido revisado / en proceso", con el ID como número de recogida.\n\n' +
+    'NO cambia el estado de los pedidos, solo envía el aviso. Los emails NO se pueden deshacer.' + avisoQuota +
+    '\n\n¿Continúas?', ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var pedidos = indicePedidos(ss), cfg = leerConfig();
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;
+  var env = 0, noenc = 0, sinmail = 0, err = 0, interrumpido = '';
+
+  for (var r = 0; r < vals.length; r++) {
+    var id = String(vals[r][0]).trim();
+    if (!id || YA[String(vals[r][1]).trim().toUpperCase()]) continue;
+    if (Date.now() - t0 > MAX_MS) { interrumpido = 'tiempo'; break; }
+    if (usaGmail && MailApp.getRemainingDailyQuota() <= 0) { interrumpido = 'cuota'; break; }
+
+    var p = pedidos[id];
+    if (!p) { sh.getRange(r + 2, 2).setValue('NO_ENCONTRADO'); noenc++; continue; }
+    if (!p.email) { sh.getRange(r + 2, 2).setValue('SIN_EMAIL'); sinmail++; continue; }
+    try {
+      emailPedidoRevisado(p.email, p.id, p.nombre, cfg);
+      sh.getRange(r + 2, 2).setValue('AVISADO'); env++;
+    } catch (e) {
+      sh.getRange(r + 2, 2).setValue('ERROR');
+      registrarLog(ss, 'EMAIL_ERROR', 'revisado ' + id + ': ' + e); err++;
+    }
+  }
+
+  registrarLog(ss, 'AVISO_REVISADOS', 'avisados ' + env + ' · sin email ' + sinmail +
+    ' · no encontrados ' + noenc + ' · error ' + err + (interrumpido ? ' · PARADO(' + interrumpido + ')' : ''));
+  var msg = 'Avisos enviados: ' + env + '\n' +
+    (sinmail ? 'Pedidos sin email: ' + sinmail + '\n' : '') +
+    (noenc ? 'IDs no encontrados: ' + noenc + '\n' : '') +
+    (err ? '⚠️ Errores de envío (revisa la hoja LOG): ' + err + '\n' : '');
+  if (interrumpido === 'tiempo') msg += '\n⏱️ Parado por el límite de tiempo. Vuelve a pulsar para continuar.';
+  if (interrumpido === 'cuota') msg += '\n📭 Cuota diaria de Gmail agotada. Continúa mañana, o configura Brevo (📮).';
+  ui().alert(msg);
+}
+
 // Envía los 3 emails de ejemplo a EMAIL_CONTACTO para revisar el diseño sin recorrer el flujo.
 function enviarEmailsPrueba() {
   var cfg = leerConfig(), to = cfg.EMAIL_CONTACTO;
@@ -731,6 +806,33 @@ function emailPagoConfirmado(email, id, nombre, lineas, productos, aportacion, t
 function emailListoRecoger(email, id, nombre, lineas, productos, aportacion, total, cfg, site) {
   enviarEmail(email, 'Tu camiseta ' + id + ' está lista para recoger',
     plantillaEmail('Lista para recoger', 'Hola ' + escapar(nombre) + ', tu camiseta de la aportación <strong>' + id + '</strong> ya está disponible. Recógela en: <strong>' + escapar(lugarRecogida(cfg, site)) + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER'));
+}
+function emailPedidoRevisado(email, id, nombre, cfg) {
+  enviarEmail(email, 'Tu pedido ' + id + ' está en proceso · Caja de Resistencia',
+    plantillaPedidoRevisado(nombre, id, cfg));
+}
+// Aviso a clientes cuyo pedido se concilió A MANO por duplicados. Misma estética que
+// plantillaEmail (barra roja, cabecera navy, pill, disclaimer) pero SIN líneas de
+// producto: solo el mensaje y el ID destacado como número de recogida.
+function plantillaPedidoRevisado(nombre, id, cfg) {
+  return '' +
+  '<div style="font-family:Arial,Helvetica,sans-serif;background:#f7f4ee;padding:24px 12px">' +
+  '<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e4ddce;border-radius:16px;overflow:hidden">' +
+  '<div style="height:6px;background:#c0392b;line-height:6px;font-size:6px">&nbsp;</div>' +
+  '<div style="background:#16233b;color:#f3ede1;padding:18px 22px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:15px">Plataforma Solidaria · Caja de Resistencia' +
+  '<span style="display:block;font-size:11px;font-weight:600;color:#b7ad9c;letter-spacing:.12em;margin-top:3px">Huelga Airbus 2026 · Albacete · Cádiz · Getafe · Illescas · San Pablo · Tablada</span></div>' +
+  '<div style="padding:24px 22px">' +
+  '<span style="display:inline-block;background:#e6ecf5;color:#16233b;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;padding:5px 12px;border-radius:999px">Pedido en proceso</span>' +
+  '<h1 style="margin:12px 0;font-size:24px;color:#1a1d21;text-transform:uppercase;letter-spacing:-.01em">Hemos revisado tu pedido</h1>' +
+  '<p style="color:#4b4740;font-size:14px;line-height:1.6;margin:0 0 16px">Hola <strong>' + escapar(nombre) + '</strong>, gracias por tu aportación a la Caja de Resistencia. Hemos <strong>revisado en detalle tu pedido</strong> porque detectamos la existencia de <strong>pedidos duplicados</strong> a tu nombre. Ya está todo comprobado y tu pedido queda <strong>en proceso</strong>.</p>' +
+  '<div style="margin-top:6px;padding:18px 20px;background:#faf6ee;border:1px solid #e4ddce;border-left:4px solid #16233b;border-radius:12px">' +
+  '<div style="font-size:11px;color:#6f6a60;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Tu número de pedido para la recogida</div>' +
+  '<div style="margin-top:6px;font-family:Consolas,monospace;color:#c0392b;font-size:26px;font-weight:800;letter-spacing:.02em">' + escapar(id) + '</div>' +
+  '<div style="margin-top:8px;font-size:13px;color:#4b4740;line-height:1.55">Guarda este número: es el que tendrás que dar al recoger tu camiseta. Aunque hubiera más de un pedido a tu nombre, <strong>este es el que vale</strong>.</div>' +
+  '</div>' +
+  '<p style="color:#4b4740;font-size:14px;line-height:1.6;margin:18px 0 0">Te avisaremos por email cuando tu camiseta esté <strong>lista para recoger</strong>. ¡Gracias por tu apoyo y por la paciencia!</p>' +
+  '<p style="color:#9a9387;font-size:11px;margin-top:22px;line-height:1.5">Aportación solidaria a la Caja de Resistencia (Sindicato Útil); la camiseta es un agradecimiento por tu colaboración. Página no oficial de Airbus. No se procesan pagos: la aportación se realiza por transferencia bancaria.</p>' +
+  '</div></div></div>';
 }
 function plantillaEmail(titulo, intro, id, lineas, productos, aportacion, total, cfg, estado) {
   var pill = ({
@@ -1218,6 +1320,7 @@ function onOpen() {
     .addItem('🏦 Conciliar banco', 'conciliarBanco')
     .addItem('✅ Confirmar PAGO del seleccionado (manual)', 'confirmarPagoSeleccion')
     .addItem('✅ Confirmar pagos por lista (CONFIRMAR_LOTE)', 'confirmarPagosPorLista')
+    .addItem('📨 Avisar pedidos revisados (REVISADOS_LOTE)', 'avisarPedidosRevisadosPorLista')
     .addItem('⏳ Caducar pendientes vencidos', 'caducarPendientes')
     .addSeparator()
     .addItem('📦 Generar pedido a proveedor', 'generarPedidoProveedor')
