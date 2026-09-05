@@ -320,6 +320,32 @@ function regenerarResumenProveedor(ss) {
   sh.getRange(1, header.length, out.length, 1).setFontWeight('bold');        // columna TOTAL
   sh.setFrozenRows(1);
   try { sh.autoResizeColumns(1, header.length); } catch (e) {}
+
+  // --- Direcciones de envío por site (fuente única: CONFIG, clave ENVIO_<SITE>) ---
+  // El proveedor hace el envío, así que replicamos aquí la dirección de cada site
+  // presente en los datos. Si falta en CONFIG, la sembramos como placeholder para
+  // que solo haya que rellenar el valor y volver a refrescar.
+  var cfgSh = ss.getSheetByName(SH.CONFIG);
+  if (cfgSh) {
+    var existentes = {};
+    if (cfgSh.getLastRow() >= 2)
+      cfgSh.getRange(2, 1, cfgSh.getLastRow() - 1, 1).getValues()
+        .forEach(function (r) { if (r[0]) existentes[String(r[0]).trim()] = true; });
+    var faltan = [];
+    sites.forEach(function (s) {
+      var k = envioKeySite(s);
+      if (!existentes[k]) { faltan.push([k, '[COMPLETAR dirección de envío · ' + siteNombre(s) + ']']); existentes[k] = true; }
+    });
+    if (faltan.length) cfgSh.getRange(cfgSh.getLastRow() + 1, 1, faltan.length, 2).setValues(faltan);
+  }
+  var cfg = leerConfig();
+  var base = out.length + 2;   // dos filas debajo del pivote
+  sh.getRange(base, 1).setValue('DIRECCIONES DE ENVÍO — el proveedor envía a cada site (fuente: CONFIG)').setFontWeight('bold');
+  var dir = sites.map(function (s) { return [siteNombre(s), String(cfg[envioKeySite(s)] || '')]; });
+  if (dir.length) {
+    sh.getRange(base + 1, 1, dir.length, 2).setValues(dir);
+    sh.getRange(base + 1, 1, dir.length, 1).setFontWeight('bold');   // nombre del site (la dirección desborda hacia la derecha)
+  }
 }
 
 // Reconstruye la hoja PROVEEDOR desde la ÚNICA fuente de verdad: las líneas de
@@ -829,6 +855,14 @@ function siteNombre(site) {
   }
   return s;
 }
+// Clave de CONFIG para la dirección de envío de un site. Estable frente a
+// mayúsculas/acentos/espacios: "San Pablo"→ENVIO_SAN_PABLO, "Cádiz"→ENVIO_CADIZ.
+function envioKeySite(site) {
+  var s = String(site || '').trim().toUpperCase();
+  s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');   // fuera acentos
+  s = s.replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '');
+  return 'ENVIO_' + s;
+}
 // Site DONDE SE RECOGE (regla de logística): Getafe e Illescas se recogen en
 // Getafe; el resto en su propio site (envío por lotes al coordinador de logística).
 // Vacío = pedidos antiguos sin SITE, que eran de Getafe.
@@ -1137,7 +1171,7 @@ function setupTiendaV4() {
   hoja(ss, SH.LOG, HEAD.LOG);
 
   var cfg = ss.getSheetByName(SH.CONFIG);
-  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 12, 2).setValues([
+  if (cfg.getLastRow() < 2) cfg.getRange(2, 1, 18, 2).setValues([
     ['BENEFICIARIO', 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil'],
     ['IBAN', 'ESXX XXXX XXXX XXXX XXXX XXXX  [COMPLETAR ANTES DE PUBLICAR]'],
     ['EMAIL_CONTACTO', 'enfadadosconairbus.contacto@gmail.com'],
@@ -1146,7 +1180,14 @@ function setupTiendaV4() {
     ['MODO_PRUEBAS', 'SI'],
     ['EMAIL_REMITENTE', 'enfadadosconairbus.contacto@gmail.com'],
     ['EMAIL_REMITENTE_NOMBRE', 'Caja de Resistencia · Huelga Airbus'],
-    ['PROD_TODOS_SITES_DESDE', '2026-09-10']
+    ['PROD_TODOS_SITES_DESDE', '2026-09-10'],
+    // Direcciones de envío por site (el proveedor envía). RESUMEN_PROVEEDOR las replica.
+    ['ENVIO_GETAFE', '[COMPLETAR dirección de envío · Getafe]'],
+    ['ENVIO_ILLESCAS', '[COMPLETAR dirección de envío · Illescas]'],
+    ['ENVIO_SAN_PABLO', '[COMPLETAR dirección de envío · San Pablo]'],
+    ['ENVIO_TABLADA', '[COMPLETAR dirección de envío · Tablada]'],
+    ['ENVIO_ALBACETE', '[COMPLETAR dirección de envío · Albacete]'],
+    ['ENVIO_CADIZ', '[COMPLETAR dirección de envío · Cádiz]']
   ]);
 
   var cat = ss.getSheetByName(SH.CATALOGO);
