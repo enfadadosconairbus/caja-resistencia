@@ -322,6 +322,55 @@ function regenerarResumenProveedor(ss) {
   try { sh.autoResizeColumns(1, header.length); } catch (e) {}
 }
 
+// Reconstruye la hoja PROVEEDOR desde la ÚNICA fuente de verdad: las líneas de
+// LINEAS_PEDIDO que ya tienen LOTE. Úsalo tras editar tallas o cantidades a mano
+// (PROVEEDOR solo se "iba añadiendo", por eso las ediciones manuales la descuadran).
+// Deja PROVEEDOR = suma exacta de LINEAS-con-lote, sincroniza CANTIDAD en LOTES sin
+// perder su ESTADO/FECHA_RECEPCION, y refresca RESUMEN_PROVEEDOR.
+function reconstruirProveedorDesdeLineas() {
+  var ss = SpreadsheetApp.getActive();
+  var shL = ss.getSheetByName(SH.LINEAS), H = HEAD.LINEAS, lastL = shL.getLastRow();
+  var lin = (lastL >= 2) ? shL.getRange(2, 1, lastL - 1, H.length).getValues() : [];
+
+  // Agregar por LOTE|PRODUCTO|SKU|TALLA (solo líneas con LOTE).
+  var agg = {}, orden = [];
+  lin.forEach(function (r) {
+    var lote = String(r[H.indexOf('LOTE')] || '').trim(); if (!lote) return;
+    var prod = r[H.indexOf('PRODUCTO')], sku = r[H.indexOf('SKU')], talla = r[H.indexOf('TALLA')];
+    var k = lote + '||' + prod + '||' + sku + '||' + talla;
+    if (!(k in agg)) { agg[k] = { lote: lote, producto: prod, sku: sku, talla: talla, cantidad: 0 }; orden.push(k); }
+    agg[k].cantidad += Number(r[H.indexOf('CANTIDAD')]) || 0;
+  });
+
+  // Reescribir PROVEEDOR entera.
+  var shProv = ss.getSheetByName(SH.PROVEEDOR), HP = HEAD.PROVEEDOR, lastP = shProv.getLastRow();
+  var out = orden.map(function (k) { var a = agg[k]; return [a.lote, a.producto, a.sku, a.talla, a.cantidad]; });
+  if (lastP >= 2) shProv.getRange(2, 1, lastP - 1, HP.length).clearContent();
+  if (out.length) shProv.getRange(2, 1, out.length, HP.length).setValues(out);
+
+  // Sincronizar CANTIDAD en LOTES (match por LOTE+SKU+TALLA), conservando ESTADO/FECHA;
+  // los combos nuevos (p. ej. tallas añadidas a mano) se añaden como PEDIDO.
+  var shLot = ss.getSheetByName(SH.LOTES), HL = HEAD.LOTES, lastLo = shLot.getLastRow();
+  var lotes = (lastLo >= 2) ? shLot.getRange(2, 1, lastLo - 1, HL.length).getValues() : [];
+  var idxLote = {};
+  lotes.forEach(function (r, i) { idxLote[String(r[HL.indexOf('LOTE')]) + '||' + r[HL.indexOf('SKU')] + '||' + r[HL.indexOf('TALLA')]] = i; });
+  var nuevos = [];
+  orden.forEach(function (k) {
+    var a = agg[k], lk = a.lote + '||' + a.sku + '||' + a.talla;
+    if (lk in idxLote) shLot.getRange(idxLote[lk] + 2, HL.indexOf('CANTIDAD') + 1).setValue(a.cantidad);
+    else nuevos.push([a.lote, new Date(), a.producto, a.sku, a.talla, a.cantidad, 'PEDIDO', '']);
+  });
+  if (nuevos.length) shLot.getRange(shLot.getLastRow() + 1, 1, nuevos.length, HL.length).setValues(nuevos);
+
+  regenerarResumenProveedor(ss);
+  refrescarDashboard();
+  var total = out.reduce(function (s, r) { return s + (Number(r[4]) || 0); }, 0);
+  registrarLog(ss, 'PROVEEDOR_REBUILD', out.length + ' líneas · ' + total + ' uds desde LINEAS');
+  ui().alert('PROVEEDOR reconstruida desde LINEAS_PEDIDO.\n\n' + out.length + ' líneas · ' + total +
+    ' uds en total.\nRESUMEN_PROVEEDOR actualizado.' +
+    (nuevos.length ? '\n\n(' + nuevos.length + ' combinación(es) de talla nuevas añadidas a LOTES.)' : ''));
+}
+
 function marcarLoteRecibidoSeleccion() {
   var ss = SpreadsheetApp.getActive(), sh = ss.getActiveSheet();
   if (sh.getName() !== SH.LOTES) { ui().alert('Ponte en la hoja LOTES y selecciona una fila del lote a recibir.'); return; }
@@ -1325,6 +1374,7 @@ function onOpen() {
     .addSeparator()
     .addItem('📦 Generar pedido a proveedor', 'generarPedidoProveedor')
     .addItem('🧾 Refrescar RESUMEN_PROVEEDOR', 'refrescarResumenProveedor')
+    .addItem('🔧 Reconstruir PROVEEDOR desde LINEAS', 'reconstruirProveedorDesdeLineas')
     .addItem('📥 Marcar lote recibido (seleccionado)', 'marcarLoteRecibidoSeleccion')
     .addItem('🤝 Marcar ENTREGADO (seleccionado)', 'marcarEntregadoSeleccion')
     .addSeparator()
