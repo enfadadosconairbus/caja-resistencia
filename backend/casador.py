@@ -10,8 +10,10 @@ Casa cada ingreso del banco contra la hoja PEDIDOS por:
   1) NOMBRE normalizado (sin orden, sin acentos, ñ→n, sin "trf.")
   2) IMPORTE exacto al céntimo  ==  TOTAL_EUR del pedido
 
-Reparte en tres cubos:
+Reparte en estos cubos:
   CASADO            un único pedido casa por nombre+importe (alta confianza)
+  YA_PAGADO         el pedido casado ya estaba pagado (posible ingreso duplicado)
+  REVISAR_CADUCADO  el pedido casado está CADUCADO pero entra el pago (ver CONCILIACION.md §7b)
   REVISAR_AMBIGUO   varios pedidos posibles, o solo un parecido aproximado
   SIN_MATCH         ningún pedido por nombre (probable pago desde cuenta de un tercero)
 
@@ -215,6 +217,13 @@ def casar(banco, pedidos):
 
         if len(pool) == 1:
             p = pool[0]
+            # Pedido caducado al que llega el pago: NO se casa para confirmar en bloque
+            # (el backend lo omitiría igual). Sale como REVISAR_CADUCADO para decidir a
+            # mano: reactivar (Confirmar seleccionado) o tratar como donativo.
+            if p["estado"] == "CADUCADO":
+                resultados.append(_fila(mov, "REVISAR_CADUCADO", [p],
+                                        nota="pedido CADUCADO pero entra el pago — reactivar (✅ Confirmar seleccionado) o tratar como donativo"))
+                continue
             estado_pagado = p["estado"] in ESTADOS_PAGADOS
             res = "YA_PAGADO" if estado_pagado else "CASADO"
             if not estado_pagado:
@@ -280,6 +289,7 @@ def escribir(resultados, path):
     colores = {
         "CASADO": "C6EFCE", "YA_PAGADO": "DDEBF7",
         "REVISAR_AMBIGUO": "FFEB9C", "SIN_MATCH": "FFC7CE",
+        "REVISAR_CADUCADO": "F4B183",
     }
     hfill = PatternFill("solid", fgColor="1F3A5F")
     for i in range(1, len(cols) + 1):
@@ -289,7 +299,7 @@ def escribir(resultados, path):
         cell.alignment = Alignment(horizontal="center")
 
     # orden: primero lo que hay que revisar, luego lo casado
-    orden = {"REVISAR_AMBIGUO": 0, "SIN_MATCH": 1, "YA_PAGADO": 2, "CASADO": 3}
+    orden = {"REVISAR_CADUCADO": 0, "REVISAR_AMBIGUO": 1, "SIN_MATCH": 2, "YA_PAGADO": 3, "CASADO": 4}
     resultados = sorted(resultados, key=lambda r: orden.get(r["resultado"], 9))
 
     for r in resultados:
@@ -317,7 +327,7 @@ def escribir(resultados, path):
     for r in resultados:
         suma[r["resultado"]] += r["importe"]
     rs.append(["RESULTADO", "Nº MOVIMIENTOS", "IMPORTE (€)"])
-    for k in ["CASADO", "YA_PAGADO", "REVISAR_AMBIGUO", "SIN_MATCH"]:
+    for k in ["CASADO", "YA_PAGADO", "REVISAR_CADUCADO", "REVISAR_AMBIGUO", "SIN_MATCH"]:
         rs.append([k, cuenta.get(k, 0), round(suma.get(k, 0.0), 2)])
     rs.append(["TOTAL", sum(cuenta.values()), round(sum(suma.values()), 2)])
     for i in range(1, 4):
@@ -349,7 +359,7 @@ def main():
     print(f"Movimientos leídos : {len(banco)}")
     print(f"Pedidos leídos     : {len(pedidos)}")
     print("-" * 40)
-    for k in ["CASADO", "YA_PAGADO", "REVISAR_AMBIGUO", "SIN_MATCH"]:
+    for k in ["CASADO", "YA_PAGADO", "REVISAR_CADUCADO", "REVISAR_AMBIGUO", "SIN_MATCH"]:
         print(f"  {k:<16} {cuenta.get(k,0):>4}   {round(suma.get(k,0.0),2):>10.2f} €")
     print("-" * 40)
     print(f"Salida → {a.salida}")

@@ -1120,6 +1120,8 @@ function reenviarConfirmacionesFallidas() {
 // listos para recoger (PAGO_CONCILIADO y ENVIADO_PROVEEDOR — este último ya loteado).
 // Para cuando las confirmaciones no llegaron en su momento. Idempotente: deja
 // 'EMAIL_CONF_MANUAL <id>' en el LOG y no reenvía a ese pedido en futuras pasadas.
+// Además NO reenvía a los que ya tienen FECHA_CONFIRMADO (recibieron el email al
+// conciliarse), así que solo escribe a los pagados que de verdad no lo recibieron.
 // Respeta cuota de Gmail y límite de tiempo (re-ejecuta para continuar).
 // ANTES de usarlo: confirma con "✉️ Enviar emails de prueba" que el correo LLEGA (bandeja, no spam).
 function enviarConfirmacionesPagoConciliado() {
@@ -1133,6 +1135,16 @@ function enviarConfirmacionesPagoConciliado() {
     var HL = HEAD.LOG, il = shLog.getRange(2, 1, shLog.getLastRow() - 1, HL.length).getValues();
     var iT = HL.indexOf('TIPO'), iD = HL.indexOf('DETALLE');
     il.forEach(function (r) { if (String(r[iT]) === 'EMAIL_CONF_MANUAL') { var id0 = String(r[iD]).trim().split(/\s+/)[0]; if (id0) enviados[id0] = true; } });
+  }
+
+  // También se saltan los que ya tienen FECHA_CONFIRMADO sellada: recibieron la
+  // confirmación al conciliarse (conciliar banco / pago manual / confirmar por lista,
+  // que llaman a marcarPedidoPagado). Sin esto, el recovery se los reenviaría (duplicado).
+  var shP0 = ss.getSheetByName(SH.PEDIDOS), HP0 = HEAD.PEDIDOS, lastP0 = shP0 ? shP0.getLastRow() : 0;
+  if (lastP0 >= 2) {
+    var vp0 = shP0.getRange(2, 1, lastP0 - 1, HP0.length).getValues();
+    var iIdP = HP0.indexOf('ID'), iFC = HP0.indexOf('FECHA_CONFIRMADO');
+    vp0.forEach(function (r) { if (r[iFC] !== '' && r[iFC] != null) { var idc = String(r[iIdP]).trim(); if (idc) enviados[idc] = true; } });
   }
 
   // Pagados a los que aplica la confirmación de transferencia: los que aún no han

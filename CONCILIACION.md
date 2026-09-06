@@ -75,6 +75,23 @@ Todo vive en el **Google Sheet** del backend (cuenta operativa), más `Code.gs`:
    `PAGO_CONCILIADO` y manda el email.
 3. En `MOVIMIENTOS_BANCO`, pon **`SI`** en `PROCESADO` de ese movimiento.
 
+## 7b. Si entra el pago de un pedido CADUCADO
+
+Tras **⏳ Caducar pendientes vencidos**, un pedido pasa a `CADUCADO`. Si en una
+conciliación posterior **entra su transferencia**, el sistema **no lo confirma
+solo** (a propósito): `conciliarBanco` lo marca `REVISAR_CADUCADO`,
+`confirmarPagosPorLista` lo deja en `CADUCADO_OMITIDO`, y el `casador.py` lo saca
+en su propio cubo **`REVISAR_CADUCADO`** (no en `CASADO`). Tú decides:
+
+- **Por defecto: honrar el pago (reactivar).** Es una caja solidaria y el dinero
+  entró. En `PEDIDOS`, selecciona la fila del pedido caducado → **✅ Confirmar
+  PAGO del seleccionado**. Vuelve a `PAGO_CONCILIADO`, manda el email de
+  confirmación y **entra en el próximo 📦 Generar pedido a proveedor** (que solo
+  coge `PAGO_CONCILIADO`). Marca `PROCESADO=SI` en el movimiento.
+- **Si no se puede producir** (lote ya cerrado, sin stock): déjalo en `CADUCADO`,
+  trata el ingreso como **donativo** a la caja y, si procede, escribe a la persona
+  explicándoselo. No lo confirmes: generaría una camiseta que no vas a producir.
+
 ## 8. Reglas clave
 
 - **Acumular, no borrar.** El script solo procesa filas con `PROCESADO` vacío; las
