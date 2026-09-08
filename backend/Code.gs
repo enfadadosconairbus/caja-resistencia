@@ -47,8 +47,14 @@ var HEAD = {
 };
 
 // Flujo de estados de un pedido.
-var ESTADOS = ['PENDIENTE_PAGO', 'PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO', 'CADUCADO'];
+var ESTADOS = ['PENDIENTE_PAGO', 'PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO', 'CADUCADO', 'ANULADO'];
 var ESTADOS_PAGADOS = ['PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO'];
+
+// Pedidos "fuera de juego": no van a entrar en producción. CADUCADO = venció el plazo;
+// ANULADO = descartado a mano (pedido por error que no se va a pagar). Un pago que
+// entre para uno de estos NO se auto-confirma: se marca para revisar (reactivar o
+// tratar como donativo). Ver CONCILIACION.md §7b. Se excluyen del stock y de la caja.
+var ESTADOS_FUERA = ['CADUCADO', 'ANULADO'];
 
 // Marca "tardío" (columna TARDIO de PEDIDOS). Es INDEPENDIENTE del ESTADO: un pedido
 // tardío se cobra y concilia con normalidad, pero NO entra solo al proveedor. Valores:
@@ -162,7 +168,7 @@ function respuestaPedido(id, total, cfg) {
   return { ok: true, order_id: id, total: Number(total), beneficiario: cfg.BENEFICIARIO || '', iban: cfg.IBAN || '', concepto: id };
 }
 
-// Camisetas pedidas (unidades, excluyendo caducados) para el aviso de stock de la web.
+// Camisetas pedidas (unidades, excluyendo caducados/anulados) para el aviso de stock de la web.
 function estadoPublico() {
   var sh = SpreadsheetApp.getActive().getSheetByName(SH.PEDIDOS), H = HEAD.PEDIDOS;
   var last = sh.getLastRow(), total = 0;
@@ -170,7 +176,7 @@ function estadoPublico() {
     var vals = sh.getRange(2, 1, last - 1, H.length).getValues();
     var iU = H.indexOf('UNIDADES'), iE = H.indexOf('ESTADO');
     for (var r = 0; r < vals.length; r++) {
-      if (String(vals[r][iE]) === 'CADUCADO') continue;
+      if (ESTADOS_FUERA.indexOf(String(vals[r][iE])) >= 0) continue;
       total += Number(vals[r][iU]) || 0;
     }
   }
@@ -200,7 +206,9 @@ function conciliarBanco() {
     if (!p) { vals[r][col('RESULTADO')] = 'REVISAR_CODIGO_INEXISTENTE'; vals[r][col('PEDIDO_DETECTADO')] = id; rev++; continue; }
     vals[r][col('PEDIDO_DETECTADO')] = id;
     if (ESTADOS_PAGADOS.indexOf(p.estado) >= 0) { vals[r][col('RESULTADO')] = 'YA_PAGADO'; vals[r][col('PROCESADO')] = 'SI'; vals[r][col('FECHA_CONCILIACION')] = ahora; ya++; continue; }
-    if (p.estado === 'CADUCADO') { vals[r][col('RESULTADO')] = 'REVISAR_CADUCADO'; rev++; continue; }
+    // CADUCADO o ANULADO: entra un pago a un pedido fuera de juego → NO se auto-confirma,
+    // se marca para revisar a mano (reactivar o tratar como donativo). Ver CONCILIACION.md §7b.
+    if (ESTADOS_FUERA.indexOf(p.estado) >= 0) { vals[r][col('RESULTADO')] = 'REVISAR_' + p.estado; rev++; continue; }
     if (Math.round(importe * 100) === Math.round(p.total * 100)) {
       marcarPedidoPagado(ss, p, cfg);
       vals[r][col('RESULTADO')] = 'PAGO_CONCILIADO'; vals[r][col('PROCESADO')] = 'SI'; vals[r][col('FECHA_CONCILIACION')] = ahora;
@@ -532,7 +540,7 @@ function confirmarPagosPorLista() {
 
   var pedidos = indicePedidos(ss), cfg = leerConfig();
   var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;   // margen bajo el límite de 6 min de Apps Script
-  var conc = 0, ya = 0, noenc = 0, cad = 0, sinmail = 0, interrumpido = '';
+  var conc = 0, ya = 0, noenc = 0, fuera = 0, sinmail = 0, interrumpido = '';
 
   for (var r = 0; r < vals.length; r++) {
     var id = String(vals[r][0]).trim();
@@ -544,7 +552,8 @@ function confirmarPagosPorLista() {
     var p = pedidos[id];
     if (!p) { sh.getRange(r + 2, 2).setValue('NO_ENCONTRADO'); noenc++; continue; }
     if (ESTADOS_PAGADOS.indexOf(p.estado) >= 0) { sh.getRange(r + 2, 2).setValue('YA_PAGADO'); ya++; continue; }
-    if (p.estado === 'CADUCADO') { sh.getRange(r + 2, 2).setValue('CADUCADO_OMITIDO'); cad++; continue; }
+    // CADUCADO / ANULADO: no se confirman en bloque (decisión a mano). Ver §7b.
+    if (ESTADOS_FUERA.indexOf(p.estado) >= 0) { sh.getRange(r + 2, 2).setValue(p.estado + '_OMITIDO'); fuera++; continue; }
 
     var ok = marcarPedidoPagado(ss, p, cfg);
     pedidos[id].estado = 'PAGO_CONCILIADO';        // si el ID se repite en la lista, no re-dispara
@@ -553,7 +562,7 @@ function confirmarPagosPorLista() {
   }
 
   registrarLog(ss, 'CONFIRMAR_LOTE', 'confirmados ' + conc + ' · sin email ' + sinmail +
-    ' · ya ' + ya + ' · caducados ' + cad + ' · no encontrados ' + noenc +
+    ' · ya ' + ya + ' · caducados/anulados ' + fuera + ' · no encontrados ' + noenc +
     (interrumpido ? ' · PARADO(' + interrumpido + ')' : ''));
   refrescarDashboard();
 
@@ -561,7 +570,7 @@ function confirmarPagosPorLista() {
     '✅ Confirmados (email enviado): ' + conc + '\n' +
     (sinmail ? '⚠️ Confirmados SIN email (revisa la hoja LOG): ' + sinmail + '\n' : '') +
     'Ya estaban pagados: ' + ya + '\n' +
-    (cad ? 'Caducados (omitidos, revísalos a mano): ' + cad + '\n' : '') +
+    (fuera ? 'Caducados/anulados (omitidos, revísalos a mano): ' + fuera + '\n' : '') +
     (noenc ? 'IDs no encontrados: ' + noenc + '\n' : '');
   if (interrumpido === 'tiempo') msg += '\n⏱️ Parado por el límite de tiempo de Apps Script. Vuelve a pulsar para continuar donde lo dejó.';
   if (interrumpido === 'cuota') msg += '\n📭 Parado: cuota diaria de Gmail agotada. Continúa mañana re-ejecutando, o configura Brevo (📮).';
@@ -754,6 +763,45 @@ function caducarPendientes() {
   registrarLog(ss, 'CADUCIDAD', n + ' caducados'); refrescarDashboard();
   ui().alert(n + ' pedido(s) marcados como CADUCADO.');
 }
+
+// Marca la SELECCIÓN de PEDIDOS como ANULADO: pedidos que sabes que NO se van a pagar
+// (hechos por error). Se quedan en la hoja (rastro), salen de pendientes/stock/caja y
+// NO entran a producción. Si aun así entrara un pago, la conciliación lo marca
+// REVISAR_ANULADO (no lo confirma sola). Ver CONCILIACION.md §7b.
+function anularPedidosSeleccion() {
+  var ss = SpreadsheetApp.getActive(), sh = ss.getActiveSheet();
+  if (sh.getName() !== SH.PEDIDOS) { ui().alert('Ponte en la hoja PEDIDOS y selecciona la(s) fila(s) de los pedidos a anular.'); return; }
+  var H = HEAD.PEDIDOS, colE = H.indexOf('ESTADO') + 1, colId = H.indexOf('ID') + 1;
+  var rango = sh.getActiveRange(), fila0 = rango.getRow(), n = rango.getNumRows();
+  if (fila0 < 2) { ui().alert('Selecciona al menos una fila de pedido (no la cabecera).'); return; }
+
+  var candidatos = [];
+  for (var i = 0; i < n; i++) {
+    var f = fila0 + i; if (f > sh.getLastRow()) break;
+    var id = String(sh.getRange(f, colId).getValue() || '');
+    var est = String(sh.getRange(f, colE).getValue() || '').trim().toUpperCase();
+    if (id) candidatos.push({ fila: f, id: id, estado: est });
+  }
+  if (!candidatos.length) { ui().alert('Selecciona al menos una fila de pedido.'); return; }
+
+  // Aviso si alguno ya estaba pagado (anular un pagado es raro: pídelo explícito).
+  var pagadosSel = candidatos.filter(function (c) { return ESTADOS_PAGADOS.indexOf(c.estado) >= 0; });
+  var resp = ui().alert('Anular pedidos',
+    'Se van a marcar como ANULADO ' + candidatos.length + ' pedido(s) seleccionados.\n' +
+    'Salen de pendientes, del stock y de la caja; no entran a producción.' +
+    (pagadosSel.length ? '\n\n⚠️ OJO: ' + pagadosSel.length + ' de ellos ya están PAGADOS (' +
+      pagadosSel.map(function (c) { return c.id; }).slice(0, 6).join(', ') + (pagadosSel.length > 6 ? '…' : '') +
+      '). Anular un pagado NO devuelve el dinero; hazlo solo si sabes lo que haces.' : '') +
+    '\n\n¿Continúas?', ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var ids = [];
+  candidatos.forEach(function (c) { sh.getRange(c.fila, colE).setValue('ANULADO'); ids.push(c.id); });
+  registrarLog(ss, 'ANULADO', ids.length + ' anulados: ' + ids.join(', '));
+  refrescarDashboard();
+  ui().alert('✅ ' + ids.length + ' pedido(s) marcados como ANULADO:\n\n' + ids.join('\n'));
+}
+
 function pedidoSeleccionado() {
   var ss = SpreadsheetApp.getActive(), sh = ss.getActiveSheet();
   if (sh.getName() !== SH.PEDIDOS) { ui().alert('Ponte en la hoja PEDIDOS y selecciona la fila del pedido.'); return null; }
@@ -933,7 +981,7 @@ function siteNombre(site) {
 // mayúsculas/acentos/espacios: "San Pablo"→ENVIO_SAN_PABLO, "Cádiz"→ENVIO_CADIZ.
 function envioKeySite(site) {
   var s = String(site || '').trim().toUpperCase();
-  s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');   // fuera acentos
+  s = s.normalize('NFD').replace(/[̀-ͯ]/g, '');   // fuera acentos
   s = s.replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '');
   return 'ENVIO_' + s;
 }
@@ -1333,7 +1381,8 @@ function formatearHojasDatos(ss) {
 function formatoCondicionalEstados(ss) {
   var pares = [
     ['PENDIENTE_PAGO', COL.tPeach], ['PAGO_CONCILIADO', COL.tGreen], ['ENVIADO_PROVEEDOR', COL.tBlue],
-    ['RECIBIDO', COL.tBlue2], ['LISTO_RECOGIDA', COL.tYellow], ['ENTREGADO', COL.tGray], ['CADUCADO', COL.tRed]
+    ['RECIBIDO', COL.tBlue2], ['LISTO_RECOGIDA', COL.tYellow], ['ENTREGADO', COL.tGray], ['CADUCADO', COL.tRed],
+    ['ANULADO', COL.tGray]
   ];
   var sh = ss.getSheetByName(SH.PEDIDOS), col = HEAD.PEDIDOS.indexOf('ESTADO') + 1;
   var rango = sh.getRange(2, col, 5000, 1), reglas = [];
@@ -1375,6 +1424,7 @@ function construirHowTo(ss) {
     ['⚠️ REVISAR', 'Filtra RESULTADO = REVISAR. No fuerces matches dudosos por nombre; usa "Confirmar PAGO (manual)" solo si lo verificas.'],
     ['📦 CERRAR LOTE', 'Menú 👕 → 📦 Generar pedido a proveedor. Solo entran PAGO_CONCILIADO sin lote. Agrega por PRODUCTO+SKU+TALLA. Los pedidos TARDÍOS (columna TARDIO = RETENIDO) NO entran solos: quedan fuera hasta liberarlos.'],
     ['🕒 TARDÍOS', 'Pedidos hechos tras la fecha límite (CONFIG → AVISO_FECHA_LIMITE). Se cobran y concilian igual, pero se RETIENEN de producción. Confirma plazos con el proveedor → selecciona sus filas en PEDIDOS → 🕒 Liberar pedidos tardíos. Pasan a LIBERADO y ya entran al siguiente lote.'],
+    ['🚫 ANULAR', 'Pedidos hechos por error que NO se van a pagar: selecciona sus filas en PEDIDOS → 🚫 Anular pedidos. Pasan a ANULADO (fuera de pendientes/stock/caja). No borres filas: rompe LINEAS y pierdes el rastro.'],
     ['📤 ENVIAR PROVEEDOR', 'Usa la hoja PROVEEDOR (resumen limpio por talla del lote). Exporta a Excel si lo necesitas.'],
     ['📥 RECIBIR', 'Cuando llegue la mercancía: hoja LOTES → selecciona el lote → 📥 Marcar lote recibido. Los pedidos completos pasan a LISTO_RECOGIDA y avisan por email.'],
     ['🤝 ENTREGAR', 'Al entregar en mano: hoja PEDIDOS → selecciona la fila → 🤝 Marcar ENTREGADO.']
@@ -1405,7 +1455,7 @@ function construirDashboard(ss) {
   sh.getRange('B2').setNumberFormat(FMT_FECHA);
 
   var P = SH.PEDIDOS, K = P + '!K2:K5000';
-  var mask = '(' + K + '<>"PENDIENTE_PAGO")*(' + K + '<>"CADUCADO")*(' + K + '<>"")';
+  var mask = '(' + K + '<>"PENDIENTE_PAGO")*(' + K + '<>"CADUCADO")*(' + K + '<>"ANULADO")*(' + K + '<>"")';
   var tiles = [
     ['PEDIDOS TOTALES', '=COUNTA(' + P + '!A2:A5000)', COL.tGray, false],
     ['PAGOS CONCILIADOS', '=SUMPRODUCT(' + mask + ')', COL.tGreen, false],
@@ -1443,7 +1493,7 @@ function construirDashboard(ss) {
 
   // Leyenda
   sh.getRange('A31').setValue('LECTURA RÁPIDA').setFontWeight('bold').setFontColor(COL.orange);
-  sh.getRange('A32:I32').merge().setValue('🟠 PENDIENTE_PAGO: creado, sin pago.   🟢 PAGO_CONCILIADO: puede entrar al lote.   🔵 ENVIADO_PROVEEDOR: bloqueado para nuevos lotes.   🟡 LISTO_RECOGIDA: avisado.   ⚪ ENTREGADO.   ⚠️ REVISAR: intervención humana.   🕒 TARDIO=RETENIDO: pagado pero retenido de producción hasta liberarlo (habla con el proveedor).')
+  sh.getRange('A32:I32').merge().setValue('🟠 PENDIENTE_PAGO: creado, sin pago.   🟢 PAGO_CONCILIADO: puede entrar al lote.   🔵 ENVIADO_PROVEEDOR: bloqueado para nuevos lotes.   🟡 LISTO_RECOGIDA: avisado.   ⚪ ENTREGADO.   🔴 CADUCADO: venció el plazo.   🚫 ANULADO: descartado a mano (no entra).   ⚠️ REVISAR: intervención humana.   🕒 TARDIO=RETENIDO: pagado pero retenido de producción hasta liberarlo (habla con el proveedor).')
     .setWrap(true).setVerticalAlignment('middle').setFontColor(COL.slate);
   sh.setRowHeight(32, 40);
 }
@@ -1508,6 +1558,7 @@ function onOpen() {
     .addItem('✅ Confirmar pagos por lista (CONFIRMAR_LOTE)', 'confirmarPagosPorLista')
     .addItem('📨 Avisar pedidos revisados (REVISADOS_LOTE)', 'avisarPedidosRevisadosPorLista')
     .addItem('⏳ Caducar pendientes vencidos', 'caducarPendientes')
+    .addItem('🚫 Anular pedidos (selección)', 'anularPedidosSeleccion')
     .addSeparator()
     .addItem('📦 Generar pedido a proveedor', 'generarPedidoProveedor')
     .addItem('🕒 Liberar pedidos tardíos (selección)', 'liberarPedidosTardiosSeleccion')
