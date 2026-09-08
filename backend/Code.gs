@@ -985,19 +985,18 @@ function envioKeySite(site) {
   s = s.replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '');
   return 'ENVIO_' + s;
 }
-// Site DONDE SE RECOGE (regla de logística): Getafe e Illescas se recogen en
-// Getafe; el resto en su propio site (envío por lotes al coordinador de logística).
+// Site DONDE SE ENTREGA (regla de logística): la entrega la realiza el Coordinador
+// del Grupo de Logística de cada site, en el propio site del pedido.
 // Vacío = pedidos antiguos sin SITE, que eran de Getafe.
 function nombreRecogida(site) {
-  var s = String(site || '').trim().toLowerCase();
-  if (!s || s === 'getafe' || s === 'illescas') return 'Getafe';
+  var s = String(site || '').trim();
+  if (!s) return 'Getafe';
   return siteNombre(site);
 }
-// Igual, pero para Getafe/Illescas devuelve la dirección completa de CONFIG (RECOGIDA).
+// Lugar de entrega para el email "lista para recoger": el propio site, vía su coordinador.
 function lugarRecogida(cfg, site) {
-  var s = String(site || '').trim().toLowerCase();
-  if (!s || s === 'getafe' || s === 'illescas') return cfg.RECOGIDA || 'Getafe';
-  return siteNombre(site);
+  var nombre = nombreRecogida(site);
+  return nombre + ' (Coordinador del Grupo de Logística de tu site)';
 }
 
 function emailPedidoRecibido(email, id, nombre, lineas, productos, aportacion, total, cfg) {
@@ -1309,7 +1308,7 @@ function setupTiendaV4() {
     ['BENEFICIARIO', 'Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil'],
     ['IBAN', 'ESXX XXXX XXXX XXXX XXXX XXXX  [COMPLETAR ANTES DE PUBLICAR]'],
     ['EMAIL_CONTACTO', 'enfadadosconairbus.contacto@gmail.com'],
-    ['RECOGIDA', 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)'],
+    ['RECOGIDA', 'La entrega la realiza el Coordinador del Grupo de Logística de tu site.'],
     ['CADUCIDAD_HORAS', 12], ['MAX_UNIDADES', 20], ['PREFIJO', 'AIR26'],
     ['MODO_PRUEBAS', 'SI'],
     ['EMAIL_REMITENTE', 'enfadadosconairbus.contacto@gmail.com'],
@@ -1319,7 +1318,7 @@ function setupTiendaV4() {
     // instante se marcan TARDIO=RETENIDO y NO entran solos al proveedor (hay que
     // liberarlos a mano tras confirmar plazos). Debe ir en ISO con zona horaria y
     // coincidir con AVISO_FECHA_LIMITE de config.js (web).
-    ['AVISO_FECHA_LIMITE', '2026-09-06T21:00:00+02:00'],
+    ['AVISO_FECHA_LIMITE', '2026-09-08T00:00:00+02:00'],
     // Direcciones de envío por site (el proveedor envía). RESUMEN_PROVEEDOR las replica.
     ['ENVIO_GETAFE', '[COMPLETAR dirección de envío · Getafe]'],
     ['ENVIO_ILLESCAS', '[COMPLETAR dirección de envío · Illescas]'],

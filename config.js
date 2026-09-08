@@ -26,12 +26,13 @@ window.TIENDA_CONFIG = {
   // Cuando la tengáis: pon true, guarda y haz push → se abre todo (y desaparece el aviso).
   APORTACIONES_ACTIVAS: true,
 
-  // Avisos de entrega ("puede llegar después de la marcha del 12-S"):
-  // 1) por fecha: pedidos a partir de este instante (domingo 6-sep, 21:00 hora peninsular).
+  // Avisos de entrega (vacaciones del proveedor: los pedidos hechos a partir del
+  // 8-sep se entregan a partir del 24-sep):
+  // 1) por fecha: pedidos a partir de este instante (8-sep, 00:00 hora peninsular).
   //    OJO: este valor es solo para el AVISO de la web. Quien decide de verdad si un
   //    pedido es "tardío" (y lo RETIENE de producción) es el backend, con su propia
   //    copia en CONFIG → AVISO_FECHA_LIMITE. Mantén las dos fechas iguales.
-  AVISO_FECHA_LIMITE: '2026-09-06T21:00:00+02:00',
+  AVISO_FECHA_LIMITE: '2026-09-08T00:00:00+02:00',
   // 2) por stock: cuando se alcanzan estas camisetas pedidas (solo si las aportaciones están activas).
   AVISO_STOCK_UMBRAL: 2500,
 
@@ -54,7 +55,7 @@ window.TIENDA_CONFIG = {
     { sku: 'CAMISETA-5XL', talla: '5XL', ancho: 74, alto: 83, precio: 10, activo: true }
   ],
 
-  PICKUP: 'Getafe - Factoría Airbus - Puerta Sur / Puerta Norte (Asamblea de trabajadores en Huelga)',
+  PICKUP: 'La entrega la realiza el Coordinador del Grupo de Logística de tu site.',
   CONTACT_EMAIL: 'enfadadosconairbus.contacto@gmail.com',
 
   // Solo se usan cuando DEMO_MODE = true, para poder ver la pantalla final.

@@ -271,10 +271,10 @@
     setText('successIban', resp.iban || '');
     setText('successTotal', eur(resp.total));
     setText('successConcept', resp.concepto || resp.order_id || '');
-    // Site de recogida: Getafe e Illescas se recogen en Getafe; el resto en su site.
+    // Entrega: la realiza el Coordinador del Grupo de Logística de cada site.
     var sel = document.getElementById('siteSelect');
     var siteSel = sel ? String(sel.value || '').trim() : '';
-    var pickupSite = /^(getafe|illescas)$/i.test(siteSel) ? 'Getafe' : (siteSel || 'tu site');
+    var pickupSite = siteSel || 'tu site';
     setText('successPickup', pickupSite);
     var ok = $('success');
     var pedido = $('pedido');
@@ -339,10 +339,10 @@
     var html, urgente;
     if (tarde) {
       urgente = true;
-      html = '<span aria-hidden="true">⚠️</span> <strong>Posible entrega después de la marcha.</strong> Por los plazos de producción, tu camiseta podría llegar <strong>después de la marcha al Ministerio del 12-Septiembre</strong>. Tu aportación sigue sosteniendo la caja de resistencia.';
+      html = '<span aria-hidden="true">⚠️</span> <strong>Entrega a partir del 24 de septiembre.</strong> Por el periodo vacacional del proveedor, las camisetas encargadas <strong>a partir del 8 de septiembre</strong> se entregan <strong>a partir del 24 de septiembre</strong>. La entrega la realiza el Coordinador del Grupo de Logística de tu site. Tu aportación sigue sosteniendo la caja de resistencia.';
     } else {
       urgente = false;
-      html = '<span aria-hidden="true">⏱️</span> <strong>Pide antes del domingo 6 de septiembre a las 21:00</strong> para recibir la camiseta antes de la <strong>marcha al Ministerio del 12-Septiembre</strong>. Después de esa hora podría llegarte tras la marcha (producción 4-5 días).';
+      html = '<span aria-hidden="true">⏱️</span> <strong>Producción 4-5 días.</strong> La entrega la realiza el Coordinador del Grupo de Logística de tu site; te avisaremos por email cuando tu camiseta esté disponible.';
     }
     [$('avisoEntregaPedido'), $('avisoEntregaExito')].forEach(function (el) {
       if (!el) return;
