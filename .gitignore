@@ -14,6 +14,10 @@ Desktop.ini
 .env
 .env.*
 
+# --- Python (herramientas de conciliación en backend/) ---
+__pycache__/
+*.pyc
+
 # --- Config real opcional ---
 # config.js se versiona con PLACEHOLDERS. Si prefieres guardar tu versión con la
 # URL real del Worker en local sin subirla, úsala como config.local.js y añade

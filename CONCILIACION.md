@@ -75,13 +75,19 @@ Todo vive en el **Google Sheet** del backend (cuenta operativa), más `Code.gs`:
    `PAGO_CONCILIADO` y manda el email.
 3. En `MOVIMIENTOS_BANCO`, pon **`SI`** en `PROCESADO` de ese movimiento.
 
-## 7b. Si entra el pago de un pedido CADUCADO
+## 7b. Si entra el pago de un pedido CADUCADO o ANULADO
 
-Tras **⏳ Caducar pendientes vencidos**, un pedido pasa a `CADUCADO`. Si en una
-conciliación posterior **entra su transferencia**, el sistema **no lo confirma
-solo** (a propósito): `conciliarBanco` lo marca `REVISAR_CADUCADO`,
-`confirmarPagosPorLista` lo deja en `CADUCADO_OMITIDO`, y el `casador.py` lo saca
-en su propio cubo **`REVISAR_CADUCADO`** (no en `CASADO`). Tú decides:
+Un pedido puede quedar **fuera de juego** por dos vías: `CADUCADO` (venció el
+plazo, con **⏳ Caducar pendientes vencidos**) o `ANULADO` (descartado a mano con
+**🚫 Anular pedidos (selección)** — pedidos hechos por error que no se van a
+pagar; se marcan en vez de borrar la fila, para no romper `LINEAS_PEDIDO` ni
+perder el rastro). Los dos salen de pendientes, del stock y de la caja.
+
+Si en una conciliación posterior **entra la transferencia** de uno de ellos, el
+sistema **no lo confirma solo** (a propósito): `conciliarBanco` lo marca
+`REVISAR_CADUCADO` / `REVISAR_ANULADO`, `confirmarPagosPorLista` lo deja en
+`CADUCADO_OMITIDO` / `ANULADO_OMITIDO`, y el `casador.py` lo saca en su propio
+cubo (no en `CASADO`). Tú decides:
 
 - **Por defecto: honrar el pago (reactivar).** Es una caja solidaria y el dinero
   entró. En `PEDIDOS`, selecciona la fila del pedido caducado → **✅ Confirmar
