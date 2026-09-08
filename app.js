@@ -134,6 +134,12 @@
     var units = unitsInCart();
     setText('unitCount', units + (units === 1 ? ' ud.' : ' uds.'));
 
+    // El site de recogida solo hace falta si se lleva camiseta; una aportación suelta no lo necesita.
+    var siteSel = $('siteSelect');
+    if (siteSel) { siteSel.required = units > 0; }
+    var siteReq = $('siteReq');
+    if (siteReq) { siteReq.hidden = units === 0; }
+
     // barra móvil
     var sticky = $('stickyCart');
     if (sticky) {
@@ -180,7 +186,7 @@
     if (!nombre || !apellidos) return 'Indica tu nombre y apellidos.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Revisa tu email.';
     if (telefono.replace(/\D/g, '').length < 9) return 'Revisa tu teléfono.';
-    if (form.site && !form.site.value) return 'Elige tu site de recogida.';
+    if (units > 0 && form.site && !form.site.value) return 'Elige tu site de recogida.';
     if (!form.privacy.checked) return 'Debes aceptar la información de privacidad.';
     return null;
   }

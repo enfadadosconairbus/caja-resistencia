@@ -160,8 +160,8 @@
             <label><span class="cap">Apellidos <b class="req" aria-hidden="true">*</b></span><input name="apellidos" autocomplete="family-name" maxlength="100" required></label>
             <label><span class="cap">Email <b class="req" aria-hidden="true">*</b></span><input name="email" type="email" autocomplete="email" maxlength="120" required></label>
             <label><span class="cap">Teléfono <b class="req" aria-hidden="true">*</b></span><input name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required></label>
-            <label class="field-full"><span class="cap">Site de recogida <b class="req" aria-hidden="true">*</b></span>
-              <select name="site" id="siteSelect" required>
+            <label class="field-full"><span class="cap">Site de recogida <b class="req" id="siteReq" aria-hidden="true" hidden>*</b></span>
+              <select name="site" id="siteSelect">
                 <option value="" selected disabled>— Elige tu site —</option>
                 <option value="Getafe">Getafe</option>
                 <option value="Albacete">Albacete</option>
