@@ -41,8 +41,8 @@ from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 
 # Estados que ya cuentan como pagados (espejo de ESTADOS_PAGADOS en Code.gs).
-ESTADOS_PAGADOS = {"PAGO_CONCILIADO", "ENVIADO_PROVEEDOR", "LISTO_RECOGIDA",
-                   "ENTREGADO", "YA_PAGADO"}
+ESTADOS_PAGADOS = {"PAGO_CONCILIADO", "ENVIADO_PROVEEDOR", "RECIBIDO", "LISTO_RECOGIDA",
+                   "ENTREGADO", "FINALIZADO", "YA_PAGADO"}
 
 # Umbral de parecido para el candidato aproximado (0..1) cuando no hay match exacto.
 UMBRAL_FUZZY = 0.86

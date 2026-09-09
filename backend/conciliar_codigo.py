@@ -46,7 +46,7 @@ from openpyxl.utils import get_column_letter
 import casador as C   # tokens_clave, compacto, parse_importe (mismo directorio)
 
 # Espejo de Code.gs: estados pagados y "fuera de juego".
-PAGADOS = {"PAGO_CONCILIADO", "ENVIADO_PROVEEDOR", "RECIBIDO", "LISTO_RECOGIDA", "ENTREGADO"}
+PAGADOS = {"PAGO_CONCILIADO", "ENVIADO_PROVEEDOR", "RECIBIDO", "LISTO_RECOGIDA", "ENTREGADO", "FINALIZADO"}
 FUERA = {"CADUCADO", "ANULADO"}
 UMBRAL_FUZZY = 0.86
 
