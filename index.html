@@ -44,6 +44,7 @@
       <div class="hero-actions">
         <a class="btn btn-primary" href="#producto">VER CAMISETA</a>
         <a class="btn btn-ghost" href="#pedido">COLABORAR</a>
+        <a class="btn btn-ghost" id="heroBizum" href="#bizum" hidden>DONAR POR BIZUM</a>
       </div>
       <a class="btn btn-cream hero-context" href="https://enfadadosconairbus.vercel.app/es" target="_blank" rel="noopener noreferrer">¿No conoces el conflicto? Conócelo en la web del movimiento <span class="arrow" aria-hidden="true">↗</span></a>
     </section>
@@ -129,7 +130,8 @@
           <div id="cartEmpty" class="cart-empty">Todavía no has añadido camisetas.</div>
           <div id="cartLines" class="cart-lines"></div>
           <div class="donation">
-            <div class="donation-title">Aportación adicional a la Caja</div>
+            <div class="donation-title"><span aria-hidden="true">💛</span> Aportación adicional a la Caja</div>
+            <p class="micro donation-help">Si llevas camiseta, <strong>se suma al total y lo pagas todo junto en la misma transferencia</strong>. Un solo pago, un solo concepto.</p>
             <div id="donationButtons" class="donation-buttons" role="group" aria-label="Aportación adicional">
               <button type="button" data-donation="0" class="active">0 €</button>
               <button type="button" data-donation="5">+5 €</button>
@@ -195,6 +197,42 @@
       </form>
     </section>
 
+    <div class="hazard" aria-hidden="true"></div>
+
+    <section id="bizum" class="section wrap bizum-section" hidden>
+      <p class="eyebrow orange">DONACIÓN DIRECTA · SIN CAMISETA</p>
+      <h2>¿Prefieres solo aportar? Dona por Bizum</h2>
+      <p class="muted">Aportación directa a la caja desde la app de tu banco, en 20 segundos. <strong>Todo el importe va a la caja</strong> y no necesitas dejar ningún dato. Es la vía más rápida para sostener la marcha del 12&nbsp;de&nbsp;septiembre.</p>
+
+      <div class="bizum-card panel">
+        <div class="bizum-badge"><span aria-hidden="true">📲</span> BIZUM · DONACIÓN</div>
+        <div class="bizum-code-grid">
+          <div class="bizum-field">
+            <span class="bizum-field-label">CÓDIGO</span>
+            <div class="bizum-code-row">
+              <strong id="bizumCode" class="bizum-code mono">14867</strong>
+              <button type="button" class="copy-btn" data-copy="bizumCode">COPIAR</button>
+            </div>
+          </div>
+          <div class="bizum-field">
+            <span class="bizum-field-label">A NOMBRE DE</span>
+            <strong id="bizumName" class="bizum-name">Unión de Trabajadores Independientes y Libres</strong>
+            <span class="micro">Sindicato titular de la caja · CIF G10605053</span>
+          </div>
+        </div>
+
+        <ol class="bizum-steps">
+          <li>Abre la <strong>app de tu banco</strong> y entra en <strong>Bizum</strong>.</li>
+          <li>Elige <strong>«Donar» / «Donaciones» / «ONG»</strong> (el nombre cambia según el banco).</li>
+          <li>Introduce el <strong>código <span class="bizumCodeInline">14867</span></strong>. Debe aparecer <strong><span class="bizumNameInline">Unión de Trabajadores Independientes y Libres</span></strong>.</li>
+          <li>Escribe el <strong>importe</strong> que quieras donar y <strong>confirma</strong>.</li>
+        </ol>
+
+        <p class="micro bizum-note"><span aria-hidden="true">🔒</span> La donación se realiza <strong>dentro de la app de tu banco</strong>: esta web no procesa el pago ni ve tus datos bancarios. Comprueba que el nombre que aparece es <strong>«Unión de Trabajadores Independientes y Libres»</strong>; si no coincide, no confirmes y escríbenos a <a href="mailto:enfadadosconairbus.contacto@gmail.com">enfadadosconairbus.contacto@gmail.com</a>.</p>
+        <p class="bizum-crosssell"><span aria-hidden="true">👕</span> ¿Quieres también la camiseta? <a href="#pedido">Añádela arriba</a> y suma tu donativo con la <strong>aportación extra</strong>: así lo pagas todo junto en una sola transferencia, sin usar Bizum.</p>
+      </div>
+    </section>
+
     <section id="success" class="success-section" hidden aria-live="polite">
       <div class="wrap success-inner">
         <p class="eyebrow orange">APORTACIÓN REGISTRADA</p>
@@ -232,7 +270,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <strong>PLATAFORMA SOLIDARIA · CAJA DE RESISTENCIA · HUELGA AIRBUS 2026</strong>
-      <p>Aportación solidaria a la Caja de Resistencia; la camiseta es un agradecimiento por tu colaboración. Página no oficial de Airbus. No se procesan pagos: la aportación se realiza por transferencia bancaria.</p>
+      <p>Aportación solidaria a la Caja de Resistencia; la camiseta es un agradecimiento por tu colaboración. Página no oficial de Airbus. Esta web no procesa pagos con tarjeta: la camiseta se aporta por transferencia bancaria; también puedes donar directamente a la caja por Bizum, desde tu banco.</p>
       <nav class="footer-legal" aria-label="Textos legales y gobernanza">
         <button type="button" data-legal="gobernanza">Gobernanza</button>
         <button type="button" data-legal="aviso">Aviso legal</button>
@@ -300,7 +338,7 @@
     </div>
     <div class="legal-body">
       <p><strong>Titularidad.</strong> Esta plataforma solidaria canaliza aportaciones a la caja de resistencia del movimiento #EnfadadosconAirbus mediante la venta solidaria de camisetas. La titularidad jurídica de la caja la asume el sindicato Unión de Trabajadores Independientes y Libres (Sindicato Útil), CIF G10605053, con domicilio en Paseo John Lennon, s/n, 28906 Getafe (Madrid), que responde del fondo y firma estos textos legales.</p>
-      <p><strong>Objeto.</strong> Ofrecer camisetas cuya aportación sostiene la caja de resistencia e informar sobre el fondo (Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico). El cobro se realiza por transferencia bancaria; esta web no procesa pagos con tarjeta ni almacena datos bancarios.</p>
+      <p><strong>Objeto.</strong> Ofrecer camisetas cuya aportación sostiene la caja de resistencia, y permitir donaciones directas a la caja, e informar sobre el fondo (Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico). La camiseta se aporta por transferencia bancaria; además se admiten donaciones directas a la caja por Bizum (donación al código de la entidad titular). Esta web no procesa pagos con tarjeta ni almacena datos bancarios.</p>
       <p><strong>Página no oficial.</strong> Esta plataforma no representa a Airbus ni utiliza su identidad corporativa. Las marcas, nombres comerciales y signos distintivos de terceros que aparezcan pertenecen a sus titulares y se emplean únicamente a título informativo, para identificar a la empresa a la que se refiere el conflicto.</p>
       <p><strong>Transparencia.</strong> Las cifras de la caja se publican con su fecha de actualización y son trazables a movimientos reales; ninguna cifra se publica sin respaldo.</p>
       <p><strong>Enlaces.</strong> Esta web enlaza a la web del movimiento y puede enlazar a otras fuentes externas. No se responde del contenido de esos sitios ni de sus políticas.</p>
@@ -318,7 +356,7 @@
       <p><strong>Responsable del tratamiento.</strong> La caja de resistencia, con titularidad jurídica del sindicato Unión de Trabajadores Independientes y Libres (Sindicato Útil), CIF G10605053, con domicilio en Paseo John Lennon, s/n, 28906 Getafe (Madrid). Contacto: enfadadosconairbus.contacto@gmail.com.</p>
       <p><strong>Qué datos se tratan y con qué fin.</strong></p>
       <p>1. <strong>Aportación / pedido.</strong> Al enviar tu aportación se tratan tu nombre, apellidos, email, teléfono, site de recogida y el detalle del pedido, con la única finalidad de gestionar la aportación, confirmar la transferencia y coordinar la recogida de la camiseta. Base jurídica: la ejecución de tu solicitud y tu consentimiento. No pedimos DNI ni número de empleado.</p>
-      <p>2. <strong>Confirmación por transferencia.</strong> Para casar tu pago identificamos el ingreso por tu código AIR26-XXXXX y el importe. No accedemos a más datos de tu cuenta que los que figuran en el propio movimiento bancario.</p>
+      <p>2. <strong>Confirmación del pago.</strong> Para casar tu pago identificamos el ingreso por tu código AIR26-XXXXX y el importe. No accedemos a más datos de tu cuenta que los que figuran en el propio movimiento bancario. Si donas por Bizum, la operación se realiza íntegramente en la app de tu banco: esta web no interviene en el pago ni recibe tus datos bancarios.</p>
       <p>3. <strong>Correo de contacto.</strong> Si escribes a la dirección de contacto, se trata tu correo y el contenido del mensaje con la única finalidad de responderte.</p>
       <p><strong>Encargados y terceros.</strong> Al cargar la página, tu navegador no contacta con ningún servidor de terceros: las tipografías, los estilos y las imágenes se sirven desde este mismo dominio. Solo cuando envías una aportación, los datos del pedido viajan a Cloudflare (un Worker que intermedia las peticiones) y a Google (Apps Script, Google Sheets y Gmail), que los procesan para registrar el pedido y enviarte los correos de confirmación y recogida. Estos proveedores pueden tratar datos en servidores dentro y fuera del Espacio Económico Europeo, con las garantías previstas en el RGPD. Los datos no se ceden ni se venden con fines comerciales.</p>
       <p><strong>Conservación.</strong> Los datos del pedido se conservan mientras dure la gestión de tu aportación y la recogida, y el plazo legal exigible; después se suprimen o anonimizan.</p>
@@ -346,7 +384,7 @@
     </div>
     <div class="legal-body">
       <p><strong>Qué es.</strong> Una aportación voluntaria a la caja de resistencia para sostener a quienes pierden salario por secundar la movilización. Como agradecimiento, recibes una camiseta. La camiseta es un obsequio por colaborar, no una compraventa con ánimo de lucro: el importe se reparte entre el coste de la propia camiseta y la caja, según se indica en cada aportación (por ejemplo, 5 € camiseta + 5 € a la caja).</p>
-      <p><strong>Cómo se paga.</strong> Solo por transferencia bancaria, indicando como concepto tu código AIR26-XXXXX. Esta web no procesa pagos con tarjeta ni guarda datos bancarios. La aportación se confirma cotejando el ingreso real en la cuenta.</p>
+      <p><strong>Cómo se paga.</strong> La camiseta se aporta por transferencia bancaria, indicando como concepto tu código AIR26-XXXXX. Esta web no procesa pagos con tarjeta ni guarda datos bancarios. La aportación se confirma cotejando el ingreso real en la cuenta. Si prefieres solo donar a la caja, sin camiseta, puedes hacerlo por Bizum (donación al código de la entidad titular).</p>
       <p><strong>Quién puede aportar.</strong> Cualquier persona mayor de edad con capacidad para disponer de los fondos que entrega, sea o no de la plantilla de Airbus España.</p>
       <p><strong>Entrega de la camiseta.</strong> La entrega la realiza el Coordinador del Grupo de Logística de cada site (Albacete, Cádiz, Getafe, Illescas, San Pablo, Tablada). Las camisetas encargadas a partir del 8 de septiembre se entregarán a partir del 24 de septiembre debido al periodo vacacional del proveedor. Los plazos de producción son orientativos (4-5 días).</p>
       <p><strong>Destino de los fondos.</strong> Se destinan a los fines de la caja según su reglamento de reparto: gastos operativos de la caja y fletar autobuses a la marcha del 12 de septiembre. Puede consultarse en Gobernanza (enlace al pie de la página).</p>

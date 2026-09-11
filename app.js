@@ -173,6 +173,29 @@
     });
   }
 
+  // ---- bizum -----------------------------------------------------------------
+  // Rellena el código/nombre desde la config (fuente única) y muestra u oculta
+  // todo lo de Bizum según CFG.BIZUM.ACTIVO. El pago sucede en la app del banco;
+  // aquí solo se pinta el código.
+  function setupBizum() {
+    var bz = CFG.BIZUM || {};
+    var section = $('bizum');
+    var heroBtn = $('heroBizum');
+    if (bz.ACTIVO !== true) {
+      if (section) section.hidden = true;
+      if (heroBtn) heroBtn.hidden = true;
+      return;
+    }
+    var code = bz.CODIGO || '';
+    var name = bz.NOMBRE || '';
+    setText('bizumCode', code);
+    setText('bizumName', name);
+    Array.prototype.forEach.call(document.querySelectorAll('.bizumCodeInline'), function (el) { el.textContent = code; });
+    Array.prototype.forEach.call(document.querySelectorAll('.bizumNameInline'), function (el) { el.textContent = name; });
+    if (section) section.hidden = false;
+    if (heroBtn) heroBtn.hidden = false;
+  }
+
   // ---- envío -----------------------------------------------------------------
   function validate(form) {
     if (form.website && form.website.value) return '__bot__'; // honeypot
@@ -378,6 +401,7 @@
     setQty(1);
     renderCart();
     wireDonations();
+    setupBizum();
     wireCopy();
     wireLegal();
 

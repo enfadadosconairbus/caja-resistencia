@@ -36,6 +36,18 @@ window.TIENDA_CONFIG = {
   // 2) por stock: cuando se alcanzan estas camisetas pedidas (solo si las aportaciones están activas).
   AVISO_STOCK_UMBRAL: 2500,
 
+  // Bizum — donación directa a la caja (código de "Donación a ONG").
+  // El pago se hace ÍNTEGRAMENTE en la app del banco de quien dona: esta web no
+  // procesa nada, solo muestra el código. El titular es el mismo sindicato que
+  // figura en los textos legales (Unión de Trabajadores Independientes y Libres,
+  // CIF G10605053).
+  //   ACTIVO -> false oculta todo lo de Bizum (bloque de donación y opción en el éxito).
+  BIZUM: {
+    ACTIVO: true,
+    CODIGO: '14867',
+    NOMBRE: 'Unión de Trabajadores Independientes y Libres'
+  },
+
   // Producto único de momento (arquitectura preparada para multiproducto).
   PRODUCT: { nombre: 'Camiseta', skuPrefix: 'CAMISETA' },
 
