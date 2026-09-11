@@ -47,8 +47,10 @@ var HEAD = {
 };
 
 // Flujo de estados de un pedido.
-var ESTADOS = ['PENDIENTE_PAGO', 'PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO', 'CADUCADO', 'ANULADO'];
-var ESTADOS_PAGADOS = ['PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO'];
+var ESTADOS = ['PENDIENTE_PAGO', 'PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO', 'FINALIZADO', 'CADUCADO', 'ANULADO'];
+// FINALIZADO = terminal para pedidos de SOLO aportación (donación sin camiseta): no hay
+// nada que entregar. Cuenta como pagado/ingreso igual que el resto de estados liquidados.
+var ESTADOS_PAGADOS = ['PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA', 'ENTREGADO', 'FINALIZADO'];
 
 // Pedidos "fuera de juego": no van a entrar en producción. CADUCADO = venció el plazo;
 // ANULADO = descartado a mano (pedido por error que no se va a pagar). Un pago que
@@ -483,6 +485,198 @@ function avisarPedidosListos(ss) {
   return n;
 }
 
+/* Marcar pedidos RECIBIDOS por PEDIDO (no por lote). El proveedor perdió el control
+   de los lotes y entrega pedidos sueltos: pegas aquí los IDs que te ha entregado y
+   cada uno pasa a LISTO_RECOGIDA + FECHA_LISTO y recibe el email "tu camiseta está
+   lista para recoger". Lee los IDs de la hoja RECIBIR_PEDIDOS (col A) y escribe el
+   resultado en col B. Misma mecánica que confirmarPagosPorLista: confirmación previa,
+   idempotente/reanudable (si para por tiempo o cuota de Gmail, re-ejecutar continúa),
+   y registro en LOG.
+   SOLO avanza a LISTO_RECOGIDA lo que está en ENVIADO_PROVEEDOR. Un pedido que YA
+   estaba LISTO_RECOGIDA y se vuelve a listar se REAVISA (reenvía email) sin tocar su
+   estado ni su fecha. PENDIENTE_PAGO NO se marca listo: sale como OMITIDO_PENDIENTE_PAGO
+   (no cambia de estado ni recibe email). PAGO_CONCILIADO, RECIBIDO, ENTREGADO, CADUCADO
+   y ANULADO también se OMITEN con etiqueta, nunca en silencio. */
+var SH_RECIBIR = 'RECIBIR_PEDIDOS';
+// Estado(s) desde los que este flujo AVANZA el pedido a LISTO_RECOGIDA + avisa.
+var RECIBIR_ORIGEN = ['ENVIADO_PROVEEDOR'];
+
+function marcarPedidosRecibidosPorLista() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(SH_RECIBIR);
+  if (!sh) {
+    sh = ss.insertSheet(SH_RECIBIR);
+    sh.getRange(1, 1, 1, 2).setValues([['ID', 'RESULTADO']]).setFontWeight('bold');
+    sh.setFrozenRows(1); sh.setColumnWidth(1, 140); sh.setColumnWidth(2, 220);
+    ui().alert('He creado la hoja "' + SH_RECIBIR + '".\n\n' +
+      'Pega en la columna A (debajo de "ID") los IDs de los pedidos que te ha ENTREGADO ' +
+      'el proveedor, uno por fila (p. ej. AIR26-00001). Deja la columna B vacía: la ' +
+      'rellena el script.\n\nLuego vuelve a pulsar "📥 Marcar pedidos recibidos (lista)".');
+    return;
+  }
+  var last = sh.getLastRow();
+  if (last < 2) { ui().alert('La hoja "' + SH_RECIBIR + '" no tiene IDs. Pega los IDs en la columna A.'); return; }
+
+  var vals = sh.getRange(2, 1, last - 1, 2).getValues();   // [ID, RESULTADO]
+  var esHecho = function (res) { var r = String(res).trim().toUpperCase(); return !!r && r !== 'ERROR'; };
+  var pendientes = 0;
+  for (var i = 0; i < vals.length; i++) if (String(vals[i][0]).trim() && !esHecho(vals[i][1])) pendientes++;
+  if (!pendientes) { ui().alert('No hay pedidos pendientes en "' + SH_RECIBIR + '" (todos tienen ya un resultado). Para reprocesar uno, borra su celda de la columna B.'); return; }
+
+  var usaGmail = !PropertiesService.getScriptProperties().getProperty('EMAIL_API_KEY');
+  var avisoQuota = usaGmail
+    ? '\n\n⚠️ Sin proveedor (Brevo): los emails salen por Gmail, con límite de ~100/día. Si hay más, el script parará al agotar la cuota; continúa mañana re-ejecutando (es idempotente), o configura Brevo (📮).'
+    : '';
+  var resp = ui().alert('Marcar pedidos recibidos',
+    'Se van a marcar ' + pendientes + ' pedido(s) como LISTO PARA RECOGER y se enviará a cada uno el ' +
+    'email de "tu camiseta está lista para recoger".\n\nEsto NO se puede deshacer (los emails se envían).' +
+    avisoQuota + '\n\n¿Continúas?', ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var pedidos = indicePedidos(ss), cfg = leerConfig();
+  var shP = ss.getSheetByName(SH.PEDIDOS), HP = HEAD.PEDIDOS;
+  var colEstado = HP.indexOf('ESTADO') + 1, colFechaListo = HP.indexOf('FECHA_LISTO') + 1;
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;
+  var avis = 0, reav = 0, omit = 0, noenc = 0, sinmail = 0, err = 0, dup = 0, interrumpido = '';
+  var emailadosEsteRun = {};
+
+  for (var r = 0; r < vals.length; r++) {
+    var id = String(vals[r][0]).trim();
+    if (!id || esHecho(vals[r][1])) continue;
+    if (Date.now() - t0 > MAX_MS) { interrumpido = 'tiempo'; break; }
+    if (usaGmail && MailApp.getRemainingDailyQuota() <= 0) { interrumpido = 'cuota'; break; }
+
+    var p = pedidos[id];
+    if (!p) { sh.getRange(r + 2, 2).setValue('NO_ENCONTRADO'); noenc++; continue; }
+    if (!p.email) { sh.getRange(r + 2, 2).setValue('SIN_EMAIL'); sinmail++; continue; }
+    if (emailadosEsteRun[id]) { sh.getRange(r + 2, 2).setValue('DUPLICADO_EN_LISTA'); dup++; continue; }
+
+    var estado = p.estado;
+    var avanza = RECIBIR_ORIGEN.indexOf(estado) >= 0;
+    var yaListo = (estado === 'LISTO_RECOGIDA');
+    if (!avanza && !yaListo) { sh.getRange(r + 2, 2).setValue('OMITIDO_' + estado); omit++; continue; }
+
+    try {
+      emailListoRecoger(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg, p.site);
+    } catch (e) {
+      sh.getRange(r + 2, 2).setValue('ERROR');
+      registrarLog(ss, 'EMAIL_ERROR', 'recibido-lista ' + id + ': ' + e); err++; continue;
+    }
+    emailadosEsteRun[id] = true;
+
+    if (avanza) {
+      shP.getRange(p.fila, colEstado).setValue('LISTO_RECOGIDA');
+      shP.getRange(p.fila, colFechaListo).setValue(new Date());
+      pedidos[id].estado = 'LISTO_RECOGIDA';
+      sh.getRange(r + 2, 2).setValue('RECIBIDO_AVISADO'); avis++;
+    } else {   // ya estaba LISTO_RECOGIDA: solo reenvío del aviso, sin tocar estado ni fecha
+      sh.getRange(r + 2, 2).setValue('REAVISADO'); reav++;
+    }
+  }
+
+  registrarLog(ss, 'RECIBIR_LISTA', 'avisados ' + avis + ' · reavisados ' + reav + ' · omitidos ' + omit +
+    ' · sin email ' + sinmail + ' · duplicados ' + dup + ' · no encontrados ' + noenc + ' · error ' + err +
+    (interrumpido ? ' · PARADO(' + interrumpido + ')' : ''));
+  refrescarDashboard();
+
+  var msg = 'Marcado de recibidos terminado.\n\n' +
+    '📥 Marcados LISTO y avisados: ' + avis + '\n' +
+    (reav ? '🔁 Reavisados (ya estaban listos): ' + reav + '\n' : '') +
+    (omit ? '⏭️ Omitidos (otro estado, revísalos): ' + omit + '\n' : '') +
+    (sinmail ? '📭 Pedidos sin email: ' + sinmail + '\n' : '') +
+    (dup ? '👥 Duplicados en la lista: ' + dup + '\n' : '') +
+    (noenc ? '❓ IDs no encontrados: ' + noenc + '\n' : '') +
+    (err ? '⚠️ Errores de envío (revisa la hoja LOG): ' + err + '\n' : '');
+  if (interrumpido === 'tiempo') msg += '\n⏱️ Parado por el límite de tiempo. Vuelve a pulsar para continuar donde lo dejó.';
+  if (interrumpido === 'cuota') msg += '\n📭 Cuota diaria de Gmail agotada. Continúa mañana, o configura Brevo (📮).';
+  ui().alert(msg);
+}
+
+/* Reenvía el aviso de recogida CORREGIDO (cambio de última hora: nuevo lugar y horario)
+   a quienes YA fueron avisados. Lee los IDs de la hoja CORREGIR_RECOGIDA (col A) y a cada
+   pedido de GETAFE con email le manda emailCambioRecogida (banner rojo + datos nuevos).
+   NO cambia el estado del pedido. Es específico de Getafe: los pedidos de otros sites se
+   OMITEN (a ellos no se les dio ese lugar/horario), igual que los caducados/anulados.
+   Idempotente/reanudable, confirmación previa, aviso de cuota y LOG, como las demás
+   acciones por lista. Para reenviar a un ID ya hecho, borra su celda de la columna B. */
+var SH_CORREGIR = 'CORREGIR_RECOGIDA';
+
+function avisarCambioRecogidaPorLista() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(SH_CORREGIR);
+  if (!sh) {
+    sh = ss.insertSheet(SH_CORREGIR);
+    sh.getRange(1, 1, 1, 2).setValues([['ID', 'RESULTADO']]).setFontWeight('bold');
+    sh.setFrozenRows(1); sh.setColumnWidth(1, 140); sh.setColumnWidth(2, 220);
+    ui().alert('He creado la hoja "' + SH_CORREGIR + '".\n\n' +
+      'Pega en la columna A (debajo de "ID") los IDs de los pedidos YA AVISADOS a los que ' +
+      'hay que enviar el cambio de lugar/horario, uno por fila (p. ej. AIR26-00001). Deja ' +
+      'la columna B vacía: la rellena el script.\n\nLuego vuelve a pulsar "📣 Avisar cambio de recogida (lista)".');
+    return;
+  }
+  var last = sh.getLastRow();
+  if (last < 2) { ui().alert('La hoja "' + SH_CORREGIR + '" no tiene IDs. Pega los IDs en la columna A.'); return; }
+
+  var vals = sh.getRange(2, 1, last - 1, 2).getValues();
+  var esHecho = function (res) { var r = String(res).trim().toUpperCase(); return !!r && r !== 'ERROR'; };
+  var pendientes = 0;
+  for (var i = 0; i < vals.length; i++) if (String(vals[i][0]).trim() && !esHecho(vals[i][1])) pendientes++;
+  if (!pendientes) { ui().alert('No hay pedidos pendientes en "' + SH_CORREGIR + '" (todos tienen ya un resultado). Para reenviar a uno, borra su celda de la columna B.'); return; }
+
+  var usaGmail = !PropertiesService.getScriptProperties().getProperty('EMAIL_API_KEY');
+  var avisoQuota = usaGmail
+    ? '\n\n⚠️ Sin proveedor (Brevo): los emails salen por Gmail, con límite de ~100/día. Si hay más, el script parará al agotar la cuota; continúa mañana re-ejecutando (es idempotente), o configura Brevo (📮).'
+    : '';
+  var resp = ui().alert('Avisar cambio de recogida',
+    'Se va a enviar el email de CAMBIO de lugar y horario (Local sindical de CGT · miércoles 9, 10:00-12:00) a ' +
+    pendientes + ' pedido(s) de Getafe.\n\nEsto NO se puede deshacer (los emails se envían). No cambia el estado de los pedidos.' +
+    avisoQuota + '\n\n¿Continúas?', ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var pedidos = indicePedidos(ss), cfg = leerConfig();
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;
+  var env = 0, omit = 0, noenc = 0, sinmail = 0, err = 0, dup = 0, interrumpido = '';
+  var emailadosEsteRun = {};
+
+  for (var r = 0; r < vals.length; r++) {
+    var id = String(vals[r][0]).trim();
+    if (!id || esHecho(vals[r][1])) continue;
+    if (Date.now() - t0 > MAX_MS) { interrumpido = 'tiempo'; break; }
+    if (usaGmail && MailApp.getRemainingDailyQuota() <= 0) { interrumpido = 'cuota'; break; }
+
+    var p = pedidos[id];
+    if (!p) { sh.getRange(r + 2, 2).setValue('NO_ENCONTRADO'); noenc++; continue; }
+    if (!p.email) { sh.getRange(r + 2, 2).setValue('SIN_EMAIL'); sinmail++; continue; }
+    if (emailadosEsteRun[id]) { sh.getRange(r + 2, 2).setValue('DUPLICADO_EN_LISTA'); dup++; continue; }
+    var esGetafe = !String(p.site || '').trim() || /getafe/i.test(String(p.site));
+    if (!esGetafe) { sh.getRange(r + 2, 2).setValue('OMITIDO_NO_GETAFE'); omit++; continue; }
+    if (ESTADOS_FUERA.indexOf(p.estado) >= 0) { sh.getRange(r + 2, 2).setValue('OMITIDO_' + p.estado); omit++; continue; }
+
+    try {
+      emailCambioRecogida(p.email, p.id, p.nombre, lineasDePedido(ss, p.id), p.productos, p.aportacion, p.total, cfg, p.site);
+      sh.getRange(r + 2, 2).setValue('AVISADO'); emailadosEsteRun[id] = true; env++;
+    } catch (e) {
+      sh.getRange(r + 2, 2).setValue('ERROR');
+      registrarLog(ss, 'EMAIL_ERROR', 'cambio-recogida ' + id + ': ' + e); err++;
+    }
+  }
+
+  registrarLog(ss, 'CAMBIO_RECOGIDA', 'avisados ' + env + ' · omitidos ' + omit + ' · sin email ' + sinmail +
+    ' · duplicados ' + dup + ' · no encontrados ' + noenc + ' · error ' + err + (interrumpido ? ' · PARADO(' + interrumpido + ')' : ''));
+  refrescarDashboard();
+
+  var msg = 'Aviso de cambio de recogida terminado.\n\n' +
+    '📣 Avisados: ' + env + '\n' +
+    (omit ? '⏭️ Omitidos (no Getafe / caducados-anulados): ' + omit + '\n' : '') +
+    (sinmail ? '📭 Pedidos sin email: ' + sinmail + '\n' : '') +
+    (dup ? '👥 Duplicados en la lista: ' + dup + '\n' : '') +
+    (noenc ? '❓ IDs no encontrados: ' + noenc + '\n' : '') +
+    (err ? '⚠️ Errores de envío (revisa la hoja LOG): ' + err + '\n' : '');
+  if (interrumpido === 'tiempo') msg += '\n⏱️ Parado por el límite de tiempo. Vuelve a pulsar para continuar donde lo dejó.';
+  if (interrumpido === 'cuota') msg += '\n📭 Cuota diaria de Gmail agotada. Continúa mañana, o configura Brevo (📮).';
+  ui().alert(msg);
+}
+
 /* ===========================  ACCIONES MANUALES  ======================== */
 
 function confirmarPagoSeleccion() {
@@ -661,8 +855,11 @@ function enviarEmailsPrueba() {
   try {
     emailPedidoRecibido(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
     emailPagoConfirmado(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg, 'San Pablo');
-    emailListoRecoger(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg, 'San Pablo');
-    ui().alert('3 emails de prueba enviados a ' + to + '\n(recibido, confirmado y listo).');
+    emailListoRecoger(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg, 'Getafe');
+    emailCambioRecogida(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg, 'Getafe');
+    emailViernesListo(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
+    emailViernesEntregado(to, 'AIR26-PRUEBA', 'Prueba', lineas, 30, 10, 40, cfg);
+    ui().alert('6 emails de prueba enviados a ' + to + '\n(recibido, confirmado, listo-Getafe, cambio de recogida, viernes-LISTO y viernes-ENTREGADO).');
   } catch (e) { ui().alert('No se pudieron enviar los emails de prueba:\n' + e); }
 }
 
@@ -708,6 +905,258 @@ function marcarEntregadoSeleccion() {
   sh.getRange(r.fila, H.indexOf('FECHA_ENTREGADO') + 1).setValue(new Date());
   registrarLog(ss, 'ENTREGA', r.id); refrescarDashboard();
   ui().alert('Pedido ' + r.id + ' → ENTREGADO.');
+}
+
+/* Marcar ENTREGADO por LISTA. Pega en la hoja ENTREGAR_PEDIDOS (col A) los IDs de los
+   pedidos ya entregados en mano; cada uno pasa a ENTREGADO + FECHA_ENTREGADO. El
+   resultado va en la col B. NO envía emails. Idempotente/reanudable (los ya hechos se
+   saltan; para reprocesar uno, borra su celda de la col B) y registro en LOG. Se saltan
+   los CADUCADO/ANULADO (no se entregan) y los que ya estaban ENTREGADO. */
+var SH_ENTREGAR = 'ENTREGAR_PEDIDOS';
+
+function marcarEntregadosPorLista() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(SH_ENTREGAR);
+  if (!sh) {
+    sh = ss.insertSheet(SH_ENTREGAR);
+    sh.getRange(1, 1, 1, 2).setValues([['ID', 'RESULTADO']]).setFontWeight('bold');
+    sh.setFrozenRows(1); sh.setColumnWidth(1, 140); sh.setColumnWidth(2, 200);
+    ui().alert('He creado la hoja "' + SH_ENTREGAR + '".\n\n' +
+      'Pega en la columna A (debajo de "ID") los IDs de los pedidos ENTREGADOS, uno por ' +
+      'fila (p. ej. AIR26-00001). Deja la columna B vacía: la rellena el script.\n\n' +
+      'Luego vuelve a pulsar "🤝 Marcar ENTREGADO por lista".');
+    return;
+  }
+  var last = sh.getLastRow();
+  if (last < 2) { ui().alert('La hoja "' + SH_ENTREGAR + '" no tiene IDs. Pega los IDs en la columna A.'); return; }
+
+  var vals = sh.getRange(2, 1, last - 1, 2).getValues();
+  var esHecho = function (res) { var r = String(res).trim().toUpperCase(); return !!r && r !== 'ERROR'; };
+  var pendientes = 0;
+  for (var i = 0; i < vals.length; i++) if (String(vals[i][0]).trim() && !esHecho(vals[i][1])) pendientes++;
+  if (!pendientes) { ui().alert('No hay pedidos pendientes en "' + SH_ENTREGAR + '" (todos tienen ya un resultado). Para reprocesar uno, borra su celda de la columna B.'); return; }
+
+  var resp = ui().alert('Marcar ENTREGADO por lista',
+    'Se van a marcar ' + pendientes + ' pedido(s) como ENTREGADO (con su fecha de entrega).\n\n' +
+    'No se envían emails. Los caducados/anulados y los que ya estaban entregados se omiten.\n\n¿Continúas?',
+    ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var pedidos = indicePedidos(ss);
+  var shP = ss.getSheetByName(SH.PEDIDOS), HP = HEAD.PEDIDOS;
+  var colEstado = HP.indexOf('ESTADO') + 1, colFecha = HP.indexOf('FECHA_ENTREGADO') + 1;
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;
+  var ent = 0, ya = 0, omit = 0, noenc = 0, dup = 0, interrumpido = '';
+  var hechosEsteRun = {};
+
+  for (var r = 0; r < vals.length; r++) {
+    var id = String(vals[r][0]).trim();
+    if (!id || esHecho(vals[r][1])) continue;
+    if (Date.now() - t0 > MAX_MS) { interrumpido = 'tiempo'; break; }
+
+    var p = pedidos[id];
+    if (!p) { sh.getRange(r + 2, 2).setValue('NO_ENCONTRADO'); noenc++; continue; }
+    if (hechosEsteRun[id]) { sh.getRange(r + 2, 2).setValue('DUPLICADO_EN_LISTA'); dup++; continue; }
+    if (p.estado === 'ENTREGADO') { sh.getRange(r + 2, 2).setValue('YA_ENTREGADO'); ya++; continue; }
+    if (ESTADOS_FUERA.indexOf(p.estado) >= 0) { sh.getRange(r + 2, 2).setValue('OMITIDO_' + p.estado); omit++; continue; }
+
+    shP.getRange(p.fila, colEstado).setValue('ENTREGADO');
+    shP.getRange(p.fila, colFecha).setValue(new Date());
+    pedidos[id].estado = 'ENTREGADO';
+    hechosEsteRun[id] = true;
+    sh.getRange(r + 2, 2).setValue('ENTREGADO'); ent++;
+  }
+
+  registrarLog(ss, 'ENTREGA_LISTA', 'entregados ' + ent + ' · ya ' + ya + ' · omitidos ' + omit +
+    ' · duplicados ' + dup + ' · no encontrados ' + noenc + (interrumpido ? ' · PARADO(' + interrumpido + ')' : ''));
+  refrescarDashboard();
+
+  var msg = 'Marcado de entregados terminado.\n\n' +
+    '🤝 Marcados ENTREGADO: ' + ent + '\n' +
+    (ya ? '• Ya estaban entregados: ' + ya + '\n' : '') +
+    (omit ? '⏭️ Omitidos (caducados/anulados): ' + omit + '\n' : '') +
+    (dup ? '👥 Duplicados en la lista: ' + dup + '\n' : '') +
+    (noenc ? '❓ IDs no encontrados: ' + noenc + '\n' : '');
+  if (interrumpido === 'tiempo') msg += '\n⏱️ Parado por el límite de tiempo. Vuelve a pulsar para continuar donde lo dejó.';
+  ui().alert(msg);
+}
+
+/* Marcar FINALIZADO por LISTA — para pedidos que son SOLO aportación (donación sin
+   camiseta): no hay nada que entregar, así que se cierran con el estado terminal
+   FINALIZADO. Pega los IDs en la hoja FINALIZAR_PEDIDOS (col A); el resultado va en la
+   col B. NO envía emails. Como red de seguridad, solo finaliza pedidos SIN camiseta y
+   ya pagados: si el pedido tiene camisetas (unidades > 0) se OMITE (esos van por
+   entrega), igual que los PENDIENTE_PAGO (aún sin pagar) y los caducados/anulados.
+   Idempotente/reanudable (los ya hechos se saltan; borra la col B para reprocesar) y LOG. */
+var SH_FINALIZAR = 'FINALIZAR_PEDIDOS';
+var FINALIZAR_ORIGEN = ['PAGO_CONCILIADO', 'ENVIADO_PROVEEDOR', 'RECIBIDO', 'LISTO_RECOGIDA'];
+
+function marcarFinalizadosPorLista() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(SH_FINALIZAR);
+  if (!sh) {
+    sh = ss.insertSheet(SH_FINALIZAR);
+    sh.getRange(1, 1, 1, 2).setValues([['ID', 'RESULTADO']]).setFontWeight('bold');
+    sh.setFrozenRows(1); sh.setColumnWidth(1, 140); sh.setColumnWidth(2, 230);
+    ui().alert('He creado la hoja "' + SH_FINALIZAR + '".\n\n' +
+      'Pega en la columna A (debajo de "ID") los IDs de los pedidos que son SOLO aportación ' +
+      '(donación sin camiseta), uno por fila. Deja la columna B vacía: la rellena el script.\n\n' +
+      'Luego vuelve a pulsar "✅ Marcar FINALIZADO por lista (aportaciones)".');
+    return;
+  }
+  var last = sh.getLastRow();
+  if (last < 2) { ui().alert('La hoja "' + SH_FINALIZAR + '" no tiene IDs. Pega los IDs en la columna A.'); return; }
+
+  var vals = sh.getRange(2, 1, last - 1, 2).getValues();
+  var esHecho = function (res) { var r = String(res).trim().toUpperCase(); return !!r && r !== 'ERROR'; };
+  var pendientes = 0;
+  for (var i = 0; i < vals.length; i++) if (String(vals[i][0]).trim() && !esHecho(vals[i][1])) pendientes++;
+  if (!pendientes) { ui().alert('No hay pedidos pendientes en "' + SH_FINALIZAR + '" (todos tienen ya un resultado). Para reprocesar uno, borra su celda de la columna B.'); return; }
+
+  var resp = ui().alert('Marcar FINALIZADO por lista',
+    'Se van a cerrar como FINALIZADO ' + pendientes + ' pedido(s) de solo aportación (sin camiseta).\n\n' +
+    'No se envían emails. Se omiten los que TENGAN camisetas (esos van por entrega), los ' +
+    'PENDIENTE_PAGO (aún sin pagar) y los caducados/anulados.\n\n¿Continúas?',
+    ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var pedidos = indicePedidos(ss);
+  var shP = ss.getSheetByName(SH.PEDIDOS), HP = HEAD.PEDIDOS;
+  var colEstado = HP.indexOf('ESTADO') + 1;
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;
+  var fin = 0, concam = 0, nopag = 0, omit = 0, ya = 0, noenc = 0, dup = 0, interrumpido = '';
+  var hechosEsteRun = {};
+
+  for (var r = 0; r < vals.length; r++) {
+    var id = String(vals[r][0]).trim();
+    if (!id || esHecho(vals[r][1])) continue;
+    if (Date.now() - t0 > MAX_MS) { interrumpido = 'tiempo'; break; }
+
+    var p = pedidos[id];
+    if (!p) { sh.getRange(r + 2, 2).setValue('NO_ENCONTRADO'); noenc++; continue; }
+    if (hechosEsteRun[id]) { sh.getRange(r + 2, 2).setValue('DUPLICADO_EN_LISTA'); dup++; continue; }
+    if (p.estado === 'FINALIZADO') { sh.getRange(r + 2, 2).setValue('YA_FINALIZADO'); ya++; continue; }
+    if (p.unidades > 0) { sh.getRange(r + 2, 2).setValue('OMITIDO_TIENE_CAMISETAS'); concam++; continue; }
+    if (p.estado === 'PENDIENTE_PAGO') { sh.getRange(r + 2, 2).setValue('OMITIDO_PENDIENTE_PAGO'); nopag++; continue; }
+    if (FINALIZAR_ORIGEN.indexOf(p.estado) < 0) { sh.getRange(r + 2, 2).setValue('OMITIDO_' + p.estado); omit++; continue; }
+
+    shP.getRange(p.fila, colEstado).setValue('FINALIZADO');
+    pedidos[id].estado = 'FINALIZADO';
+    hechosEsteRun[id] = true;
+    sh.getRange(r + 2, 2).setValue('FINALIZADO'); fin++;
+  }
+
+  registrarLog(ss, 'FINALIZAR_LISTA', 'finalizados ' + fin + ' · con camisetas ' + concam + ' · sin pagar ' + nopag +
+    ' · otros omitidos ' + omit + ' · ya ' + ya + ' · duplicados ' + dup + ' · no encontrados ' + noenc +
+    (interrumpido ? ' · PARADO(' + interrumpido + ')' : ''));
+  refrescarDashboard();
+
+  var msg = 'Marcado de finalizados terminado.\n\n' +
+    '✅ Finalizados (solo aportación): ' + fin + '\n' +
+    (concam ? '👕 Omitidos por TENER camisetas (van por entrega): ' + concam + '\n' : '') +
+    (nopag ? '⏳ Omitidos PENDIENTE_PAGO (aún sin pagar): ' + nopag + '\n' : '') +
+    (omit ? '⏭️ Otros omitidos (entregado/caducado/anulado): ' + omit + '\n' : '') +
+    (ya ? '• Ya estaban finalizados: ' + ya + '\n' : '') +
+    (dup ? '👥 Duplicados en la lista: ' + dup + '\n' : '') +
+    (noenc ? '❓ IDs no encontrados: ' + noenc + '\n' : '');
+  if (interrumpido === 'tiempo') msg += '\n⏱️ Parado por el límite de tiempo. Vuelve a pulsar para continuar donde lo dejó.';
+  ui().alert(msg);
+}
+
+/* Campaña "AVISO VIERNES + MARCHA" para Getafe. Envía POR FILTRO (no por lista pegada):
+   todos los pedidos cuyo SITE es Getafe (o vacío = Getafe) y cuyo ESTADO es
+   LISTO_RECOGIDA o ENTREGADO. Dos versiones:
+     · LISTO_RECOGIDA  → recogida del viernes 11 (CGT, 08:00-16:00) + marcha del sábado.
+     · ENTREGADO       → recordatorio de la marcha (+ cómo recogerla el viernes por si
+                          se marcó ENTREGADO por error). No se les pide que vuelvan.
+   Escribe el resultado de CADA pedido en la hoja AVISO_VIERNES (ID | RESULTADO), así que
+   los ERRORES quedan listados (filtra RESULTADO = ERROR). Idempotente/reanudable: en una
+   re-ejecución NO reenvía a los ya ENVIADO_* ni a los SIN_EMAIL; reintenta los ERROR y los
+   que falten. Respeta el límite de tiempo de Apps Script (re-ejecuta para continuar).
+   Con Brevo configurado no hay tope diario; sin él saldría por Gmail (~100/día): avisa. */
+var SH_AVISO_VIERNES = 'AVISO_VIERNES';
+
+function avisarViernesRecogidaGetafe() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(SH_AVISO_VIERNES);
+  if (!sh) {
+    sh = ss.insertSheet(SH_AVISO_VIERNES);
+    sh.getRange(1, 1, 1, 2).setValues([['ID', 'RESULTADO']]).setFontWeight('bold');
+    sh.setFrozenRows(1); sh.setColumnWidth(1, 140); sh.setColumnWidth(2, 220);
+  }
+  // Resultados previos, para reanudar sin reenviar.
+  var done = {}, lastR = sh.getLastRow();
+  if (lastR >= 2) {
+    sh.getRange(2, 1, lastR - 1, 2).getValues().forEach(function (r) {
+      var id = String(r[0]).trim(), res = String(r[1]).trim().toUpperCase();
+      if (id && (res.indexOf('ENVIADO') === 0 || res === 'SIN_EMAIL')) done[id] = true;
+    });
+  }
+  // Objetivos: Getafe (o site vacío) + LISTO_RECOGIDA / ENTREGADO.
+  var pedidos = indicePedidos(ss), OBJ = ['LISTO_RECOGIDA', 'ENTREGADO'], ids = [];
+  for (var id in pedidos) {
+    var p = pedidos[id];
+    var esGetafe = !String(p.site || '').trim() || /getafe/i.test(String(p.site));
+    if (esGetafe && OBJ.indexOf(p.estado) >= 0) ids.push(id);
+  }
+  ids.sort();
+  var pend = ids.filter(function (x) { return !done[x]; });
+  if (!pend.length) { ui().alert('No hay destinatarios pendientes: ya se ha enviado a todos los Getafe LISTO_RECOGIDA/ENTREGADO (ver hoja "' + SH_AVISO_VIERNES + '").'); return; }
+
+  var nListo = 0, nEntreg = 0;
+  pend.forEach(function (x) { if (pedidos[x].estado === 'LISTO_RECOGIDA') nListo++; else nEntreg++; });
+
+  var usaGmail = !PropertiesService.getScriptProperties().getProperty('EMAIL_API_KEY');
+  var avisoCanal = usaGmail
+    ? '\n\n⚠️ NO hay Brevo configurado: saldría por Gmail (~100/día) y son muchos. Configura Brevo (📮) antes de lanzarlo.'
+    : '\n\n(Salida por Brevo, sin tope diario.)';
+  var resp = ui().alert('Aviso viernes + marcha · Getafe',
+    'Se enviará a ' + pend.length + ' pedido(s) de Getafe:\n' +
+    '• ' + nListo + ' LISTO_RECOGIDA → recogida del viernes 11 + marcha\n' +
+    '• ' + nEntreg + ' ENTREGADO → recordatorio de la marcha\n\n' +
+    'El resultado de cada uno se escribe en la hoja "' + SH_AVISO_VIERNES + '"; los fallos quedan como RESULTADO = ERROR.' +
+    avisoCanal + '\n\nEsto NO se puede deshacer (los emails se envían). ¿Continúas?', ui().ButtonSet.YES_NO);
+  if (resp !== ui().Button.YES) return;
+
+  var cfg = leerConfig();
+  var t0 = Date.now(), MAX_MS = 5 * 60 * 1000;
+  var okL = 0, okE = 0, err = 0, sinmail = 0, interrumpido = '';
+  var errIds = [];
+
+  for (var i = 0; i < pend.length; i++) {
+    if (Date.now() - t0 > MAX_MS) { interrumpido = 'tiempo'; break; }
+    var pid = pend[i], p = pedidos[pid];
+    if (!p.email) { sh.appendRow([pid, 'SIN_EMAIL']); sinmail++; continue; }
+    var lineas = lineasDePedido(ss, pid);
+    try {
+      if (p.estado === 'LISTO_RECOGIDA') {
+        emailViernesListo(p.email, pid, p.nombre, lineas, p.productos, p.aportacion, p.total, cfg);
+        sh.appendRow([pid, 'ENVIADO_LISTO']); okL++;
+      } else {
+        emailViernesEntregado(p.email, pid, p.nombre, lineas, p.productos, p.aportacion, p.total, cfg);
+        sh.appendRow([pid, 'ENVIADO_ENTREGADO']); okE++;
+      }
+    } catch (e) {
+      sh.appendRow([pid, 'ERROR']);
+      registrarLog(ss, 'EMAIL_ERROR', 'viernes ' + pid + ': ' + e);
+      if (errIds.length < 50) errIds.push(pid);
+      err++;
+    }
+  }
+
+  registrarLog(ss, 'AVISO_VIERNES', 'listo ' + okL + ' · entregado ' + okE + ' · sin email ' + sinmail +
+    ' · error ' + err + (interrumpido ? ' · PARADO(' + interrumpido + ')' : ''));
+  refrescarDashboard();
+
+  var msg = 'Aviso viernes + marcha terminado.\n\n' +
+    '✅ Enviados a LISTO_RECOGIDA: ' + okL + '\n' +
+    '✅ Enviados a ENTREGADO: ' + okE + '\n' +
+    (sinmail ? '📭 Sin email: ' + sinmail + '\n' : '') +
+    (err ? '❌ Errores: ' + err + '\n' : '');
+  if (err) msg += '\nIDs con ERROR (también en la hoja "' + SH_AVISO_VIERNES + '", filtra RESULTADO=ERROR):\n' +
+    errIds.join(', ') + (err > errIds.length ? ' …' : '');
+  if (interrumpido === 'tiempo') msg += '\n\n⏱️ Parado por el límite de tiempo. Vuelve a pulsar para continuar donde lo dejó.';
+  ui().alert(msg);
 }
 
 // Libera pedidos TARDÍOS retenidos: RETENIDO → LIBERADO, para que entren al proveedor
@@ -1008,9 +1457,128 @@ function emailPagoConfirmado(email, id, nombre, lineas, productos, aportacion, t
     plantillaEmail('Aportación confirmada', 'Hola ' + escapar(nombre) + ', tu transferencia ha quedado <strong>confirmada</strong>. Te avisaremos por email cuando tu camiseta esté lista para recoger en <strong>' + escapar(nombreRecogida(site)) + '</strong>. ¡Gracias por tu apoyo!', id, lineas, productos, aportacion, total, cfg, 'CONFIRMADA'));
 }
 function emailListoRecoger(email, id, nombre, lineas, productos, aportacion, total, cfg, site) {
+  // Recogida CONDICIONAL por site. Getafe: punto, día y hora ya cerrados (Puerta Sur,
+  // miércoles 9 de septiembre, 08:00-11:00). Resto de sites: aún sin cerrar → se avisa
+  // de que el lugar y el horario de su site llegarán por email. En AMBOS casos: hay que
+  // PRESENTAR este email para recoger, y se puede recoger el de otra persona con SU email.
+  // Site vacío = pedidos antiguos sin SITE, que eran de Getafe.
+  var esGetafe = !String(site || '').trim() || /getafe/i.test(String(site));
+
+  var reglas =
+    '📧 <strong>Imprescindible presentar este email</strong> (puedes enseñarlo en el móvil). ' +
+    '<strong>Solo se entregan los pedidos cuyo titular haya recibido este correo.</strong><br>' +
+    '🤝 Puedes recoger el pedido <strong>de otra persona</strong> siempre que presentes el email en el ' +
+    'que se confirma que el pedido de esa persona está listo para recoger.';
+
+  var caja, notaExtra;
+  if (esGetafe) {
+    caja =
+      '📍 <strong>Lugar:</strong> <strong>Local sindical de CGT</strong> (Airbus Getafe).<br>' +
+      '🕗 <strong>Horario (jueves 10 de septiembre):</strong> de <strong>08:00 a 10:00 h</strong> y de <strong>14:45 a 16:00 h</strong>.<br>' +
+      '📅 El <strong>horario del viernes 11 de septiembre</strong> se comunicará a lo largo del jueves.<br>' +
+      reglas;
+    notaExtra = '';
+  } else {
+    caja =
+      '📍 <strong>Punto de recogida:</strong> <strong>' + escapar(siteNombre(site)) + '</strong>. ' +
+      'Te avisaremos por email del <strong>lugar exacto y el horario</strong> de tu site en cuanto estén confirmados.<br>' +
+      reglas;
+    notaExtra = '';
+  }
+
+  var intro =
+    'Hola <strong>' + escapar(nombre) + '</strong>, tu camiseta de la aportación <strong>' + id + '</strong> ya está lista para recoger.' +
+    '</p>' +
+    '<div style="margin:8px 0 4px;padding:16px 18px;background:#faf6ee;border:1px solid #e4ddce;border-left:4px solid #16233b;border-radius:12px">' +
+      '<div style="font-size:11px;color:#6f6a60;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Cómo recoger tu pedido</div>' +
+      '<div style="margin-top:10px;font-size:14px;color:#1a1d21;line-height:1.7">' + caja + '</div>' +
+    '</div>' +
+    notaExtra +
+    '<p style="color:#4b4740;font-size:14px;line-height:1.6;margin:16px 0 0">' +
+      '¡Gracias por tu apoyo a la caja de resistencia!';
+
   enviarEmail(email, 'Tu camiseta ' + id + ' está lista para recoger',
-    plantillaEmail('Lista para recoger', 'Hola ' + escapar(nombre) + ', tu camiseta de la aportación <strong>' + id + '</strong> ya está disponible. Recógela en: <strong>' + escapar(lugarRecogida(cfg, site)) + '</strong>.', id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER'));
+    plantillaEmail('Lista para recoger', intro, id, lineas, productos, aportacion, total, cfg, 'LISTO PARA RECOGER'));
 }
+// Email de CORRECCIÓN para quienes YA recibieron el aviso de recogida con los datos
+// antiguos. Lleva un banner de aviso ROJO bien visible y los datos NUEVOS: Local
+// sindical de CGT (Airbus Getafe), miércoles 9 de septiembre 10:00-12:00, y jueves/
+// viernes para quien no pueda el miércoles. Reutiliza la estética de plantillaEmail.
+// Es específico de Getafe (el cambio afecta a esa recogida). Lo envía por lista
+// avisarCambioRecogidaPorLista(); NO cambia el estado del pedido.
+function emailCambioRecogida(email, id, nombre, lineas, productos, aportacion, total, cfg, site) {
+  var intro =
+    'Hola <strong>' + escapar(nombre) + '</strong>,' +
+    '</p>' +
+    '<div style="margin:0 0 14px;padding:14px 16px;background:#fbe9e7;border:1px solid #f1b0a8;border-left:5px solid #c0392b;border-radius:12px">' +
+      '<div style="font-size:13px;color:#9c2c20;font-weight:800;text-transform:uppercase;letter-spacing:.04em">⚠️ Cambio de última hora — por favor, léelo</div>' +
+      '<div style="margin-top:6px;font-size:14px;color:#5b1f18;line-height:1.6">Hemos <strong>cambiado el lugar y el horario</strong> de recogida respecto al email anterior. Estos son los datos <strong>válidos</strong> para tu pedido <strong>' + id + '</strong>:</div>' +
+    '</div>' +
+    '<div style="margin:0 0 4px;padding:16px 18px;background:#faf6ee;border:1px solid #e4ddce;border-left:4px solid #16233b;border-radius:12px">' +
+      '<div style="font-size:11px;color:#6f6a60;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Cómo recoger tu pedido (datos nuevos)</div>' +
+      '<div style="margin-top:10px;font-size:14px;color:#1a1d21;line-height:1.7">' +
+        '📍 <strong>Nuevo lugar:</strong> <strong>Local sindical de CGT, Airbus Getafe</strong>.<br>' +
+        '🕗 <strong>Nuevo horario (miércoles 9 de septiembre):</strong> de <strong>10:00 a 12:00 h</strong>.<br>' +
+        '📅 Si no puedes recoger el <strong>miércoles</strong>, podrás hacerlo el <strong>jueves o el viernes</strong> (te avisaremos del horario).<br>' +
+        '📧 <strong>Imprescindible presentar este email</strong> (puedes enseñarlo en el móvil). <strong>Solo se entregan los pedidos cuyo titular haya recibido este correo.</strong><br>' +
+        '🤝 Puedes recoger el pedido <strong>de otra persona</strong> siempre que presentes el email en el que se confirma que su pedido está listo para recoger.' +
+      '</div>' +
+    '</div>' +
+    '<p style="color:#4b4740;font-size:14px;line-height:1.6;margin:16px 0 0">' +
+      'Disculpa el cambio de última hora y gracias por tu apoyo a la caja de resistencia.';
+  enviarEmail(email, 'IMPORTANTE · Cambio en la recogida de tu camiseta ' + id,
+    plantillaEmail('Cambio en la recogida', intro, id, lineas, productos, aportacion, total, cfg, 'CAMBIO DE ÚLTIMA HORA'));
+}
+
+// Bloque HTML reutilizable con la convocatoria de la marcha del sábado 12.
+function bloqueMarcha() {
+  return '<div style="margin:14px 0 0;padding:16px 18px;background:#e7eef6;border:1px solid #cdddef;border-left:5px solid #16233b;border-radius:12px">' +
+    '<div style="font-size:12px;color:#16233b;font-weight:800;text-transform:uppercase;letter-spacing:.05em">📣 Marcha por la dignidad en el trabajo</div>' +
+    '<div style="margin-top:8px;font-size:14px;color:#1a1d21;line-height:1.7">' +
+      '🗓️ <strong>Sábado 12 de septiembre</strong> · 🕦 <strong>11:30 h</strong><br>' +
+      '📍 Salida: <strong>Plaza de Colón</strong> → Castellana → Ministerio de Industria → <strong>Plaza de Cuzco</strong> (destino).<br>' +
+      '¡Ven con tu camiseta! <strong>Juntas y juntos por un futuro justo.</strong> #AirbusHuelga' +
+    '</div>' +
+  '</div>';
+}
+
+// Aviso VIERNES a pedidos de Getafe LISTO_RECOGIDA: recogida del viernes 11 + marcha.
+function emailViernesListo(email, id, nombre, lineas, productos, aportacion, total, cfg) {
+  var intro =
+    'Hola <strong>' + escapar(nombre) + '</strong>, tu camiseta de la aportación <strong>' + id + '</strong> está lista.' +
+    '</p>' +
+    '<div style="margin:0 0 4px;padding:16px 18px;background:#faf6ee;border:1px solid #e4ddce;border-left:4px solid #16233b;border-radius:12px">' +
+      '<div style="font-size:11px;color:#6f6a60;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Recogida · viernes 11 de septiembre</div>' +
+      '<div style="margin-top:10px;font-size:14px;color:#1a1d21;line-height:1.7">' +
+        '📍 <strong>Lugar:</strong> <strong>Local sindical de CGT</strong> (Airbus Getafe).<br>' +
+        '🕗 <strong>Horario:</strong> de <strong>08:00 a 16:00 h</strong>.<br>' +
+        '📧 <strong>Imprescindible presentar este email</strong> (puedes enseñarlo en el móvil). <strong>Solo se entregan los pedidos cuyo titular haya recibido este correo.</strong><br>' +
+        '🤝 Puedes recoger el pedido <strong>de otra persona</strong> presentando su email de confirmación.' +
+      '</div>' +
+    '</div>' +
+    bloqueMarcha() +
+    '<p style="color:#4b4740;font-size:14px;line-height:1.6;margin:16px 0 0">' +
+      '¡Gracias por tu apoyo a la caja de resistencia!';
+  enviarEmail(email, 'Recoge tu camiseta el viernes 11 · y te esperamos en la marcha del sábado',
+    plantillaEmail('Recogida viernes 11', intro, id, lineas, productos, aportacion, total, cfg, 'RECOGIDA VIERNES'));
+}
+
+// Aviso VIERNES a pedidos de Getafe ENTREGADO: ya la tienen → marcha (y por si hubo
+// error al marcar, cómo recogerla el viernes). No les pedimos que vuelvan.
+function emailViernesEntregado(email, id, nombre, lineas, productos, aportacion, total, cfg) {
+  var intro =
+    'Hola <strong>' + escapar(nombre) + '</strong>, según nuestros registros <strong>ya has recogido tu camiseta</strong> (aportación <strong>' + id + '</strong>). ¡Gracias! <strong>No necesitas volver el viernes.</strong>' +
+    '</p>' +
+    bloqueMarcha() +
+    '<div style="margin:12px 0 0;padding:12px 16px;background:#fff8ec;border:1px solid #f0e2c4;border-radius:10px;font-size:13px;color:#6f5a2e;line-height:1.55">' +
+      '¿No has recibido tu camiseta y crees que es un error? Puedes recogerla el <strong>viernes 11</strong> en el <strong>Local sindical de CGT</strong> (Airbus Getafe), de <strong>08:00 a 16:00 h</strong>, presentando este email.' +
+    '</div>' +
+    '<p style="color:#4b4740;font-size:14px;line-height:1.6;margin:16px 0 0">' +
+      '¡Gracias por tu apoyo a la caja de resistencia!';
+  enviarEmail(email, '¡Gracias! Nos vemos en la marcha del sábado',
+    plantillaEmail('Nos vemos en la marcha', intro, id, lineas, productos, aportacion, total, cfg, 'YA RECOGIDA'));
+}
+
 function emailPedidoRevisado(email, id, nombre, cfg) {
   enviarEmail(email, 'Tu pedido ' + id + ' está en proceso · Caja de Resistencia',
     plantillaPedidoRevisado(nombre, id, cfg));
@@ -1380,7 +1948,8 @@ function formatearHojasDatos(ss) {
 function formatoCondicionalEstados(ss) {
   var pares = [
     ['PENDIENTE_PAGO', COL.tPeach], ['PAGO_CONCILIADO', COL.tGreen], ['ENVIADO_PROVEEDOR', COL.tBlue],
-    ['RECIBIDO', COL.tBlue2], ['LISTO_RECOGIDA', COL.tYellow], ['ENTREGADO', COL.tGray], ['CADUCADO', COL.tRed],
+    ['RECIBIDO', COL.tBlue2], ['LISTO_RECOGIDA', COL.tYellow], ['ENTREGADO', COL.tGray],
+    ['FINALIZADO', COL.tGreen2], ['CADUCADO', COL.tRed],
     ['ANULADO', COL.tGray]
   ];
   var sh = ss.getSheetByName(SH.PEDIDOS), col = HEAD.PEDIDOS.indexOf('ESTADO') + 1;
@@ -1425,7 +1994,7 @@ function construirHowTo(ss) {
     ['🕒 TARDÍOS', 'Pedidos hechos tras la fecha límite (CONFIG → AVISO_FECHA_LIMITE). Se cobran y concilian igual, pero se RETIENEN de producción. Confirma plazos con el proveedor → selecciona sus filas en PEDIDOS → 🕒 Liberar pedidos tardíos. Pasan a LIBERADO y ya entran al siguiente lote.'],
     ['🚫 ANULAR', 'Pedidos hechos por error que NO se van a pagar: selecciona sus filas en PEDIDOS → 🚫 Anular pedidos. Pasan a ANULADO (fuera de pendientes/stock/caja). No borres filas: rompe LINEAS y pierdes el rastro.'],
     ['📤 ENVIAR PROVEEDOR', 'Usa la hoja PROVEEDOR (resumen limpio por talla del lote). Exporta a Excel si lo necesitas.'],
-    ['📥 RECIBIR', 'Cuando llegue la mercancía: hoja LOTES → selecciona el lote → 📥 Marcar lote recibido. Los pedidos completos pasan a LISTO_RECOGIDA y avisan por email.'],
+    ['📥 RECIBIR', 'Por lote: hoja LOTES → selecciona el lote → 📥 Marcar lote recibido. Por pedido (el proveedor entrega pedidos sueltos): pega los IDs entregados en RECIBIR_PEDIDOS → 📥 Marcar pedidos recibidos (lista). En ambos casos los pedidos pasan a LISTO_RECOGIDA y avisan por email.'],
     ['🤝 ENTREGAR', 'Al entregar en mano: hoja PEDIDOS → selecciona la fila → 🤝 Marcar ENTREGADO.']
   ];
   var r = 4;
@@ -1492,7 +2061,7 @@ function construirDashboard(ss) {
 
   // Leyenda
   sh.getRange('A31').setValue('LECTURA RÁPIDA').setFontWeight('bold').setFontColor(COL.orange);
-  sh.getRange('A32:I32').merge().setValue('🟠 PENDIENTE_PAGO: creado, sin pago.   🟢 PAGO_CONCILIADO: puede entrar al lote.   🔵 ENVIADO_PROVEEDOR: bloqueado para nuevos lotes.   🟡 LISTO_RECOGIDA: avisado.   ⚪ ENTREGADO.   🔴 CADUCADO: venció el plazo.   🚫 ANULADO: descartado a mano (no entra).   ⚠️ REVISAR: intervención humana.   🕒 TARDIO=RETENIDO: pagado pero retenido de producción hasta liberarlo (habla con el proveedor).')
+  sh.getRange('A32:I32').merge().setValue('🟠 PENDIENTE_PAGO: creado, sin pago.   🟢 PAGO_CONCILIADO: puede entrar al lote.   🔵 ENVIADO_PROVEEDOR: bloqueado para nuevos lotes.   🟡 LISTO_RECOGIDA: avisado.   ⚪ ENTREGADO.   🟩 FINALIZADO: solo aportación (sin camiseta), cerrada.   🔴 CADUCADO: venció el plazo.   🚫 ANULADO: descartado a mano (no entra).   ⚠️ REVISAR: intervención humana.   🕒 TARDIO=RETENIDO: pagado pero retenido de producción hasta liberarlo (habla con el proveedor).')
     .setWrap(true).setVerticalAlignment('middle').setFontColor(COL.slate);
   sh.setRowHeight(32, 40);
 }
@@ -1564,7 +2133,12 @@ function onOpen() {
     .addItem('🧾 Refrescar RESUMEN_PROVEEDOR', 'refrescarResumenProveedor')
     .addItem('🔧 Reconstruir PROVEEDOR desde LINEAS', 'reconstruirProveedorDesdeLineas')
     .addItem('📥 Marcar lote recibido (seleccionado)', 'marcarLoteRecibidoSeleccion')
+    .addItem('📥 Marcar pedidos recibidos (lista · RECIBIR_PEDIDOS)', 'marcarPedidosRecibidosPorLista')
+    .addItem('📣 Avisar cambio de recogida (lista · CORREGIR_RECOGIDA)', 'avisarCambioRecogidaPorLista')
     .addItem('🤝 Marcar ENTREGADO (seleccionado)', 'marcarEntregadoSeleccion')
+    .addItem('🤝 Marcar ENTREGADO por lista (ENTREGAR_PEDIDOS)', 'marcarEntregadosPorLista')
+    .addItem('✅ Marcar FINALIZADO por lista · solo aportación (FINALIZAR_PEDIDOS)', 'marcarFinalizadosPorLista')
+    .addItem('📣 Aviso viernes + marcha · Getafe LISTO/ENTREGADO (AVISO_VIERNES)', 'avisarViernesRecogidaGetafe')
     .addSeparator()
     .addItem('📊 Actualizar panel', 'refrescarDashboard')
     .addItem('📗 Exportar a Excel (.xlsx)', 'exportarExcel')
