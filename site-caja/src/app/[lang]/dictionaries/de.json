@@ -1,0 +1,694 @@
+{
+ "meta": {
+  "provisional": false,
+  "title": "Streikfonds · #EnfadadosconAirbus",
+  "description": "Die Solidaritätskasse der Bewegung #EnfadadosconAirbus: was sie ist, wie man beiträgt, wofür das Geld verwendet wird und wie Rechenschaft abgelegt wird. Ein Fonds der Airbus-Spanien-Belegschaft.",
+  "ogAlt": "#EnfadadosconAirbus — die Solidaritätskasse der Bewegung der Airbus-Spanien-Belegschaft"
+ },
+ "nav": {
+  "conflicto": "Der Konflikt",
+  "caja": "Der Fonds",
+  "transparencia": "Transparenz",
+  "internacional": "Internationale Solidarität",
+  "donantes": "Großspender",
+  "faq": "FAQ",
+  "termometro": "Barometer",
+  "aportar": "Beitragen",
+  "skip": "Zum Hauptinhalt springen",
+  "menu": "Menü",
+  "close": "Schließen",
+  "tienda": "Merchandising",
+  "documentacion": "Dokumentation",
+  "sobre": "Über das Projekt",
+  "marca": "Die Solidaritätskasse der Bewegung",
+  "temaOscuro": "Nachtmodus",
+  "temaClaro": "Tagmodus",
+  "contacto": "Kontakt",
+  "gobernanza": "Governance"
+ },
+ "exampleTag": "BEISPIELDATEN — echte, geprüfte Zahlen ausstehend",
+ "titularLabels": {
+  "razonSocial": "Träger",
+  "forma": "Rechtsform",
+  "cif": "Steuernummer",
+  "domicilio": "Sitz",
+  "registro": "Registerdaten"
+ },
+ "hero": {
+  "kicker": "DAS MEDIUM DER BEWEGUNG · AIRBUS SPANIEN",
+  "title": [
+   "Was bei Airbus geschieht,",
+   "erzählen wir selbst."
+  ],
+  "subtitle": "Informationen und Dokumentation zum Arbeitskonflikt bei Airbus Spanien, zusammengestellt von der Arbeitnehmerbewegung.",
+  "ctaPrimary": "Zum Fonds beitragen",
+  "ctaSecondary": "Den Konflikt verstehen",
+  "values": [
+   "Solidarität",
+   "Transparenz",
+   "Unabhängigkeit",
+   "Kollektiver Widerstand"
+  ]
+ },
+ "ficha": {
+  "kicker": "KONFLIKT-STECKBRIEF",
+  "filas": [
+   {
+    "k": "Erster Streik",
+    "v": "1.–23. Juli 2026"
+   },
+   {
+    "k": "Beginn der Mobilisierung",
+    "v": "24. Aug. · 3-stündige Arbeitsniederlegungen und Versammlungen · 25. Aug. · unbefristeter Streik"
+   },
+   {
+    "k": "Bereich",
+    "v": "Airbus Spanien"
+   },
+   {
+    "k": "Forderungen",
+    "v": "7"
+   }
+  ],
+  "fondoLabel": "Status des Fonds",
+  "fondoNo": "Nicht gegründet",
+  "fondoSi": "In Betrieb"
+ },
+ "arranque": {
+  "chapa": {
+   "etiqueta": "Unbefristeter Streik",
+   "faltan": "Noch {n} Tage · 24. Aug.",
+   "manana": "Morgen, 24. August",
+   "hoy": "Heute, 24. August",
+   "curso": "Läuft · 24 Std.",
+   "detalle": "· dreistündige Arbeitsniederlegung und Versammlung an jedem Standort",
+   "detalleCurso": "· an allen Standorten, ohne Enddatum",
+   "pausada": "In Kraft, pausiert seit dem 9. September",
+   "detallePausa": "· an allen Standorten"
+  }
+ },
+ "coberturaVideo": {
+  "kicker": "VIDEO-BERICHTERSTATTUNG",
+  "title": [
+   "Der Konflikt",
+   "in den Nachrichten"
+  ],
+  "intro": "Die Fernseh- und Radiobeiträge, in denen der Konflikt und der unbefristete Streik ein Echo fanden. Sie werden von ihrer Originalquelle abgespielt; zum Ansehen antippen.",
+  "fuente": "Wir hosten das Material nicht: Jedes Video wird von dem Medium abgespielt oder verlinkt, das es veröffentlicht hat. Daten und Laufzeiten laut Angaben zum jeweiligen Video.",
+  "reproducir": "Video abspielen",
+  "verEnWeb": "Auf ihrer Website ansehen",
+  "short": "Short",
+  "internacionalLabel": "Im Video"
+ },
+ "conflicto": {
+  "kicker": "DER KONFLIKT",
+  "title": "Wie es zum aktuellen Konflikt kam.",
+  "intro": "Die Mobilisierung der Belegschaft von Airbus Spanien —Streik vom 1. bis 23. Juli 2026 und unbefristeter Streik ab dem 24. August— ergibt sich laut dem Manifest der Bewegung aus einer schrittweisen Verschlechterung des Vertrauens und angehäuften Meinungsverschiedenheiten über Tarifverhandlungen und Arbeitsbedingungen. Sie findet zudem in einem Moment wirtschaftlicher Stärke des Unternehmens statt. Dies sind die Forderungen, die die Bewegung erhebt:",
+  "docManifiesto": {
+   "v3": "Forderungskatalog – v3",
+   "grupo": "Manifest an den Airbus-Konzern – Juli 2026"
+  },
+  "docManifiestoMeta": "PDF · {t} MB",
+  "docManifiestoOtros": "Manifest in anderen Sprachen:",
+  "docManifiestoOtroDoc": "{doc}:",
+  "docDossier": "Dossier zur Lohnrückgewinnung – v10",
+  "docDossierMeta": "PDF · 0,6 MB · ES",
+  "points": [
+   {
+    "n": "01",
+    "t": "Wiederherstellung der Kaufkraft",
+    "d": "Inflation (VPI) als Grundlage der Lohnrunden ab 2026 sowie eine außerordentliche Erhöhung zum Ausgleich des aufgelaufenen Verlusts.",
+    "detalle": "Das von der Bewegung erstellte Wirtschaftsdossier schätzt einen kumulierten Kaufkraftverlust der letzten Jahre.",
+    "exige": [
+     "Wiederherstellung des Verbraucherpreisindex als Grundlage der Gehaltsrunden (RSG) ab 2026.",
+     "Eine außerordentliche Erhöhung, unabhängig von der Gehaltsrunde, zum Ausgleich des in den letzten Jahren aufgelaufenen Kaufkraftverlusts."
+    ]
+   },
+   {
+    "n": "02",
+    "t": "Vereinbarkeit und Vertrauen",
+    "d": "Homeoffice nach Wahl der Beschäftigten, wo die Tätigkeit es zulässt, und Flexibilität bei der Urlaubsplanung.",
+    "detalle": "Die Vereinbarkeit von Beruf und Privatleben darf nicht als Privileg betrachtet werden: Sie ist ein modernes Organisationsinstrument, das Produktivität, Engagement und Wohlbefinden fördert. Airbus war hier jahrelang ein Maßstab. Die Bewegung ist der Ansicht, dass die jüngsten Entscheidungen einen Rückschritt gegenüber dem früheren Modell darstellen.",
+    "exige": [
+     "Die Möglichkeit, nach Wahl der Beschäftigten und bei Stellen, deren Art dies zulässt, 40 % der Arbeitszeit im Homeoffice zu leisten, mit Ausgleichsmaßnahmen für Stellen mit höherer Präsenzpflicht.",
+     "Wiederherstellung der Flexibilität bei der Urlaubsplanung, mit Organisation innerhalb der Teams und der Empfehlung, zwei Wochen im August zu nehmen."
+    ]
+   },
+   {
+    "n": "03",
+    "t": "Leistungen für die Belegschaft",
+    "d": "Eine allgemeine, kostenlose Kantine ohne Zuzahlung oder Lohnabzug; Erhalt der Werksbusse.",
+    "detalle": "Die Bewegung fordert, dass Änderungen an diesen Leistungen Gegenstand von Verhandlungen werden.",
+    "exige": [
+     "Garantie einer allgemeinen und kostenlosen Kantine für die Beschäftigten von Airbus, ohne Zuzahlungen oder Gehaltsabzüge.",
+     "Beibehaltung des derzeitigen Niveaus des Werksverkehrs."
+    ]
+   },
+   {
+    "n": "04",
+    "t": "Überprüfung des Bradford-Faktors",
+    "d": "Gesundheit darf keine Produktivitätskennzahl sein: den Faktor abschaffen oder Krankschreibungen davon ausnehmen.",
+    "detalle": "Die Bewegung ist der Ansicht, dass der Gesundheitsschutz in der Arbeitsorganisation Vorrang haben muss.",
+    "exige": [
+     "Abschaffung des Bradford-Faktors oder, hilfsweise, Herausnahme von Krankschreibungen aus seiner Berechnung."
+    ]
+   },
+   {
+    "n": "05",
+    "t": "Die Zukunft von Airbus Spanien schützen",
+    "d": "Schriftliche Garantien, dass organisatorische Umbauten weder Arbeitsplätze noch Arbeitsbedingungen beeinträchtigen.",
+    "detalle": "Das Manifest fordert, dass organisatorische Umstrukturierungen verhandelt werden und Garantien für die Beschäftigten enthalten.",
+    "exige": [
+     "Unterzeichnung des von der Mehrheit der Space-Belegschaft getragenen Garantiekatalogs durch die Geschäftsleitung, mit schriftlicher Zusage, dass dessen Umsetzung weder Arbeitsbedingungen noch Arbeitsorganisation noch Beschaeftigung beeinträchtigt."
+    ]
+   },
+   {
+    "n": "06",
+    "t": "Gleichbehandlung der Generationen",
+    "d": "Eine transparente Lohnpolitik, die Erfahrung und Verantwortung anerkennt, ohne Unterschiede nach Eintrittsdatum.",
+    "detalle": "Das Vergütungs- und Sozialleistungsmodell muss den Beitrag aller Beschäftigten und ihre Erfahrung anerkennen und Chancengleichheit gewährleisten, ohne Unterschiede, die allein auf dem Eintrittsdatum beruhen.",
+    "exige": [
+     "Unterzeichnete Zusage, eine neue Gehaltspolitik mit einem transparenten System zur Anerkennung von Erfahrung, ausgeübten Funktionen und übernommener Verantwortung zu erarbeiten.",
+     "Abschaffung des verlängerten Einstiegsgehalts, mit einer Gehaltsentwicklung, die dem tatsächlichen Beitrag entspricht."
+    ]
+   },
+   {
+    "n": "07",
+    "t": "Wiedergutmachung des Konflikts",
+    "d": "Eine außerordentliche, individuelle Entschädigung, anteilig zu den befolgten Streiktagen.",
+    "detalle": "",
+    "exige": [
+     "Einführung einer außerordentlichen, individuellen Entschädigung für jede beschäftigte Person, proportional zu den tatsächlich befolgten Streiktagen."
+    ]
+   }
+  ],
+  "exigeLabel": "Erhobene Forderung",
+  "masDetalle": "Details lesen",
+  "fuente": "Erweiterter Text aus dem #EnfadadosconAirbus-Manifest (v3)",
+  "docPliego": "Garantiekatalog Raumfahrt-Beschäftigte",
+  "docPliegoMeta": "PDF · 5 KB"
+ },
+ "informes": {
+  "kicker": "BERICHT DER BEWEGUNG",
+  "sameSkySub": "The Spanish Gap",
+  "sameSkyDesc": "Airbus Spanien im Vergleich zum Konzern und zur weltweiten Luft- und Raumfahrtbranche: Vergütung, Inflationsschutz, Arbeitszeit und Wertverteilung. Jede Zahl ist gekennzeichnet und öffentlich belegt.",
+  "leerEn": "Lesen auf:",
+  "nuevaPestana": "wird in einem neuen Tab geöffnet",
+  "meta": "Web-Bericht · August 2026 · ES · EN · FR · DE"
+ },
+ "termometro": {
+  "kicker": "STREIK-BAROMETER",
+  "title": "Medienberichterstattung über den Konflikt",
+  "intro": "Das Panel quantifiziert den Umfang und den Ton der zusammengestellten Medienberichterstattung.",
+  "freshLabel": "Daten Stand {fecha}",
+  "independiente": "Unabhängige Verfolgung, inoffiziell.",
+  "diaHuelga": "Tag {dia} von {total}",
+  "hoy": "Artikel heute",
+  "total": "Artikel insgesamt",
+  "medios": "Verschiedene Medien",
+  "riesgoLabel": "Medienrisiko",
+  "riesgoNivel": {
+   "rojo": "Hohes Risiko",
+   "ambar": "Mittleres Risiko",
+   "verde": "Geringes Risiko",
+   "amarillo": "Mittleres Risiko"
+  },
+  "riesgoDetalle": "{pct}% der Berichterstattung ist negativ für das Unternehmen",
+  "sentLabel": "Ton der Berichterstattung gegenüber dem Unternehmen",
+  "sentNota": "Positiv, neutral oder negativ für die Position des Unternehmens —nicht der Bewegung.",
+  "sentPos": "Positiv",
+  "sentNeu": "Neutral",
+  "sentNeg": "Negativ",
+  "volumenLabel": "Berichterstattung pro Tag",
+  "volumenEje": "Artikel pro Tag",
+  "impactoLabel": "Nachrichten mit größter Wirkung",
+  "impactoIntro": "Die am meisten aufgegriffenen und reichweitenstärksten.",
+  "cronoLabel": "Nachrichten in chronologischer Reihenfolge",
+  "socialLabel": "In sozialen Netzwerken",
+  "socialTelegram": "Nachrichten auf Telegram",
+  "socialX": "Beiträge auf X",
+  "socialMastodon": "Erwähnungen auf Mastodon",
+  "socialNota": "LinkedIn und Instagram sind nicht enthalten: Es gibt keine zuverlässige, kostenlose Möglichkeit, sie ohne Verstoß gegen ihre Bedingungen abzufragen. Die X-Daten erhebt das Komitee von Hand, nicht automatisch.",
+  "anterior": "Zurück",
+  "siguiente": "Weiter",
+  "pagina": "Seite {n} von {t}",
+  "anexoCta": "Vollständiges Dashboard ansehen",
+  "anexoNota": "Das vollständige Dashboard (Detail je Werk, Herleitung und Aktienkurs) ist ein unabhängiges Drittprojekt und öffnet sich auf dessen Website. Hier sehen Sie einen Auszug.",
+  "diaIndefinida": "Tag {dia} · unbefristet",
+  "treguaSub": "Wiederaufnahme · unbefristeter Streik (in {dias} Tagen)",
+  "horquilla": {
+   "label": "BRUCHPUNKT · GESCHÄTZTE AUSWIRKUNG AUF DAS UNTERNEHMEN",
+   "intro": "Es ist nicht das, was Airbus als Verlust ausweist: Es ist eine externe Schätzung auf Basis öffentlicher Fakten — was jedes Werk fertigt und welche Rolle es in der Lieferkette spielt — und zweier Szenarien.",
+   "hoyLabel": "Kumuliert bis heute (min–max)",
+   "diarioLabel": "Tageskosten (min–max)",
+   "finLabel": "Projektion bis zum Ende des Zeitfensters",
+   "leyenda": "Kumuliertes Min–Max-Band",
+   "cotaMin": "Untergrenze: der Lagerbestand hält das ganze Fenster",
+   "cotaMax": "Obergrenze: die Lieferkette reißt um die dritte Woche",
+   "nota": "Szenario-Schätzung eines unabhängigen Monitorings, gestützt auf öffentliche Fakten und auf die Rolle jedes Werks in der Lieferkette. Es ist weder eine offizielle Airbus-Zahl noch eine geprüfte Bezifferung des Konflikts, sondern eine Größenordnung — täglich aus der Quelle aktualisiert.",
+   "hoy": "heute",
+   "ejeAria": "Kumulierte Minimal–Maximal-Bandbreite der geschätzten Auswirkung, von",
+   "leyendaProy": "gestrichelt = Projektion",
+   "comoTitulo": "Wie diese Bandbreite entsteht",
+   "como": [
+    {
+     "t": "Es gibt zwei Regime, nicht eines",
+     "d": "Solange die Werke aus dem aufgebauten Lager schöpfen, kostet ein Streiktag wenig: Die Montage läuft mit dem weiter, was im Lager war. Das ist das Puffer-Regime. Sobald ein Werk diesen Puffer aufbraucht, fehlen der Endmontage die Teile und die Tageskosten vervielfachen sich: das Bruch-Regime."
+    },
+    {
+     "t": "Deshalb wird die Kurve steiler",
+     "d": "Tag 1 kostet nicht dasselbe wie Tag 25. Ein Stillstandstag in Getafe kostet anfangs eine halbe Million; mit aufgebrauchten Stabilisatoren sechs bis zehn. Bis zu zwölfmal so viel für denselben Streiktag."
+    },
+    {
+     "t": "Die Bandbreite sind zwei Annahmen, keine Fehlermarge",
+     "d": "Die untere Linie nimmt an, dass der Lagerbestand das ganze Fenster hält. Die obere nimmt einen Bruch um die dritte Woche an. Was tatsächlich passiert, liegt irgendwo dazwischen."
+    },
+    {
+     "t": "Woran man erkennt, wohin es geht",
+     "d": "Der direkteste Indikator ist der Beluga-Verkehr, das Flugzeug, das Teile zwischen den Werken transportiert. Solange er stabil bleibt, gleicht das Unternehmen mit Lagerbestand aus; ein anhaltender Rückgang zeigt, dass die Kette es zu spüren beginnt."
+    }
+   ],
+   "desactualizado": "Diese Analyse stammt vom {fecha} und berücksichtigt den zweiten Streikaufruf noch nicht. Die Bandbreite wächst weiter mit den Annahmen von damals — lesen Sie sie als Größenordnung, nicht als aktuelle Zahl. Dieser Hinweis verschwindet von selbst, sobald die Quelle die Analyse erneuert."
+  }
+ },
+ "caja": {
+  "kicker": "WAS DER SOLIDARITÄTSFONDS IST",
+  "title": "Gemeinsam tragen, was allein nicht zu tragen ist.",
+  "body": "Ein Widerstandsfonds ist ein gemeinsamer Topf, der einen Kampf trägt, wenn seine Verteidigung Geld kostet. Er bezahlt, was die Mobilisierung braucht —Material, Transport, Öffentlichkeitsarbeit, Logistik— und bleibt offen, um die Belegschaft in den Konflikten zu unterstützen, die die Versammlung beschließt. Seine erste Ausgabe ging in die Mobilisierung; nichts ist für die Zukunft ausgeschlossen. Er senkt die persönlichen Kosten der Verteidigung eines kollektiven Rechts, damit die Entscheidung, sich zu wehren, nicht vom Kontostand des Einzelnen abhängt.",
+  "principios": [
+   {
+    "t": "Solidarität",
+    "d": "Wer kann, trägt bei; wer es braucht und die Kriterien erfüllt, erhält."
+   },
+   {
+    "t": "Transparenz",
+    "d": "Jeder eingehende und ausgehende Euro wird erfasst und ist einsehbar."
+   },
+   {
+    "t": "Unabhängigkeit",
+    "d": "Der Fonds wird von einem Ausschuss der Belegschaft selbst verwaltet, unter kollektiver Kontrolle."
+   },
+   {
+    "t": "Kollektiver Widerstand",
+    "d": "Die Stärke liegt nicht in einer großen Spende, sondern in vielen kleinen, über die Zeit getragen."
+   }
+  ],
+  "volver": "Zurück zur Startseite",
+  "metaTitle": "Der Fonds",
+  "metaDescription": "Was der Solidaritätsfonds ist, wofür er verwendet wird, wie man beiträgt und wie Rechenschaft abgelegt wird.",
+  "aviso": "HINWEIS — der Fonds nimmt bereits Beiträge per Banküberweisung entgegen; die Kartenzahlung wird bald freigeschaltet. Die Ordnungsdokumente des Fonds stehen noch zur Ratifizierung aus."
+ },
+ "transparencia": {
+  "kicker": "TRANSPARENZ",
+  "title": "Das Geld aller ist allen gegenüber rechenschaftspflichtig.",
+  "intro": "Transparenz ist keine Dekoration: Sie ist das Herz des Fonds. Jede Zahl wird aus geprüften Daten abgeleitet — nie ohne Nachverfolgbarkeit von Hand eingetragen — und mit ihrem Aktualisierungsdatum veröffentlicht.",
+  "stats": {
+   "recaudado": "Gesammelt",
+   "gastos": "Ausgegeben",
+   "saldo": "Verfügbarer Saldo",
+   "aportaciones": "Beiträge"
+  },
+  "actualizadoLabel": "Zuletzt aktualisiert",
+  "sinDatos": "KEINE ZAHLEN — der Fonds ist noch nicht in Betrieb",
+  "note": "Zahlen von der Kasse von ÚTIL anhand der Einnahmen- und Ausgabenaufzeichnungen des Fonds geprüft; der Saldo ist das Gesammelte abzüglich der bereits verbuchten Ausgaben. LKW- und Reisekosten, auch wenn eine andere Organisation sie vorstreckt, werden von der zuständigen Versammlung der Belegschaft genehmigt. Herunterladbarer Finanzbericht nach Ratifizierung der Ordnung.",
+  "reportCta": "Bericht herunterladen (in Kürze)",
+  "detalle": {
+   "titulo": "Aufschlüsselung der Ausgaben",
+   "camisetas": "T-Shirts (Produktion)",
+   "camion": "LKW mit Tonanlage (Marsch 12. Sep.)",
+   "comision": "Kontogebühren und -pflege",
+   "trenes": "Zugfahrten Sevilla–Madrid (12. Sep.)",
+   "pendiente": "noch zuzuordnen"
+  }
+ },
+ "muro": {
+  "kicker": "KOLLEKTIVER WIDERSTAND",
+  "title": "Er entsteht Beitrag um Beitrag.",
+  "body": "Jede Einheit dieser Wand ist ein Beitrag. Keine trägt den Fonds allein; zusammen machen sie ihn möglich. So sieht die Kraft des Kollektivs aus."
+ },
+ "aportar": {
+  "kicker": "BEITRAGEN",
+  "title": "Wählen Sie, wie Sie den Fonds tragen möchten.",
+  "intro": "Die Banküberweisung und die Bizum-Spende sind bereits aktiv: Du kannst ab sofort mit den Angaben unten beitragen. Karten- und Wallet-Zahlung wird freigeschaltet, sobald das Zahlungs-Gateway validiert ist.",
+  "amounts": [
+   "20 €",
+   "50 €",
+   "100 €",
+   "Anderer Betrag"
+  ],
+  "vias": [
+   {
+    "t": "Banküberweisung",
+    "d": "Aktiv. Direkt auf das Konto des Fonds, ohne Vermittler. Mit dem angegebenen Verwendungszweck können wir deinen Beitrag zuordnen."
+   },
+   {
+    "t": "Bizum-Spende",
+    "d": "Aktiv. Aus der App deiner Bank, in 20 Sekunden, mit dem Code für die NGO-Spende. Der gesamte Betrag geht an den Fonds."
+   },
+   {
+    "t": "Karte und Wallet",
+    "d": "Demnächst. Wird freigeschaltet, sobald das Gateway auf den Namen der trägerschaftlichen Gewerkschaft validiert ist. Nutze bis dahin die Überweisung oder Bizum."
+   }
+  ],
+  "cta": "Beitragen",
+  "placeholderNote": "Die Kartenzahlung ist noch nicht aktiv. Du kannst per Banküberweisung mit den Angaben im Bereich Beitragen beitragen.",
+  "canales": {
+   "kicker": "WIE DAS GELD ANKOMMT",
+   "title": "Mehrere Wege zum Fonds.",
+   "transferencia": {
+    "t": "Banküberweisung",
+    "d": "Direkt auf das Konto des Fonds. Ohne Gebühren von Vermittlern und ohne Dritte, die die Kampagne abschalten können.",
+    "labelTitular": "Kontoinhaber",
+    "labelBanco": "Bank",
+    "labelIban": "IBAN",
+    "labelBic": "BIC",
+    "labelConcepto": "Verwendungszweck",
+    "copiar": "IBAN kopieren",
+    "copiado": "IBAN kopiert",
+    "pendiente": "Sie wird veröffentlicht, sobald die trägerschaftliche Gewerkschaft das Konto des Fonds eröffnet. Es wird keine ungeprüfte Nummer angezeigt."
+   },
+   "pasarela": {
+    "t": "Karte und digitale Zahlung",
+    "d": "Der bequeme Weg: in einer halben Minute vom Handy beitragen, ohne eine Kontonummer abzutippen.",
+    "cta": "Mit Karte beitragen",
+    "pendiente": "Dafür muss die juristische Person existieren: Das Händlerkonto wird auf ihren Namen eröffnet, mit ihrer Steuernummer und der Prüfung ihrer Verantwortlichen. Dieser Schritt lässt sich nicht vorziehen."
+   },
+   "metodos": {
+    "tarjeta": "Karte",
+    "apple-pay": "Apple Pay",
+    "google-pay": "Google Pay",
+    "paypal": "PayPal",
+    "sepa": "SEPA-Lastschrift"
+   }
+  },
+  "selector": {
+   "kicker": "KARTENZAHLUNG",
+   "badge": "Demnächst",
+   "importe": "Betrag",
+   "otra": "Anderer",
+   "otraPlaceholder": "€",
+   "resumen": "Sobald die Kartenzahlung aktiv ist, würdest du {importe} mit einem Klick geben.",
+   "cta": "{importe} mit Karte geben",
+   "bloqueado": "Die Kartenzahlung ist noch nicht aktiv. Trage diesen Betrag vorerst per Banküberweisung oder Bizum mit den Angaben oben bei."
+  },
+  "mock": {
+   "kicker": "SIMULATION",
+   "title": "So sähe der Beitrag aus.",
+   "aviso": "MOCK-UP — kein echtes Formular. Es nimmt keine Daten entgegen und bucht nichts ab. Es zeigt nur, wie die Zahlung aussähe, sobald der Anbieter aktiv ist.",
+   "pagarCon": "Bezahlen mit",
+   "oTarjeta": "oder per Karte",
+   "numero": "Kartennummer",
+   "caducidad": "Gültig bis",
+   "cvc": "CVC",
+   "titular": "Karteninhaber",
+   "boton": "{importe} beitragen",
+   "seguro": "Verschlüsselte Zahlung · Der Fonds sieht deine Kartennummer nie"
+  },
+  "bizum": {
+   "badge": "Bizum · Spende",
+   "intro": "Ein direkter Beitrag an den Fonds aus deiner Banking-App, in 20 Sekunden. Der gesamte Betrag geht an den Fonds und du musst keine Daten hinterlassen. Der schnellste Weg, den Fonds zu unterstützen.",
+   "codigoLabel": "Code",
+   "copiar": "Kopieren",
+   "copiado": "Kopiert",
+   "nombreLabel": "Auf den Namen von",
+   "nombreSub": "Gewerkschaft, die den Fonds hält · CIF {cif}",
+   "pasos": [
+    "Öffne deine Banking-App und gehe zu Bizum.",
+    "Wähle «Spenden» / «Spenden» / «NGO» (der Name variiert je nach Bank).",
+    "Gib den Code {codigo} ein. Es sollte {nombre} erscheinen.",
+    "Gib den Betrag ein, den du spenden möchtest, und bestätige."
+   ],
+   "aviso": "Die Spende erfolgt in deiner Banking-App: Diese Website verarbeitet die Zahlung nicht und sieht deine Bankdaten nicht. Prüfe, dass der angezeigte Name «{nombre}» ist; stimmt er nicht, bestätige nicht und schreib uns an {email}."
+  }
+ },
+ "internacional": {
+  "kicker": "INTERNATIONALE SOLIDARITÄT",
+  "title": "Solidarität kennt keine Grenzen.",
+  "body": "Andere Betriebe, europäische Gewerkschaften, Betriebsräte, Verbände und verbündete Organisationen können den Fonds unterstützen und die Kampagne verbreiten. Dieser Bereich ist auf Spanisch, Englisch, Französisch und Deutsch verfügbar.",
+  "ctaContact": "Kontakt für Organisationen",
+  "orgLanding": "Zusammenfassung des Konflikts, Ziel des Fonds, Formen der Zusammenarbeit und institutioneller Beitrag für internationale Organisationen.",
+  "comunicadosLabel": "Internationale Solidaritätserklärungen"
+ },
+ "tienda": {
+  "kicker": "MERCHANDISING",
+  "title": "Trag den Kampf.",
+  "intro": "Jedes T-Shirt trägt den Fonds: die Hälfte deines Beitrags geht direkt an ihn. Auf Bestellung gefertigt und vom Logistik-Koordinator deines Standorts übergeben.",
+  "metaTitle": "Merchandising",
+  "metaDescription": "Solidaritäts-T-Shirt für den Streikfonds: die Hälfte deines Beitrags geht direkt an den Fonds.",
+  "volver": "Zurück zur Startseite",
+  "producto": {
+   "nombre": "Dankeschön-T-Shirt",
+   "desc": "Unisex · weiß · Größen XS bis 5XL · 100% Baumwolle.",
+   "alt": "Solidarisches Unisex-T-Shirt des Streikfonds, in Weiß."
+  },
+  "desglose": "Wohin dein Beitrag geht",
+  "costeLabel": "Kosten des T-Shirts",
+  "cajaLabel": "An den Streikfonds",
+  "porcentaje": "{pct}% jedes T-Shirts tragen den Fonds",
+  "tallaLabel": "Größe",
+  "tallaAviso": "Wähle eine Größe, um fortzufahren.",
+  "cantidadLabel": "Menge",
+  "cantidadMas": "Eine Einheit hinzufügen",
+  "cantidadMenos": "Eine Einheit entfernen",
+  "guiaTallas": "Größentabelle ansehen",
+  "guiaAlt": "Größentabelle: Maße des Kleidungsstücks (Brustbreite und Länge) in Zentimetern, von XS bis 5XL.",
+  "guiaNota": "Maße am flach liegenden Kleidungsstück (Brustbreite × Länge), in cm.",
+  "donacionLabel": "Spende hinzufügen (optional)",
+  "sinDonacion": "Keine Spende",
+  "donacionNota": "Wird zu deiner Bestellung addiert und zusammen per Überweisung bezahlt.",
+  "totalLabel": "Zu überweisender Gesamtbetrag",
+  "nombreLabel": "Vor- und Nachname",
+  "emailLabel": "E-Mail",
+  "siteLabel": "Abholstelle",
+  "sitePlaceholder": "Abholstelle wählen",
+  "entrega": "Auf Bestellung gefertigt (4-5 Werktage ab Zahlungsbestätigung). Übergabe durch den Koordinator der Logistikgruppe deiner Abholstelle; wir benachrichtigen dich per E-Mail, wenn es bereit ist.",
+  "legalNota": "Mit dem Erstellen der Bestellung akzeptierst du die Beitragsbedingungen und die Datenschutzerklärung (Links im Footer). Deine Daten —Name, E-Mail und Abholstelle— werden nur zur Verwaltung und Zustellung dieser Bestellung verwendet.",
+  "confirmar": "Bestellung erstellen und Zahlung ansehen",
+  "enviando": "Wird registriert…",
+  "exito": {
+   "titulo": "BESTELLUNG REGISTRIERT",
+   "intro": "Fast geschafft. Überweise mit diesen Angaben —der Verwendungszweck erlaubt uns, deine Bestellung zuzuordnen— und fertig.",
+   "conceptoLabel": "Verwendungszweck (erforderlich)",
+   "beneficiarioLabel": "Empfänger",
+   "ibanLabel": "IBAN",
+   "totalLabel": "Betrag",
+   "copiar": "Kopieren",
+   "copiado": "Kopiert",
+   "pasos": [
+    "Öffne deine Banking-App und überweise den angezeigten Betrag.",
+    "Gib GENAU den obigen Verwendungszweck an: ohne ihn können wir deine Bestellung nicht identifizieren.",
+    "Wenn sie eingeht, bestätigen wir per E-Mail; das T-Shirt holst du an deinem Standort ab."
+   ],
+   "otro": "Weitere Bestellung aufgeben"
+  }
+ },
+ "donantes": {
+  "kicker": "GROSSSPENDER UND INSTITUTIONEN",
+  "title": "Bedeutende Beiträge, vollständig nachverfolgbar.",
+  "body": "Für Organisationen oder Personen, die einen bedeutenden Beitrag leisten möchten, gibt es einen eigenen Kanal mit Dokumentation, Nachverfolgbarkeit und Belegen.",
+  "bullets": [
+   "Dossier des Konflikts und der Governance des Fonds",
+   "Transparenzdaten und Prüfverfahren",
+   "Möglichkeit der Überweisung und Anforderung eines Belegs",
+   "Kontakt mit dem zuständigen Ausschuss und Option auf ein Treffen"
+  ],
+  "ctaContact": "Mit dem Ausschuss sprechen",
+  "ctaDossier": "Governance-Dossier des Fonds",
+  "note": "Das Governance-Dossier (wer den Fonds verwaltet, wie das Geld kontrolliert wird und was mit nicht verteilten Mitteln geschieht) wird veröffentlicht, sobald die Arbeitsgruppen es erstellen. Es ist ein anderes Dokument als das Konflikt-Dossier. Es werden keine ungeprüften Bank- oder Steuerdaten veröffentlicht, und keine Organisation wird ohne nachprüfbare Bestätigung als Unterstützerin gezeigt."
+ },
+ "faq": {
+  "kicker": "HÄUFIGE FRAGEN",
+  "title": "Häufige Fragen.",
+  "items": [
+   {
+    "q": "Wer verwaltet den Fonds?",
+    "a": "Ein Ausschuss der Belegschaft selbst, unter kollektiver Kontrolle und mit Nachverfolgbarkeit jeder Operation. Die Verantwortlichen werden öffentlich gemacht."
+   },
+   {
+    "q": "Woher weiß ich, dass das Geld gut verwendet wird?",
+    "a": "Weil die Zahlen aus geprüften Daten abgeleitet und veröffentlicht werden: Gesammeltes, Kosten, ausgezahlte Hilfen und Verteilungskriterien, mit herunterladbaren Berichten."
+   },
+   {
+    "q": "Kann ich anonym beitragen?",
+    "a": "Ja. Sie können wählen, dass Ihr Beitrag nicht öffentlich erscheint. Angaben von Hilfeantragstellern sind stets privat."
+   },
+   {
+    "q": "Kann ich einen wiederkehrenden Beitrag kündigen?",
+    "a": "Ja, mit einem Klick und jederzeit, mit Zugang zu Ihrem Beitragsverlauf."
+   },
+   {
+    "q": "Kann ich aus dem Ausland beitragen?",
+    "a": "Ja. Der Fonds ist darauf ausgelegt, nationale und internationale Solidarität zu empfangen."
+   },
+   {
+    "q": "Speichert der Gehaltstag-Rechner mein Gehalt?",
+    "a": "Nein. Er läuft vollständig in Ihrem Browser; der eingegebene Betrag wird weder gesendet noch gespeichert."
+   }
+  ]
+ },
+ "contacto": {
+  "kicker": "KONTAKT",
+  "title": "Schreiben Sie uns.",
+  "body": "Für Fragen, Presse, Organisationen oder zur Zusammenarbeit mit den Arbeitsgruppen.",
+  "sugerencias": {
+   "kicker": "ANREGUNGEN UND VERBESSERUNGEN",
+   "title": "Helfen Sie uns, sie zu verbessern.",
+   "body": "Diese Website gehört der Bewegung. Wenn Sie einen Fehler entdecken, ein Dokument fehlt oder etwas missverständlich ist, sagen Sie es uns: Alles wird geprüft.",
+   "cta": "Vorschlag senden",
+   "asunto": "Vorschlag für die Website",
+   "nuevaPestana": "wird in einem neuen Tab geöffnet",
+   "ctaOtro": "Nutzen Sie ein anderes E-Mail-Programm?"
+  }
+ },
+ "footer": {
+  "tagline": "#EnfadadosconAirbus — die Solidaritätskasse der Bewegung der Airbus-Spanien-Belegschaft.",
+  "independence": "Eine Initiative der Belegschaft. Die Kasse wird von Sindicato Útil als rechtlichem Träger getragen; die Bewegung und ihre Stimme bleiben unabhängig vom Unternehmen und von jeder Gewerkschaft. Diese Seite vertritt Airbus nicht und nutzt dessen Corporate Identity nicht.",
+  "legal": {
+   "aviso": "Impressum",
+   "privacidad": "Datenschutzerklärung",
+   "cookies": "Cookie-Richtlinie",
+   "condiciones": "Beitragsbedingungen"
+  },
+  "rights": "Rechtstexte im Entwurf, ausstehende rechtliche Prüfung.",
+  "visitasLabel": "Besuche",
+  "visitasNota": "Eigener Zähler. Keine Cookies, keine Analytik: Es wird nur eine Zahl erhöht, ohne etwas über Sie zu speichern.",
+  "redes": "Kanäle",
+  "redesAsunto": "Nachricht über die Website",
+  "redesNuevaPestana": "wird in einem neuen Tab geöffnet",
+  "sobre": "Governance",
+  "contacto": {
+   "heading": "Kontakt",
+   "incidencias": "Website-Probleme",
+   "tienda": "Solidaritätskasse",
+   "conflicto": "Konflikt & Presse",
+   "gestion": "Verwaltung der Kasse",
+   "gestionPendiente": "ausstehend — von der Gewerkschaft"
+  }
+ },
+ "cookies": {
+  "text": "Wir verwenden nur technischen Speicher, um Ihre Sprache zu merken und ob Sie diesen Hinweis gesehen haben. Keine Tracking- oder Analyse-Cookies.",
+  "masInfo": "Mehr Informationen",
+  "cerrar": "Verstanden"
+ },
+ "legalModals": {
+  "aviso": {
+   "title": "Impressum",
+   "body": "Trägerschaft der Seite. Diese Website ist die Solidaritätskasse der Bewegung #EnfadadosconAirbus. Ihre rechtliche Trägerschaft übernimmt Sindicato Útil, die für den Fonds verantwortlich ist und diese Rechtstexte unterzeichnet. Die Bewegung selbst ist unabhängig: sie vertritt Airbus nicht und nutzt dessen Corporate Identity nicht, und sie ist auch nicht der allgemeine Kanal der tragenden Gewerkschaft oder einer anderen Organisation.\n\nVerantwortlicher. Die tragende Einrichtung ist Sindicato Útil (Unión de Trabajadores Independientes y Libres); ihre Identifikationsdaten stehen am Fuß dieses Hinweises. Die Kasse nimmt Beiträge per Banküberweisung und per Bizum «NGO-Spende» entgegen; die Kartenzahlung wird freigeschaltet, sobald das Zahlungs-Gateway validiert ist.\n\nZweck. Die Solidaritätskasse betreiben: über den Fonds informieren, Beiträge kanalisieren und gegebenenfalls den Verkauf von Artikeln, deren Marge in die Kasse fließt (spanisches Gesetz 34/2002 über Dienste der Informationsgesellschaft und elektronischen Geschäftsverkehr).\n\nTransparenz. Die Zahlen der Kasse werden mit ihrem Aktualisierungsdatum veröffentlicht und sind auf reale Bewegungen zurückführbar; keine Zahl wird ohne Beleg veröffentlicht.\n\nGeistiges Eigentum. Die eigenen Texte dieser Seite dürfen mit Quellenangabe wiedergegeben werden. Marken, Handelsnamen und Kennzeichen Dritter, die erscheinen, gehören ihren Inhabern und werden nur zu Informationszwecken verwendet, um das vom Konflikt betroffene Unternehmen zu benennen.\n\nLinks. Die Seite kann auf externe Quellen verweisen. Für den Inhalt dieser Seiten und ihre Richtlinien wird keine Haftung übernommen.\n\nEntfernung von Inhalten. Wer der Ansicht ist, dass ein Inhalt seine Rechte verletzt, kann dessen Entfernung unter enfadadosconairbus.contacto@gmail.com verlangen, unter Angabe des konkreten Inhalts und des Grundes. Die Anfrage wird sorgfältig bearbeitet.\n\nAnwendbares Recht. Dieser Hinweis unterliegt spanischem Recht.",
+   "nota": "Textentwurf. Ausstehend sind die Prüfung durch einen Anwalt und —in den Beitragsbedingungen— die Rückerstattungsfrist und die steuerliche Behandlung."
+  },
+  "privacidad": {
+   "title": "Datenschutzerklärung",
+   "body": "Dies ist eine Übersetzung zu Informationszwecken. Bei Abweichungen ist die spanische Fassung maßgeblich.\n\nDiese Website ist so angelegt, dass sie gelesen werden kann, ohne Spuren zu hinterlassen. Es gibt keine Analyse durch Dritte, keine Pixel und keine Werbeprofile.\n\nVerantwortlicher für die Verarbeitung. Die rechtliche Trägerschaft übernimmt Sindicato Útil (Unión de Trabajadores Independientes y Libres, Steuernummer G10605053) mit Sitz in Paseo John Lennon, s/n, 28906 Getafe (Spanien). Kontakt: enfadadosconairbus.contacto@gmail.com.\n\nWelche Daten verarbeitet werden.\n1. Keine, wenn Sie nur surfen. Ihre IP-Adresse, Ihr Browser und die aufgerufenen Seiten werden nicht zu Analysezwecken erfasst. Der Server erzeugt temporäre technische Protokolle, wie sie bei jedem Hosting anfallen und die nicht zur Profilbildung verwendet werden.\n2. Besuchszähler. Eine Zahl wird erhöht. Es werden weder IP-Adresse noch Kennung, Cookie oder sonstige Daten gespeichert, die es erlauben würden, eine Person von einer anderen zu unterscheiden: Es findet keine Verarbeitung personenbezogener Daten statt.\n3. Wenn Sie an die Kontaktadresse schreiben. Ihre E-Mail-Adresse und der Inhalt Ihrer Nachricht werden ausschließlich zum Zweck der Beantwortung verarbeitet. Rechtsgrundlage: Ihre Einwilligung durch das Schreiben. Speicherdauer: für die Dauer des Austauschs und die gesetzlich vorgeschriebene Frist.\n4. Beiträge per Überweisung und Bizum. Die Überweisung erfolgt von Ihrer Bank aus: diese Seite verarbeitet die Zahlung nicht und sieht Ihre Bankdaten nicht. Das Bizum «NGO-Spende» läuft vollständig in der App Ihrer Bank ab, ohne dass die Seite beteiligt ist. Verarbeitet werden nur die Daten, die Sie uns beim Schreiben mitteilen —etwa um einen Beleg anzufordern.\n5. Bestellungen im Shop. Wenn Sie einen Artikel bestellen, werden Ihr Name, Ihre E-Mail und die gewählte Abholstelle verarbeitet, zusammen mit den Bestelldaten und dem Zahlungsstatus, ausschließlich zur Verwaltung und Zustellung. Rechtsgrundlage: die Erfüllung dieses Kaufvertrags auf Ihre Anfrage. Speicherdauer: die für die Zustellung erforderliche Zeit sowie die geltenden buchhalterischen und steuerlichen Fristen.\n6. Kartenzahlung. Noch nicht aktiv. Sobald das Gateway freigeschaltet ist, wird diese Erklärung vor der Aktivierung erweitert und dabei dargelegt, welche Daten erhoben werden, auf welcher Rechtsgrundlage, wer sie verarbeitet und wie lange sie aufbewahrt werden.\n\nAuf Ihrem Gerät gespeicherte Einstellungen. Der lokale Speicher des Browsers wird genutzt, um die gewählte Sprache, den Anzeigemodus (Tag oder Nacht) und ob Sie den Cookie-Hinweis bereits gesehen haben zu merken. Er verlässt Ihr Gerät nicht und wird nicht geteilt.\n\nEmpfänger. Die Daten werden weder weitergegeben noch verkauft. Die Website wird über die Infrastruktur von Cloudflare, Inc. gehostet und ausgeliefert, das als Auftragsverarbeiter handelt und auch die Bestelldatenbank hostet; es kann technische Protokolle und diese Daten auf Servern innerhalb und außerhalb des Europäischen Wirtschaftsraums verarbeiten, mit den in der DSGVO vorgesehenen Garantien.\n\nIhre Rechte. Sie können Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Datenübertragbarkeit verlangen, indem Sie an enfadadosconairbus.contacto@gmail.com schreiben. Wenn Sie der Auffassung sind, dass Ihren Rechten nicht entsprochen wurde, können Sie sich bei der spanischen Datenschutzbehörde (AEPD, www.aepd.es) beschweren.\n\nMinderjährige. Diese Website richtet sich nicht an Kinder unter 14 Jahren und erhebt deren Daten nicht wissentlich."
+  },
+  "cookies": {
+   "title": "Cookie-Richtlinie",
+   "body": "Dies ist eine Übersetzung zu Informationszwecken. Bei Abweichungen ist die spanische Fassung maßgeblich.\n\nDiese Website verwendet keine Tracking-, Werbe- oder Analyse-Cookies. Es gibt keine Cookies Dritter.\n\nUnbedingt erforderliche Speicherung. In Ihrem Browser werden über den lokalen Speicher drei Einstellungen abgelegt: die gewählte Sprache, der Anzeigemodus (Tag oder Nacht) und ob Sie diesen Hinweis bereits gesehen haben. Sie identifizieren niemanden, werden an keinen Server gesendet und Sie können sie jederzeit in Ihrem Browser löschen. Aufgrund ihrer technischen Natur sind sie von der Pflicht zur vorherigen Einwilligung ausgenommen (Artikel 22.2 LSSI-CE).\n\nAnfragen an Dritte. Keine. Alle Ressourcen —Schriften, Bilder und Daten— werden von dieser Domain ausgeliefert; Ihr Browser kontaktiert beim Laden der Seite keine Drittserver.\n\nBesuchszähler. Er ist eigenentwickelt und erhöht lediglich eine Zahl auf dem Server. Er verwendet keine Cookies und speichert keinerlei Daten der Besuchenden.\n\nWie Sie widerrufen. Es genügt, den lokalen Speicher der Website in den Einstellungen Ihres Browsers zu löschen. Sie verlieren keine Inhalte: Sie werden lediglich erneut nach der Sprache gefragt und der Hinweis wird wieder angezeigt."
+  },
+  "condiciones": {
+   "title": "Beitragsbedingungen",
+   "body": "Dies ist eine Übersetzung zu Informationszwecken. Bei Abweichungen ist die spanische Fassung maßgeblich.\n\nDiese Bedingungen regeln Beiträge zum Solidaritätsfonds. Der Fonds kann bereits Beiträge per Banküberweisung entgegennehmen; die Kartenzahlung wird freigeschaltet, sobald das Zahlungs-Gateway validiert ist.\n\nWas ein Beitrag ist. Eine freiwillige Geldzuwendung ohne Gegenleistung, die dazu bestimmt ist, diejenigen wirtschaftlich zu unterstützen, die durch die Teilnahme an der Mobilisierung Lohn verlieren. Es ist kein Kauf, keine Investition und begründet keinerlei Recht am Fonds oder an dessen Verwaltung.\n\nWer beitragen kann. Jede volljährige Person mit der Fähigkeit, über die von ihr übergebenen Mittel zu verfügen, unabhängig davon, ob sie zur Belegschaft von Airbus Spanien gehört.\n\nVerwendung der Mittel. Vollständig für die Zwecke des Fonds: Hilfen für vom Lohnausfall betroffene Beschäftigte und unmittelbar für die Verwaltung erforderliche Kosten. Die Verteilungskriterien werden zusammen mit der Gründung des Fonds veröffentlicht und nicht rückwirkend angewandt.\n\nTransparenz und Rechenschaft. Regelmäßig veröffentlicht werden die eingenommenen Beträge, die ausgezahlten Beträge, die Verwaltungskosten und der noch nicht zugewiesene Saldo, jeweils mit Aktualisierungsdatum. Keine Zahl wird veröffentlicht, ohne auf eine reale Bewegung zurückführbar zu sein.\n\nRückerstattungen. Sie können die Rückerstattung eines Beitrags beantragen, indem Sie innerhalb der folgenden [·] Kalendertage an enfadadosconairbus.contacto@gmail.com schreiben, sofern er nicht bereits als Hilfe ausgezahlt wurde. Nach Ablauf dieser Frist ist der Beitrag aufgrund seines solidarischen Charakters unwiderruflich.\n\nWiederkehrende Beiträge. Sie können jederzeit und ohne Begründung storniert werden, über den Beleg selbst oder durch eine Nachricht an enfadadosconairbus.contacto@gmail.com. Die Stornierung wird vor der nächsten Abbuchung wirksam.\n\nBelege und Steuern. Für jeden Beitrag wird ein Beleg ausgestellt. Beiträge zu einem Solidaritätsfonds gelten in der Regel nicht als abzugsfähige Spende: Prüfen Sie Ihre persönliche Situation, bevor Sie etwas absetzen. [·] (anwendbares Steuerrecht, durch Beratung zu bestätigen).\n\nShop. Der Verkauf von Artikeln sind keine Beiträge: Es sind Kaufverträge mit eigenen Widerrufs- und Gewährleistungsrechten. Bei jedem Artikel ist angegeben, welcher Teil des Preises die Kosten deckt und welcher Teil an den Fonds geht. Der Verkauf von Artikeln auf dieser Website wird zusammen mit dem Zahlungs-Gateway freigeschaltet.\n\nÄnderungen. Diese Bedingungen können aktualisiert werden. Für jeden Beitrag gilt die zum Zeitpunkt seiner Leistung geltende Fassung; frühere Fassungen bleiben zugänglich.",
+   "nota": "Bedingungen im Entwurf. Ausstehend ist die Prüfung durch einen Anwalt, der zwei Angaben ergänzt: die Rückerstattungsfrist (in Kalendertagen) und die anwendbare steuerliche Behandlung."
+  }
+ },
+ "documentacion": {
+  "kicker": "DOKUMENTATION",
+  "title": "Protokolle und Dokumente der Bewegung.",
+  "intro": "Die Protokolle der Versammlungen jedes Standorts und das vollständige Verzeichnis der von der Bewegung selbst katalogisierten Dokumente. Alles kommt eingeklappt: Öffnen Sie nur, was Sie lesen möchten.",
+  "notaActas": "Zu diesen Dokumenten: Die Protokolle halten fest, was in den jeweiligen Versammlungen mitgeteilt und diskutiert wurde. Sie können Aussagen, Schätzungen oder Meinungen von Teilnehmenden enthalten, die von dieser Website nicht unabhängig überprüft wurden. Ihre Veröffentlichung dient dokumentarischen Zwecken und impliziert keine Übernahme aller enthaltenen Inhalte.",
+  "grupoHeading": "Zusammenfassungen der Telegram-Gruppe",
+  "grupoNota": "Täglich veröffentlicht",
+  "sitesHeading": "Protokolle nach Standort",
+  "grupoLabel": "Gruppen-Zusammenfassung",
+  "indiceHeading": "Dokumentenverzeichnis",
+  "indiceResumen": "{n} Dokumente in {c} Kategorien. {d} lassen sich hier herunterladen; der Rest ist in der Telegram-Gruppe einzusehen.",
+  "indiceActualizado": "Verzeichnis aktualisiert: {fecha}",
+  "indiceFuente": "Vollständiges Verzeichnis ansehen",
+  "indiceNota": "Wird täglich von der Dokumentationsgruppe auf Telegram katalogisiert. Hier ohne den Namen der hochladenden Person und ohne Reaktionen gespiegelt. Die Bilder des Verzeichnisses werden nicht gespiegelt.",
+  "descargar": "Herunterladen",
+  "descargables": "{n} hier herunterladbar",
+  "verEnGrupo": "In der Gruppe ansehen",
+  "soloGrupo": "Nur in der Gruppe",
+  "versiones": "weitere Versionen: {n}",
+  "ejemploTag": "BEISPIEL-PROTOKOLLE — Quelle noch anzubinden",
+  "sinActas": "Noch keine Protokolle veröffentlicht. Sie erscheinen hier, sobald das Komitee sie veröffentlicht.",
+  "metaTitle": "Dokumentation",
+  "metaDescription": "Versammlungsprotokolle, tägliche Zusammenfassungen der Gruppe und das vollständige Dokumentenverzeichnis der Bewegung.",
+  "volver": "Zurück zur Startseite",
+  "ctaVer": "Zur Dokumentation",
+  "portadaActas": "Versammlungsprotokolle",
+  "portadaResumenes": "Gruppen-Zusammenfassungen",
+  "portadaDocumentos": "katalogisierte Dokumente"
+ },
+ "cajaCta": {
+  "kicker": "DER SOLIDARITÄTSFONDS",
+  "title": "Niemand soll aus Geldmangel aufgeben müssen.",
+  "body": "Der Fonds bezahlt, was die Mobilisierung braucht, und bleibt offen für das, was die Belegschaft zu verteidigen beschließt. Er hat seine eigene Seite: was er ist, wofür er ausgibt, wie man beiträgt und wie Rechenschaft abgelegt wird.",
+  "ctaPrimary": "Beitragen",
+  "ctaSecondary": "Mehr über den Fonds",
+  "ctaTienda": "Zum Shop"
+ },
+ "cronologia": {
+  "kicker": "CHRONOLOGIE",
+  "title": "Wie es so weit kam.",
+  "intro": "Vom ersten Streiktag im Juli über die Arbeitsniederlegungen am 24. August bis zum Beginn des unbefristeten Vollstreiks ab dem 25. Jeder Meilenstein enthält die zugehörige Dokumentation und Medienberichterstattung.",
+  "hoy": "heute",
+  "futuro": "noch offen",
+  "documentos": "Dokumente",
+  "prensa": "Berichtet von",
+  "cerrar": "Schließen",
+  "instruccion": "Gehen Sie die Chronologie durch. Jeder Meilenstein ermöglicht es, zugehörige Bilder, Dokumente und Medienberichterstattung einzusehen."
+ },
+ "sobre": {
+  "metaTitle": "Governance",
+  "metaDescription": "Was die Solidaritätskasse von #EnfadadosconAirbus ist, wie sie verwaltet wird, wer für sie verantwortlich ist und warum sie ein unabhängiges Werkzeug der Belegschaft ist.",
+  "kicker": "GOVERNANCE",
+  "title": "Die Kasse gehört der Belegschaft.",
+  "naturaleza": {
+   "heading": "Wesen",
+   "body": "Diese Website ist der Widerstandsfonds der Bewegung #EnfadadosconAirbus: ein gemeinsamer Topf, der bezahlt, was die Mobilisierung braucht, und der als dauerhafter Fonds offen bleibt, um die Belegschaft in den Konflikten und Verhandlungen zu unterstützen, die die Versammlung beschließt. Seine erste Ausgabe finanzierte die Mobilisierung; der Fonds wird mit deren Ende nicht geschlossen.\n\nDen Fonds verwalten die Arbeitsgruppen Streikkomitee und Logistik aus der Belegschaft selbst, unter kollektiver Kontrolle und mit öffentlicher Rechenschaft. Die rechtliche Trägerschaft —die Einrichtung, die Steuernummer und Konto stellt und die Rechtstexte unterzeichnet— übernimmt Sindicato Útil, die als rechtliches und steuerliches Vehikel handelt. Diese Rolle macht sie nicht zur Eigentümerin der Kasse: das Geld ist zweckgebunden und die Entscheidungen liegen bei der Belegschaft.\n\nDiese Seite vertritt Airbus nicht und spricht nicht in seinem Namen; sie ist auch nicht der allgemeine Kanal einer Gewerkschaft: sie ist das wirtschaftliche Werkzeug der Bewegung."
+  },
+  "criterio": {
+   "heading": "Steuerung und Kontrolle",
+   "intro": "Die Unabhängigkeit des Fonds ist keine Erklärung, sondern Regeln:",
+   "items": [
+    "Ab dem Eingang gehört das Geld zu 100 % dem Sindicato Útil und liegt auf einem separaten Konto in seinem Namen; keine Person —Vorstand, Delegierte, Mitglied oder Mitwirkende— besitzt es persönlich, und es werden keine Privatkonten verwendet.",
+    "Jede Zahlung erfordert die gemeinsame Unterschrift von Präsidium und Kasse und ist durch Rechnung, Beleg oder Nachweis gedeckt. Wer ein persönliches Interesse an einer Ausgabe hat, enthält sich der Genehmigung.",
+    "Die Kasse und die Logistikgruppe der Versammlungen führen gemeinsam das Einnahmen- und Ausgabenregister, prüfen die Salden regelmäßig und bewahren die Nachweise auf.",
+    "Über die Verwendung des Geldes entscheidet die zuständige Versammlung —die Versammlung der streikenden Beschäftigten von Airbus España— mit mehrheitlicher Unterstützung der Belegschaft, gezählt nach Personen und nicht nach gewerkschaftlicher Vertretung. Zwischen Konflikten ist der Fonds eingefroren, mit Ausnahme der Kontogebühren."
+   ],
+   "coda": "Die trägende Gewerkschaft stellt die rechtliche Absicherung; Stimme und Kontrolle bleiben bei der Belegschaft."
+  },
+  "privacidad": {
+   "heading": "Daten derer, die geben und empfangen",
+   "body": "Das Projekt minimiert personenbezogene Daten. Wer beiträgt, kann wählen, nicht öffentlich zu erscheinen. Angaben zu Personen, die Hilfe beantragen oder erhalten, sind stets privat: sie werden nicht veröffentlicht, und nur die Arbeitsgruppen bearbeiten sie zur Prüfung des Antrags."
+  },
+  "correcciones": {
+   "heading": "Korrekturen und Kontakt",
+   "body": "Wenn Sie einen Fehler auf der Seite, ein versehentlich veröffentlichtes personenbezogenes Datum oder etwas Missverständliches bemerken, schreiben Sie an enfadadosconairbus.contacto@gmail.com und es wird geprüft.\n\nWir arbeiten daran, den Zahlen der Kasse eine vollständige Rückverfolgbarkeit zu realen Bewegungen zu geben und sie transparent darzustellen. Wir werden dies so bald wie möglich tun; wenn Sie in der Zwischenzeit etwas bemerken, das nicht stimmt, sagen Sie es uns."
+  },
+  "independencia": {
+   "heading": "Unabhängigkeit",
+   "body": "Die Kasse ist unabhängig vom Unternehmen und von jeder einzelnen Gewerkschaft. Die tragende Gewerkschaft stellt das rechtliche und steuerliche Vehikel; sie leitet den Fonds nicht und besitzt ihn nicht. Die Bewegung #EnfadadosconAirbus gehört der Belegschaft und will ihre Stimme in möglichen künftigen Konflikten und Verhandlungen bleiben.\n\nMarken und Namen Dritter, die erscheinen, werden nur zur Identifizierung der Akteure des Konflikts verwendet, ohne Absicht, Verwirrung über die Herkunft dieser Seite zu stiften."
+  },
+  "volver": "Zurück zur Startseite",
+  "reglamentoReparto": {
+   "heading": "Verteilungsordnung",
+   "body": "Diese Ordnung legt fest, wofür das Geld des Fonds verwendet wird. Die zuständige Versammlung genehmigt sie, und nur sie kann sie ändern.\n\nDas Geld fließt in Ausgaben, die unmittelbar mit der Mobilisierung zusammenhängen: Produktion von Kampagnenmaterial und Plakaten (einschließlich der T-Shirts), Transport und Fahrten zu den Märschen, Miete von Ausrüstung —wie dem LKW mit Tonanlage für den Marsch zu den Ministerien am 12. September 2026—, Kommunikation und Öffentlichkeitsarbeit, professionelle Dienstleistungen und Logistik sowie die Gebühren und die Pflege des Kontos. Persönliche oder gewerkschaftsfremde Ausgaben dürfen nicht angerechnet werden.\n\nJede Ausgabe wird vor der Versammlung Rechenschaft abgelegt und mit ihrem Datum veröffentlicht, nachvollziehbar zu realen Bewegungen und durch ihren Beleg gedeckt. Streckt eine andere Organisation eine Ausgabe der Mobilisierung vor, genehmigt die zuständige Versammlung sie, bevor sie dem Fonds angerechnet wird.\n\nAm Ende jeder Mobilisierung wird der Fonds weder geschlossen noch der Überschuss verteilt: Der Rest bleibt im Fonds, verfügbar für künftige Mobilisierungen der Belegschaft von Airbus España im Zusammenhang mit Arbeitskonflikten und deren Tarifverhandlungen. Sindicato Útil kann über diesen Rest nicht ohne Genehmigung der zuständigen Versammlung verfügen; zwischen Konflikten ist das Geld eingefroren, und nur die zuständige Versammlung kann die Schließung des Fonds und die endgültige Verwendung des Rests beschließen.\n\nDie Vereinbarung zur Errichtung des Fonds und diese Ordnung werden ratifiziert und unterzeichnet; ihre vollständigen Texte werden hier nach der Unterzeichnung veröffentlicht."
+  },
+  "contactoCaja": {
+   "heading": "Kontakt der Kassenverwaltung",
+   "body": "Für die Arbeitsgruppen, die den Fonds verwalten: Fragen von Beitragenden, Organisationen und Großspendern.",
+   "pendiente": "Er wird veröffentlicht, sobald die Gewerkschaft den Kanal der Arbeitsgruppen bestätigt."
+  }
+ },
+ "origen": {
+  "kicker": "WOHER DIESE KASSE KOMMT",
+  "title": "Zuerst den Konflikt verstehen.",
+  "body": "Diese Kasse entsteht aus dem Konflikt der Airbus-Spanien-Belegschaft. Um über einen Beitrag zu entscheiden, lernen Sie ihn kennen: wer sie sind, was sie fordern und warum es so weit gekommen ist.",
+  "cta": "Den Konflikt kennenlernen — die Seite der Bewegung"
+ },
+ "valores": {
+  "resumen": "Solidarität, Unabhängigkeit, Transparenz und kollektive Kontrolle tragen die Kasse.",
+  "cta": "Wie sie tragen → Governance"
+ }
+}

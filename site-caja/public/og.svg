@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Caja de Resistencia — #EnfadadosAirbus">
+  <rect width="1200" height="630" fill="#f7f4ee"/>
+  <g fill="#24425f" opacity="0.16">
+    <!-- muro de aportaciones (motivo de firma) -->
+    <g>
+      <rect x="820" y="70" width="60" height="60" rx="3"/><rect x="890" y="70" width="60" height="60" rx="3"/><rect x="960" y="70" width="60" height="60" rx="3"/><rect x="1030" y="70" width="60" height="60" rx="3"/><rect x="1100" y="70" width="60" height="60" rx="3"/>
+      <rect x="820" y="140" width="60" height="60" rx="3"/><rect x="890" y="140" width="60" height="60" rx="3"/><rect x="960" y="140" width="60" height="60" rx="3"/><rect x="1030" y="140" width="60" height="60" rx="3"/><rect x="1100" y="140" width="60" height="60" rx="3"/>
+      <rect x="820" y="210" width="60" height="60" rx="3"/><rect x="890" y="210" width="60" height="60" rx="3"/><rect x="960" y="210" width="60" height="60" rx="3"/><rect x="1030" y="210" width="60" height="60" rx="3"/><rect x="1100" y="210" width="60" height="60" rx="3"/>
+    </g>
+  </g>
+  <rect x="890" y="140" width="60" height="60" rx="3" fill="#c0392b"/>
+  <text x="80" y="300" font-family="Georgia, serif" font-size="34" letter-spacing="6" fill="#c0392b">CAJA DE RESISTENCIA · #ENFADADOSAIRBUS</text>
+  <text x="76" y="400" font-family="Georgia, serif" font-weight="700" font-size="86" fill="#1a1d21">Que nadie tenga</text>
+  <text x="76" y="490" font-family="Georgia, serif" font-weight="700" font-size="86" fill="#1a1d21">que rendirse por dinero.</text>
+  <text x="80" y="565" font-family="Georgia, serif" font-size="28" fill="#55585e">Solidaridad · Transparencia · Independencia · Resistencia colectiva</text>
+</svg>

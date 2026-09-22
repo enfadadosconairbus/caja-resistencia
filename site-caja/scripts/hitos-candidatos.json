@@ -1,0 +1,48 @@
+{
+  "nota": "Candidatos a hito de la cronología. NADA de esto está publicado: los hitos se escriben a mano en src/config/hitos.json, con su texto y su lectura. Esto solo evita que se pase algo por alto. Para que un candidato deje de proponerse sin subirlo, añade su 'pdf' (documentos) o su 'clave' (prensa) a scripts/hitos-descartados.json con el motivo.",
+  "generado": "2026-08-27T10:25:00.995Z",
+  "candidatos": [
+    {
+      "senal": "documento",
+      "fecha": "2026-07-22",
+      "titulo": "PREACUERDO CNC 23072026 FIRMADO",
+      "categoria": "Otros",
+      "pdf": "/docs/preacuerdo-cnc-23072026-firmado-1.pdf",
+      "resumen": "(documento sin texto extraíble, probablemente escaneado o de imagen)",
+      "yaHayHitoEseDia": true
+    },
+    {
+      "senal": "documento",
+      "fecha": "2026-08-25",
+      "titulo": "Comunicado ÚTIL sobre reunión en SIMA de 25-Ago-2026",
+      "categoria": "Comunicados y convocatorias de huelga",
+      "pdf": "/docs/comunicado-util-sobre-reunion-en-sima-de-25-ago-2026.pdf",
+      "resumen": "",
+      "yaHayHitoEseDia": true
+    },
+    {
+      "senal": "documento",
+      "fecha": "2026-08-26",
+      "titulo": "Enfado, Orgullo e Incertidumbre Carta abierta a los trabajadores",
+      "categoria": "Cartas abiertas",
+      "pdf": "/docs/enfado-orgullo-e-incertidumbre-carta-abierta-a-los-trabajadores.pdf",
+      "resumen": "",
+      "yaHayHitoEseDia": false
+    },
+    {
+      "senal": "prensa",
+      "fecha": "2026-08-26",
+      "tema": "huelga indefinida",
+      "medios": [
+        "CGT Andalucía, Ceuta y Melilla",
+        "ABC",
+        "La Razón",
+        "Aviación Digital"
+      ],
+      "clave": "2026-08-26|huelga indefinida"
+    }
+  ],
+  "porDocumento": 3,
+  "porPrensa": 1,
+  "repetidos": 11
+}

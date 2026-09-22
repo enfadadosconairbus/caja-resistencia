@@ -1,0 +1,58 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+# ...pero SÍ se versiona la plantilla de variables (no lleva valores reales).
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Actas — secretos/estado local (NUNCA versionar)
+scripts/*.session
+scripts/*.session-journal
+scripts/actas-offset.json
+scripts/actas.backfill-crudo.json
+scripts/actas-para-revisar.xlsx
+# Descargador local de documentos (tarea 24 h) — bytes + credenciales + estado, TODO local
+scripts/tg.local.json
+scripts/descarga-state.json
+scripts/pendientes/
+scripts/fotos-revision/
+# Originales a pleno tamaño de las fotos ya aprobadas. Lo que se versiona es el WebP que
+# sale de `fotos-cronologia.mjs`, en public/img/, no el JPG de partida.
+scripts/fotos-elegidas/

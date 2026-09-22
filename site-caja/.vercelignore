@@ -1,0 +1,26 @@
+# Vercel sube por su cuenta (no usa git). Este archivo garantiza que lo LOCAL/SENSIBLE
+# nunca salga del PC, aunque Vercel deje de respetar .gitignore.
+
+# Documentos descargados para revisión + credenciales + sesión + estado local
+scripts/pendientes/
+scripts/*.session
+scripts/*.session-journal
+scripts/tg.local.json
+scripts/actas-offset.json
+scripts/descarga-state.json
+scripts/actas.backfill-crudo.json
+scripts/actas-para-revisar.xlsx
+
+# Secretos de entorno (nunca al deploy)
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Artefactos (Vercel reconstruye desde el código)
+node_modules/
+.next/
+out/
+build/
+.git/
+.vercel/

@@ -1,0 +1,135 @@
+{
+  "fuentes": "Dossier + Manifiesto de la Plantilla (1 de julio) · Comunicados y documentación de la empresa (23 de julio y 27 de agosto) · Contrapropuesta del Comité de Huelga (27 de agosto) · «Propuesta de acuerdo» de la empresa, pendiente de referéndum (4 de septiembre)",
+  "imagenes": [
+    {
+      "id": "estado",
+      "src": "/img/infografia-negociacion.webp",
+      "w": 1448,
+      "h": 1086,
+      "descarga": "estado-negociacion-airbus.webp"
+    },
+    {
+      "id": "propuesta",
+      "src": "/img/propuesta-acuerdo.webp",
+      "w": 1087,
+      "h": 1447,
+      "descarga": "propuesta-de-acuerdo-airbus.webp"
+    }
+  ],
+  "propuestas": [
+    {
+      "orden": 1,
+      "autor": "plantilla",
+      "fecha": "1 de julio",
+      "titulo": "Posición inicial",
+      "subtitulo": "Dossier + Manifiesto",
+      "economico": [
+        "Subida consolidada del 20,9 % (2026-2027)",
+        "Pago único compensatorio a 46,3 % del salario 2025",
+        "Fórmula futura: IPC + 1,5 % anual"
+      ],
+      "laboral": [
+        "Teletrabajo: universal mínimo 40 % en cómputo trimestral a elección del trabajador",
+        "Vacaciones más flexibles: 2 semanas en agosto como recomendación",
+        "Comedor universal y gratuito",
+        "Mantenimiento de rutas de transporte",
+        "Eliminar Bradford o excluir bajas médicas"
+      ],
+      "industrial": [
+        "Pliego de garantías: Espacio / Bromo",
+        "Nueva política salarial transparente",
+        "Compensación por días de acompañamiento"
+      ]
+    },
+    {
+      "orden": 2,
+      "autor": "empresa",
+      "fecha": "23 de julio",
+      "titulo": "Preacuerdo de julio",
+      "subtitulo": "Firmado con CCOO, SIPA y ATP",
+      "economico": [
+        "2026: IPC real + RSI 0,5 % + promociones 0,5 %",
+        "2027: IPC 5 % + RSI 0,5 % + promociones 0,5 %",
+        "Paga única: 2.000 € brutos (octubre 2026)",
+        "2028-2029: IPC + 1 % en IG + 0,5 % RSI + 0,5 % promociones",
+        "Tope anual conjunto: 4 %",
+        "2030-2031: ajustes hasta 7,6 % sobre la evolución del IPC",
+        "Efecto abril: desde 2027 la revisión pasa de enero a abril, sin retroactividad"
+      ],
+      "laboral": [
+        "Teletrabajo: política vigente, recomendación de hasta 2 días/semana (no blindado)",
+        "Vacaciones: se mantienen 2 semanas y se flexibiliza",
+        "Comedor: de 5,00 € a 3,50 € revisable anualmente",
+        "Transporte: mantener el servicio actual",
+        "Flexibilidad horaria: análisis en comisiones",
+        "IT/Bradford: suspensión temporal del sistema actual",
+        "Absentismo: nuevo método alternativo de cálculo a analizar"
+      ],
+      "industrial": [
+        "Bromo: garantías de convenio + movilidad interna en el Grupo",
+        "Catálogo / PG-1210 / PG225: revisión",
+        "Otras materias en foros correspondientes",
+        "Nueva etapa de negociación del futuro"
+      ]
+    },
+    {
+      "orden": 3,
+      "autor": "empresa",
+      "fecha": "27 de agosto",
+      "titulo": "Nueva propuesta en el SIMA",
+      "subtitulo": null,
+      "economico": [
+        "Recuperación del poder adquisitivo: 7,6 % en 5 años",
+        "2026-2027: IPC + complemento hasta alcanzar 5 %",
+        "2028-2030: IPC + 1,2 %",
+        "Paga única: 2.000 € brutos (enero 2027)",
+        "0,5 % RSI + 0,5 % promociones",
+        "Efecto abril: desde 2027 la revisión pasa de enero a abril, sin retroactividad"
+      ],
+      "laboral": [
+        "Teletrabajo: respeto de los 2 días vigentes (no blindado)",
+        "Vacaciones: 2 semanas íntegras + 2 flexibles",
+        "Comedor: de 5,00 € a 3,50 € revisable anualmente",
+        "Transporte: mantener el servicio actual",
+        "Flexibilidad horaria: análisis en comisiones",
+        "Bradford: desistimiento del recurso ante el Tribunal Supremo",
+        "Absentismo: nuevo método alternativo de cálculo a analizar"
+      ],
+      "industrial": [
+        "Bromo: garantías reforzadas movilidad interna en el Grupo",
+        "Cádiz: carga de trabajo",
+        "Catálogo / PG-1210 / PG225: revisión",
+        "Nueva etapa de negociación del futuro"
+      ]
+    },
+    {
+      "orden": 4,
+      "autor": "plantilla",
+      "fecha": "27 de agosto",
+      "titulo": "Contrapropuesta del Comité de Huelga",
+      "subtitulo": null,
+      "economico": [
+        "Paga no consolidable: 7.500 €",
+        "Subida del 12 % sobre tablas de 2025",
+        "Retroactividad al 1 de enero de 2026",
+        "2026: IPC + 1,5 %",
+        "2027: IPC + 1,5 %",
+        "Sin cláusula techo: suelo 0 %",
+        "Rechazo al efecto abril: la revisión salarial debe mantenerse en enero"
+      ],
+      "laboral": [
+        "Teletrabajo: universal mínimo 40 % en cómputo trimestral a elección del trabajador",
+        "Vacaciones: 2 semanas íntegras + 2 flexibles",
+        "Comedor universal y gratuito",
+        "Transporte: mantenimiento íntegro + nuevas paradas/rutas",
+        "Flexibilidad horaria para toda la plantilla: taller: 1 hora"
+      ],
+      "industrial": [
+        "Bromo: garantías + movilidad interna + protección de empleo",
+        "Cádiz: carga de trabajo y no reducción de plantilla",
+        "Catálogo de puestos: LMA, Rodadores y 5R",
+        "Compensación del 100 % de los días de huelga de 2026"
+      ]
+    }
+  ]
+}

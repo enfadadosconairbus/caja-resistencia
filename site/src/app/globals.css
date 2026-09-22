@@ -1,0 +1,337 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ==========================================================================
+   PALETA DEL CLIENTE — SUSTITUIR EN CADA PROYECTO (A3)
+   --------------------------------------------------------------------------
+   Estos tokens son PLACEHOLDERS NEUTROS a propósito. El criterio 1 y 3 del
+   $10K exigen un sistema de color propio (3-5 colores, contraste >= 4.5:1)
+   DERIVADO del negocio. NUNCA dejes esta paleta gris tal cual, y NUNCA
+   copies la paleta de otro cliente.
+   Nombra los tokens con el vocabulario de ESTA marca, no con nombres genéricos.
+   ========================================================================== */
+@theme {
+  /* Caja de Resistencia — solidaridad obrera / documental cívico.
+     Paleta sobria: papel + tinta + rojo solidaridad (contención) + azul acero (confianza).
+     Sin púrpura, sin dark-default (D-09). Contraste ≥ 4.5:1 en texto. */
+  --color-fondo: #f7f4ee;        /* papel cálido */
+  --color-superficie: #efe9df;   /* superficie/tarjeta */
+  --color-tinta: #1a1d21;        /* tinta casi negra */
+  --color-tinta-suave: #55585e;  /* texto secundario (AA sobre papel) */
+  --color-acento: #c0392b;       /* rojo solidaridad — RELLENO (botones, bandas) */
+  --color-acento-hondo: #99271c; /* rojo hover/press — RELLENO */
+  --color-confianza: #24425f;    /* azul acero — RELLENO de banda */
+  --color-linea: #e2ddd3;        /* gris cálido de línea */
+
+  /* ── Tokens de TINTA de color ────────────────────────────────────────────
+     Mismo valor que su relleno en claro; en oscuro se ACLARAN. La regla:
+       · `bg-`                  → token de relleno (--color-acento, --color-confianza)
+       · `text-`/`border-`/SVG  → token de tinta   (--color-*-tinta)
+     Existen porque el rojo de marca sobre el fondo oscuro da 3,3:1 (falla AA) y
+     el azul acero 1,7:1 (invisible); pero como relleno con texto blanco encima
+     siguen siendo correctos, así que no se pueden cambiar los dos a la vez. */
+  --color-acento-tinta: #c0392b;
+  --color-acento-tinta-fuerte: #99271c; /* énfasis/hover de la tinta roja */
+  --color-confianza-tinta: #24425f;
+
+  /* Pareja que NO cambia con el tema, para lo que se pinta sobre una FOTO (el cartel)
+     o sobre la banda azul, que sigue siendo azul oscuro en los dos modos. Una foto no
+     se entera de que ha cambiado el tema: si el texto de encima se invirtiera, quedaría
+     papel sobre cielo claro. */
+  --color-papel-fijo: #f7f4ee;
+  --color-tinta-fija: #1a1d21;
+
+  /* Semáforo de riesgo del termómetro (ver termometro.tsx). */
+  --color-riesgo-ambar: #8f5d14;        /* 4,65:1 sobre superficie */
+  --color-riesgo-ambar-fuerte: #7f5310; /* texto sobre superficie ya teñida de ámbar */
+  --color-riesgo-verde: #2a702e;        /* 5,03:1 sobre superficie */
+
+  /* Sombras: en oscuro un negro al 6 % no existe; hay que subirlo. */
+  --sombra-sutil: rgba(0, 0, 0, 0.07);
+  --sombra-media: rgba(0, 0, 0, 0.12);
+
+  /* Fuentes (next/font en [lang]/layout.tsx). PROHIBIDO Inter y Roboto. */
+  --font-display: var(--ff-display); /* Archivo */
+  --font-body: var(--ff-body);       /* Source Sans 3 */
+  --font-mono: var(--ff-mono);       /* IBM Plex Mono — datos/kickers (firma) */
+}
+
+/* ==========================================================================
+   MODO NOCHE — opt-in, nunca por defecto
+   --------------------------------------------------------------------------
+   D-09 prohíbe el *dark-default* (fondo oscuro de salida = cliché de IA), no el
+   modo oscuro como opción. Por eso: se entra solo pulsando el interruptor de la
+   barra, la elección se guarda en `localStorage` y el HTML sale en claro salvo
+   que el guion sin parpadeo de `[lang]/layout.tsx` diga lo contrario. Tampoco se
+   sigue `prefers-color-scheme`: eso convertiría el oscuro en el defecto para
+   quien tenga el sistema en oscuro, que es justo lo que D-09 veta.
+
+   No es un filtro de inversión: es la misma paleta documental de noche —
+   grafito con una punta de azul en vez de papel, y la tinta roja aclarada para
+   mantener el 4,5:1. Los contrastes de esta tabla están medidos, no estimados.
+   ========================================================================== */
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --color-fondo: #14161a;        /* grafito, no negro puro */
+  --color-superficie: #1e2229;   /* tarjeta: un escalón por encima del fondo */
+  --color-tinta: #ece8e0;        /* papel cálido como tinta — 14,8:1 */
+  --color-tinta-suave: #a5a8ae;  /* 7,6:1 sobre fondo · 6,7:1 sobre superficie */
+
+  /* Los rellenos NO se tocan: el blanco sobre #c0392b da 5,4:1 en los dos modos.
+     Aclararlos rompería los botones «Aportar» de toda la web. */
+  --color-acento: #c0392b;
+  --color-acento-hondo: #a12e21; /* hover: aquí sube en vez de bajar, para que se vea */
+  --color-confianza: #24425f;
+
+  /* La tinta sí se aclara. */
+  --color-acento-tinta: #e8705e;         /* 5,96:1 sobre fondo · 5,25:1 sobre superficie */
+  --color-acento-tinta-fuerte: #f3a093;  /* 8,8:1 — hover más claro, no más oscuro */
+  --color-confianza-tinta: #8fb6d8;      /* 7,7:1 sobre superficie */
+
+  --color-linea: #303540;
+
+  --color-riesgo-ambar: #d9a441;        /* 7,1:1 sobre superficie */
+  --color-riesgo-ambar-fuerte: #e8bb6a; /* 8,9:1 — aquí «fuerte» es más claro */
+  --color-riesgo-verde: #6fbf73;        /* 7,4:1 sobre superficie */
+
+  --sombra-sutil: rgba(0, 0, 0, 0.5);
+  --sombra-media: rgba(0, 0, 0, 0.65);
+}
+
+/* El cambio de tema se cruza en 240 ms en vez de dar un salto seco. La clase la
+   pone y quita el interruptor: fuera de esa ventana no hay transición global
+   colgando de `*`, que sería un lastre en cada hover de la página. */
+.tema-cambiando *,
+.tema-cambiando *::before,
+.tema-cambiando *::after {
+  transition:
+    background-color 240ms ease,
+    border-color 240ms ease,
+    color 240ms ease,
+    fill 240ms ease,
+    stroke 240ms ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tema-cambiando *,
+  .tema-cambiando *::before,
+  .tema-cambiando *::after {
+    transition: none !important;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-fondo);
+    color: var(--color-tinta);
+    font-family: var(--ff-body), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-acento) 30%, transparent);
+  }
+}
+
+/* ==========================================================================
+   CRAFT DEL ESTUDIO — NO BORRAR
+   Lo que sigue es el sistema que A4 verifica (criterio 6: "motion que susurra"
+   y criterio 8: "lo caro invisible"). Se conserva íntegro en cada proyecto.
+   ========================================================================== */
+
+/* Foco de teclado visible (accesibilidad — criterio 8). */
+@layer base {
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-acento);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+}
+
+/* Pulso del pin del mapa (location-map). */
+@keyframes mapPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.map-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mapPulse 2.6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
+/* Reveals above-the-fold en CSS puro: pintan en el primer render sin esperar
+   a la hidratación de JS. Mantiene el LCP rápido y da progressive-enhancement
+   (sin JS, el texto es visible igualmente). Mismo easing firma que motion.tsx. */
+@keyframes maskRise {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.mask-rise {
+  animation: maskRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise-in {
+  animation: riseIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .map-pulse {
+    animation: none;
+    opacity: 0;
+  }
+  .mask-rise,
+  .rise-in {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   FIRMA DE ESTA MARCA — Caja de Resistencia (no forma parte del craft base)
+   ========================================================================== */
+
+/* Kicker tipo dossier: etiqueta en mono, tracking amplio (transparencia = datos). */
+.kicker {
+  font-family: var(--ff-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-acento-tinta);
+}
+
+/* Muro de aportaciones: unidad de la retícula (resistencia colectiva). */
+.muro-unit {
+  aspect-ratio: 1 / 1;
+  border-radius: 2px;
+  background-color: color-mix(in srgb, var(--color-confianza) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-confianza) 22%, transparent);
+}
+.muro-unit[data-accent="true"] {
+  background-color: color-mix(in srgb, var(--color-acento) 78%, transparent);
+  border-color: var(--color-acento);
+}

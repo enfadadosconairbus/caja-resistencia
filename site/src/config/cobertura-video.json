@@ -1,0 +1,108 @@
+{
+  "nota": "Cortes de informativos sobre el conflicto de Airbus España, con foco en la huelga indefinida (24-ago en adelante). NO se aloja el vídeo (copyright de las cadenas): cada corte de YouTube se reproduce con un facade (carátula estática → al pulsar carga el reproductor youtube-nocookie), y los de otras plataformas se enlazan a su origen. Las carátulas están AUTO-ALOJADAS en public/img/cobertura/ para no llamar a Google hasta que el usuario pulsa play; se generan con scripts/descargar-miniaturas-cobertura.mjs. Fechas de publicación y duraciones tomadas de la ficha pública de cada vídeo (27-ago-2026; los dos cortes de Europa Press de la marcha del 12-sep a los ministerios, añadidos el 18-sep-2026). Orden: más reciente primero.",
+  "cortes": [
+    {
+      "id": "europapress-marcha",
+      "medio": "Europa Press",
+      "titulo": "El conflicto de Airbus vuelve a la calle con una marcha hasta el Ministerio de Industria",
+      "fecha": "2026-09-12",
+      "youtubeId": "VfITxfzB6Js",
+      "miniatura": "/img/cobertura/europapress-marcha.webp",
+      "duracion": "2:04",
+      "idioma": "es"
+    },
+    {
+      "id": "europapress-recorre",
+      "medio": "Europa Press",
+      "titulo": "El conflicto de Airbus recorre Madrid: «No ha habido una negociación real»",
+      "fecha": "2026-09-12",
+      "youtubeId": "Nmy7enduvx8",
+      "miniatura": "/img/cobertura/europapress-recorre.webp",
+      "duracion": "1:20",
+      "idioma": "es"
+    },
+    {
+      "id": "rtve",
+      "medio": "RTVE Noticias",
+      "titulo": "Los trabajadores de Airbus España retoman la huelga indefinida",
+      "fecha": "2026-08-25",
+      "youtubeId": "O6v-hwWUPmM",
+      "miniatura": "/img/cobertura/rtve.webp",
+      "duracion": "1:23",
+      "idioma": "es"
+    },
+    {
+      "id": "efe",
+      "medio": "Agencia EFE",
+      "titulo": "Huelga indefinida en las plantas de Airbus en España",
+      "fecha": "2026-08-25",
+      "youtubeId": "styBBRy8dXE",
+      "miniatura": "/img/cobertura/efe.webp",
+      "duracion": "1:44",
+      "idioma": "es"
+    },
+    {
+      "id": "ondacadiz",
+      "medio": "Onda Cádiz RTV",
+      "titulo": "El conflicto laboral de Airbus se enquista",
+      "fecha": "2026-08-25",
+      "youtubeId": "72asc1-HKdg",
+      "miniatura": "/img/cobertura/ondacadiz.webp",
+      "duracion": "2:49",
+      "idioma": "es"
+    },
+    {
+      "id": "infodefensa",
+      "medio": "Infodefensa TV",
+      "titulo": "Huelga indefinida en Airbus España: la plantilla exige a la dirección concretar su oferta",
+      "fecha": "2026-08-25",
+      "youtubeId": "NUonq7SJ1Do",
+      "miniatura": "/img/cobertura/infodefensa.webp",
+      "duracion": "1:48",
+      "idioma": "es"
+    },
+    {
+      "id": "esradio",
+      "medio": "esRadio",
+      "titulo": "Entrevista a Miguel Ángel Regidor, secretario general de UGT FICA en Airbus Illescas",
+      "fecha": "2026-08-25",
+      "youtubeId": "_16yzjww2Q0",
+      "miniatura": "/img/cobertura/esradio.webp",
+      "duracion": "9:04",
+      "idioma": "es"
+    },
+    {
+      "id": "elmundo",
+      "medio": "El Mundo",
+      "titulo": "Los trabajadores de Airbus mantienen la huelga indefinida contra la empresa en toda España",
+      "fecha": "2026-08-24",
+      "youtubeId": "fgulQyNnsMA",
+      "miniatura": "/img/cobertura/elmundo.webp",
+      "duracion": "0:14",
+      "idioma": "es",
+      "short": true
+    },
+    {
+      "id": "elconfidencial",
+      "medio": "El Confidencial",
+      "titulo": "Airbus se enfrenta a una huelga indefinida en España",
+      "fecha": "2026-08-17",
+      "youtubeId": "bxuqKIGXdXA",
+      "miniatura": "/img/cobertura/elconfidencial.webp",
+      "duracion": "1:19",
+      "idioma": "es",
+      "short": true
+    }
+  ],
+  "internacional": [
+    {
+      "id": "lutte-ouvriere",
+      "medio": "Lutte Ouvrière",
+      "titulo": "Rémy Bazzali, ouvrier à Airbus Marignane, sur le piquet de grève d'Airbus Madrid",
+      "fecha": "2026-07-15",
+      "url": "https://www.lutte-ouvriere.org/portail/multimedia/airbus-greve-195803.html",
+      "duracion": "3:53",
+      "idioma": "fr"
+    }
+  ]
+}

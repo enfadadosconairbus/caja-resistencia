@@ -1,0 +1,141 @@
+{
+  "nota": "Qué cita de prensa de la cronología se enlaza a su artículo. Lo lee scripts/prensa-cronologia.mjs, que resuelve titular y URL contra src/config/termometro.json: aquí no se escribe ninguna URL que no venga de ese snapshot. Revisado el 10-ago-2026.",
+  "reglas": {
+    "solo medios ya citados": "Enlazar el artículo de un medio que el hito ya citaba termina la cita. Añadir un medio nuevo la cambia, y la cronología está validada. Se puede hacer, pero hay que marcarlo con \"anadir\": true entrada por entrada, para que sea una decisión y no un descuido.",
+    "solo enlace directo al medio": "Nada de redirectores. De los 85 artículos del snapshot, 76 llegan como enlace de Google News: caducan y meten un salto de seguimiento en una web que promete no llamar a terceros.",
+    "medios": "Emparejamientos que resuelve el snapshot del termómetro. La URL sale de ahí, no se escribe.",
+    "externos": "Artículos que el panel solo trae vía Google News, buscados en la web del propio medio. Cada URL se abrió y se comprobó que responde y que titular y fecha son los que dice este fichero; la fecha de esa comprobación va en \"verificado\". Petición de Carlos del 10-ago-2026: ampliar la prensa enlazada con EFE, Cadena SER, Infobae, Fly News y Canal Sur.",
+    "url": "Solo hace falta cuando el medio publicó varias veces cerca del hito, o cuando el artículo cae fuera del margen de dos días. Sin ella, el script exige un único candidato y falla si hay empate."
+  },
+  "sin_enlace_posible": {
+    "Cadena SER": "cadenaser.com bloquea a nuestro agente, así que no se puede comprobar que la URL responde. Sin verificar no se enlaza.",
+    "EFE": "efe.com bloquea igual. Sus teletipos del 16 y el 23 de julio SÍ están enlazados, pero a través de Infobae, que es quien los publica con URL propia y verificable; por eso el medio que aparece es Infobae y no EFE.",
+    "Canal Sur en la marcha de Sevilla": "no tiene pieza propia del 23 de julio. La que sí tiene, y va enlazada, es del 10 de julio: es la fuente del 99,5 % de seguimiento en San Pablo que ese hito cita."
+  },
+  "enlaces": [
+    {
+      "fecha": "2026-07-10",
+      "titulo": "La empresa se declara",
+      "externos": [
+        {
+          "medio": "Canal Sur",
+          "anadir": true,
+          "titulo": "Los trabajadores de Airbus en Sevilla retoman la huelga",
+          "url": "https://www.canalsur.es/noticias/andalucia/sevilla/trabajadores-airbus-sevilla-retoman-huelga_1_1421627.html",
+          "fecha": "2026-07-10",
+          "verificado": "2026-08-10",
+          "porque": "es la fuente del 99,5 % de seguimiento en San Pablo que este hito cita; Canal Sur no estaba citado aquí, se añade a propósito"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-16",
+      "titulo": "Marcha de Getafe",
+      "externos": [
+        {
+          "medio": "Infobae",
+          "anadir": true,
+          "titulo": "Trabajadores de Airbus siguen en huelga y reivindican sus derechos en una marcha en Getafe",
+          "url": "https://www.infobae.com/espana/agencias/2026/07/16/trabajadores-de-airbus-siguen-en-huelga-y-reivindican-sus-derechos-en-una-marcha-en-getafe/",
+          "fecha": "2026-07-16",
+          "verificado": "2026-08-10",
+          "porque": "es el teletipo de EFE (el hito ya citaba EFE), pero efe.com no se puede verificar; Infobae lo publica con URL propia"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-18",
+      "titulo": "La empresa vuelve a convocar",
+      "externos": [
+        {
+          "medio": "Infobae",
+          "titulo": "Airbus convoca de nuevo la negociación el lunes mientras se mantiene la huelga en España",
+          "url": "https://www.infobae.com/espana/agencias/2026/07/18/airbus-convoca-de-nuevo-la-negociacion-el-lunes-mientras-se-mantiene-la-huelga-en-espana/",
+          "fecha": "2026-07-18",
+          "verificado": "2026-08-10"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-23",
+      "titulo": "Gran marcha de Sevilla",
+      "externos": [
+        {
+          "medio": "Infobae",
+          "anadir": true,
+          "titulo": "Los trabajadores de Airbus en Sevilla y Cádiz continúan su huelga con una manifestación",
+          "url": "https://www.infobae.com/espana/agencias/2026/07/23/los-trabajadores-de-airbus-en-sevilla-y-cadiz-continuan-su-huelga-con-una-manifestacion/",
+          "fecha": "2026-07-23",
+          "verificado": "2026-08-10",
+          "porque": "teletipo de EFE sobre la marcha; ni Canal Sur ni Cadena SER, que sí estaban citados, tienen URL verificable"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-24",
+      "titulo": "Referéndum",
+      "externos": [
+        {
+          "medio": "Fly News",
+          "titulo": "Los trabajadores de Airbus votan hoy el preacuerdo alcanzado con tres de los sindicatos convocantes de la huelga",
+          "url": "https://fly-news.es/industria/airbus-y-tres-de-los-sindicatos-convocantes-de-la-huelga-firman-un-preacuerdo-para-poner-fin-a-la-huelga/",
+          "fecha": "2026-07-24",
+          "verificado": "2026-08-10"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-25",
+      "titulo": "La plantilla dice no",
+      "medios": ["Expansión"]
+    },
+    {
+      "fecha": "2026-07-28",
+      "titulo": "Vuelta al trabajo",
+      "externos": [
+        {
+          "medio": "Fly News",
+          "titulo": "La plantilla de Airbus vuelve hoy al trabajo tras rechazar el preacuerdo con la empresa",
+          "url": "https://fly-news.es/industria/plantilla-airbus-vuelve-a-sus-centros-de-trabajo/",
+          "fecha": "2026-07-28",
+          "verificado": "2026-08-10"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-30",
+      "titulo": "La empresa pide mediación del SIMA",
+      "medios": [
+        {
+          "medio": "Expansión",
+          "url": "https://www.expansion.com/empresas/2026/07/30/6a6b5971e5fdea64468b4590.html",
+          "porque": "Expansión publicó también el 31 sobre la huelga indefinida; este es el de la mediación"
+        },
+        "El Mundo"
+      ]
+    },
+    {
+      "fecha": "2026-07-31",
+      "titulo": "Convocatoria formal: huelga indefinida",
+      "medios": [
+        "Infobae",
+        {
+          "medio": "Expansión",
+          "url": "https://www.expansion.com/empresas/2026/07/31/6a6cccb8468aeb3b348b4595.html",
+          "porque": "el del 30 es el de la mediación; este es el de la convocatoria"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-11",
+      "titulo": "Airbus busca abrir una mesa",
+      "medios": [
+        {
+          "medio": "elDiario.es",
+          "url": "https://www.eldiario.es/economia/airbus-pretende-abrir-mesa-negociacion-dia-11-acuerdo-evite-nueva-huelga_1_13433435.html",
+          "porque": "publicado el 7 de agosto, cuatro días antes del hito: es el artículo del que sale el hecho, no una cobertura posterior"
+        }
+      ]
+    }
+  ]
+}

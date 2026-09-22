@@ -1,0 +1,57 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "caja-resistencia-huelga-airbus-2026",
+  "compatibility_date": "2026-09-18",
+  "compatibility_flags": [
+    "nodejs_compat",
+    // Puentea `vars` (abajo) a `process.env`, que es de donde lee src/lib/site-url.ts.
+    "nodejs_compat_populate_process_env"
+  ],
+  // URL pública real del sitio (canonical, hreflang, sitemap, Open Graph). En Vercel venía
+  // de VERCEL_PROJECT_PRODUCTION_URL; en Cloudflare hay que ponerla aquí. PROVISIONAL: el
+  // propio subdominio workers.dev mientras se compra el dominio propio — así canonical/OG
+  // dejan de emitir el placeholder `TODO-…example`. Cámbiala al dominio propio cuando lo
+  // conectes y vuelve a desplegar, y pon SITE_INDEXABLE="true" solo entonces (deja indexar).
+  "vars": {
+    "SITE_URL": "https://caja-resistencia-huelga-airbus-2026.enfadadosconairbus-contacto.workers.dev",
+    "SITE_INDEXABLE": "false",
+    // Cloudflare Access protege /panel (Tesorería). El panel verifica por su cuenta el JWT que
+    // Access inyecta en `Cf-Access-Jwt-Assertion` contra el JWKS del team domain, exigiendo esta
+    // audiencia (AUD de la aplicación Access). Ambos son identificadores públicos, no secretos.
+    "ACCESS_TEAM_DOMAIN": "royal-silence-f8d6.cloudflareaccess.com",
+    "ACCESS_AUD": "13cbf87765716b078a36f850b69ae0ca7677d0abe7130ccedb3b1e530979e0a1"
+  },
+  // Entry propio (worker/index.ts): re-exporta el handler de vinext y publica la DO del contador.
+  "main": "./worker/index.ts",
+  "assets": {
+    "directory": "dist/client",
+    "not_found_handling": "none",
+    "binding": "ASSETS"
+  },
+  "cache": {
+    "enabled": true
+  },
+  "version_metadata": {
+    "binding": "CF_VERSION_METADATA"
+  },
+  // Pedidos de la tienda (merchandising). SQL en D1; referencia atómica en una Durable Object.
+  "d1_databases": [
+    {
+      "binding": "PEDIDOS_DB",
+      "database_name": "caja-resistencia-pedidos",
+      "database_id": "5016b218-50ae-43bc-ace0-ad02d4c8953f",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Durable Objects (SQLite-backed): contador de visitas + contador correlativo de pedidos.
+  "durable_objects": {
+    "bindings": [
+      { "name": "VISITAS", "class_name": "VisitasCounter" },
+      { "name": "PEDIDO_REF", "class_name": "PedidoContador" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["VisitasCounter"] },
+    { "tag": "v2", "new_sqlite_classes": ["PedidoContador"] }
+  ]
+}

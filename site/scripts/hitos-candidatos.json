@@ -1,0 +1,72 @@
+{
+  "nota": "Candidatos a hito de la cronología. NADA de esto está publicado: los hitos se escriben a mano en src/config/hitos.json, con su texto y su lectura. Esto solo evita que se pase algo por alto. Para que un candidato deje de proponerse sin subirlo, añade su 'pdf' (documentos) o su 'clave' (prensa) a scripts/hitos-descartados.json con el motivo.",
+  "generado": "2026-09-22T19:34:44.459Z",
+  "candidatos": [
+    {
+      "senal": "documento",
+      "fecha": "2026-07-22",
+      "titulo": "PREACUERDO CNC 23072026 FIRMADO",
+      "categoria": "Otros",
+      "pdf": "/docs/preacuerdo-cnc-23072026-firmado-1.pdf",
+      "resumen": "(documento sin texto extraíble, probablemente escaneado o de imagen)",
+      "yaHayHitoEseDia": true
+    },
+    {
+      "senal": "documento",
+      "fecha": "2026-08-25",
+      "titulo": "Comunicado ÚTIL sobre reunión en SIMA de 25-Ago-2026",
+      "categoria": "Comunicados y convocatorias de huelga",
+      "pdf": "/docs/comunicado-util-sobre-reunion-en-sima-de-25-ago-2026.pdf",
+      "resumen": "",
+      "yaHayHitoEseDia": true
+    },
+    {
+      "senal": "documento",
+      "fecha": "2026-08-26",
+      "titulo": "Enfado, Orgullo e Incertidumbre Carta abierta a los trabajadores",
+      "categoria": "Cartas abiertas",
+      "pdf": "/docs/enfado-orgullo-e-incertidumbre-carta-abierta-a-los-trabajadores.pdf",
+      "resumen": "",
+      "yaHayHitoEseDia": true
+    },
+    {
+      "senal": "documento",
+      "fecha": "2026-09-01",
+      "titulo": "Comunicado CCOO 20260901",
+      "categoria": "Comunicados y convocatorias de huelga",
+      "pdf": "/docs/comunicado-ccoo-20260901.pdf",
+      "resumen": "",
+      "yaHayHitoEseDia": true
+    },
+    {
+      "senal": "documento",
+      "fecha": "2026-09-02",
+      "titulo": "Carta abierta a los que volvieron",
+      "categoria": "Cartas abiertas",
+      "pdf": "/docs/carta-abierta-a-los-que-volvieron.pdf",
+      "resumen": "",
+      "yaHayHitoEseDia": true
+    },
+    {
+      "senal": "documento",
+      "fecha": "2026-09-16",
+      "titulo": "Carta Abierta - Asamblea en Paro - 20260915",
+      "categoria": "Cartas abiertas",
+      "pdf": "/docs/carta-abierta-asamblea-en-paro-20260915.pdf",
+      "resumen": "",
+      "yaHayHitoEseDia": true
+    },
+    {
+      "senal": "documento",
+      "fecha": "2026-09-17",
+      "titulo": "Carta abierta de la Asamblea a la Dirección de Airbus España -20260918",
+      "categoria": "Cartas abiertas",
+      "pdf": "/docs/carta-abierta-de-la-asamblea-a-la-direccion-de-airbus-espana-20260918.pdf",
+      "resumen": "",
+      "yaHayHitoEseDia": false
+    }
+  ],
+  "porDocumento": 7,
+  "porPrensa": 0,
+  "repetidos": 10
+}

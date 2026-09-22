@@ -1,0 +1,725 @@
+{
+ "meta": {
+  "provisional": false,
+  "title": "EnfadadosconAirbus · Das Medium der Bewegung",
+  "description": "Der Konflikt der Belegschaft von Airbus Spanien, erzählt von der Bewegung selbst: Forderungen, öffentlicher Widerhall, Dokumentation, Solidaritätsfonds und internationale Solidarität.",
+  "ogAlt": "EnfadadosconAirbus — die Belegschaftsbewegung von Airbus Spanien"
+ },
+ "nav": {
+  "conflicto": "Der Konflikt",
+  "caja": "Der Fonds",
+  "transparencia": "Transparenz",
+  "internacional": "Internationale Solidarität",
+  "donantes": "Großspender",
+  "faq": "FAQ",
+  "termometro": "Barometer",
+  "aportar": "Beitragen",
+  "skip": "Zum Hauptinhalt springen",
+  "menu": "Menü",
+  "close": "Schließen",
+  "tienda": "Shop",
+  "documentacion": "Dokumentation",
+  "sobre": "Über das Projekt",
+  "marca": "Das Medium der Bewegung",
+  "temaOscuro": "Nachtmodus",
+  "temaClaro": "Tagmodus",
+  "aportarPronto": "Die Solidaritätskasse wird auf einer eigenen Seite eingerichtet; sie wird freigeschaltet, sobald sie bereit ist."
+ },
+ "exampleTag": "BEISPIELDATEN — echte, geprüfte Zahlen ausstehend",
+ "titularLabels": {
+  "razonSocial": "Träger",
+  "forma": "Rechtsform",
+  "cif": "Steuernummer",
+  "domicilio": "Sitz",
+  "registro": "Registerdaten"
+ },
+ "hero": {
+  "kicker": "DAS MEDIUM DER BEWEGUNG · AIRBUS SPANIEN",
+  "title": [
+   "Was bei Airbus geschieht,",
+   "erzählen wir selbst."
+  ],
+  "subtitle": "Informationen und Dokumentation zum Arbeitskonflikt bei Airbus Spanien, zusammengestellt von der Arbeitnehmerbewegung.",
+  "ctaPrimary": "Zum Fonds beitragen",
+  "ctaSecondary": "Den Konflikt verstehen",
+  "values": [
+   "Solidarität",
+   "Transparenz",
+   "Unabhängigkeit",
+   "Kollektiver Widerstand"
+  ],
+  "aportarNota": "Die Solidaritätskasse wird auf einer eigenen Seite eingerichtet; sie wird freigeschaltet, sobald sie bereit ist."
+ },
+ "ficha": {
+  "kicker": "KONFLIKT-STECKBRIEF",
+  "filas": [
+   {
+    "k": "Erster Streik",
+    "v": "1.–23. Juli 2026"
+   },
+   {
+    "k": "Beginn der Mobilisierung",
+    "v": "24. Aug. · 3-stündige Arbeitsniederlegungen und Versammlungen · 25. Aug. · unbefristeter Streik"
+   },
+   {
+    "k": "Bereich",
+    "v": "Airbus Spanien"
+   },
+   {
+    "k": "Forderungen",
+    "v": "7"
+   }
+  ],
+  "fondoLabel": "Status des Fonds",
+  "fondoNo": "Nicht gegründet",
+  "fondoSi": "In Betrieb"
+ },
+ "cartel": {
+  "alt": "Kampagnen-Illustration: Ein riesiger Gorilla hält ein Propellerflugzeug empor, reckt die Faust und brüllt vor einer Menge von Beschäftigten, die mit erhobenen Fäusten antworten, bei Sonnenuntergang.",
+  "centros": "Streikende Airbus-Standorte in Spanien"
+ },
+ "arranque": {
+  "chapa": {
+   "etiqueta": "Unbefristeter Streik",
+   "faltan": "Noch {n} Tage · 24. Aug.",
+   "manana": "Morgen, 24. August",
+   "hoy": "Heute, 24. August",
+   "curso": "Läuft · 24 Std.",
+   "pausada": "In Kraft, pausiert seit dem 9. September",
+   "detalle": "· dreistündige Arbeitsniederlegung und Versammlung an jedem Standort",
+   "detalleCurso": "· an allen Standorten, ohne Enddatum",
+   "detallePausa": "· an allen Standorten"
+  }
+ },
+ "coberturaVideo": {
+  "kicker": "VIDEO-BERICHTERSTATTUNG",
+  "title": [
+   "Der Konflikt",
+   "in den Nachrichten"
+  ],
+  "intro": "Die Fernseh- und Radiobeiträge, in denen der Konflikt und der unbefristete Streik ein Echo fanden. Sie werden von ihrer Originalquelle abgespielt; zum Ansehen antippen.",
+  "fuente": "Wir hosten das Material nicht: Jedes Video wird von dem Medium abgespielt oder verlinkt, das es veröffentlicht hat. Daten und Laufzeiten laut Angaben zum jeweiligen Video.",
+  "reproducir": "Video abspielen",
+  "verEnWeb": "Auf ihrer Website ansehen",
+  "short": "Short",
+  "internacionalLabel": "Im Video"
+ },
+ "conflicto": {
+  "kicker": "DER KONFLIKT",
+  "title": "Wie es zum aktuellen Konflikt kam.",
+  "intro": "Die Mobilisierung der Belegschaft von Airbus Spanien —Streik vom 1. bis 23. Juli 2026 und unbefristeter Streik ab dem 24. August— ergibt sich laut dem Manifest der Bewegung aus einer schrittweisen Verschlechterung des Vertrauens und angehäuften Meinungsverschiedenheiten über Tarifverhandlungen und Arbeitsbedingungen. Sie findet zudem in einem Moment wirtschaftlicher Stärke des Unternehmens statt. Dies sind die Forderungen, die die Bewegung erhebt:",
+  "docManifiesto": {
+   "v3": "Forderungskatalog – v3",
+   "grupo": "Manifest an den Airbus-Konzern – Juli 2026"
+  },
+  "docManifiestoMeta": "PDF · {t} MB",
+  "docManifiestoOtros": "Manifest in anderen Sprachen:",
+  "docManifiestoOtroDoc": "{doc}:",
+  "docDossier": "Dossier zur Lohnrückgewinnung – v11",
+  "docDossierMeta": "PDF · 0,6 MB · ES",
+  "points": [
+   {
+    "n": "01",
+    "t": "Wiederherstellung der Kaufkraft",
+    "d": "Inflation (VPI) als Grundlage der Lohnrunden ab 2026 sowie eine außerordentliche Erhöhung zum Ausgleich des aufgelaufenen Verlusts.",
+    "detalle": "Das von der Bewegung erstellte Wirtschaftsdossier schätzt einen kumulierten Kaufkraftverlust der letzten Jahre.",
+    "exige": [
+     "Wiederherstellung des Verbraucherpreisindex als Grundlage der Gehaltsrunden (RSG) ab 2026.",
+     "Eine außerordentliche Erhöhung, unabhängig von der Gehaltsrunde, zum Ausgleich des in den letzten Jahren aufgelaufenen Kaufkraftverlusts."
+    ]
+   },
+   {
+    "n": "02",
+    "t": "Vereinbarkeit und Vertrauen",
+    "d": "Homeoffice nach Wahl der Beschäftigten, wo die Tätigkeit es zulässt, und Flexibilität bei der Urlaubsplanung.",
+    "detalle": "Die Vereinbarkeit von Beruf und Privatleben darf nicht als Privileg betrachtet werden: Sie ist ein modernes Organisationsinstrument, das Produktivität, Engagement und Wohlbefinden fördert. Airbus war hier jahrelang ein Maßstab. Die Bewegung ist der Ansicht, dass die jüngsten Entscheidungen einen Rückschritt gegenüber dem früheren Modell darstellen.",
+    "exige": [
+     "Die Möglichkeit, nach Wahl der Beschäftigten und bei Stellen, deren Art dies zulässt, 40 % der Arbeitszeit im Homeoffice zu leisten, mit Ausgleichsmaßnahmen für Stellen mit höherer Präsenzpflicht.",
+     "Wiederherstellung der Flexibilität bei der Urlaubsplanung, mit Organisation innerhalb der Teams und der Empfehlung, zwei Wochen im August zu nehmen."
+    ]
+   },
+   {
+    "n": "03",
+    "t": "Leistungen für die Belegschaft",
+    "d": "Eine allgemeine, kostenlose Kantine ohne Zuzahlung oder Lohnabzug; Erhalt der Werksbusse.",
+    "detalle": "Die Bewegung fordert, dass Änderungen an diesen Leistungen Gegenstand von Verhandlungen werden.",
+    "exige": [
+     "Garantie einer allgemeinen und kostenlosen Kantine für die Beschäftigten von Airbus, ohne Zuzahlungen oder Gehaltsabzüge.",
+     "Beibehaltung des derzeitigen Niveaus des Werksverkehrs."
+    ]
+   },
+   {
+    "n": "04",
+    "t": "Überprüfung des Bradford-Faktors",
+    "d": "Gesundheit darf keine Produktivitätskennzahl sein: den Faktor abschaffen oder Krankschreibungen davon ausnehmen.",
+    "detalle": "Die Bewegung ist der Ansicht, dass der Gesundheitsschutz in der Arbeitsorganisation Vorrang haben muss.",
+    "exige": [
+     "Abschaffung des Bradford-Faktors oder, hilfsweise, Herausnahme von Krankschreibungen aus seiner Berechnung."
+    ]
+   },
+   {
+    "n": "05",
+    "t": "Die Zukunft von Airbus Spanien schützen",
+    "d": "Schriftliche Garantien, dass organisatorische Umbauten weder Arbeitsplätze noch Arbeitsbedingungen beeinträchtigen.",
+    "detalle": "Das Manifest fordert, dass organisatorische Umstrukturierungen verhandelt werden und Garantien für die Beschäftigten enthalten.",
+    "exige": [
+     "Unterzeichnung des von der Mehrheit der Space-Belegschaft getragenen Garantiekatalogs durch die Geschäftsleitung, mit schriftlicher Zusage, dass dessen Umsetzung weder Arbeitsbedingungen noch Arbeitsorganisation noch Beschaeftigung beeinträchtigt."
+    ]
+   },
+   {
+    "n": "06",
+    "t": "Gleichbehandlung der Generationen",
+    "d": "Eine transparente Lohnpolitik, die Erfahrung und Verantwortung anerkennt, ohne Unterschiede nach Eintrittsdatum.",
+    "detalle": "Das Vergütungs- und Sozialleistungsmodell muss den Beitrag aller Beschäftigten und ihre Erfahrung anerkennen und Chancengleichheit gewährleisten, ohne Unterschiede, die allein auf dem Eintrittsdatum beruhen.",
+    "exige": [
+     "Unterzeichnete Zusage, eine neue Gehaltspolitik mit einem transparenten System zur Anerkennung von Erfahrung, ausgeübten Funktionen und übernommener Verantwortung zu erarbeiten.",
+     "Abschaffung des verlängerten Einstiegsgehalts, mit einer Gehaltsentwicklung, die dem tatsächlichen Beitrag entspricht."
+    ]
+   },
+   {
+    "n": "07",
+    "t": "Wiedergutmachung des Konflikts",
+    "d": "Eine außerordentliche, individuelle Entschädigung, anteilig zu den befolgten Streiktagen.",
+    "detalle": "",
+    "exige": [
+     "Einführung einer außerordentlichen, individuellen Entschädigung für jede beschäftigte Person, proportional zu den tatsächlich befolgten Streiktagen."
+    ]
+   }
+  ],
+  "exigeLabel": "Erhobene Forderung",
+  "masDetalle": "Details lesen",
+  "fuente": "Erweiterter Text aus dem #EnfadadosconAirbus-Manifest (v3)",
+  "docPliego": "Garantiekatalog Raumfahrt-Beschäftigte",
+  "docPliegoMeta": "PDF · 5 KB"
+ },
+ "informes": {
+  "kicker": "BERICHT DER BEWEGUNG",
+  "sameSkySub": "The Spanish Gap",
+  "sameSkyDesc": "Airbus Spanien im Vergleich zum Konzern und zur weltweiten Luft- und Raumfahrtbranche: Vergütung, Inflationsschutz, Arbeitszeit und Wertverteilung. Jede Zahl ist gekennzeichnet und öffentlich belegt.",
+  "leerEn": "Lesen auf:",
+  "nuevaPestana": "wird in einem neuen Tab geöffnet",
+  "meta": "Web-Bericht · August 2026 · ES · EN · FR · DE"
+ },
+ "termometro": {
+  "kicker": "STREIK-BAROMETER",
+  "title": "Medienberichterstattung über den Konflikt",
+  "intro": "Das Panel quantifiziert den Umfang und den Ton der zusammengestellten Medienberichterstattung.",
+  "freshLabel": "Daten Stand {fecha}",
+  "independiente": "Unabhängige Verfolgung, inoffiziell.",
+  "diaHuelga": "Tag {dia} von {total}",
+  "hoy": "Artikel heute",
+  "total": "Artikel insgesamt",
+  "medios": "Verschiedene Medien",
+  "riesgoLabel": "Medienrisiko",
+  "riesgoNivel": {
+   "rojo": "Hohes Risiko",
+   "ambar": "Mittleres Risiko",
+   "verde": "Geringes Risiko",
+   "amarillo": "Mittleres Risiko"
+  },
+  "riesgoDetalle": "{pct}% der Berichterstattung ist negativ für das Unternehmen",
+  "sentLabel": "Ton der Berichterstattung gegenüber dem Unternehmen",
+  "sentNota": "Positiv, neutral oder negativ für die Position des Unternehmens —nicht der Bewegung.",
+  "sentPos": "Positiv",
+  "sentNeu": "Neutral",
+  "sentNeg": "Negativ",
+  "volumenLabel": "Berichterstattung pro Tag",
+  "volumenEje": "Artikel pro Tag",
+  "impactoLabel": "Nachrichten mit größter Wirkung",
+  "impactoIntro": "Die am meisten aufgegriffenen und reichweitenstärksten.",
+  "cronoLabel": "Nachrichten in chronologischer Reihenfolge",
+  "socialLabel": "In sozialen Netzwerken",
+  "socialTelegram": "Nachrichten auf Telegram",
+  "socialX": "Beiträge auf X",
+  "socialMastodon": "Erwähnungen auf Mastodon",
+  "socialNota": "LinkedIn und Instagram sind nicht enthalten: Es gibt keine zuverlässige, kostenlose Möglichkeit, sie ohne Verstoß gegen ihre Bedingungen abzufragen. Die X-Daten erhebt das Komitee von Hand, nicht automatisch.",
+  "anterior": "Zurück",
+  "siguiente": "Weiter",
+  "pagina": "Seite {n} von {t}",
+  "anexoCta": "Vollständiges Dashboard ansehen",
+  "anexoNota": "Das vollständige Dashboard (Detail je Werk, Herleitung und Aktienkurs) ist ein unabhängiges Drittprojekt und öffnet sich auf dessen Website. Hier sehen Sie einen Auszug.",
+  "diaIndefinida": "Tag {dia} · unbefristet",
+  "treguaSub": "Wiederaufnahme · unbefristeter Streik (in {dias} Tagen)",
+  "horquilla": {
+   "label": "BRUCHPUNKT · GESCHÄTZTE AUSWIRKUNG AUF DAS UNTERNEHMEN",
+   "intro": "Es ist nicht das, was Airbus als Verlust ausweist: Es ist eine externe Schätzung auf Basis öffentlicher Fakten — was jedes Werk fertigt und welche Rolle es in der Lieferkette spielt — und zweier Szenarien.",
+   "hoyLabel": "Kumuliert bis heute (min–max)",
+   "diarioLabel": "Tageskosten (min–max)",
+   "finLabel": "Projektion bis zum Ende des Zeitfensters",
+   "leyenda": "Kumuliertes Min–Max-Band",
+   "cotaMin": "Untergrenze: der Lagerbestand hält das ganze Fenster",
+   "cotaMax": "Obergrenze: die Lieferkette reißt um die dritte Woche",
+   "nota": "Szenario-Schätzung eines unabhängigen Monitorings, gestützt auf öffentliche Fakten und auf die Rolle jedes Werks in der Lieferkette. Es ist weder eine offizielle Airbus-Zahl noch eine geprüfte Bezifferung des Konflikts, sondern eine Größenordnung — täglich aus der Quelle aktualisiert.",
+   "hoy": "heute",
+   "ejeAria": "Kumulierte Minimal–Maximal-Bandbreite der geschätzten Auswirkung, von",
+   "leyendaProy": "gestrichelt = Projektion",
+   "comoTitulo": "Wie diese Bandbreite entsteht",
+   "como": [
+    {
+     "t": "Es gibt zwei Regime, nicht eines",
+     "d": "Solange die Werke aus dem aufgebauten Lager schöpfen, kostet ein Streiktag wenig: Die Montage läuft mit dem weiter, was im Lager war. Das ist das Puffer-Regime. Sobald ein Werk diesen Puffer aufbraucht, fehlen der Endmontage die Teile und die Tageskosten vervielfachen sich: das Bruch-Regime."
+    },
+    {
+     "t": "Deshalb wird die Kurve steiler",
+     "d": "Tag 1 kostet nicht dasselbe wie Tag 25. Ein Stillstandstag in Getafe kostet anfangs eine halbe Million; mit aufgebrauchten Stabilisatoren sechs bis zehn. Bis zu zwölfmal so viel für denselben Streiktag."
+    },
+    {
+     "t": "Die Bandbreite sind zwei Annahmen, keine Fehlermarge",
+     "d": "Die untere Linie nimmt an, dass der Lagerbestand das ganze Fenster hält. Die obere nimmt einen Bruch um die dritte Woche an. Was tatsächlich passiert, liegt irgendwo dazwischen."
+    },
+    {
+     "t": "Woran man erkennt, wohin es geht",
+     "d": "Der direkteste Indikator ist der Beluga-Verkehr, das Flugzeug, das Teile zwischen den Werken transportiert. Solange er stabil bleibt, gleicht das Unternehmen mit Lagerbestand aus; ein anhaltender Rückgang zeigt, dass die Kette es zu spüren beginnt."
+    }
+   ],
+   "desactualizado": "Diese Analyse stammt vom {fecha} und berücksichtigt den zweiten Streikaufruf noch nicht. Die Bandbreite wächst weiter mit den Annahmen von damals — lesen Sie sie als Größenordnung, nicht als aktuelle Zahl. Dieser Hinweis verschwindet von selbst, sobald die Quelle die Analyse erneuert."
+  }
+ },
+ "caja": {
+  "kicker": "WAS DER SOLIDARITÄTSFONDS IST",
+  "title": "Gemeinsam tragen, was allein nicht zu tragen ist.",
+  "body": "Ein Solidaritätsfonds ist ein gemeinsamer Topf, der jene finanziell stützt, die an einer Mobilisierung teilnehmen. Er ersetzt nicht den Lohn: Er senkt die persönlichen Kosten, ein kollektives Recht zu verteidigen, damit die Entscheidung zum Ausstand nicht vom Kontostand jedes Einzelnen abhängt.",
+  "principios": [
+   {
+    "t": "Solidarität",
+    "d": "Wer kann, trägt bei; wer es braucht und die Kriterien erfüllt, erhält."
+   },
+   {
+    "t": "Transparenz",
+    "d": "Jeder eingehende und ausgehende Euro wird erfasst und ist einsehbar."
+   },
+   {
+    "t": "Unabhängigkeit",
+    "d": "Der Fonds wird von einem Ausschuss der Belegschaft selbst verwaltet, unter kollektiver Kontrolle."
+   },
+   {
+    "t": "Kollektiver Widerstand",
+    "d": "Die Stärke liegt nicht in einer großen Spende, sondern in vielen kleinen, über die Zeit getragen."
+   }
+  ],
+  "volver": "Zurück zur Startseite",
+  "metaTitle": "Der Fonds",
+  "metaDescription": "Was der Solidaritätsfonds ist, wofür er verwendet wird, wie man beiträgt und wie Rechenschaft abgelegt wird.",
+  "aviso": "HINWEIS — es besteht noch kein Solidaritätsfonds, daher kann diese Seite keine Beiträge entgegennehmen. Hier wird erklärt, wie er funktionieren wird, sobald es ihn gibt."
+ },
+ "transparencia": {
+  "kicker": "TRANSPARENZ",
+  "title": "Das Geld aller ist allen gegenüber rechenschaftspflichtig.",
+  "intro": "Transparenz ist keine Dekoration: Sie ist das Herz des Fonds. Jede Zahl wird aus geprüften Daten abgeleitet — nie ohne Nachverfolgbarkeit von Hand eingetragen — und mit ihrem Aktualisierungsdatum veröffentlicht.",
+  "stats": {
+   "recaudado": "Gesammelt",
+   "neto": "Netto nach Gebühren",
+   "gastos": "Betriebskosten",
+   "entregado": "Als Hilfe ausgezahlt",
+   "pendienteAsignar": "Noch zuzuweisen",
+   "aportaciones": "Beiträge"
+  },
+  "actualizadoLabel": "Zuletzt aktualisiert",
+  "sinDatos": "KEINE ZAHLEN — der Fonds ist noch nicht in Betrieb",
+  "note": "Wenn der Fonds aktiv ist: Gesamt- und Nettobeträge, Kosten, ausgezahlte Hilfen, Zahl der Begünstigten, Verteilungskriterien, Aktualisierungsdaten und herunterladbare Berichte. Prüfung und Verfahren zur Meldung von Unregelmäßigkeiten inbegriffen.",
+  "reportCta": "Bericht herunterladen (in Kürze)"
+ },
+ "muro": {
+  "kicker": "KOLLEKTIVER WIDERSTAND",
+  "title": "Er entsteht Beitrag um Beitrag.",
+  "body": "Jede Einheit dieser Wand ist ein Beitrag. Keine trägt den Fonds allein; zusammen machen sie ihn möglich. So sieht die Kraft des Kollektivs aus."
+ },
+ "aportar": {
+  "kicker": "BEITRAGEN",
+  "title": "Wählen Sie, wie Sie den Fonds tragen möchten.",
+  "intro": "Dies sind die geplanten Wege. Die Zahlung wird aktiviert, sobald der Verwaltungsausschuss und der Zahlungsdienstleister bestätigt sind; bis dahin sind die Schaltflächen informativ.",
+  "amounts": [
+   "20 €",
+   "50 €",
+   "100 €",
+   "Anderer Betrag"
+  ],
+  "vias": [
+   {
+    "t": "Einmaliger Beitrag",
+    "d": "Ein einziges Mal, in der Höhe Ihrer Wahl. Sie erhalten eine Bestätigung und einen Beleg."
+   },
+   {
+    "t": "Wiederkehrender Beitrag",
+    "d": "Wöchentlich oder monatlich, einstellbar und mit einem Klick kündbar. Widerstand trägt sich über die Zeit."
+   },
+   {
+    "t": "Solidarischer Gehaltstag",
+    "d": "Geben Sie einen Tag, einen halben Tag oder eine Stunde Ihres Gehalts. Der Rechner läuft nur in Ihrem Browser: Wir speichern Ihr Gehalt nicht."
+   }
+  ],
+  "cta": "Beitragen",
+  "placeholderNote": "Der Fonds kann noch keine Beiträge annehmen: Die Gewerkschaft, die die Trägerschaft übernimmt, muss ihn zuerst gründen. Diese Seite erhebt keine Zahlungsdaten.",
+  "canales": {
+   "kicker": "WIE DAS GELD ANKOMMT",
+   "title": "Zwei Wege zum Fonds.",
+   "transferencia": {
+    "t": "Banküberweisung",
+    "d": "Direkt auf das Konto des Fonds. Ohne Gebühren von Vermittlern und ohne Dritte, die die Kampagne abschalten können.",
+    "labelTitular": "Kontoinhaber",
+    "labelBanco": "Bank",
+    "labelIban": "IBAN",
+    "labelBic": "BIC",
+    "labelConcepto": "Verwendungszweck",
+    "copiar": "IBAN kopieren",
+    "copiado": "IBAN kopiert",
+    "pendiente": "Sie wird veröffentlicht, sobald die trägerschaftliche Gewerkschaft das Konto des Fonds eröffnet. Es wird keine ungeprüfte Nummer angezeigt."
+   },
+   "pasarela": {
+    "t": "Karte und digitale Zahlung",
+    "d": "Der bequeme Weg: in einer halben Minute vom Handy beitragen, ohne eine Kontonummer abzutippen.",
+    "cta": "Mit Karte beitragen",
+    "pendiente": "Dafür muss die juristische Person existieren: Das Händlerkonto wird auf ihren Namen eröffnet, mit ihrer Steuernummer und der Prüfung ihrer Verantwortlichen. Dieser Schritt lässt sich nicht vorziehen."
+   },
+   "metodos": {
+    "tarjeta": "Karte",
+    "apple-pay": "Apple Pay",
+    "google-pay": "Google Pay",
+    "paypal": "PayPal",
+    "sepa": "SEPA-Lastschrift"
+   }
+  },
+  "selector": {
+   "kicker": "BEITRAG EINSTELLEN",
+   "importe": "Betrag",
+   "otra": "Anderer",
+   "otraPlaceholder": "€",
+   "frecuencia": "Häufigkeit",
+   "puntual": "Einmalig",
+   "mensual": "Monatlich",
+   "resumenPuntual": "Du würdest einmalig {importe} geben.",
+   "resumenMensual": "Du würdest jeden Monat {importe} geben. Mit einem Klick kündbar.",
+   "cta": "{importe} beitragen",
+   "bloqueado": "Die Zahlung wird aktiviert, sobald der Fonds besteht. Im Moment wird hier nichts abgebucht."
+  },
+  "mock": {
+   "kicker": "SIMULATION",
+   "title": "So sähe der Beitrag aus.",
+   "aviso": "MOCK-UP — kein echtes Formular. Es nimmt keine Daten entgegen und bucht nichts ab. Es zeigt nur, wie die Zahlung aussähe, sobald der Anbieter aktiv ist.",
+   "pagarCon": "Bezahlen mit",
+   "oTarjeta": "oder per Karte",
+   "numero": "Kartennummer",
+   "caducidad": "Gültig bis",
+   "cvc": "CVC",
+   "titular": "Karteninhaber",
+   "boton": "{importe} beitragen",
+   "seguro": "Verschlüsselte Zahlung · Der Fonds sieht deine Kartennummer nie"
+  }
+ },
+ "internacional": {
+  "kicker": "INTERNATIONALE SOLIDARITÄT",
+  "title": "Solidarität kennt keine Grenzen.",
+  "body": "Andere Betriebe, europäische Gewerkschaften, Betriebsräte, Verbände und verbündete Organisationen können den Fonds unterstützen und die Kampagne verbreiten. Dieser Bereich ist auf Spanisch, Englisch, Französisch und Deutsch verfügbar.",
+  "ctaContact": "Kontakt für Organisationen",
+  "orgLanding": "Zusammenfassung des Konflikts, Ziel des Fonds, Formen der Zusammenarbeit und institutioneller Beitrag für internationale Organisationen.",
+  "comunicadosLabel": "Internationale Solidaritätserklärungen"
+ },
+ "tienda": {
+  "kicker": "MERCHANDISE",
+  "title": "Trag es, und trag den Fonds mit.",
+  "intro": "Jeder Artikel sagt genau, wie viel seine Herstellung kostet und wie viel in den Solidaritätsfonds geht. Ohne Kleingedrucktes: Wer ein T-Shirt kauft, weiß, welcher Teil seines Geldes die Mobilisierung finanziert.",
+  "provisional": "BEISPIELPREISE — Lieferant ausstehend",
+  "desglose": "Wohin dein Geld geht",
+  "costeLabel": "Kosten des Artikels",
+  "cajaLabel": "In den Solidaritätsfonds",
+  "porcentaje": "{pct} % von dem, was du zahlst, geht in den Fonds",
+  "colorLabel": "Farbe",
+  "estampadoLabel": "Aufdruck",
+  "avisoMarca": "Dieses Motiv enthält den Namen „Airbus“. Der Aufdruck auf verkäuflicher Ware erfordert vor dem Verkauf eine juristische Prüfung.",
+  "tallaLabel": "Größe",
+  "guiaTallas": "Größentabelle",
+  "guiaPendiente": "Die genauen Maße liefert der Lieferant. Es werden keine unbestätigten Zentimeter veröffentlicht.",
+  "medidasEjemplo": "BEISPIEL-Maße (cm, flach liegend). Endgültige Werte bestätigt der Lieferant.",
+  "esquemaNota": "A Brust · B Länge",
+  "pecho": "Brust (cm)",
+  "largo": "Länge (cm)",
+  "anadir": "In den Warenkorb",
+  "noOperativa": "Der Shop kann noch nicht abrechnen: Der Zahlungsdienstleister wird auf den Namen des juristischen Trägers des Fonds eröffnet, mit dessen Steuernummer und der Prüfung der Verantwortlichen. Dieselbe Voraussetzung wie beim Beitrag, keine neue.",
+  "colores": {
+   "blanco": "Weiß",
+   "azul-marino": "Marineblau",
+   "naranja-fuego": "Feuerorange"
+  },
+  "estampados": {
+   "puno": "Faust",
+   "lema": "Parole",
+   "hashtag": "#EnfadadosconAirbus",
+   "fechas": "Daten"
+  },
+  "articulos": {
+   "camiseta": {
+    "nombre": "T-Shirt",
+    "desc": "Baumwolle, klassischer Schnitt. Drei Farben."
+   },
+   "sudadera": {
+    "nombre": "Hoodie",
+    "desc": "Mit Kapuze, innen angeraut. Drei Farben."
+   },
+   "taza": {
+    "nombre": "Tasse",
+    "desc": "Keramik, spülmaschinenfest."
+   },
+   "gorra": {
+    "nombre": "Cap",
+    "desc": "Verstellbar, Einheitsgröße."
+   },
+   "llavero": {
+    "nombre": "Schlüsselanhänger",
+    "desc": "Graviertes Metall."
+   },
+   "lanyard": {
+    "nombre": "Lanyard",
+    "desc": "Ausweisband mit Karabiner."
+   }
+  },
+  "volver": "Zurück zur Startseite",
+  "metaTitle": "Shop",
+  "metaDescription": "T-Shirts und Materialien der Bewegung. Was über den Kosten liegt, geht an den Solidaritätsfonds.",
+  "aviso": "SHOP IM AUFBAU — Artikel und Preise sind ein Vorschlag. Solange kein Solidaritätsfonds besteht, kann nichts verkauft werden, denn die Einnahmen hätten kein Ziel."
+ },
+ "donantes": {
+  "kicker": "GROSSSPENDER UND INSTITUTIONEN",
+  "title": "Bedeutende Beiträge, vollständig nachverfolgbar.",
+  "body": "Für Organisationen oder Personen, die einen bedeutenden Beitrag leisten möchten, gibt es einen eigenen Kanal mit Dokumentation, Nachverfolgbarkeit und Belegen.",
+  "bullets": [
+   "Dossier des Konflikts und der Governance des Fonds",
+   "Transparenzdaten und Prüfverfahren",
+   "Möglichkeit der Überweisung und Anforderung eines Belegs",
+   "Kontakt mit dem zuständigen Ausschuss und Option auf ein Treffen"
+  ],
+  "ctaContact": "Mit dem Ausschuss sprechen",
+  "ctaDossier": "Governance-Dossier des Fonds",
+  "note": "Das Governance-Dossier (wer den Fonds verwaltet, wie das Geld kontrolliert wird und was mit nicht verteilten Mitteln geschieht) wird veröffentlicht, sobald ein Verwaltungsausschuss besteht. Es ist ein anderes Dokument als das Konflikt-Dossier. Es werden keine ungeprüften Bank- oder Steuerdaten veröffentlicht, und keine Organisation wird ohne nachprüfbare Bestätigung als Unterstützerin gezeigt."
+ },
+ "faq": {
+  "kicker": "HÄUFIGE FRAGEN",
+  "title": "Häufige Fragen.",
+  "items": [
+   {
+    "q": "Wer verwaltet den Fonds?",
+    "a": "Ein Ausschuss der Belegschaft selbst, unter kollektiver Kontrolle und mit Nachverfolgbarkeit jeder Operation. Die Verantwortlichen werden öffentlich gemacht."
+   },
+   {
+    "q": "Woher weiß ich, dass das Geld gut verwendet wird?",
+    "a": "Weil die Zahlen aus geprüften Daten abgeleitet und veröffentlicht werden: Gesammeltes, Kosten, ausgezahlte Hilfen und Verteilungskriterien, mit herunterladbaren Berichten."
+   },
+   {
+    "q": "Kann ich anonym beitragen?",
+    "a": "Ja. Sie können wählen, dass Ihr Beitrag nicht öffentlich erscheint. Angaben von Hilfeantragstellern sind stets privat."
+   },
+   {
+    "q": "Kann ich einen wiederkehrenden Beitrag kündigen?",
+    "a": "Ja, mit einem Klick und jederzeit, mit Zugang zu Ihrem Beitragsverlauf."
+   },
+   {
+    "q": "Kann ich aus dem Ausland beitragen?",
+    "a": "Ja. Der Fonds ist darauf ausgelegt, nationale und internationale Solidarität zu empfangen."
+   },
+   {
+    "q": "Speichert der Gehaltstag-Rechner mein Gehalt?",
+    "a": "Nein. Er läuft vollständig in Ihrem Browser; der eingegebene Betrag wird weder gesendet noch gespeichert."
+   }
+  ]
+ },
+ "contacto": {
+  "kicker": "KONTAKT",
+  "title": "Schreiben Sie uns.",
+  "body": "Für Fragen, Presse, Organisationen oder zur Zusammenarbeit mit dem Verwaltungsausschuss.",
+  "sugerencias": {
+   "kicker": "ANREGUNGEN UND VERBESSERUNGEN",
+   "title": "Helfen Sie uns, sie zu verbessern.",
+   "body": "Diese Website gehört der Bewegung. Wenn Sie einen Fehler entdecken, ein Dokument fehlt oder etwas missverständlich ist, sagen Sie es uns: Alles wird geprüft.",
+   "cta": "Vorschlag senden",
+   "asunto": "Vorschlag für die Website",
+   "nuevaPestana": "wird in einem neuen Tab geöffnet",
+   "ctaOtro": "Nutzen Sie ein anderes E-Mail-Programm?"
+  }
+ },
+ "footer": {
+  "tagline": "EnfadadosconAirbus — das Medium der Belegschaftsbewegung von Airbus Spanien.",
+  "independence": "Von der Belegschaft getragene, unabhängige Initiative. Diese Website vertritt Airbus nicht und verwendet nicht dessen Corporate Identity.",
+  "legal": {
+   "aviso": "Impressum",
+   "privacidad": "Datenschutzerklärung",
+   "cookies": "Cookie-Richtlinie"
+  },
+  "rights": "Rechtstexte im Entwurf, ausstehende rechtliche Prüfung.",
+  "visitasLabel": "Besuche",
+  "visitasNota": "Eigener Zähler. Keine Cookies, keine Analytik: Es wird nur eine Zahl erhöht, ohne etwas über Sie zu speichern.",
+  "redes": "Kanäle",
+  "redesAsunto": "Nachricht über die Website",
+  "redesNuevaPestana": "wird in einem neuen Tab geöffnet",
+  "sobre": "Über diese Website"
+ },
+ "cookies": {
+  "text": "Diese Website verwendet keine Tracking-Cookies. Die Vorschaubilder im Barometer-Abschnitt werden von den ursprünglichen Medien geladen; alle anderen Ressourcen sind eigene. Es wird nur der zum Speichern Ihrer Sprache nötige Speicher verwendet.",
+  "accept": "Akzeptieren",
+  "reject": "Ablehnen",
+  "configure": "Einstellen"
+ },
+ "legalModals": {
+  "aviso": {
+   "title": "Impressum",
+   "body": "Dies ist eine Übersetzung zu Informationszwecken. Bei Abweichungen ist die spanische Fassung maßgeblich.\n\nVerantwortlicher. Diese Seite ist eine informative Initiative der Bewegung, gemeinnützig und ohne eingerichtete Trägereinrichtung. Sie sammelt keine Gelder und bietet keine Dienste: sie wird ausschließlich zu Informationszwecken veröffentlicht (spanisches Gesetz 34/2002 über Dienste der Informationsgesellschaft). Die Solidaritätskasse wird auf einer separaten Seite mit eigener Trägereinrichtung betrieben.\n\nZweck. Über den Arbeitskonflikt bei Airbus Spanien informieren: Forderungen, öffentliche Resonanz und Dokumentation, die die Bewegung selbst teilt.\n\nZweck. Information über den Arbeitskonflikt bei Airbus Spanien: Forderungen, öffentliche Resonanz, von der Bewegung selbst geteilte Dokumentation und, sobald er besteht, die Funktionsweise des Solidaritätsfonds.\n\nInhalte und Richtigkeit. Die Informationen werden aus Dokumenten der Bewegung und aus öffentlichen Quellen erstellt, deren Herkunft angegeben wird. Die Daten im Abschnitt «Thermometer» stammen aus einer unabhängigen Beobachtung Dritter, werden als solche gekennzeichnet und als Schätzung angeboten, nicht als offizielle Zahl irgendeines Unternehmens. Wenn Sie einen Fehler feststellen, schreiben Sie an enfadadosconairbus.contacto@gmail.com; der Inhalt wird korrigiert oder entfernt.\n\nGeistiges Eigentum. Die eigenen Texte dieser Website dürfen unter Angabe der Quelle vervielfältigt werden. Die herunterladbaren Dokumente gehören ihren Urhebern und werden im Informationsinteresse des Konflikts verbreitet. Marken, Handelsnamen und Kennzeichen Dritter, die hier erscheinen, gehören ihren Inhabern und werden ausschließlich zu Informationszwecken verwendet, um das Unternehmen zu benennen, auf das sich der Konflikt bezieht.\n\nLinks. Die Website verlinkt auf externe Quellen (Medien, Kanäle der Bewegung, Monitoring-Dashboards). Für die Inhalte dieser Seiten und deren Richtlinien wird keine Verantwortung übernommen.\n\nEntfernung von Inhalten. Wer der Auffassung ist, dass ein Inhalt seine Rechte verletzt, kann dessen Entfernung unter enfadadosconairbus.contacto@gmail.com beantragen und dabei den konkreten Inhalt und den Grund angeben. Anträge werden sorgfältig bearbeitet.\n\nAnwendbares Recht. Dieser Hinweis unterliegt spanischem Recht.",
+   "nota": "Textentwurf, ausstehende rechtliche Prüfung."
+  },
+  "privacidad": {
+   "title": "Datenschutzerklärung",
+   "body": "Dies ist eine Übersetzung zu Informationszwecken. Bei Abweichungen ist die spanische Fassung maßgeblich.\n\nDiese Website ist so angelegt, dass sie gelesen werden kann, ohne Spuren zu hinterlassen. Es gibt keine Analyse durch Dritte, keine Pixel und keine Werbeprofile.\n\nVerantwortlicher für die Verarbeitung. Es besteht noch keine gegründete Trägerentität; ihre Identifikationsdaten werden bei der Formalisierung ergänzt. Kontakt: enfadadosconairbus.contacto@gmail.com.\n\nWelche Daten verarbeitet werden.\n1. Keine, wenn Sie nur surfen. Ihre IP-Adresse, Ihr Browser und die aufgerufenen Seiten werden nicht zu Analysezwecken erfasst. Der Server erzeugt temporäre technische Protokolle, wie sie bei jedem Hosting anfallen und die nicht zur Profilbildung verwendet werden.\n2. Besuchszähler. Eine Zahl wird erhöht. Es werden weder IP-Adresse noch Kennung, Cookie oder sonstige Daten gespeichert, die es erlauben würden, eine Person von einer anderen zu unterscheiden: Es findet keine Verarbeitung personenbezogener Daten statt.\n3. Wenn Sie an die Kontaktadresse schreiben. Ihre E-Mail-Adresse und der Inhalt Ihrer Nachricht werden ausschließlich zum Zweck der Beantwortung verarbeitet. Rechtsgrundlage: Ihre Einwilligung durch das Schreiben. Speicherdauer: für die Dauer des Austauschs und die gesetzlich vorgeschriebene Frist.\n\nAuf Ihrem Gerät gespeicherte Einstellungen. Der lokale Speicher des Browsers wird genutzt, um die gewählte Sprache zu merken und ob Sie den Cookie-Hinweis bereits gesehen haben. Er verlässt Ihr Gerät nicht und wird nicht geteilt.\n\nEmpfänger. Die Daten werden weder weitergegeben noch verkauft. Die Website wird von Vercel Inc. gehostet, das als Auftragsverarbeiter handelt und technische Protokolle auf Servern innerhalb und außerhalb des Europäischen Wirtschaftsraums verarbeiten kann, mit den in der DSGVO vorgesehenen Garantien.\n\nIhre Rechte. Sie können Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Datenübertragbarkeit verlangen, indem Sie an enfadadosconairbus.contacto@gmail.com schreiben. Wenn Sie der Auffassung sind, dass Ihren Rechten nicht entsprochen wurde, können Sie sich bei der spanischen Datenschutzbehörde (AEPD, www.aepd.es) beschweren.\n\nMinderjährige. Diese Website richtet sich nicht an Kinder unter 14 Jahren und erhebt deren Daten nicht wissentlich."
+  },
+  "cookies": {
+   "title": "Cookie-Richtlinie",
+   "body": "Dies ist eine Übersetzung zu Informationszwecken. Bei Abweichungen ist die spanische Fassung maßgeblich.\n\nDiese Website verwendet keine Tracking-, Werbe- oder Analyse-Cookies. Es gibt keine Cookies Dritter.\n\nUnbedingt erforderliche Speicherung. In Ihrem Browser werden über den lokalen Speicher zwei Einstellungen abgelegt: die gewählte Sprache und ob Sie diesen Hinweis bereits gesehen haben. Sie identifizieren niemanden, werden an keinen Server gesendet und Sie können sie jederzeit in Ihrem Browser löschen. Aufgrund ihrer technischen Natur sind sie von der Pflicht zur vorherigen Einwilligung ausgenommen (Artikel 22.2 LSSI-CE).\n\nAnfragen an Dritte. Der Abschnitt «Thermometer» zeigt Nachrichten-Vorschaubilder, die von den ursprünglichen Medien ausgeliefert werden. Beim Laden kontaktiert Ihr Browser diese Medien, die die Anfrage nach ihren eigenen Richtlinien protokollieren können. Sie werden mit der Direktive «no-referrer» gesendet, um ihnen nicht zu verraten, von welcher Seite Sie kommen. Alle übrigen Ressourcen — Schriften, Bilder und Daten — werden von dieser Domain ausgeliefert.\n\nBesuchszähler. Er ist eigenentwickelt und erhöht lediglich eine Zahl auf dem Server. Er verwendet keine Cookies und speichert keinerlei Daten der Besuchenden.\n\nWie Sie widerrufen. Es genügt, den lokalen Speicher der Website in den Einstellungen Ihres Browsers zu löschen. Sie verlieren keine Inhalte: Sie werden lediglich erneut nach der Sprache gefragt und der Hinweis wird wieder angezeigt."
+  }
+ },
+ "documentacion": {
+  "kicker": "DOKUMENTATION",
+  "title": "Protokolle und Dokumente der Bewegung.",
+  "intro": "Die Protokolle der Versammlungen jedes Standorts und das vollständige Verzeichnis der von der Bewegung selbst katalogisierten Dokumente. Alles kommt eingeklappt: Öffnen Sie nur, was Sie lesen möchten.",
+  "notaActas": "Zu diesen Dokumenten: Die Protokolle halten fest, was in den jeweiligen Versammlungen mitgeteilt und diskutiert wurde. Sie können Aussagen, Schätzungen oder Meinungen von Teilnehmenden enthalten, die von dieser Website nicht unabhängig überprüft wurden. Ihre Veröffentlichung dient dokumentarischen Zwecken und impliziert keine Übernahme aller enthaltenen Inhalte.",
+  "grupoHeading": "Zusammenfassungen der Telegram-Gruppe",
+  "grupoNota": "Täglich veröffentlicht",
+  "sitesHeading": "Protokolle nach Standort",
+  "grupoLabel": "Gruppen-Zusammenfassung",
+  "indiceHeading": "Dokumentenverzeichnis",
+  "indiceResumen": "{n} Dokumente in {c} Kategorien. {d} lassen sich hier herunterladen; der Rest ist in der Telegram-Gruppe einzusehen.",
+  "indiceActualizado": "Verzeichnis aktualisiert: {fecha}",
+  "indiceFuente": "Vollständiges Verzeichnis ansehen",
+  "indiceNota": "Wird täglich von der Dokumentationsgruppe auf Telegram katalogisiert. Hier ohne den Namen der hochladenden Person und ohne Reaktionen gespiegelt. Die Bilder des Verzeichnisses werden nicht gespiegelt.",
+  "descargar": "Herunterladen",
+  "descargables": "{n} hier herunterladbar",
+  "verEnGrupo": "In der Gruppe ansehen",
+  "soloGrupo": "Nur in der Gruppe",
+  "versiones": "weitere Versionen: {n}",
+  "ejemploTag": "BEISPIEL-PROTOKOLLE — Quelle noch anzubinden",
+  "sinActas": "Noch keine Protokolle veröffentlicht. Sie erscheinen hier, sobald das Komitee sie veröffentlicht.",
+  "metaTitle": "Dokumentation",
+  "metaDescription": "Versammlungsprotokolle, tägliche Zusammenfassungen der Gruppe und das vollständige Dokumentenverzeichnis der Bewegung.",
+  "volver": "Zurück zur Startseite",
+  "ctaVer": "Zur Dokumentation",
+  "portadaActas": "Versammlungsprotokolle",
+  "portadaResumenes": "Gruppen-Zusammenfassungen",
+  "portadaDocumentos": "katalogisierte Dokumente"
+ },
+ "cajaCta": {
+  "kicker": "DER SOLIDARITÄTSFONDS",
+  "title": "Niemand soll aus Geldmangel aufgeben müssen.",
+  "body": "Der Fonds trägt jene, die für die Mobilisierung auf Lohn verzichten. Er hat eine eigene Seite: was er ist, wofür er verwendet wird, wie man beiträgt und wie Rechenschaft abgelegt wird.",
+  "ctaPrimary": "Beitragen",
+  "ctaSecondary": "Mehr über den Fonds",
+  "ctaTienda": "Zum Shop",
+  "ctaWebB": "Unterstütze die Kasse — die Seite der Kasse",
+  "ctaAportar": "Zur Solidaritätskasse beitragen"
+ },
+ "cronologia": {
+  "kicker": "CHRONOLOGIE",
+  "title": "Wie es so weit kam.",
+  "intro": "Vom ersten Streiktag im Juli über die Arbeitsniederlegungen am 24. August bis zum Beginn des unbefristeten Vollstreiks ab dem 25. Jeder Meilenstein enthält die zugehörige Dokumentation und Medienberichterstattung.",
+  "hoy": "heute",
+  "futuro": "noch offen",
+  "documentos": "Dokumente",
+  "prensa": "Berichtet von",
+  "cerrar": "Schließen",
+  "instruccion": "Gehen Sie die Chronologie durch. Jeder Meilenstein ermöglicht es, zugehörige Bilder, Dokumente und Medienberichterstattung einzusehen.",
+  "plegableTitulo": "Die Chronik durchgehen"
+ },
+ "sobre": {
+  "metaTitle": "Über das Projekt",
+  "metaDescription": "Was EnfadadosconAirbus ist, seine redaktionelle Linie, wie personenbezogene Daten minimiert werden und wo man für Korrekturen oder Inhaltsentfernungen Kontakt aufnehmen kann.",
+  "kicker": "ÜBER DAS PROJEKT",
+  "title": "Eine unabhängige Informationsinitiative.",
+  "naturaleza": {
+   "heading": "Beschreibung",
+   "body": "EnfadadosconAirbus ist eine unabhängige Informationsinitiative, die im Kontext des Arbeitskonflikts bei Airbus España entstanden ist.\n\nSie hat das Ziel, Informationen zum Konflikt zu sammeln, zu ordnen und zugänglich zu machen: Einladungen, Vereinbarungen und Vorschläge, Versammlungsprotokolle, Mitteilungen, gewerkschaftliche und unternehmensbezogene Dokumentation, von Medien veröffentlichte Informationen sowie von der Bewegung selbst erstellte Dokumente.\n\nDiese Website vertritt nicht Airbus und spricht nicht in seinem Namen. Sie ist auch nicht der offizielle Kanal einer Gewerkschaft, eines Betriebsrats oder des SIMA, außer wenn sie Dokumente reproduziert oder verlinkt, die ausdrücklich von diesen Organisationen stammen."
+  },
+  "criterio": {
+   "heading": "Redaktionelle Linie",
+   "intro": "Die Website unterscheidet, soweit möglich, zwischen:",
+   "items": [
+    "Dokumentierten Fakten, versehen mit ihrer Quelle oder ihrem Referenzdokument.",
+    "Erklärungen und Positionen Dritter, die dem Urheber zugeschrieben werden.",
+    "Dokumenten der Bewegung, die die darin enthaltenen Positionen, Debatten oder Vereinbarungen widerspiegeln und nicht automatisch als persönliche Meinung aller Airbus España-Beschäftigten interpretiert werden sollten.",
+    "Analysen oder Schätzungen, die als solche gekennzeichnet sind und soweit möglich ihre Methodik und Quellen erläutern."
+   ],
+   "coda": "Die Aufnahme eines Dokuments bedeutet nicht, dass diese Website alle darin enthaltenen Aussagen befürwortet."
+  },
+  "privacidad": {
+   "heading": "Dokumentation und Datenschutz",
+   "body": "Das Projekt verfolgt einen Ansatz der Datensparsamkeit. Vor der Veröffentlichung von Dokumenten werden nach Möglichkeit Namen, Unterschriften, E-Mail-Adressen, Telefonnummern, persönliche Identifikatoren und alle anderen Daten entfernt, deren Verbreitung für das Verständnis des Konflikts nicht erforderlich ist.\n\nDiese Website zielt nicht darauf ab, Geschäftsgeheimnisse, vertrauliche technische, industrielle oder kommerzielle Informationen, klassifizierte Informationen oder Informationen, die Verbreitungsbeschränkungen unterliegen, oder über eingeschränkten beruflichen Zugang erlangte Informationen zu veröffentlichen.\n\nWenn ein Dokument Informationen enthält, deren öffentliche Veröffentlichung nicht hinreichend gerechtfertigt werden kann, wird es nicht veröffentlicht oder bis zur Überprüfung zurückgezogen."
+  },
+  "correcciones": {
+   "heading": "Korrekturen und Entfernung",
+   "body": "Informationen werden während eines sich entwickelnden Konflikts aktualisiert und können Fehler enthalten oder durch spätere Ereignisse überholt werden.\n\nJede Person oder Organisation, die eine Ungenauigkeit, unbeabsichtigt veröffentlichte personenbezogene Daten, eine falsche Zuschreibung feststellt oder der Meinung ist, dass ein Dokument nicht öffentlich zugänglich sein sollte, kann eine Überprüfung bei enfadadosconairbus.contacto@gmail.com beantragen.\n\nAnfragen werden unter Berücksichtigung der Richtigkeit der Informationen, ihres Interesses für die Dokumentation des Konflikts, der Rechte der betroffenen Personen und der Herkunft des Materials geprüft."
+  },
+  "independencia": {
+   "heading": "Unabhängigkeit",
+   "body": "Dieses Projekt verwendet nicht die Unternehmensidentität von Airbus und beabsichtigt keine Verwirrung über seinen Ursprung. Marken, Bezeichnungen und Verweise auf Airbus und die genannten Organisationen werden ausschließlich zur Identifizierung der am Konflikt beteiligten Akteure und Ereignisse verwendet."
+  },
+  "volver": "Zurück zur Startseite"
+ },
+ "ultimasNoticias": {
+  "kicker": "NEUESTE NACHRICHTEN",
+  "enDirecto": "Wird aktualisiert",
+  "fecha": "18. September 2026",
+  "titulo": [
+   "Der Nationale Gerichtshof",
+   "stoppt das Referendum"
+  ],
+  "entradilla": "Die Sozialkammer der Audiencia Nacional hat einstweilige Eilmaßnahmen erlassen, die die von Airbus für den 24. und 25. September angesetzte Abstimmung aussetzen, bei der die Belegschaft den „Einigungsvorschlag“ vom 4. September bestätigen sollte.",
+  "puntos": [
+   {
+    "etiqueta": "Was ausgesetzt ist",
+    "texto": "Das Referendum am 24. und 25. September über das jüngste Angebot des Unternehmens —am 4. September mit ATP, CCOO und SIPA unterzeichnet—: realer VPI und eine Rückgewinnung der Kaufkraft von 7,95 %, verteilt bis 2029, wobei die geltende Telearbeitsvereinbarung vollständig erhalten bleibt."
+   },
+   {
+    "etiqueta": "Wer es stoppt",
+    "texto": "Die Sozialkammer der Audiencia Nacional, die den von der Gewerkschaft CGT im Rahmen ihrer Kollektivklage beantragten einstweiligen Maßnahmen stattgegeben hat."
+   },
+   {
+    "etiqueta": "Aus welchem Grund",
+    "texto": "Die CGT macht eine Verletzung des Grundrechts auf Streik und unredliches Verhalten in den Verhandlungen geltend. Die Abstimmung ist bis zur Anhörung über die einstweiligen Maßnahmen ausgesetzt, die für den 24. September angesetzt ist."
+   },
+   {
+    "etiqueta": "Was unverändert bleibt",
+    "texto": "Der Aufruf zum unbefristeten Streik bleibt in Kraft: Er ist ein kollektives Recht, das individuell ausgeübt wird."
+   }
+  ],
+  "imagenAlt": "Redaktionelle Illustration: eine mit einem roten Band „SUSPENDIDO“ (ausgesetzt) versiegelte Wahlurne, ein darauf niedersausender Richterhammer und im Hintergrund Silhouetten streikender Beschäftigter mit Transparenten.",
+  "ampliar": "Bild vergrößern",
+  "descargar": "Bild herunterladen",
+  "cerrar": "Schließen",
+  "enPrensa": "In der Presse",
+  "fuentesLabel": "Quellen",
+  "fuentes": "El Economista (Industria) · Forbes · Press Digital · Aviación Digital · Demócrata — 18. September 2026",
+  "nota": "Meldung in Entwicklung. Sie wird im Verlauf des Gerichtsverfahrens aktualisiert."
+ },
+ "negociacion": {
+  "kicker": "VERHANDLUNGSSTAND",
+  "title": [
+   "Entwicklung der",
+   "Vorschläge"
+  ],
+  "periodo": "Kreuzvergleich · 1. Juli — 27. August 2026",
+  "plantillaLabel": "Belegschaft",
+  "empresaLabel": "Unternehmen",
+  "economicoLabel": "Wirtschaftlicher Kern",
+  "laboralLabel": "Arbeitsbedingungen",
+  "industrialLabel": "Industrielle Zukunft",
+  "verDetalle": "Bedingungen und industrielle Zukunft anzeigen",
+  "ocultarDetalle": "Details ausblenden",
+  "fuentesLabel": "Quellen",
+  "descargar": "Infografik herunterladen",
+  "paneles": {
+   "estado": {
+    "titulo": "Kreuzvergleich der Vorschläge",
+    "periodo": "1. Juli — 27. Aug. 2026",
+    "alt": "Entwicklung der Vorschläge zur Beilegung des Konflikts bei Airbus Spanien — Kreuzvergleich von Belegschaft und Unternehmen, vom 1. Juli bis 27. August 2026."
+   },
+   "propuesta": {
+    "titulo": "Vereinbarungsvorschlag, Abstimmung ausstehend",
+    "periodo": "4. Sep. 2026",
+    "alt": "Visuelle Zusammenfassung des «Vereinbarungsvorschlags» des Unternehmens, Abstimmung ausstehend: die zehn Punkte des Plans — Löhne und Kaufkraft, Bradford, Telearbeit, Urlaub, Kantine, Transport, flexible Arbeitszeiten, Projekt Bromo, Arbeitslast in Cádiz und Lohnpolitik PG-121."
+   }
+  }
+ }
+}

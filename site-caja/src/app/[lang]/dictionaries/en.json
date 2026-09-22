@@ -1,0 +1,694 @@
+{
+ "meta": {
+  "provisional": false,
+  "title": "Resistance fund · #EnfadadosconAirbus",
+  "description": "The resistance fund of the #EnfadadosconAirbus movement: what it is, how to contribute, how it is spent and how it is accounted for. A fund of the Airbus Spain workforce.",
+  "ogAlt": "#EnfadadosconAirbus — the resistance fund of the Airbus Spain workforce's movement"
+ },
+ "nav": {
+  "conflicto": "The dispute",
+  "caja": "The fund",
+  "transparencia": "Transparency",
+  "internacional": "International solidarity",
+  "donantes": "Major donors",
+  "faq": "FAQ",
+  "termometro": "Thermometer",
+  "aportar": "Contribute",
+  "skip": "Skip to main content",
+  "menu": "Menu",
+  "close": "Close",
+  "tienda": "Merchandising",
+  "documentacion": "Documentation",
+  "sobre": "About this project",
+  "marca": "The movement's resistance fund",
+  "temaOscuro": "Night mode",
+  "temaClaro": "Day mode",
+  "contacto": "Contact",
+  "gobernanza": "Governance"
+ },
+ "exampleTag": "EXAMPLE DATA — pending real, verified figures",
+ "titularLabels": {
+  "razonSocial": "Legal holder",
+  "forma": "Legal form",
+  "cif": "Tax ID",
+  "domicilio": "Registered address",
+  "registro": "Registry details"
+ },
+ "hero": {
+  "kicker": "THE MOVEMENT’S OWN MEDIUM · AIRBUS SPAIN",
+  "title": [
+   "What happens at Airbus,",
+   "we tell it ourselves."
+  ],
+  "subtitle": "Information and documentation on the Airbus Spain labour dispute, compiled by the workers’ movement.",
+  "ctaPrimary": "Contribute to the fund",
+  "ctaSecondary": "Understand the dispute",
+  "values": [
+   "Solidarity",
+   "Transparency",
+   "Independence",
+   "Collective resistance"
+  ]
+ },
+ "ficha": {
+  "kicker": "CASE FILE",
+  "filas": [
+   {
+    "k": "First strike",
+    "v": "1–23 July 2026"
+   },
+   {
+    "k": "Start of mobilisation",
+    "v": "24 Aug · 3-hour stoppages and assemblies · 25 Aug · indefinite strike"
+   },
+   {
+    "k": "Scope",
+    "v": "Airbus Spain"
+   },
+   {
+    "k": "Demands",
+    "v": "7"
+   }
+  ],
+  "fondoLabel": "Fund status",
+  "fondoNo": "Not constituted",
+  "fondoSi": "Operational"
+ },
+ "arranque": {
+  "chapa": {
+   "etiqueta": "Indefinite strike",
+   "faltan": "{n} days to go · 24 Aug",
+   "manana": "Tomorrow, 24 August",
+   "hoy": "Today, 24 August",
+   "curso": "Under way · 24 h",
+   "detalle": "· three-hour stoppage and assembly at every site",
+   "detalleCurso": "· at every site, with no end date",
+   "pausada": "In effect, paused since 9 September",
+   "detallePausa": "· at every site"
+  }
+ },
+ "coberturaVideo": {
+  "kicker": "VIDEO COVERAGE",
+  "title": [
+   "The dispute,",
+   "on the news"
+  ],
+  "intro": "The TV and radio clips where the dispute and the indefinite strike made the news. They play from their original source; press to watch each one.",
+  "fuente": "We don't host the footage: each video plays or links from the outlet that published it. Dates and durations as listed on each video.",
+  "reproducir": "Play video",
+  "verEnWeb": "Watch on their site",
+  "short": "Short",
+  "internacionalLabel": "On video"
+ },
+ "conflicto": {
+  "kicker": "THE DISPUTE",
+  "title": "How the current dispute came about.",
+  "intro": "The mobilisation of the Airbus Spain workforce —a strike from 1 to 23 July 2026 and an indefinite strike called from 24 August— arises, according to the movement’s manifesto, from a gradual deterioration of trust and accumulated disagreements over pay negotiations and working conditions. It also comes at a time of economic strength for the company. These are the demands the movement puts forward:",
+  "docManifiesto": {
+   "v3": "List of demands – v3",
+   "grupo": "Manifesto to the Airbus Group – July 2026"
+  },
+  "docManifiestoMeta": "PDF · {t} MB",
+  "docManifiestoOtros": "Manifesto in other languages:",
+  "docManifiestoOtroDoc": "{doc}:",
+  "docDossier": "Salary recovery dossier – v10",
+  "docDossierMeta": "PDF · 0.6 MB · ES",
+  "points": [
+   {
+    "n": "01",
+    "t": "Restoring purchasing power",
+    "d": "Inflation (CPI) as the basis for pay reviews from 2026, plus an extraordinary rise to offset the accumulated loss.",
+    "detalle": "The economic dossier drawn up by the movement estimates an accumulated loss of purchasing power over recent years.",
+    "exige": [
+     "Restoring CPI as the basis for annual pay reviews (RSG) from 2026.",
+     "An extraordinary increase, separate from the annual review, to compensate for the purchasing power lost over recent years."
+    ]
+   },
+   {
+    "n": "02",
+    "t": "Work-life balance and trust",
+    "d": "Remote work at the worker's choice where the role allows, and flexibility in managing holidays.",
+    "detalle": "Work-life balance cannot be treated as a privilege: it is a modern organisational tool that supports productivity, commitment and people’s wellbeing. Airbus has been a benchmark here for years. The movement considers that recent decisions represent a step backwards compared with the previous model.",
+    "exige": [
+     "The option, at the worker's choice and in roles whose nature allows it, of working 40% of the week remotely, with compensatory measures for roles requiring greater on-site presence.",
+     "Restoring flexibility in holiday management, letting teams organise it among themselves while keeping two weeks in August as a recommendation."
+    ]
+   },
+   {
+    "n": "03",
+    "t": "Services for the workforce",
+    "d": "A universal, free canteen with no co-payments or payroll deductions; maintaining the transport routes.",
+    "detalle": "The movement calls for changes to these services to be subject to negotiation.",
+    "exige": [
+     "A guaranteed universal, free canteen for Airbus workers, with no co-payments or payroll deductions.",
+     "Maintaining the current level of the transport route service."
+    ]
+   },
+   {
+    "n": "04",
+    "t": "Reviewing the Bradford factor",
+    "d": "Health must not be treated as a productivity metric: remove the factor or exclude medical leave from it.",
+    "detalle": "The movement maintains that health protection must take precedence in the organisation of work.",
+    "exige": [
+     "Removal of the Bradford factor or, failing that, exclusion of medical leave from its calculation."
+    ]
+   },
+   {
+    "n": "05",
+    "t": "Protecting the future of Airbus Spain",
+    "d": "Written guarantees that organisational changes will not harm jobs or working conditions.",
+    "detalle": "The manifesto calls for organisational transformations to be subject to negotiation and to include guarantees for the workforce.",
+    "exige": [
+     "Management signing the schedule of guarantees backed by a majority of the Space workforce, committing in writing that its implementation will not harm working conditions, work organisation or employment."
+    ]
+   },
+   {
+    "n": "06",
+    "t": "Equality between generations",
+    "d": "A transparent pay policy recognising experience and responsibility, with no gaps based on joining date.",
+    "detalle": "The pay and benefits model must recognise every worker's contribution and experience, and guarantee equal opportunity, avoiding differences arising solely from the date they joined the company.",
+    "exige": [
+     "A signed commitment to draw up a new pay policy with a transparent system for recognising experience, duties performed and responsibility held.",
+     "Ending prolonged entry-level pay, guaranteeing pay progression in line with the worker's real contribution."
+    ]
+   },
+   {
+    "n": "07",
+    "t": "Redress for the dispute",
+    "d": "An extraordinary, individual compensation, proportional to the strike days observed.",
+    "detalle": "",
+    "exige": [
+     "Establishing an extraordinary, individual compensation for each worker, proportional to the strike days actually observed."
+    ]
+   }
+  ],
+  "exigeLabel": "Demand raised",
+  "masDetalle": "Read the detail",
+  "fuente": "Expanded text from the #EnfadadosconAirbus manifesto (v3)",
+  "docPliego": "Space workers' guarantees document",
+  "docPliegoMeta": "PDF · 5 KB"
+ },
+ "informes": {
+  "kicker": "REPORT BY THE MOVEMENT",
+  "sameSkySub": "The Spanish Gap",
+  "sameSkyDesc": "Airbus Spain versus the Group and the global aerospace industry: pay, inflation protection, working hours and value sharing. Every figure is tagged and traceable to a public source.",
+  "leerEn": "Read it in:",
+  "nuevaPestana": "opens in a new tab",
+  "meta": "Web report · August 2026 · ES · EN · FR · DE"
+ },
+ "termometro": {
+  "kicker": "STRIKE THERMOMETER",
+  "title": "Media coverage of the dispute",
+  "intro": "The panel quantifies the scope and tone of the media coverage compiled.",
+  "freshLabel": "Data as of {fecha}",
+  "independiente": "Independent tracking, unofficial.",
+  "diaHuelga": "Day {dia} of {total}",
+  "hoy": "Articles today",
+  "total": "Total articles",
+  "medios": "Distinct outlets",
+  "riesgoLabel": "Media risk",
+  "riesgoNivel": {
+   "rojo": "High risk",
+   "ambar": "Medium risk",
+   "verde": "Low risk",
+   "amarillo": "Medium risk"
+  },
+  "riesgoDetalle": "{pct}% of coverage is negative for the company",
+  "sentLabel": "Tone of coverage toward the company",
+  "sentNota": "Positive, neutral or negative for the company's position —not the movement's.",
+  "sentPos": "Positive",
+  "sentNeu": "Neutral",
+  "sentNeg": "Negative",
+  "volumenLabel": "Coverage per day",
+  "volumenEje": "Articles per day",
+  "impactoLabel": "Highest-impact news",
+  "impactoIntro": "The most widely republished and far-reaching.",
+  "cronoLabel": "News in chronological order",
+  "socialLabel": "On social media",
+  "socialTelegram": "messages on Telegram",
+  "socialX": "posts on X",
+  "socialMastodon": "mentions on Mastodon",
+  "socialNota": "LinkedIn and Instagram are not included: there is no reliable, free way to query them without breaching their terms. X figures are compiled by the committee by hand, not automatically.",
+  "anterior": "Previous",
+  "siguiente": "Next",
+  "pagina": "Page {n} of {t}",
+  "anexoCta": "See the full dashboard",
+  "anexoNota": "The full dashboard (with plant-by-plant detail, the reasoning and the share price) is an independent third-party project and opens on its own site. What you see here is an extract.",
+  "diaIndefinida": "Day {dia} · indefinite",
+  "treguaSub": "Resumption · indefinite strike (in {dias} days)",
+  "horquilla": {
+   "label": "BREAKING POINT · ESTIMATED IMPACT ON THE COMPANY",
+   "intro": "It is not what Airbus reports losing: it is an outside estimate built on public facts — what each plant makes and its role in the supply chain — and on two scenarios.",
+   "hoyLabel": "Cumulative to date (min–max)",
+   "diarioLabel": "Daily cost (min–max)",
+   "finLabel": "Projection to the end of the window",
+   "leyenda": "Cumulative min–max band",
+   "cotaMin": "Lower bound: inventory holds for the whole window",
+   "cotaMax": "Upper bound: the chain breaks around week three",
+   "nota": "Scenario estimate from an independent tracker, built on public facts and on each plant's role in the supply chain. It is not an official Airbus figure nor a verified quantification of the dispute: it is an order of magnitude, refreshed daily from the source.",
+   "hoy": "today",
+   "ejeAria": "Minimum–maximum cumulative band of the estimated impact, from",
+   "leyendaProy": "dashed = projection",
+   "comoTitulo": "How this band is built",
+   "como": [
+    {
+     "t": "There are two regimes, not one",
+     "d": "While plants draw on accumulated inventory, a day of stoppage costs little: assembly carries on with what was in the warehouse. That is the buffer regime. Once a plant runs that buffer down, final assembly lines run out of parts and the daily cost multiplies: that is the breakdown regime."
+    },
+    {
+     "t": "That is why the curve steepens",
+     "d": "Day 1 does not cost what day 25 costs. A day of closure at Getafe costs half a million at the start; with stabilisers exhausted, between six and ten. Up to twelve times more for the same day of strike."
+    },
+    {
+     "t": "The band is two hypotheses, not an error margin",
+     "d": "The lower line assumes inventory holds for the whole window without breaking. The upper line assumes it breaks around week three. What actually happens will sit somewhere between the two."
+    },
+    {
+     "t": "What to watch to know which way it is going",
+     "d": "The most direct indicator is Beluga traffic, the aircraft that moves parts between factories. While it holds up, the company is compensating with inventory; a sustained drop is the sign that the chain has started to feel it."
+    }
+   ],
+   "desactualizado": "This analysis dates from {fecha} and does not yet take the second strike call into account. The band keeps growing on the assumptions of that date, so read it as an order of magnitude, not an up-to-date figure. This notice will disappear on its own as soon as the source refreshes the analysis."
+  }
+ },
+ "caja": {
+  "kicker": "WHAT THE RESISTANCE FUND IS",
+  "title": "Holding together what none can hold alone.",
+  "body": "A resistance fund is a common pot that keeps a struggle going when defending it costs money. It pays for what the mobilisation needs —materials, transport, outreach, logistics— and stays open to support the workforce in whatever disputes the assembly decides. Its first outlay went to the mobilisation; nothing is ruled out for the future. It lowers the personal cost of defending a collective right, so that the decision to take a stand does not depend on anyone's bank balance.",
+  "principios": [
+   {
+    "t": "Solidarity",
+    "d": "Those who can, contribute; those who need it and meet the criteria, receive."
+   },
+   {
+    "t": "Transparency",
+    "d": "Every euro in and out is recorded and can be inspected."
+   },
+   {
+    "t": "Independence",
+    "d": "The fund is run by a committee of the workforce itself, under collective control."
+   },
+   {
+    "t": "Collective resistance",
+    "d": "The strength is not in one large gift, but in many small ones sustained over time."
+   }
+  ],
+  "volver": "Back to home",
+  "metaTitle": "The fund",
+  "metaDescription": "What the resistance fund is, what it is spent on, how to contribute and how it is accounted for.",
+  "aviso": "NOTICE — the fund already accepts contributions by bank transfer; card payment will be enabled soon. The documents governing the fund are pending ratification."
+ },
+ "transparencia": {
+  "kicker": "TRANSPARENCY",
+  "title": "Everyone's money is accountable to everyone.",
+  "intro": "Transparency is not decoration: it is the heart of the fund. Every figure will be derived from verified data — never typed in by hand without traceability — and published with its update date.",
+  "stats": {
+   "recaudado": "Raised",
+   "gastos": "Spent",
+   "saldo": "Available balance",
+   "aportaciones": "Contributions"
+  },
+  "actualizadoLabel": "Last updated",
+  "sinDatos": "NO FIGURES — the fund is not operational yet",
+  "note": "Figures verified by ÚTIL's Treasury from the fund's income and expense records; the balance is what has been raised minus expenses already booked. Truck and travel costs, even when fronted by another organisation, are approved by the workers' competent assembly. Downloadable financial report once the rules are ratified.",
+  "reportCta": "Download report (coming soon)",
+  "detalle": {
+   "titulo": "Breakdown of spending",
+   "camisetas": "T-shirts (production)",
+   "camion": "Truck with PA system (12 Sep march)",
+   "comision": "Account fees and upkeep",
+   "trenes": "Train travel Seville–Madrid (12 Sep)",
+   "pendiente": "pending allocation"
+  }
+ },
+ "muro": {
+  "kicker": "COLLECTIVE RESISTANCE",
+  "title": "Built one contribution at a time.",
+  "body": "Each unit in this wall is a contribution. None sustains the fund alone; together, they make it possible. This is what collective strength looks like."
+ },
+ "aportar": {
+  "kicker": "CONTRIBUTE",
+  "title": "Choose how you want to sustain the fund.",
+  "intro": "Bank transfer and Bizum donation are already active: you can contribute right now using the details below. Card and wallet payment will go live once the gateway is validated.",
+  "amounts": [
+   "€20",
+   "€50",
+   "€100",
+   "Other amount"
+  ],
+  "vias": [
+   {
+    "t": "Bank transfer",
+    "d": "Active. Straight into the fund's account, no intermediaries. The reference we provide lets us recognise your contribution."
+   },
+   {
+    "t": "Bizum donation",
+    "d": "Active. From your banking app, in 20 seconds, using the NGO-donation code. The full amount goes to the fund."
+   },
+   {
+    "t": "Card and wallet",
+    "d": "Coming soon. It will go live once the gateway is validated in the name of the union that holds the fund. Until then, use transfer or Bizum."
+   }
+  ],
+  "cta": "Contribute",
+  "placeholderNote": "Card payment is not active yet. You can contribute by bank transfer using the details in the Contribute section.",
+  "canales": {
+   "kicker": "HOW THE MONEY ARRIVES",
+   "title": "Several routes to the fund.",
+   "transferencia": {
+    "t": "Bank transfer",
+    "d": "Straight into the fund's account. No intermediary fees, and no third party able to cut the campaign off.",
+    "labelTitular": "Account holder",
+    "labelBanco": "Bank",
+    "labelIban": "IBAN",
+    "labelBic": "BIC",
+    "labelConcepto": "Reference",
+    "copiar": "Copy IBAN",
+    "copiado": "IBAN copied",
+    "pendiente": "It will be published as soon as the union holding the fund opens the account. No unverified number is shown."
+   },
+   "pasarela": {
+    "t": "Card and digital payment",
+    "d": "The convenient route: contribute in half a minute from your phone, without copying an account number.",
+    "cta": "Contribute by card",
+    "pendiente": "This requires the legal entity to exist: the merchant account is opened in its name, with its tax ID and verification of its officers. It is not a step that can be brought forward."
+   },
+   "metodos": {
+    "tarjeta": "Card",
+    "apple-pay": "Apple Pay",
+    "google-pay": "Google Pay",
+    "paypal": "PayPal",
+    "sepa": "SEPA direct debit"
+   }
+  },
+  "selector": {
+   "kicker": "CARD PAYMENT",
+   "badge": "Coming soon",
+   "importe": "Amount",
+   "otra": "Other",
+   "otraPlaceholder": "€",
+   "resumen": "Once card payment is active, you would give {importe} in one click.",
+   "cta": "Give {importe} by card",
+   "bloqueado": "Card payment is not active yet. For now, contribute this amount by bank transfer or Bizum using the details above."
+  },
+  "mock": {
+   "kicker": "SIMULATION",
+   "title": "This is how giving would look.",
+   "aviso": "MOCK-UP — not a real form. It accepts no data and charges nothing. It only shows what payment would look like once the provider is live.",
+   "pagarCon": "Pay with",
+   "oTarjeta": "or by card",
+   "numero": "Card number",
+   "caducidad": "Expiry",
+   "cvc": "CVC",
+   "titular": "Cardholder",
+   "boton": "Give {importe}",
+   "seguro": "Encrypted payment · The fund never sees your card number"
+  },
+  "bizum": {
+   "badge": "Bizum · Donation",
+   "intro": "A direct contribution to the fund from your banking app, in 20 seconds. The full amount goes to the fund and you don't have to leave any details. It's the fastest way to support the fund.",
+   "codigoLabel": "Code",
+   "copiar": "Copy",
+   "copiado": "Copied",
+   "nombreLabel": "In the name of",
+   "nombreSub": "Union that holds the fund · CIF {cif}",
+   "pasos": [
+    "Open your banking app and go to Bizum.",
+    "Choose «Donate» / «Donations» / «NGO» (the name varies by bank).",
+    "Enter code {codigo}. It should show {nombre}.",
+    "Type the amount you want to donate and confirm."
+   ],
+   "aviso": "The donation happens inside your banking app: this site does not process the payment or see your bank details. Check that the name shown is «{nombre}»; if it doesn't match, don't confirm and write to us at {email}."
+  }
+ },
+ "internacional": {
+  "kicker": "INTERNATIONAL SOLIDARITY",
+  "title": "Solidarity knows no borders.",
+  "body": "Other workplaces, European unions, works councils, federations and allied organisations can support the fund and spread the campaign. This section is available in Spanish, English, French and German.",
+  "ctaContact": "Contact for organisations",
+  "orgLanding": "Summary of the dispute, the fund's goal, ways to collaborate and institutional contribution for international organisations.",
+  "comunicadosLabel": "International solidarity statements"
+ },
+ "tienda": {
+  "kicker": "MERCHANDISING",
+  "title": "Wear the fight.",
+  "intro": "Every T-shirt sustains the fund: half of what you give goes straight to it. Made to order, and handed to you by your site's logistics coordinator.",
+  "metaTitle": "Merchandise",
+  "metaDescription": "Solidarity T-shirt for the resistance fund: half of your contribution goes straight to the fund.",
+  "volver": "Back to home",
+  "producto": {
+   "nombre": "Thank-you T-shirt",
+   "desc": "Unisex · white · sizes XS to 5XL · 100% cotton.",
+   "alt": "Solidarity unisex T-shirt of the resistance fund, in white."
+  },
+  "desglose": "Where your contribution goes",
+  "costeLabel": "T-shirt cost",
+  "cajaLabel": "To the resistance fund",
+  "porcentaje": "{pct}% of each T-shirt sustains the fund",
+  "tallaLabel": "Size",
+  "tallaAviso": "Choose a size to continue.",
+  "cantidadLabel": "Quantity",
+  "cantidadMas": "Add one unit",
+  "cantidadMenos": "Remove one unit",
+  "guiaTallas": "See size guide",
+  "guiaAlt": "Size chart: garment measurements (chest width and length) in centimetres, from XS to 5XL.",
+  "guiaNota": "Flat-garment measurements (chest width × length), in cm.",
+  "donacionLabel": "Add a donation (optional)",
+  "sinDonacion": "No donation",
+  "donacionNota": "Added to your order and paid together, in the same transfer.",
+  "totalLabel": "Total to transfer",
+  "nombreLabel": "Full name",
+  "emailLabel": "Email",
+  "siteLabel": "Pickup point",
+  "sitePlaceholder": "Choose your pickup point",
+  "entrega": "Made to order (4-5 working days from when we confirm payment). Handed to you by your pickup point's Logistics Group coordinator; we'll email you when it's ready.",
+  "legalNota": "By creating the order you accept the Contribution Terms and the Privacy Policy (links in the footer). Your data —name, email and pickup point— is used only to manage and deliver this order.",
+  "confirmar": "Create order and see how to pay",
+  "enviando": "Registering…",
+  "exito": {
+   "titulo": "ORDER REGISTERED",
+   "intro": "Almost there. Make a bank transfer with these details —the reference is what lets us match your order— and you're done.",
+   "conceptoLabel": "Reference (required)",
+   "beneficiarioLabel": "Beneficiary",
+   "ibanLabel": "IBAN",
+   "totalLabel": "Amount",
+   "copiar": "Copy",
+   "copiado": "Copied",
+   "pasos": [
+    "Open your banking app and transfer the amount shown.",
+    "Use EXACTLY the reference above: without it we can't identify your order.",
+    "When it arrives we'll confirm by email; pick up the T-shirt at your site."
+   ],
+   "otro": "Place another order"
+  }
+ },
+ "donantes": {
+  "kicker": "MAJOR DONORS AND INSTITUTIONS",
+  "title": "Significant contributions, fully traceable.",
+  "body": "For organisations or individuals wishing to make a significant contribution, there is a dedicated channel with documentation, traceability and receipts.",
+  "bullets": [
+   "Dossier of the dispute and the fund's governance",
+   "Transparency data and verification procedure",
+   "Option of bank transfer and to request a receipt",
+   "Contact with the responsible committee and the option of a meeting"
+  ],
+  "ctaContact": "Talk to the committee",
+  "ctaDossier": "Fund governance dossier",
+  "note": "The governance dossier (who runs the fund, how the money is controlled and what happens to whatever is not distributed) will be published once the working groups produce it. It is a different document from the dispute dossier. No banking or tax details will be published unverified, nor will any organisation be shown as a supporter without verifiable confirmation."
+ },
+ "faq": {
+  "kicker": "FREQUENTLY ASKED QUESTIONS",
+  "title": "Common questions.",
+  "items": [
+   {
+    "q": "Who runs the fund?",
+    "a": "A committee of the workforce itself, under collective control and with traceability of every operation. Those responsible will be made public."
+   },
+   {
+    "q": "How do I know the money is used well?",
+    "a": "Because the figures are derived from verified data and published: raised, costs, aid paid out and distribution criteria, with downloadable reports."
+   },
+   {
+    "q": "Can I contribute anonymously?",
+    "a": "Yes. You can choose for your contribution not to appear publicly. Information about aid applicants is always private."
+   },
+   {
+    "q": "Can I cancel a recurring contribution?",
+    "a": "Yes, in one click and at any time, with access to your contribution history."
+   },
+   {
+    "q": "Can I contribute from outside Spain?",
+    "a": "Yes. The fund is designed to receive national and international solidarity."
+   },
+   {
+    "q": "Does the salary-day calculator store my pay?",
+    "a": "No. It runs entirely in your browser; the amount you enter is neither sent nor stored."
+   }
+  ]
+ },
+ "contacto": {
+  "kicker": "CONTACT",
+  "title": "Get in touch.",
+  "body": "For questions, press, organisations or to collaborate with the working groups.",
+  "sugerencias": {
+   "kicker": "SUGGESTIONS & IMPROVEMENTS",
+   "title": "Help us make it better.",
+   "body": "This site belongs to the movement. If you spot a mistake, a missing document or something that reads badly, tell us: everything gets reviewed.",
+   "cta": "Send a suggestion",
+   "asunto": "Suggestion for the website",
+   "nuevaPestana": "opens in a new tab",
+   "ctaOtro": "Use a different email app?"
+  }
+ },
+ "footer": {
+  "tagline": "#EnfadadosconAirbus — the resistance fund of the Airbus Spain workforce's movement.",
+  "independence": "A workforce initiative. The fund is backed by Sindicato Útil as legal holder; the movement and its voice remain independent of the company and of any union. This site does not represent Airbus or use its corporate identity.",
+  "legal": {
+   "aviso": "Legal notice",
+   "privacidad": "Privacy policy",
+   "cookies": "Cookie policy",
+   "condiciones": "Contribution terms"
+  },
+  "rights": "Draft legal texts, pending legal validation.",
+  "visitasLabel": "visits",
+  "visitasNota": "Our own counter. No cookies, no analytics: it just adds one to a number, with nothing stored about you.",
+  "redes": "Channels",
+  "redesAsunto": "Enquiry from the website",
+  "redesNuevaPestana": "opens in a new tab",
+  "sobre": "Governance",
+  "contacto": {
+   "heading": "Contact",
+   "incidencias": "Website issues",
+   "tienda": "Resistance fund",
+   "conflicto": "Dispute & press",
+   "gestion": "Fund management",
+   "gestionPendiente": "pending — from the union"
+  }
+ },
+ "cookies": {
+  "text": "We only use technical storage to remember your language and whether you've seen this notice. No tracking or analytics cookies.",
+  "masInfo": "More information",
+  "cerrar": "Got it"
+ },
+ "legalModals": {
+  "aviso": {
+   "title": "Legal notice",
+   "body": "Site ownership. This website is the resistance fund of the #EnfadadosconAirbus movement. Its legal ownership is held by Sindicato Útil, which is accountable for the fund and signs these legal texts. The movement itself is independent: it does not represent Airbus or use its corporate identity, and it is not the general channel of the holding union or of any other organisation.\n\nController. The holding entity is Sindicato Útil (Unión de Trabajadores Independientes y Libres); its identifying details appear at the foot of this notice. The fund receives contributions by bank transfer and Bizum «NGO donation»; card payment will be enabled once the gateway is validated.\n\nPurpose. To run the resistance fund: to inform about the fund, channel contributions and, where applicable, the sale of items whose margin goes to the fund (Spanish Law 34/2002 on information society services and e-commerce).\n\nTransparency. The fund's figures are published with their update date and are traceable to real movements; no figure is published without backing.\n\nIntellectual property. This site's own texts may be reproduced with attribution. Third-party trademarks, trade names and distinctive signs that appear belong to their owners and are used for information only, to identify the company the dispute concerns.\n\nLinks. The site may link to external sources. It is not responsible for the content or policies of those sites.\n\nContent removal. Anyone who considers that content infringes their rights may request its removal at enfadadosconairbus.contacto@gmail.com, stating the specific content and the reason. It will be handled diligently.\n\nGoverning law. This notice is governed by Spanish law.",
+   "nota": "Draft text. Pending review by a lawyer and —in the Contribution Terms— the refund period and the tax treatment."
+  },
+  "privacidad": {
+   "title": "Privacy policy",
+   "body": "This is a translation for information purposes. The Spanish version is the binding one in the event of any discrepancy.\n\nThis site is designed to be read without leaving a trace. There is no third-party analytics, no pixels and no advertising profiles.\n\nData controller. Legal ownership is held by Sindicato Útil (Unión de Trabajadores Independientes y Libres, tax ID G10605053), registered at Paseo John Lennon, s/n, 28906 Getafe, Spain. Contact: enfadadosconairbus.contacto@gmail.com.\n\nWhat data are processed.\n1. None, if you only browse. Your IP address, your browser and the pages you view are not recorded for analytics purposes. The server generates temporary technical logs, standard to any hosting, which are not used to build profiles.\n2. Visit counter. A number is incremented. No IP address, identifier, cookie or any data allowing one person to be told from another is stored: there is no processing of personal data.\n3. If you write to the contact address. Your email address and the content of your message will be processed for the sole purpose of replying to you. Legal basis: your consent in writing to us. Retention: for as long as the exchange lasts and the legally required period.\n4. Contributions by bank transfer and Bizum. The transfer is made from your bank: this site does not process the payment or see your bank details. The Bizum «NGO donation» happens entirely inside your bank's app, without the site taking part. Only the data you provide when writing to us —for example to request a receipt— will be processed.\n5. Shop orders. If you order an item, your name, your email and the chosen pickup point are processed, together with the order details and its payment status, for the sole purpose of managing and delivering it. Legal basis: performance of that sales contract at your request. Retention: the time needed for delivery and the applicable accounting and tax periods.\n6. Card payment. Not active yet. When the gateway is enabled, this policy will be extended before activating it, detailing what data are requested, on what legal basis, who processes them and how long they are kept.\n\nPreferences stored on your device. The browser's local storage is used to remember the chosen language, the display mode (day or night) and whether you have already seen the cookie notice. It does not leave your device and is not shared.\n\nRecipients. Data are neither transferred nor sold. The site is hosted and served from Cloudflare, Inc.'s infrastructure, which acts as data processor and also hosts the orders database; it may process technical logs and that data on servers inside and outside the European Economic Area, with the safeguards provided for in the GDPR.\n\nYour rights. You may request access, rectification, erasure, restriction, objection and portability by writing to enfadadosconairbus.contacto@gmail.com. If you consider that your rights have not been upheld, you may lodge a complaint with the Spanish Data Protection Agency (AEPD, www.aepd.es).\n\nMinors. This site is not directed at children under 14 and does not knowingly collect their data."
+  },
+  "cookies": {
+   "title": "Cookie policy",
+   "body": "This is a translation for information purposes. The Spanish version is the binding one in the event of any discrepancy.\n\nThis site uses no tracking, advertising or analytics cookies. There are no third-party cookies.\n\nStrictly necessary storage. Three preferences are stored in your browser, via local storage: the chosen language, the display mode (day or night) and whether you have already seen this notice. They identify no one, are not sent to any server and you can delete them from your browser whenever you wish. Given their technical nature they are exempt from the prior consent requirement (article 22.2 of the LSSI-CE).\n\nThird-party requests. None. All resources —fonts, images and data— are served from this same domain; your browser does not contact any third-party servers when loading the page.\n\nVisit counter. It is our own and merely increments a number on the server. It uses no cookies and stores no data about visitors.\n\nHow to revoke. Simply delete the site's local storage from your browser preferences. You will lose no content: you will just be asked for the language again and shown the notice again."
+  },
+  "condiciones": {
+   "title": "Contribution terms",
+   "body": "This is a translation for information purposes. The Spanish version is the binding one in the event of any discrepancy.\n\nThese terms govern contributions to the resistance fund. The fund can already receive contributions by bank transfer; card payment will be enabled once the gateway is validated.\n\nWhat a contribution is. A voluntary transfer of money, without consideration, intended to provide financial support to those who lose wages by joining the action. It is not a purchase, it is not an investment and it creates no right over the fund or its management.\n\nWho may contribute. Any person of legal age with capacity to dispose of the funds they hand over, whether or not they work at Airbus Spain.\n\nUse of funds. Entirely for the purposes of the fund: aid for workers affected by loss of wages and expenses directly necessary to manage it. The distribution criteria will be published together with the constitution of the fund and will not be applied retroactively.\n\nTransparency and accountability. Amounts collected, amounts delivered, management costs and the balance pending allocation will be published periodically, with their update date. No figure will be published without being traceable to a real transaction.\n\nRefunds. You may request a refund of a contribution by writing to enfadadosconairbus.contacto@gmail.com within the following [·] calendar days, provided it has not already been delivered as aid. After that period, the contribution is irrevocable by its own solidarity-based nature.\n\nRecurring contributions. They may be cancelled at any time and without justification, from the receipt itself or by writing to enfadadosconairbus.contacto@gmail.com. Cancellation takes effect before the next charge.\n\nReceipts and taxation. A receipt will be issued for each contribution. Contributions to a resistance fund do not generally qualify as a tax-deductible donation: check your particular situation before deducting anything. [·] (applicable tax treatment, to be confirmed by advisers).\n\nShop. Sales of items are not contributions: they are sales contracts, with their own rights of withdrawal and warranty. Each item states what part of the price covers cost and what part goes to the fund. Sales of items on this site will be enabled together with the payment gateway.\n\nAmendments. These terms may be updated. The version applicable to each contribution will be the one in force at the time it is made, and previous versions will remain accessible.",
+   "nota": "Draft terms. Pending review by a lawyer, who will complete two details: the refund period (in calendar days) and the applicable tax treatment."
+  }
+ },
+ "documentacion": {
+  "kicker": "DOCUMENTATION",
+  "title": "Minutes and documents of the movement.",
+  "intro": "The minutes of each site's assemblies and the full index of documents catalogued by the movement itself. Everything arrives collapsed: open only what you want to read.",
+  "notaActas": "About these documents: meeting minutes record what was communicated and discussed at the respective assemblies. They may contain statements, estimates or opinions from participants that have not been independently verified by this site. Their publication is for documentary purposes and does not imply endorsement of all their content.",
+  "grupoHeading": "Telegram group summaries",
+  "grupoNota": "Published daily",
+  "sitesHeading": "Minutes by site",
+  "grupoLabel": "Group summary",
+  "indiceHeading": "Document index",
+  "indiceResumen": "{n} documents in {c} categories. {d} can be downloaded here; the rest are consulted in the Telegram group.",
+  "indiceActualizado": "Index updated: {fecha}",
+  "indiceFuente": "See the full index",
+  "indiceNota": "Catalogued daily by the Documentation Group on Telegram. It is mirrored here without the name of whoever uploaded each document and without the reactions. The index's images are not mirrored.",
+  "descargar": "Download",
+  "descargables": "{n} downloadable here",
+  "verEnGrupo": "View in the group",
+  "soloGrupo": "In the group only",
+  "versiones": "other versions: {n}",
+  "ejemploTag": "EXAMPLE MINUTES — source pending connection",
+  "sinActas": "No minutes published yet. They will appear here as soon as the committee publishes them.",
+  "metaTitle": "Documentation",
+  "metaDescription": "Assembly minutes, the group’s daily summaries and the full index of the movement’s documents.",
+  "volver": "Back to home",
+  "ctaVer": "See the documentation",
+  "portadaActas": "assembly minutes",
+  "portadaResumenes": "group summaries",
+  "portadaDocumentos": "catalogued documents"
+ },
+ "cajaCta": {
+  "kicker": "THE RESISTANCE FUND",
+  "title": "So that nobody has to give in for lack of money.",
+  "body": "The fund pays for what the mobilisation needs and stays open for whatever the workforce decides to defend. It has its own page: what it is, what it spends on, how to contribute and how accounts are rendered.",
+  "ctaPrimary": "Contribute",
+  "ctaSecondary": "About the fund",
+  "ctaTienda": "Visit the shop"
+ },
+ "cronologia": {
+  "kicker": "TIMELINE",
+  "title": "How we got here.",
+  "intro": "From the first day of the July strike to the stoppages of 24 August and the start of the indefinite full-day strike from the 25th. Each milestone includes the associated documentation and media coverage.",
+  "hoy": "today",
+  "futuro": "not yet",
+  "documentos": "Documents",
+  "prensa": "Reported by",
+  "cerrar": "Close",
+  "instruccion": "Move through the timeline. Each milestone lets you consult related images, documents and media coverage."
+ },
+ "sobre": {
+  "metaTitle": "Governance",
+  "metaDescription": "What the #EnfadadosconAirbus resistance fund is, how it is governed, who is accountable for it, and why it is an independent tool of the workforce.",
+  "kicker": "GOVERNANCE",
+  "title": "The fund belongs to the workforce.",
+  "naturaleza": {
+   "heading": "Nature",
+   "body": "This website is the resistance fund of the #EnfadadosconAirbus movement: a common pot that pays for what the mobilisation needs and that stays open, as a permanent fund, to support the workforce in the disputes and negotiations the assembly decides. Its first outlay financed the mobilisation; the fund is not closed when it ends.\n\nThe fund is run by the Strike Committee and Logistics working groups, drawn from the workforce itself, under collective control and public accountability. Its legal ownership —the entity providing the tax ID, the account and signing the legal texts— is held by Sindicato Útil, acting as the fund's legal and fiscal vehicle. That role does not make it the owner of the fund: the money is earmarked and the decisions belong to the workforce.\n\nThis site does not represent Airbus or speak in its name, nor is it the general channel of any trade union: it is the movement's financial tool."
+  },
+  "criterio": {
+   "heading": "Governance and control",
+   "intro": "The fund's independence is not a statement, it is rules:",
+   "items": [
+    "From the moment it arrives, the money belongs 100% to Sindicato Útil and sits in a separate account in its name; no individual —officer, delegate, member or volunteer— owns it personally, and no private accounts are used.",
+    "Every payment requires the joint signature of the Presidency and the Treasury and is backed by an invoice, receipt or supporting document. Anyone with a personal interest in an expense abstains from authorising it.",
+    "The Treasury and the assemblies' logistics group jointly keep the record of income and expenses, review the balances periodically and preserve the supporting documents.",
+    "The use of the money is decided by the competent assembly —the assembly of striking Airbus España workers— with majority backing of the workforce, counted by individuals and not by union representation. Between disputes, the fund is frozen except for account fees."
+   ],
+   "coda": "The holding union provides the legal cover; the voice and the control remain with the workforce."
+  },
+  "privacidad": {
+   "heading": "Data of those who give and receive",
+   "body": "The project minimises personal data. Contributors may choose not to appear publicly. Information about those who request or receive aid is always private: it is not published, and only the working groups handle it to resolve the request."
+  },
+  "correcciones": {
+   "heading": "Corrections and contact",
+   "body": "If you spot an error on the site, a personal detail published by oversight or something misleading, write to enfadadosconairbus.contacto@gmail.com and it will be reviewed.\n\nWe are working to give the fund's figures full traceability to real movements and to show it transparently. We will do so as soon as possible; in the meantime, if you spot something that does not add up, tell us."
+  },
+  "independencia": {
+   "heading": "Independence",
+   "body": "The fund is independent of the company and of any particular trade union. The holding union provides the legal and fiscal vehicle; it does not run the fund and does not own it. The #EnfadadosconAirbus movement belongs to the workforce and aims to remain its voice in potential future disputes and negotiations.\n\nThird-party trademarks and names that appear are used only to identify the actors in the dispute, with no intent to create confusion about the origin of this site."
+  },
+  "volver": "Back to home",
+  "reglamentoReparto": {
+   "heading": "Allocation rules",
+   "body": "These rules set out what the fund's money is used for. The competent assembly approves them and only it can amend them.\n\nThe money goes to expenses directly related to the mobilisation: production of campaign material and posters (including the T-shirts), transport and travel to the marches, hire of equipment —such as the truck with a PA system for the march on the Ministries on 12 September 2026—, communication and outreach, professional services and logistics, and the account's fees and upkeep. Personal expenses or any unrelated to union activity may not be charged.\n\nEvery expense is accounted for before the assembly and published with its date, traceable to real transactions and backed by its supporting document. When a different organisation fronts an expense of the mobilisation, the competent assembly approves it before it is charged to the fund.\n\nAt the end of each mobilisation the fund is neither closed nor is the surplus shared out: the remainder stays in the fund, available for future mobilisations of the Airbus España workforce linked to labour disputes and their collective bargaining. Sindicato Útil cannot use that remainder without the authorisation of the competent assembly; between disputes the money is frozen, and only the competent assembly may decide to close the fund and the final destination of the remainder.\n\nThe agreement that created the fund and these rules are being ratified and signed; their full texts will be published here once signed."
+  },
+  "contactoCaja": {
+   "heading": "Fund management contact",
+   "body": "For the working groups that run the fund: questions from contributors, organisations and major donors.",
+   "pendiente": "It will be published once the union confirms the working groups' channel."
+  }
+ },
+ "origen": {
+  "kicker": "WHERE THIS FUND COMES FROM",
+  "title": "First, understand the dispute.",
+  "body": "This fund is born of the dispute of the Airbus Spain workforce. To decide whether to contribute, get to know it: who they are, what they demand and why it has come to this.",
+  "cta": "Learn about the dispute — the movement's site"
+ },
+ "valores": {
+  "resumen": "Solidarity, independence, transparency and collective control hold the fund up.",
+  "cta": "How they hold up → Governance"
+ }
+}

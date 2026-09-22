@@ -1,0 +1,58 @@
+{
+  "nota": "A qué hito va cada foto de la cronología, y con qué texto. Lo lee scripts/fotos-cronologia.mjs, que convierte el original a WebP y escribe el bloque `imagen` en src/config/hitos.json. La clave es el NOMBRE DEL FICHERO que se deja en scripts/fotos-elegidas/ (con la extensión que sea). Destinos validados por Carlos el 10-ago-2026.",
+  "leyenda": {
+    "hito": "fecha + trozo del título en español, porque hay seis fechas repetidas en la cronología y la fecha sola no identifica",
+    "alt": "qué se ve, para quien no puede verlo",
+    "pie": "qué representa la foto. Se usa cuando la fecha de la foto y lo que la foto cuenta no son lo mismo: las asambleas se celebran a diario y una sola foto vale por todas."
+  },
+  "fotos": {
+    "marcha-sevilla": {
+      "hito": { "fecha": "2026-07-23", "titulo": "Gran marcha de Sevilla" },
+      "alt": {
+        "es": "Cabecera de la marcha de Sevilla: cientos de personas llenan la calle tras una pancarta azul que dice «Trabajadores de Airbus en lucha · Unidos por el respeto y la recuperación de nuestras condiciones».",
+        "en": "Head of the Seville march: hundreds of people fill the street behind a blue banner reading «Trabajadores de Airbus en lucha · Unidos por el respeto y la recuperación de nuestras condiciones».",
+        "fr": "Tête de la marche de Séville : des centaines de personnes remplissent la rue derrière une banderole bleue portant « Trabajadores de Airbus en lucha · Unidos por el respeto y la recuperación de nuestras condiciones ».",
+        "de": "Spitze des Marsches in Sevilla: Hunderte Menschen füllen die Straße hinter einem blauen Transparent mit der Aufschrift «Trabajadores de Airbus en lucha · Unidos por el respeto y la recuperación de nuestras condiciones»."
+      }
+    },
+    "marcha-getafe": {
+      "hito": { "fecha": "2026-07-16", "titulo": "Marcha de Getafe" },
+      "alt": {
+        "es": "La marcha de Getafe avanza por la carretera junto a las naves de la factoría, encabezada por una bandera blanca pintada a mano: «Vuelta a casa · Airbus en lucha».",
+        "en": "The Getafe march advances along the road beside the factory hangars, led by a hand-painted white flag reading «Vuelta a casa · Airbus en lucha».",
+        "fr": "La marche de Getafe avance sur la route le long des hangars de l'usine, en tête un drapeau blanc peint à la main : « Vuelta a casa · Airbus en lucha ».",
+        "de": "Der Marsch in Getafe zieht die Straße entlang der Werkshallen, angeführt von einer handgemalten weißen Fahne: «Vuelta a casa · Airbus en lucha»."
+      }
+    },
+    "asamblea-getafe": {
+      "hito": { "fecha": "2026-07-15", "titulo": "El frente común, por escrito" },
+      "alt": {
+        "es": "Asamblea multitudinaria a las puertas de la factoría de Getafe, fotografiada desde atrás: cientos de personas levantan la mano a la vez para votar, con el edificio de Airbus y las banderas al fondo.",
+        "en": "Mass assembly at the gates of the Getafe plant, photographed from behind: hundreds of people raise their hands together to vote, with the Airbus building and the flags in the background.",
+        "fr": "Assemblée massive aux portes de l'usine de Getafe, photographiée de dos : des centaines de personnes lèvent la main en même temps pour voter, le bâtiment d'Airbus et les drapeaux en fond.",
+        "de": "Massenversammlung vor den Toren des Werks in Getafe, von hinten fotografiert: Hunderte heben gleichzeitig die Hand zur Abstimmung, im Hintergrund das Airbus-Gebäude und die Fahnen."
+      },
+      "pie": {
+        "es": "Asamblea en Getafe, 15 de julio. En Getafe se celebran asambleas desde el 1 de julio: esta foto vale por todas ellas.",
+        "en": "Assembly in Getafe, 15 July. Assemblies have been held in Getafe since 1 July: this photo stands for all of them.",
+        "fr": "Assemblée à Getafe, le 15 juillet. Des assemblées se tiennent à Getafe depuis le 1er juillet : cette photo vaut pour toutes.",
+        "de": "Versammlung in Getafe, 15. Juli. In Getafe finden seit dem 1. Juli Versammlungen statt: Dieses Foto steht für sie alle."
+      }
+    },
+    "asamblea-sevilla": {
+      "hito": { "fecha": "2026-07-14", "titulo": "CCOO cambia de posición" },
+      "alt": {
+        "es": "Asamblea a las puertas de la factoría de Sevilla, fotografiada desde atrás: la multitud ocupa el acceso mientras un avión de transporte militar la sobrevuela a baja altura.",
+        "en": "Assembly at the gates of the Seville plant, photographed from behind: the crowd fills the access road while a military transport aircraft flies low overhead.",
+        "fr": "Assemblée aux portes de l'usine de Séville, photographiée de dos : la foule occupe l'accès tandis qu'un avion de transport militaire la survole à basse altitude.",
+        "de": "Versammlung vor den Toren des Werks in Sevilla, von hinten fotografiert: Die Menge füllt die Zufahrt, während ein Militärtransporter tief darüber hinwegfliegt."
+      },
+      "pie": {
+        "es": "Asamblea en Sevilla, 14 de julio. En Sevilla se celebran asambleas desde el 13 de julio: esta foto vale por todas ellas.",
+        "en": "Assembly in Seville, 14 July. Assemblies have been held in Seville since 13 July: this photo stands for all of them.",
+        "fr": "Assemblée à Séville, le 14 juillet. Des assemblées se tiennent à Séville depuis le 13 juillet : cette photo vaut pour toutes.",
+        "de": "Versammlung in Sevilla, 14. Juli. In Sevilla finden seit dem 13. Juli Versammlungen statt: Dieses Foto steht für sie alle."
+      }
+    }
+  }
+}

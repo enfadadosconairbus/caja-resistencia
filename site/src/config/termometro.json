@@ -1,0 +1,1225 @@
+{
+  "fuente": "https://airbus-huelga.github.io/dashboard/",
+  "origenActualizado": "2026-08-09T22:20:02.521819+00:00",
+  "capturado": "2026-08-09T23:07:49.713Z",
+  "huelga": {
+    "fase": "tregua",
+    "dias": 15
+  },
+  "kpi": {
+    "hoy": 1,
+    "ayer": 2,
+    "total": 461,
+    "medios": 190
+  },
+  "riesgo": {
+    "nivel": "amarillo"
+  },
+  "sentimiento": {
+    "positivo": 21,
+    "neutro": 242,
+    "negativo": 198,
+    "pctNegativo": 43
+  },
+  "volumen": [
+    {
+      "dia": "2026-07-01",
+      "n": 11
+    },
+    {
+      "dia": "2026-07-02",
+      "n": 8
+    },
+    {
+      "dia": "2026-07-03",
+      "n": 6
+    },
+    {
+      "dia": "2026-07-04",
+      "n": 0
+    },
+    {
+      "dia": "2026-07-05",
+      "n": 0
+    },
+    {
+      "dia": "2026-07-06",
+      "n": 1
+    },
+    {
+      "dia": "2026-07-07",
+      "n": 2
+    },
+    {
+      "dia": "2026-07-08",
+      "n": 7
+    },
+    {
+      "dia": "2026-07-09",
+      "n": 31
+    },
+    {
+      "dia": "2026-07-10",
+      "n": 48
+    },
+    {
+      "dia": "2026-07-11",
+      "n": 7
+    },
+    {
+      "dia": "2026-07-12",
+      "n": 5
+    },
+    {
+      "dia": "2026-07-13",
+      "n": 39
+    },
+    {
+      "dia": "2026-07-14",
+      "n": 22
+    },
+    {
+      "dia": "2026-07-15",
+      "n": 9
+    },
+    {
+      "dia": "2026-07-16",
+      "n": 28
+    },
+    {
+      "dia": "2026-07-17",
+      "n": 51
+    },
+    {
+      "dia": "2026-07-18",
+      "n": 8
+    },
+    {
+      "dia": "2026-07-19",
+      "n": 3
+    },
+    {
+      "dia": "2026-07-20",
+      "n": 15
+    },
+    {
+      "dia": "2026-07-21",
+      "n": 19
+    },
+    {
+      "dia": "2026-07-22",
+      "n": 10
+    },
+    {
+      "dia": "2026-07-23",
+      "n": 38
+    },
+    {
+      "dia": "2026-07-24",
+      "n": 14
+    },
+    {
+      "dia": "2026-07-25",
+      "n": 15
+    },
+    {
+      "dia": "2026-07-26",
+      "n": 4
+    },
+    {
+      "dia": "2026-07-27",
+      "n": 6
+    },
+    {
+      "dia": "2026-07-28",
+      "n": 5
+    },
+    {
+      "dia": "2026-07-29",
+      "n": 5
+    },
+    {
+      "dia": "2026-07-30",
+      "n": 15
+    },
+    {
+      "dia": "2026-07-31",
+      "n": 9
+    },
+    {
+      "dia": "2026-08-01",
+      "n": 2
+    },
+    {
+      "dia": "2026-08-02",
+      "n": 0
+    },
+    {
+      "dia": "2026-08-03",
+      "n": 4
+    },
+    {
+      "dia": "2026-08-04",
+      "n": 2
+    },
+    {
+      "dia": "2026-08-05",
+      "n": 3
+    },
+    {
+      "dia": "2026-08-06",
+      "n": 4
+    },
+    {
+      "dia": "2026-08-07",
+      "n": 2
+    },
+    {
+      "dia": "2026-08-08",
+      "n": 2
+    },
+    {
+      "dia": "2026-08-09",
+      "n": 1
+    }
+  ],
+  "horquilla": {
+    "serie": [
+      {
+        "dia": "2026-07-01",
+        "minAcum": 500000,
+        "maxAcum": 1000000,
+        "minDia": 500000,
+        "maxDia": 1000000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-02",
+        "minAcum": 1000000,
+        "maxAcum": 2000000,
+        "minDia": 500000,
+        "maxDia": 1000000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-03",
+        "minAcum": 1500000,
+        "maxAcum": 3000000,
+        "minDia": 500000,
+        "maxDia": 1000000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-04",
+        "minAcum": 2000000,
+        "maxAcum": 4000000,
+        "minDia": 500000,
+        "maxDia": 1000000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-05",
+        "minAcum": 2500000,
+        "maxAcum": 5000000,
+        "minDia": 500000,
+        "maxDia": 1000000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-06",
+        "minAcum": 3000000,
+        "maxAcum": 6000000,
+        "minDia": 500000,
+        "maxDia": 1000000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-07",
+        "minAcum": 3500000,
+        "maxAcum": 7000000,
+        "minDia": 500000,
+        "maxDia": 1000000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-08",
+        "minAcum": 4000000,
+        "maxAcum": 8000000,
+        "minDia": 500000,
+        "maxDia": 1000000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-09",
+        "minAcum": 4900000,
+        "maxAcum": 9850000,
+        "minDia": 900000,
+        "maxDia": 1850000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-10",
+        "minAcum": 5800000,
+        "maxAcum": 11700000,
+        "minDia": 900000,
+        "maxDia": 1850000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-11",
+        "minAcum": 6700000,
+        "maxAcum": 13550000,
+        "minDia": 900000,
+        "maxDia": 1850000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-12",
+        "minAcum": 7600000,
+        "maxAcum": 15400000,
+        "minDia": 900000,
+        "maxDia": 1850000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-13",
+        "minAcum": 8600000,
+        "maxAcum": 17450000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-14",
+        "minAcum": 9600000,
+        "maxAcum": 19500000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-15",
+        "minAcum": 10600000,
+        "maxAcum": 21550000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-16",
+        "minAcum": 11600000,
+        "maxAcum": 23600000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-17",
+        "minAcum": 12600000,
+        "maxAcum": 25650000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-18",
+        "minAcum": 13600000,
+        "maxAcum": 27700000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-19",
+        "minAcum": 14600000,
+        "maxAcum": 29750000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-20",
+        "minAcum": 15600000,
+        "maxAcum": 31800000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-21",
+        "minAcum": 16600000,
+        "maxAcum": 33850000,
+        "minDia": 1000000,
+        "maxDia": 2050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-22",
+        "minAcum": 17600000,
+        "maxAcum": 44900000,
+        "minDia": 1000000,
+        "maxDia": 11050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-23",
+        "minAcum": 18600000,
+        "maxAcum": 55950000,
+        "minDia": 1000000,
+        "maxDia": 11050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-24",
+        "minAcum": 19600000,
+        "maxAcum": 67000000,
+        "minDia": 1000000,
+        "maxDia": 11050000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-25",
+        "minAcum": 20750000,
+        "maxAcum": 78350000,
+        "minDia": 1150000,
+        "maxDia": 11350000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-26",
+        "minAcum": 21900000,
+        "maxAcum": 89700000,
+        "minDia": 1150000,
+        "maxDia": 11350000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-27",
+        "minAcum": 23050000,
+        "maxAcum": 101050000,
+        "minDia": 1150000,
+        "maxDia": 11350000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-28",
+        "minAcum": 24200000,
+        "maxAcum": 112400000,
+        "minDia": 1150000,
+        "maxDia": 11350000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-29",
+        "minAcum": 25350000,
+        "maxAcum": 123750000,
+        "minDia": 1150000,
+        "maxDia": 11350000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-30",
+        "minAcum": 26500000,
+        "maxAcum": 139250000,
+        "minDia": 1150000,
+        "maxDia": 15500000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-07-31",
+        "minAcum": 27650000,
+        "maxAcum": 154750000,
+        "minDia": 1150000,
+        "maxDia": 15500000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-01",
+        "minAcum": 28800000,
+        "maxAcum": 170250000,
+        "minDia": 1150000,
+        "maxDia": 15500000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-02",
+        "minAcum": 29950000,
+        "maxAcum": 185750000,
+        "minDia": 1150000,
+        "maxDia": 15500000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-03",
+        "minAcum": 31100000,
+        "maxAcum": 202050000,
+        "minDia": 1150000,
+        "maxDia": 16300000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-04",
+        "minAcum": 32250000,
+        "maxAcum": 218350000,
+        "minDia": 1150000,
+        "maxDia": 16300000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-05",
+        "minAcum": 33400000,
+        "maxAcum": 234650000,
+        "minDia": 1150000,
+        "maxDia": 16300000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-06",
+        "minAcum": 34550000,
+        "maxAcum": 250950000,
+        "minDia": 1150000,
+        "maxDia": 16300000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-07",
+        "minAcum": 35700000,
+        "maxAcum": 267250000,
+        "minDia": 1150000,
+        "maxDia": 16300000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-08",
+        "minAcum": 36850000,
+        "maxAcum": 283550000,
+        "minDia": 1150000,
+        "maxDia": 16300000,
+        "proyeccion": false
+      },
+      {
+        "dia": "2026-08-09",
+        "minAcum": 38000000,
+        "maxAcum": 299850000,
+        "minDia": 1150000,
+        "maxDia": 16300000,
+        "proyeccion": false
+      }
+    ],
+    "hoy": {
+      "dia": "2026-08-09",
+      "minAcum": 38000000,
+      "maxAcum": 299850000,
+      "minDia": 1150000,
+      "maxDia": 16300000,
+      "proyeccion": false
+    },
+    "fin": {
+      "dia": "2026-08-09",
+      "minAcum": 38000000,
+      "maxAcum": 299850000,
+      "minDia": 1150000,
+      "maxDia": 16300000,
+      "proyeccion": false
+    },
+    "analisis": "2026-07-16"
+  },
+  "impacto": [
+    {
+      "titulo": "CCOO se unirá a la huelga de Airbus España este martes",
+      "medio": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9VSWlqQ2U1NFhkQkFuYVJIYUVJMG80QTliM194NWtLNTBhTjA0cEJBM2lXSGFTZUdwZGZpRWNJX0YyQ3VzWV9OaGhLY0p3SG9PU3lxdmNjbnJFcFd2cWJCMFktSUxKYk9LSHBmRg?oc=5",
+      "fecha": "2026-07-13T18:40:30+00:00",
+      "imagen": "https://s.tradingview.com/static/images/illustrations/news-story.jpg",
+      "score": 66,
+      "razon": "5 medios publican esta misma historia, sentimiento negativo (80), prensa financiera/aeronáutica"
+    },
+    {
+      "titulo": "La mayoría de sindicatos rechazan la propuesta de Airbus y mantienen la huelga",
+      "medio": "El Economista",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPOE4wVnl3aG92bUJrUkh3eTJFWEVJTmNpcXczTVpoV25iTk9kT3lwWnFOYlFyMlNnS0FGMk1SVzlxVEJhNE1seUJRc0ZtTEJIYVMwSzZSYjhodGs3NmVNdUFWWWNBekVCLV9sU0NnWm5VM0JoNVZxTmEzQXZvMDJOdTMtM2lBR1V0dmI1NThsMWQ5YllFcHdVVzlmYmFoai1lTFFqdnoxVEdFTUFzWjYxUGdjRWZrRlNMWlp5djBWY1QyQzdFVmtwVG9WWnh6bXFpY2ItZTBB0gHWAUFVX3lxTE84TjBWeXdob3ZtQmtSSHd5MkVYRUlOY2lxdzNNWmhXbmJOT2RPeXBacU5iUXIyU2dLQUYyTVJXOXFUQmE0TWx5QlFzRm1MQkhhUzBLNlJiOGh0azc2ZU11QVZZY0F6RUItX2xTQ2dablUzQmg1VnFOYTNBdm8wMk51My0zaUFHVXR2YjU1OGwxZDliWUVwd1VXOWZiYWhqLWVMUWp2ejFUR0VNQXNaNjFQZ2NFZmtGU0xaWnl2MFZjVDJDN0VWa3BUb1ZaeHptcWljYi1lMEE?oc=5",
+      "fecha": "2026-07-18T09:28:47+00:00",
+      "imagen": null,
+      "score": 53,
+      "razon": "6 medios publican esta misma historia, sentimiento negativo (10), prensa financiera/aeronáutica"
+    },
+    {
+      "titulo": "Airbus Employees in Spain Go on Strike Over Working Conditions",
+      "medio": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOSkpjSTJPZGgxZE1hYlc0VS02SU1tRFJpS0NLbHRNaktLMno4WE9UUThBUGtNcXU5c1ZUbmVHS1B4Z0l0OGMydnEtdnRwN1BsN21xZlpSMkswanBEMzlYWE5NaUpPUmNJQ3pRWExxalZXU0syMVBQZ2IzSWtUczh0bnhrQjR3Q1FxZ1VhQ2hUdjFZR1ViV3dNNlVHYnNDYXU2Q0ExSm9zRE5ZTEU4QjlEMU96cw?oc=5",
+      "fecha": "2026-07-09T15:54:59+00:00",
+      "imagen": null,
+      "score": 53,
+      "razon": "11 medios publican esta misma historia, sentimiento negativo (10), prensa financiera/aeronáutica"
+    },
+    {
+      "titulo": "Economía.-(AMP) El sindicato convocante de la huelga y ATP apoyan el preacuerdo de CCOO con Airbus y votará este viernes",
+      "medio": "Bolsamania",
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxOTElMNF84N2hCWVgyc2ozUzd0Zl9ZWlRIRW5EY2hfTjlRYnVPS1UyTnRrYkNaX1cxeFRqdzVhRzlhN3VIZmJTQW8wZFphMnZ1Zzc0cy01X2RnbWJmSTEzQzFQNVBXNGczdkp5WGxWanRRVVYtNGJKRHJ1c2lkR3RpUk9RdmNEem9laHVONXlBZ0RxUTE4VXFuT29sTXlMRjY3Ym0xN2djVXV4dktKSnFleWU5UE83VGNlM0Q2Y0x2TXBoME9GUWxkWnZLVW5Rc3ptMlhlRXJ0NGt2WnJfNTBaZjFjZ3pHbUNUOHlYbzlydFFzbzg5M2xjaGpOUUVTWmFPc29JSnB2YkvSAY4CQVVfeXFMTjY3WUo4dlVodlhxV3gwUFN1VTdpV0tpQll6anRsM20zb3dlOVBSSEZ6NzlnUTJwQTV2QkxPM2c4MmZaZ3M2VTF5a3JrbVl4TUhaNFhLUDZneGR3ZFlzb0ZaTGxYdEFlWDdjbFJYTVF3MkNHdlFHTk9jcUxvQy1IaU5wTnJ0TDNvaHF0dW81bnhYQkVxRTFjMW9fU3UyNzFEa0xsV0ktNVMtNjkzVHVTbUNvZ2U4Z1Q4djFaOGJfQThmZ00zTGt0TF8weVZ3bE9xTFMwT1U5bERoWjJRdk56WjJzWWhyTmg2VFRwcmxtM24xYXlucTBqc0s3bVNfQzFJQlhxdkJ2eFVJRkFkWUx3?oc=5",
+      "fecha": "2026-07-23T12:33:45+00:00",
+      "imagen": "https://img2.s3wfg.com/web/img/images_uploaded/a/3/ep_el_sindicato_convocante_de_la_huelga_y_atp_apoyan_el_preacuerdo_de_ccoo_con_airbus_y_votara_este.jpg",
+      "score": 50,
+      "razon": "6 medios publican esta misma historia, prensa financiera/aeronáutica"
+    },
+    {
+      "titulo": "Los sindicatos en huelga rechazan la propuesta de Airbus pese al preacuerdo con CCOO",
+      "medio": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE0tQ1NrMnkyNEJxUEUxMjEySUFpQjBMZ2pCNGJPWU80OXphWGZ2ZnZyUUEtTkRqMkZLYWhFUy0xRVUtRWs1a0ZpaUgycHhTZ09ncmJTSXRnakxSblNDMzNORjB3b3VlZnR4a2R1Sw?oc=5",
+      "fecha": "2026-07-17T13:13:46+00:00",
+      "imagen": "https://s.tradingview.com/static/images/illustrations/news-story.jpg",
+      "score": 50,
+      "razon": "6 medios publican esta misma historia, prensa financiera/aeronáutica"
+    }
+  ],
+  "cronologico": [
+    {
+      "titulo": "Airbus Faces a Steep Climb: 90 Aircraft a Month Needed to Hit 2026 Delivery Target",
+      "medio": "AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQUDhWdjF1T3FBTjZLVlhCa1pkOEFWUXlaRUhnV3pBeTVkTkNwMVVkNWhwV1ZUV2tZY0dtQTdVVDczaG1IUHo3akhFT2t4eFpSYjFST0FlRTI4TVZMSGdjejlibnZMR0xocVFvR05GMm53bFlpQjFvYXFNMHVsdDdNUkI3YXUxblZfcElZZVo0eFo0RmNXLW5LTTdLdkI1aXNKRkFyY202LVAzMkl4amxQNWFSWDRjRjc0STVDV1EwWnlqSUMzS0NKTUtRQVRZdnZKUmw4?oc=5",
+      "fecha": "2026-08-09T14:23:58+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus pretende abrir una mesa de negociación el día 11 para intentar un acuerdo que evite la nueva huelga",
+      "medio": "elDiario.es",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPbGVWQUpNMXZod256SXRHeHhBd1JZS1RfRUJ4V0F4MkpmUGIyT1hxVWFRcWdYOEhxclpIZGd2bXRvZ0RCUktWb2dTTEVpVlR3amNUVDBJX1V1OFpfLV9mR3A1UHpBWWR1ZUNzUks2OHlTSURsYlIwQzluMHlEeW5sTFhtREZPREFFeWpKelM1RkNOcjl0N0N1aDNDOHNhRG1Mb1ZYaTgyS045UmY5OUNrS1JpbnpxcndVU3R2TWxB0gHDAUFVX3lxTE9qT1F4djEzRlhQTXdNeFU5dGJFNGtINlE3VzhwemFwcW1ZX1d0UFVaeWcxNFJvQk9ZNFVhSVNkbGhNcy1jSXJxOHZoMU1wNnRPenhac2lJWV9VeGxhbWJUdWItRmVuU0FaT0FpejZVZXBsZWZucUdOZEVrRng0M0ZzLWdJX1F3aTcyVE8yTGZ0YmVqWGEtQTNlWUJ2ZXNoaWEzV2p3c2g5aDJKbEJxNk40aXV3LXRJemw3eHF1LUlYYmFXSQ?oc=5",
+      "fecha": "2026-08-08T09:18:27+00:00",
+      "imagen": "https://static.eldiario.es/clip/8cde6ef7-03d5-42cd-88bd-9a73e3bfecb8_facebook-watermarked-aspect-ratio-1200-675_default_0_x612y941.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus Aktie: EBIT springt 70 Prozent auf 2,7 Milliarden",
+      "medio": "Finanztrends",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQZUFJRk9FX0dMN0dMUTZoV0h5Xzlua2ZkaWVOQ3dqLVBOcWJiZTNoalZJOC1IRUNaakx1WWZQelpmWFBuNXIwa3lfVTlYTHRkc2phNnhuaFNSdzlPRlktRmFJZkZwR2ZjZmdUS0lKWTFyLTV3NWFPNDUxUVpYXzNlY1ZMVElMajFkZUFhMnFBdUdhUQ?oc=5",
+      "fecha": "2026-08-08T05:03:04+00:00",
+      "imagen": "https://www.finanztrends.de/wp-content/uploads/2026/08/Airbus-ISIN-2026-08-08-03-03-09.webp",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus inicia una mediación con los sindicatos para frenar la huelga -",
+      "medio": "Actualidad Aeroespacial",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPUS1GLUJGM01pTVktYzNRbDJUN3VMNHZEVHVsajg0LTRLUjF1cElhOWN6TFdIa19KelhKNk5QcjlkLUZuWFJYOWZEM2twdnJpbnBIaXVmemN4MzB6LUExODgtU0ExNGFDd1IwVUp0NFpQaWdOclpkbGFGZVhVWkM2VnV2czREMHZQeVNCM2VZNG5mbVlraElGQUVha0VxbDFJLW42Skx4dw?oc=5",
+      "fecha": "2026-08-07T10:38:16+00:00",
+      "imagen": "https://actualidadaeroespacial.com/wp-content/uploads/2026/07/UGT-huelga-airbus-130726.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus pretende abrir una mesa negociación el día 11 para intentar un acuerdo que evite la nueva huelga",
+      "medio": "elDiario.es",
+      "url": "https://www.eldiario.es/economia/airbus-pretende-abrir-mesa-negociacion-dia-11-acuerdo-evite-nueva-huelga_1_13433435.html",
+      "fecha": "2026-08-07T07:32:43+00:00",
+      "imagen": "https://static.eldiario.es/clip/8cde6ef7-03d5-42cd-88bd-9a73e3bfecb8_facebook-watermarked-aspect-ratio-1200-675_default_0_x612y941.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus y sindicatos mantendrán un nuevo encuentro el 11 de agosto para avanzar en una solución al conflicto",
+      "medio": "El Conciso",
+      "url": "https://www.elconciso.es/empresas/airbus-sindicatos-nuevo-encuentro-avanzar-conflicto_0_2007668684.html",
+      "fecha": "2026-08-06T19:45:48+00:00",
+      "imagen": "https://static.grupojoly.com/clip/7f0e990e-cca1-4949-a8c7-ae12d01783b3_facebook-aspect-ratio_default_0.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus opens mediation with the unions to stop the strike and sets a new appointment on August 11.",
+      "medio": "Demócrata",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQTEtnNFJfcnY5NHlnNDZrTTNmNGpvRktJOFNtVE1MeUJHeTR3bW5MYXFnWkdENEh0dzh5NEZyejFjbHExMXdpM1pnWUpDVmFkMUtIMkphMHoyUU5vcnZtdk9KcVZHOWs3V2g2TmFaVlc0ckItelpNMVg4d2RwakNOQ1ZLT21DQm9USUwxcWdNQUhraDFKYTN2MVVIYWFEcndYcG1yaTBfcm1xeUZNYjhHaXBSbWtnTUMxN1ZXV0pwYXJZS0FZd3VKQUV5dld1X2Y3dWJ1X9IB1AFBVV95cUxQTEtnNFJfcnY5NHlnNDZrTTNmNGpvRktJOFNtVE1MeUJHeTR3bW5MYXFnWkdENEh0dzh5NEZyejFjbHExMXdpM1pnWUpDVmFkMUtIMkphMHoyUU5vcnZtdk9KcVZHOWs3V2g2TmFaVlc0ckItelpNMVg4d2RwakNOQ1ZLT21DQm9USUwxcWdNQUhraDFKYTN2MVVIYWFEcndYcG1yaTBfcm1xeUZNYjhHaXBSbWtnTUMxN1ZXV0pwYXJZS0FZd3VKQUV5dld1X2Y3dWJ1Xw?oc=5",
+      "fecha": "2026-08-06T18:44:32+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/30/07/43/5/fotonoticia-20260806204102-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus opens mediation with the unions to stop the strike and sets a new appointment on August 11.",
+      "medio": "democrata.es",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPdTJFek1UVkVla1hPeGhMMDJiSElkeG1DZUNBc2s0U095c3JlVlJXU0M0Wk5NdFRLeTljWmxybEw4Ujl6aDdhc0E2TUQ3bHhodkR3NGJaN09USVBZaVJMZmZOOEtCa3hzdlhROEJCdTlra19mNnR3bnI3X3JKdm52U0hrSlRHT2I1Zl94RWx4NWJHQl9YNHQwR0ZycGJXRDdQbkZDX0p3b0ZrbkpOUE9ReHpQMVRmNm9vLU8ybmFYS2VlNDRnMGU1Z1hfSDFiaDjSAdQBQVVfeXFMUExLZzRSX3J2OTR5ZzQ2a00zZjRqb0ZLSThTbVRNTHlCR3k0d21uTGFxZ1pHRDRIdHc4eTRGcnoxY2xxMTF3aTNaZ1lKQ1ZhZDFLSDJKYTB6MlFOb3J2bXZPSnFWRzlrN1doNk5hWlZXNHJCLXpaTTFYOHdkcGpDTkNWS09tQ0JvVElMMXFnTUFIa2gxSmEzdjFVSGFhRHJ3WHBtcmkwX3JtcXlGTWI4R2lwUm1rZ01DMTdWV1dKcGFyWUtBWXd1SkFFeXZXdV9mN3VidV8?oc=5",
+      "fecha": "2026-08-06T18:44:32+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/30/07/43/5/fotonoticia-20260806204102-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus ouvre une médiation avec les syndicats pour freiner la grève et fixe un nouveau rendez-vous le 11 août",
+      "medio": "democrata.es",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQaFpWWFo0SGJWRXRjcWNxLUtqcDBRUG1ZWDlqektfdFUwMjcyMTVxRjlTRTdtaVlSRElFVTB0d3ExYUNPM2tzckRCTlNHWGlpb3Jrd2VkWUQ3YTcwQnphVFdOd3JrVzFFZ0hUVGd0d2FROHdEeU5HRnJBTVhXdXJLa0RTMGNBbXlFNDlSMGpBc2FHWmlqLTFmbVRIVGJ0LVBVNEg1MlJWZjhFR184UDdkcFVUSGtuSUdrUDI2Yl82QU9rb1hjUEJXYWVLMVNlZXh5dURNcHItUGFtVG11ZEdlV9IB5gFBVV95cUxNSVFhYXBJLXFOX3ZqRmRmeGFMYjlKMEdhdERsWENDM0dlV3JMdzEwTXRCcloxMlZhMXJWOWFlSkM1djZJWk1sV3pUWkpUTUJGcDFMSjdSeVhUb2J6UVpXaVlFeUdBSXY3WktUX3drQVpEOU91LUdPdS02OUNQekpVX2JlaTFNUS1td05zNzAzVGlvMWZlQXh2bnBYT2dIZTQwclNVblV1Qk91U25ocnpkamVDdVAzN1Vpa3NQdUJ1bEY4YVJONTZoenMzLUMwZm5KNjJEQ0pJQl9yZm02MF9Fb1RjT2pudw?oc=5",
+      "fecha": "2026-08-06T18:44:32+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/30/07/43/5/fotonoticia-20260806204102-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "UGT tacha de \"esperpento\" la demanda de CCOO contra el convenio del metal y lanza un mensaje de tranquilidad: \"Habrá convenio\"",
+      "medio": "Onda Cero",
+      "url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxOQzl2dVNQaGtEUHBGTzZFWjB1eEJQTFYtS3pWVUZXbzlpd1I4U2JqYUkyT000Z2YyaHV0TjMwbzNZaGM0ZVhyWEZXc2V2OWNkTEFiNjJoRzh2SEV4RVNqWlgyX0laZnlfX1lTNFE3dU5IYzVKNFBtQ3UzdWlzQzcwNUdtZWxLc0xPdFZPQmhaQ3pOLXo4TkI2U0FicFVxQ2ZiMThGMTFDaURvdDVpc2Vrb2Q0SWZNelplMTBKa3FYWUtyZS05cGlUS09rR2xtc1FEOGdRZzVNSVhYOVNmLWlCOEFnT1drSVpFcWFVM3JPdFpzQVQySjdRT2dxOEJORkNVdG1xQUVtM09tQXE2Vy1ORTFKSjPSAZQCQVVfeXFMTkM5dnVTUGhrRFBwRk82RVowdXhCUExWLUt6VlVGV285aXdSOFNiamFJMk9NNGdmMmh1dE4zMG8zWWhjNGVYclhGV3NldjljZExBYjYyaEc4dkhFeEVTalpYMl9JWmZ5X19ZUzRRN3VOSGM1SjRQbUN1M3Vpc0M3MDVHbWVsS3NMT3RWT0JoWkN6Ti16OE5CNlNBYnBVcUNmYjE4RjExQ2lEb3Q1aXNla29kNElmTXpaZTEwSmtxWFlLcmUtOXBpVEtPa0dsbXNRRDhnUWc1TUlYWDlTZi1pQjhBZ09Xa0laRXFhVTNyT3Rac0FUMko3UU9ncThCTkZDVXRtcUFFbTNPbUFxNlctTkUxSkoz?oc=5",
+      "fecha": "2026-08-05T14:58:39+00:00",
+      "imagen": "https://image.ondacero.es/clipping/cmsimages02/2020/02/03/4BFC5A92-7FF5-4E48-9560-033F65CE03A3/69.jpg?crop=1998,1124,x0,y0&width=1280&height=720&optimize=low&format=webply",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "UGT tacha de \"esperpento\" la demanda de CCOO contra el convenio del metal y lanza un mensaje de tranquilidad: \"Habrá convenio\"",
+      "medio": "ondacero.es",
+      "url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxPczdEclYzTXRJSnAwQ2FHTzhTc3pkZmVpYlpNV05GOWNjWTNvQTVaRU13UW1BT2kwcWpYT2NSX0V2QklDZHhWZTFhM1g1WFFqZmthMGtyUmlyNE9XdHlRWmd3MU54S2drNjh4NUNwSjZ3XzluNXdrQzd4dm9DVUx2ZHZwR0lrV2dGUWFOcFprSXRKeF9RbjQxY1NiSklIcWJhYWJtWF9WVWIwZDFjeGFlSUMwNHJpSzVyUHdiTGtYNDVYZDdZMjdFSE5aLXpiUVhUWnFfTFBTV0FVZVlfeXR6dkZsSjVsM0N0aEVqcm1FcVpYazlJVFllX201ei1PSFg3VDhOZ2VaSTFDc3p5REQxZmVsWWPSAZQCQVVfeXFMTkM5dnVTUGhrRFBwRk82RVowdXhCUExWLUt6VlVGV285aXdSOFNiamFJMk9NNGdmMmh1dE4zMG8zWWhjNGVYclhGV3NldjljZExBYjYyaEc4dkhFeEVTalpYMl9JWmZ5X19ZUzRRN3VOSGM1SjRQbUN1M3Vpc0M3MDVHbWVsS3NMT3RWT0JoWkN6Ti16OE5CNlNBYnBVcUNmYjE4RjExQ2lEb3Q1aXNla29kNElmTXpaZTEwSmtxWFlLcmUtOXBpVEtPa0dsbXNRRDhnUWc1TUlYWDlTZi1pQjhBZ09Xa0laRXFhVTNyT3Rac0FUMko3UU9ncThCTkZDVXRtcUFFbTNPbUFxNlctTkUxSkoz?oc=5",
+      "fecha": "2026-08-05T14:58:39+00:00",
+      "imagen": "https://image.ondacero.es/clipping/cmsimages02/2020/02/03/4BFC5A92-7FF5-4E48-9560-033F65CE03A3/69.jpg?crop=1998,1124,x0,y0&width=1280&height=720&optimize=low&format=webply",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Filtrados en la dark web planos e información de integración de armas de la empresa de defensa española GTD",
+      "medio": "Escudo Digital",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNTXp5dUdoZ095WXEzdlMxTVI1SG9VOVBzNHBSV2FJQUdfVGlNVXRxX0hsMl92cThCaHJJYnRhQm1PVDRGcnBOak10NGZ1SW0tWUc5Y0x1Z09aS3RBeC11RkZvRzdmU3VzNjNkNEo3Zmw1ZGtnc1JRV0FrM3NCa1cteFBFOTdnbWFoVEIxYlE1Y2ZxbV9YOWh3dHMybzA5LUxSUjc3Q2ZfeVFCY2d3eDMyZWQ2MDhzTzVmXzB3UE9xWGctRHc3V1cyOXE1VERKQVZYd01rV2J6X0FKLVd5bjdoa3JES1ZWLUlXWGhDd1Fn?oc=5",
+      "fecha": "2026-08-05T10:56:46+00:00",
+      "imagen": "https://d3fkdmlbzjtjd3.cloudfront.net/articulos/articulos-86535.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Canada's first Airbus A330 tanker has completed its maiden flight over Spain, pushing the refueling program toward a milestone few expected",
+      "medio": "Vozpopuli",
+      "url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNU2tWLUJUOHh2NWJKWElYWUZuUXJDdi1tYkV2VHBWOW1QbV9pTmc5VG5hd0otcWc5b0ZPUUpOQ3dPbDhwZXJUQ3prZk1FQjYxRDJaNHdGbi01Tjk1d0Q5eVFBNms3cDVXMGJYdWhLR05FTDJEUnM3YTBGRW9YRElmM1BvZHNoUFM3djBGdE01amkwVjhsQlBRaTFoc01pOGVvOGhLM1pvMUs3VlZISERWbW81SlpyM1FzSl81ck54dTY2TkZ4TFFYSVBFOV9md25tT0xXS0QyQzR5QlUycXZXb0EtYTgtb2kwbjJzT1Y0NmpmV0tyRUF0Ykc4dzE2dEwwMWVnZmVTaXRoUQ?oc=5",
+      "fecha": "2026-08-04T11:00:00+00:00",
+      "imagen": "https://www.vozpopuli.com/indux/en/wp-content/uploads/2026/08/canada-cc330-husky-airbus-a330-mrtt-maiden-flight.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Licencié car il ne s'est pas présenté au travail pendant 7 jours à la suite de son congé maladie : l'entreprise espagnole condamnée à verser 40 000 € au salarié ou à le réintégrer",
+      "medio": "ladepeche.fr",
+      "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxOWnQ4TnZlcU5vd0owVnZLQ3NMRnQtQzR3UGc0WU9ObXhmbE10XzhlLW8zNlBuUngzVnRvOTRoZllZWmU5eGo4UVB2WlQzeHRmTGJwRXlDNTNqX2JrQU04TkNCaERKaU4xM19vblVhX0c4UkRLMHlmakZURzAxWFZic0ZLUHJXcV9aRHA5OERqdHZCemRjOUNfSDQyaDhxYzA0X2VJZ3JoOUc4VUttdDlXMmE1dzVrT1pLclkyM1F1VnZWXzk5X2lvaXd6eEQycC1uVzVIR2U3NUQxNTI5REpISnlCSXVSeVpELTBQSmhQbHhVT3FjbXlNNXlERmZOZmtyRG1MUl95dVhkM2JJQlU4d0FXbjcwSE9fbDgwWTN0V05TdkpCSFE?oc=5",
+      "fecha": "2026-08-04T04:31:00+00:00",
+      "imagen": "https://images.ladepeche.fr/api/v1/images/view/6a7069d267c899788f0284c8/hd/image.jpg?v=1",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Barcelona and Palma Airport Strikes Begin Tonight: No Cash Payout for 2 Million Passengers",
+      "medio": "Travelers Today",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxONnFPREpkU3FQUWE3UmpURzBNUlhIS1k0NjhMenl5VGVxbzhfczJhUzFYTUNVQXVGNWFrVXlYS2lHS1BiWXE1TDU1N2xpVUZMMkxTRzRtRURXUHpuMmQ5RXBQUzJzakV1TmhoWnpOS0xlVEFLaDJnbnV3bjZCejV3S3pYeC16MzJQNEd3NGcyMzFucV9JMThhMUw4WjlHYXNReGE1QThGNy1TSjNjUFJJUU9oZnh3Rmh3cXJTVEZUd2hwZ3o1aEEtWGZoWWtfcGdjaW9aWXZBcw?oc=5",
+      "fecha": "2026-08-03T18:45:57+00:00",
+      "imagen": "https://d.travelerstoday.com/en/full/1725971/barcelona-el-prat-airport.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus Leads Spain Combat Training System Launch",
+      "medio": "safariindia.com",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBlQnNyX0hYaWF5a1d5ODB2Nklyb0pjY1k2MHVRZGNJOWItU3Nvc0w0NERvUGEzM3hlanZ5ZnRsZjUwN1VvM2UxMU1POEVvZVRUYkoyTWZvY1g4amJBSG9zcU12b2ZCZGtlbWtvS3pDb1F4SEVtZHBaSzl2RFZVUQ?oc=5",
+      "fecha": "2026-08-03T09:32:46+00:00",
+      "imagen": "https://safariindia.com/wp-content/uploads/2026/04/saeta-ii-3d-render.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus, Thales to Build Military Communications Satellite for Spain",
+      "medio": "The Defense Post",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNencxOWtwdHVqSzVWdzNnbHpPV3VGQWxCM3J2VGVlVFFMMk9LeVo2VVFQX0xTdzYzN3FkY0NGYXBQMU9rRlVEdzRLdWRpUDVVZkwxa2dOMm8weDVKcUxDN2prZHVYZlVJb0pTdnYxQ1RmZ1FNZFRfMTVJU0prS1NkZ2M1Y9IBiAFBVV95cUxPcWxsdnBtcEx6OEZtWVRLcGVKaFhwbVZ5WHlwd0xTRU52TGlCQkxRYk5iVEJfb2VPTVJvOHczanpxZm92X1ppQWFKLWxHc2FBSUtQYWZBRHJpZWMyS0FMZFdocmQ0WkFaUjV3eWV0TEhza1pxRmtKQUJtY0FoR0pXdERndjJjNUFs?oc=5",
+      "fecha": "2026-08-03T09:05:16+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Nueva huelga prevista en Airbus Getafe a partir del 24 de agosto",
+      "medio": "Cadena SER",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOQVh6bDJKMV93VXFhbnMyQk5HMk1od3hyU29hR3VwdHc0dHdjMXVlMXlXZ19FYWdPX0p1U3pZSGZNYUJEZUFRY1IxUjJLUXRaSkdNdDdwT3JycFlCSkVCcFdpX1hFRmlncVNlR21yNjZaOFhKWjQwUGRrb0tEVUVDT1RtdmxwSUdSV2lLZzV6c2REYjdZcUxacXo3UnRUREJWSjRBblQ5T0d6WFlmLXBLSV9TcUFLelJSN05LY0J30gHSAUFVX3lxTFBWLWhYdWlIU2ZWTnRhZ0VMbnN4VGJZcVFMYVFXZVlnT2NxRHNRRjZJNVFNM1RjNVdfSTdxTGoyVlV1dDBHbk9BTWFSR0V6cjBNUkhYYVhucU1FYWFCVTZUdEY0VVdJM3A5RGlmNWpxdVF5OWNxMFJRNEFNc2NmYnRfZG5xTXN4eU1jUzBjdVQ4dVFkTlpmUl9tY2czOW85OHEzOXRmU2pFb0dDc0QxRlF0Vl9PV1l5YzdmUUgwZUJrXzZBRm9YQWtuR19wMmllSlhRdw?oc=5",
+      "fecha": "2026-08-03T08:58:31+00:00",
+      "imagen": "https://cadenaser.com/resizer/v2/S3M2YO6YZFIBBAEQCPXCIO66SQ.jpg?auth=e42d12665eb08e33cef6e6c79fe341c1e58f734ca90b862ad2429246fff0df00&amp;quality=70&amp;width=1200&amp;height=675&amp;focal=2341,1576",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Unbefristeter Streik bei Airbus angekündigt",
+      "medio": "mallorca-services.es",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNZ2FHV0JzTVBKRjRYU0RDY0J4UzNnTjRFeHoxb3ZEanpzbk5CeU1ib1RXNk53OXlBemk3WlFVOFJoeEZXRlM3RjNzRk9RSlYxa2RDS2JMaldlUjVITE1CTEUybHFnOThoUlAxeE8xS0l6VmE3OU82TU1JenM0bzNPNkgzUm4?oc=5",
+      "fecha": "2026-08-01T09:30:48+00:00",
+      "imagen": "https://www.mallorca-services.es/wp-content/uploads/Airbus-Group.jpg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "El nuevo Airbus A400M antiincendios promete descargar 20.000 litros en segundos, pero España todavía no puede usarlo",
+      "medio": "Talent24h",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPeXg0N2lVbTJkQmxXRWg1eHk5Y0hDVXdQZDdzb29fSGFmMEZ1eFFudU1tTloyR0ZPSTR2bUkxcVZ3bDhKVkpKUFFjNWQ1R1BHRGU5MTFtb2JZUlEtSm1UcUZQQU9wd1l2S000VEpZeWU4eWRfX1V6UnNyeHJRZ3Z6U3Jhdl9NTnJyTUxZaWVHM1BOdkdVRWNad1ZYcVVfRDVqTVhwaC1KOEhoZF9tMWxKdk1tMFF6YlFsaTg5ekpSTTNGSURyeXRQMnpiUnljM1lHV3JiZUlILVY4aUlTckRjMQ?oc=5",
+      "fecha": "2026-08-01T05:04:00+00:00",
+      "imagen": "https://talent24h.okdiario.com/wp-content/uploads/2026/07/airbus-a400m-descarga-retardante-incendios.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Sindicatos convocan una huelga indefinida en Airbus España a partir del 24 de agosto",
+      "medio": "Expansión",
+      "url": "https://www.expansion.com/empresas/2026/07/31/6a6cccb8468aeb3b348b4595.html",
+      "fecha": "2026-07-31T16:27:45+00:00",
+      "imagen": "https://e01-phantom-expansion.uecdn.es/c70b8d5dcc483420eee9be9784da0307/crop/0x0/2048x1365/resize/1200/f/webp/assets/multimedia/imagenes/2026/07/31/17855151551390.jpg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "UGT, CGT y UTIL preparan una huelga indefinida en Airbus España a partir del 24 de agosto",
+      "medio": "El Conciso",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNeG1MMlY3THh0dFBRZG9uZGtsTzhJeFkzeWpyQ3ZiUlFmTTF3MHZONmN3RzZEVE4tUWM1TzlabW8tOGV3T0xMRUdvUC1LbXlNMzNYSDB6MkFac2tmWW9ONVJhT2xFbTlRZlNJQnpKV2YxRVNDRjNTRzM2WE1MTWJvdnBwNC1tb1hERFI5RTJ2bXlwZzk2eExr0gGcAUFVX3lxTE13UlVWV1MwLU1JdzZfTTBmUWwwdFZZQlRxUW1UeDRhNnB4NkNqazZVYkRibkplV2RQX1V3N2N1TXRzX2ZSQl8xbUxEeGtESk5RZTJxMUZCRmxrTFFCSVhTQkNtMUdua083TlV3dzZIS2JBY2pjaFdGRzgtcVhZVHlXamdwaVZQMk9pSzlLYU9UM1JyOWl1QlkxQTJqTg?oc=5",
+      "fecha": "2026-07-31T15:47:37+00:00",
+      "imagen": "https://static.grupojoly.com/clip/08e77d1d-cb96-4802-b795-3def136549cf_facebook-aspect-ratio_default_0.jpg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Airbus España: los sindicatos UGT, CGT y ÚTIL convocan una huelga indefinida a partir del 24 de agosto",
+      "medio": "Industry Talks",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQazkwSGJVcE9YTFpsbV9VNS1QR0ZpcU1tYVRKeXl3d3hRdW1Ic0dHLUhCMHp2TTRhUnc5VHMycGcxbUdCSHR0NWVQNnVISXFSOHBVVEF2dFk1cHpzTnRSTVo3Sm54Zi1qd01RY1kwNXVoWGxTb3V0QW9tbEZZVFFobHNQUkpLWndsMHFaam5YUWhMZkRPbUVnYzUwWXc0ZFk3SmlQTEtjMmtyelpHSWhtY09NRmZfQU4zNTE5RGhmbllTSlZ5?oc=5",
+      "fecha": "2026-07-31T15:03:11+00:00",
+      "imagen": null,
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Huelga indefinida en Airbus España: UGT, CGT y ÚTIL convocan paros totales a partir del 24 de agosto",
+      "medio": "Infodefensa",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPcHc4TUxlVzFhbVF5ejZHalFnZVZZSDVOdzh2cXYxYWEtWVNmUmtWRHBRU3h1ZFk1eGplV1h1TXFmM180VkFiY2M5UVRwaDFvaDBSU1NvcnJFc2hiU0lHYXlGbHNyZ0l2aGd2RnVUWXk5ZDNubFRsWHM1OUttcXhKQlFQUkhDdFNEbkl2dFNoR0JHcm9sU2RWT3NBek40STI2QTAybjJLeXFzWGxaLU0zay1PMkNhMmlYTUhCZm5BTHVIVlBrT2txT3YzODM?oc=5",
+      "fecha": "2026-07-31T13:50:03+00:00",
+      "imagen": "https://www.infodefensa.com/images/showid/8059172",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Los sindicatos CGT, UGT y UTIL anuncian la convocatoria de huelga indefinida en Airbus desde el 24 de agosto",
+      "medio": "Infobae",
+      "url": "https://www.infobae.com/america/agencias/2026/07/31/los-sindicatos-cgt-ugt-y-util-anuncian-la-convocatoria-de-huelga-indefinida-en-airbus-desde-el-24-de-agosto/",
+      "fecha": "2026-07-31T13:33:00+00:00",
+      "imagen": "https://www.infobae.com/resizer/v2/R4OLKCGH75EH5PWYZCQROS7JPE.jpg?auth=e585b2a5c5eb04f1cb891de78e96b5a92fcf2f0baeee9570eba97c9b14a0bef3&smart=true&width=1200&height=630&quality=85",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "CGT, UGT et UTIL enregistrent une grève indéfinie chez Airbus depuis le 24 août",
+      "medio": "Demócrata",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPWG9Ud19Yczc1eUw5UURrbWZBcXlKdF9JTExSMEtvS0pRSFNxQUJHWXlNMWdoUGE3Uk5IeEZ1ZWJ3ckFVM2pZRUQ5OEZnYXM3b1NxY0JRUFV5eVdaTTNHTWJGbUNmNld3NFVLQUM1YVUwSDB0Skhxa3owMElSVFptVnVYNXpnMlAyYXM0Ql9NdzZNTjVXZXN4eWNZMy1XTTRJcWZPSVRTMzM3eDliY29qd3NMR2xyTE52QW4tTdIBvAFBVV95cUxPWG9Ud19Yczc1eUw5UURrbWZBcXlKdF9JTExSMEtvS0pRSFNxQUJHWXlNMWdoUGE3Uk5IeEZ1ZWJ3ckFVM2pZRUQ5OEZnYXM3b1NxY0JRUFV5eVdaTTNHTWJGbUNmNld3NFVLQUM1YVUwSDB0Skhxa3owMElSVFptVnVYNXpnMlAyYXM0Ql9NdzZNTjVXZXN4eWNZMy1XTTRJcWZPSVRTMzM3eDliY29qd3NMR2xyTE52QW4tTQ?oc=5",
+      "fecha": "2026-07-31T12:58:34+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/29/85/11/0/fotonoticia-20260731145432-1920_23_1200x630.jpeg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "CGT, UGT and UTIL register an indefinite strike at Airbus since August 24",
+      "medio": "Demócrata",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdjlwb3A3SVVmVnJvREg1RUp1T3hKUm05R1hkbnJTcndWYXppSnZVWFJ1Q2QxWTNwTGFRclQ0b0tpalVZSFJzeFpTQmhWdlBVUkdwQVltV1hsT01qTUlKNGhuc3lZLWdHZkhCRVBjVDNjSDZtUEJPUnVMUE5qTTYyejlYVDNqMHAzSnB5MUlEZFpHS1BZOHJOMlZIa1pBWEdXYnEtdkJsd1BfVi1HQlHSAbMBQVVfeXFMUGFCYzlkd1NCUWhMNzc1M1BfMWN4bXpueTRGVV96cEhtZVBJNjJqWEdlLW0tOHdZbWdGcVBpOVdPbUZHN0M5UTZYekdzWUNjMHFheEo0b0prbWpiYndMdGoxd3NtVWVJcndJY3N4MTNaZEpQX0lMVERIREU3QkFaclZWWDhsMDNGV2ZnUGNMa1dWMzgtSGo5Qm5LMElWUjVhLUxUTnVlekZGOEJ2SVdqM2l1NEU?oc=5",
+      "fecha": "2026-07-31T12:58:34+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/29/85/11/0/fotonoticia-20260731145432-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "CGT, UGT et UTIL enregistrent une grève indéfinie chez Airbus depuis le 24 août",
+      "medio": "democrata.es",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQUS1uMy1PT1Q0TmpNOFdwQmlLM3FXWlZfbXotMFkxVkMxeDJSeDdfS19oMS1Ba25ScjEwNTkwX3FtNzhJOGt1Rnlyd0U5ellhNXBVNEhabW42SnNpek4yYWowTEhiMl9qODUxeUs3Z3pUMDNjbDJvRXlNRExXTnN5UnJqWWpSZG13YjR4X3JycWU5bzVOX21oalVyd0FBZ1FhbGtNWXdldFpzNmVoZExoTUx3bWEySjDSAbwBQVVfeXFMT1hvVHdfWHM3NXlMOVFEa21mQXF5SnRfSUxMUjBLb0tKUUhTcUFCR1l5TTFnaFBhN1JOSHhGdWVid3JBVTNqWUVEOThGZ2FzN29TcWNCUVBVeXlXWk0zR01iRm1DZjZXdzRVS0FDNWFVMEgwdEpIcWt6MDBJUlRabVZ1WDV6ZzJQMmFzNEJfTXc2TU41V2VzeHljWTMtV000SXFmT0lUUzMzN3g5YmNvandzTEdsckxOdkFuLU0?oc=5",
+      "fecha": "2026-07-31T12:58:34+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/29/85/11/0/fotonoticia-20260731145432-1920_23_1200x630.jpeg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Los sindicatos convocan una nueva huelga en Airbus para después del verano",
+      "medio": "ABC",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPLTJadGhEVXJYYWN3d0NyU1o2azhCWXBMdkRmRVBKdC03b21iWE1XUy1rQWZKUDVMTEZaNDNpMWNsMnJVRzJKMU9ZSGE1ZUgyZ0xqRGp2TTZxMmNwdmdTYzIxMWZRc3ptRktzWWJXdElxMF9FTEZfU0dVX04yU1cxWU5Wb0dEM1hrc2tJMDNKZVprQlRSbDN6anRSMmE5cUpZczk4NHYzaEHSAa4BQVVfeXFMTk5ZcTlaRkp6Q2JyWWNQSWxxaUFYWmtTY3puUVF5QWpZSUtVOEUxOS1qY3p0ejNod2RfN1p4QWFKT1U2VGo3LTVWU3RFX1N2S0dCcXJEaW9JZUN5U21xdDVmM19YanI0MTI4RTRmQnZmM3NOblpJdnkzTFZKbktPSnhZM29vMG5vNFJGYm1kRF9PWnhDQW5ZS1MyVFA3WkZRZ2daY1N6c0FjeExrbE93?oc=5",
+      "fecha": "2026-07-31T10:36:15+00:00",
+      "imagen": "https://s1.abcstatics.com/abc/www/multimedia/economia/2026/07/31/1456505214-U24240648023Lti-1200x630@diario_abc.jpg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Airbus recurre a la mediación profesional para resolver los conflictos con su plantilla",
+      "medio": "El Mundo",
+      "url": "https://www.elmundo.es/economia/empresas/2026/07/30/6a6b6beee4d4d860568b459f.html",
+      "fecha": "2026-07-30T16:48:48+00:00",
+      "imagen": "https://e01-phantom-elmundo.uecdn.es/e59bbb27feec2bec9586383dfd986343/f/webp/assets/multimedia/imagenes/2026/07/30/17854300219475.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus pide mediación al SIMA tras el rechazo del preacuerdo",
+      "medio": "CLM24",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNV0FIOVFiS2VaNGVqN0ZmVExPcHljMkJxaGltMERFamVxVVpKNFpBaU1qanJ3dmlabE0tTFdJaXQ1MXByQm1tR1ZhWGw0emVJVDloSjdvZUJxb2JBMklUUmZCQUY1SzI0QnV4WE9pekg5RndqcVBfemp2TWxEUkczakJ4RVItVWxDMDJsZ1hKSF9NOFE1WVFRVFY2cTNjUm12aWhPMUREdmNDUW1BY3dsTVFQa2PSAbQBQVVfeXFMTVdBSDlRYktlWjRlajdGZlRMT3B5YzJCcWhpbTBERWplcVVaSjRaQWlNampyd3ZpWmxNLUxXSWl0NTFwckJtbUdWYVhsNHplSVQ5aEo3b2VCcW9iQTJJVFJmQkFGNUsyNEJ1eFhPaXpIOUZ3anFQX3pqdk1sRFJHM2pCeEVSLVVsQzAybGdYSkhfTThRNVlRUVRWNnEzY1JtdmloTzFERHZjQ1FtQWN3bE1RUGtj?oc=5",
+      "fecha": "2026-07-30T16:17:04+00:00",
+      "imagen": "https://www.clm24.es/media/clm24/images/2026/07/30/2026073018160962272.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus pide mediación al SIMA tras el rechazo del preacuerdo",
+      "medio": "clm24.es",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQalY4Tm5JN2N4X3hCa1ZHMGViODEwVXAtU3RPemtWQTlNeDYtOWJTRDJRRElxdTF1c0VVY0puQXVsTW15R0hrdEh2bzRSMUk3UWFnbjFfQnFuV2laZ2ItMzMtcVVOWGJwOFo3blRnaGRvR3NuNHRPdWtqT2xwajFSamNyWEwwQ051NVdEbmdtVFRtRk9hZ0FRVzdjak1zSncteE4wVlAxazEtV2NoVHln0gG0AUFVX3lxTE1XQUg5UWJLZVo0ZWo3RmZUTE9weWMyQnFoaW0wREVqZXFVWko0WkFpTWpqcnd2aVpsTS1MV0lpdDUxcHJCbW1HVmFYbDR6ZUlUOWhKN29lQnFvYkEySVRSZkJBRjVLMjRCdXhYT2l6SDlGd2pxUF96anZNbERSRzNqQnhFUi1VbEMwMmxnWEpIX004UTVZUVFUVjZxM2NSbXZpaE8xRER2Y0NRbUFjd2xNUVBrYw?oc=5",
+      "fecha": "2026-07-30T16:17:04+00:00",
+      "imagen": "https://www.clm24.es/media/clm24/images/2026/07/30/2026073018160962272.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus España recurre al SIMA para intentar salvar el pacto salarial rechazado por la plantilla",
+      "medio": "Economía Digital",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPcnl0eFhub3NnRkJDQnBKbzdTUU1aenE3bUl4bWRWaVloVl9Xb0RYa3ZwTjFUaDRlZ0hRS1RuanJTdFNYQkU0ZGstdlRVVm9RbEJMRHQ4c1lnZFZSTVdINEwteDROdHdBNFB6cEUzakVyYnhVZXB2NkwxaUE0cHNYU2ROS1NHOURYNEs0OVNzdG84bUNQa2QzSmJMRHfSAaIBQVVfeXFMTWpqNXhVZ2xZdkFKeVB2TG13eFA0TnB1alQ5OWd5QnVSNHlybWtTelFSa2pKenhqSzB4NGRBV3M0MGZ1TkhzWWV6Q3A2QzRBa0FBYnRXWUVXbEVxelpCUlJ3WEtheENFcmhJaU5LSzJ5NVNtUEZ3Wkc3THdXQWxiaHZTcHNBSkJSMWFESXF2azNTUFdnT3FTUTAtMnhiQWp1T1Zn?oc=5",
+      "fecha": "2026-07-30T14:27:44+00:00",
+      "imagen": "https://www.economiadigital.es/wp-content/uploads/2026/07/airbus-huelga-sede-getafe.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus lleva su conflicto laboral al centro de Sevilla antes del referéndum",
+      "medio": "101tvsevilla.es",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQTTdqeWdkRktWejBtQm5fSkdLTVhKVzlydzJ0TXdlZEc4SFRtRE15OWtFZm12NW5UUDBDd2VGcEpQZHRQTVFCbHFBVFRseDBpVEJnczlXQlFsaE13cV9ndHFiZXlDU2c0d2tTYWxQU3RwZTIwaWlwVDhUbHFsS2VQc2d0RXY3b3J1SkFVMzFJM0RvZDkyTGFjdmdOemFpQzJaLVE?oc=5",
+      "fecha": "2026-07-30T14:25:41+00:00",
+      "imagen": "https://101tvsevilla.es/wp-content/uploads/2026/07/airbus-lleva-su-conflicto-laboral-al-centro-de-sevilla-antes-del-referendum-duckduckgo-imagenes-065191f9.webp",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Airbus pide una mediación del SIMA para desencallar el conflicto laboral con la plantilla en España",
+      "medio": "Expansión",
+      "url": "https://www.expansion.com/empresas/2026/07/30/6a6b5971e5fdea64468b4590.html",
+      "fecha": "2026-07-30T14:02:28+00:00",
+      "imagen": "https://e01-phantom-expansion.uecdn.es/e35d5fe04002e10860ee9998097eef14/crop/0x0/2048x1365/resize/1200/f/webp/assets/multimedia/imagenes/2021/04/10/16180694973476.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus delivers to France its first NH90 Standard 2 helicopter for special missions",
+      "medio": "Demócrata",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQMVMyM2JXcGh6N3pBR3RFZlg4TjBfVjJJaHpQcDlfVjVvRC1peGo0YVpiN0VydjcyTGVod2RpOUFvNWoxNjdqYXNKMzZCV0EzN3lCWUFEX2NsQm54SFNJUlBSc3FVQmFfMmpMUGZvTXh0eUw3TWx6bmRHY3Axd2JwYi1ELVBKaEtWZjJKaTg3NC1OdFBHWlpmLVpKN2YxVEpJZF9aUFlDV2dua3A2QnhHc0JXcFlwaHBJX2FUddIBwgFBVV95cUxOMUdISGxvUXA4WDQ4cFRpZlZCRmRoVmZwVGY5NFhScVREem9wd2dvMGhnUmM4TFNKZkl4dDRLVWY0RnpJN0JHSEFjUzZRZi1JRm1XVWZHNDBlZV9FZ1BXQktodXVYY1pFMlBnaHpSZnVBaWktOVp5TkQ3Y05iM3J6eHRDTm13U05ZNERVbS1PVnVtdzhjaUg2b2xQYWhmcThocDRfYzZUX0xrMVAzX2JHX1ZYUldYd1lMNlhBLTFaQkFZZw?oc=5",
+      "fecha": "2026-07-30T13:20:47+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/29/78/35/8/fotonoticia-20260730151708-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "France Wildfires Halt 130,000 Workers, Macron Calls It \"Worst Since WWII\"",
+      "medio": "Seoul Economic Daily",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQQllxcUJCN1oxNS1VU2huZ3FlMEJSdmtZREhYbGhTZm9oXzhhVllwX01QZ3lWbVZ0WThJZF9FcGRQbGVaMklONmQ4V3RhOC1OaTFVTVhRcEt0Y0hGUENYd1BEbHprZ2g5bGd6TDU2YTZrZDBUQWwxNTl1S0VxRGlURXIxYzIwbTZYSWJFVkdUT2JVTXkzbXU0bDY2cGtVZUdaUHQ4cGw1SFNlZw?oc=5",
+      "fecha": "2026-07-30T12:25:32+00:00",
+      "imagen": "https://wimg.sedaily.com/news/cms/2026/07/30/news-p.v1.20260730.938865c6e6a84045bdc35b3bbd129e6f_P1.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus recurre a la mediación del SIMA tras el rechazo ajustado al preacuerdo laboral",
+      "medio": "Demócrata",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNdFltVG1wUy1VWDZCNnRHTGN3NW9rckNLNEE5MVMwRFk0dWFkU3AxOC1uMzVaVno3dENkX1RTWXo3WTJiVS1zSUVwWHhuZTZQRkhCYjhjblRFZHlLMkIyS1RRbTJ6ekdjcEhyWVlYcnl2VGUtdjdEYTd6QnVabmdoN1h0dkRtZ1ZQUklab08xY0s0dkJYNHhmY0pveEtyR1BTTTc4STg4TWF2LWt2SmVuV2daMFMwRW1tczYwUNIBwgFBVV95cUxQRHhCTGU2cUZ0UENVNUdUcEYxdXJvX1NWaFE4cVA1MzJkMnB2bEktZ3R4ZTZCS2ZlMnZ0QTkwOVZ0Mm1ldHQtZEJFTVVpdHV1RFF6c3dPcVdxTzgwQUVnX0Z0VmcwZ0FyQVRVNmFMT2c1TFl2dzJJVTBTdVphUEhxbXk1aWVHSWtGUFJoV0NWN3E4SF9TWUVoeXBJX3laMThKTjE5RnZaVVdOX1h1RHp3dnVuVEVjOEVXOWhIUUYxNVlzUQ?oc=5",
+      "fecha": "2026-07-30T12:25:23+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/29/77/57/8/fotonoticia-20260730142308-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus resorts to the mediation of the SIMA after the tight rejection of the labor pre-agreement.",
+      "medio": "Demócrata",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWI4OWg4YlAwMkYzdV9GWGpvRS1PYXFyRG1HN0QxZGdkbkNfekE3aVJKdzBndFhKVllpNVBxRFZFM3FqYXI0ZW82em95RFFsMm5hNVotallXTnNjaG9mLUxJYm4zaFdHaFRwVEw5MGh6em00NHpKMGRpT1RRZDVMaHFfa2R2WjBqYkNhaGpqYjlCbHJkdE45S0kybzM4c3o5bU1pejdQN0NfQ3RBT0plUHAwbmtGemQxMVE2bENhRVdscXBpdDRjN3dJTjN6b3c3RG1r0gHTAUFVX3lxTE81Yjg5aDhiUDAyRjN1X0ZYam9FLU9hcXJEbUc3RDFkZ2RuQ196QTdpUkp3MGd0WEpWWWk1UHFEVkUzcWphcjRlbzZ6b3lEUWwybmE1Wi1qWVdOc2Nob2YtTElibjNoV0doVHBUTDkwaHp6bTQ0ekowZGlPVFFkNUxocV9rZHZaMGpiQ2FoampiOUJscmR0TjlLSTJvMzhzejltTWl6N1A3Q19DdEFPSmVQcDBua0Z6ZDExUTZsQ2FFV2xxcGl0NGM3d0lOM3pvdzdEbWs?oc=5",
+      "fecha": "2026-07-30T12:25:23+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/29/77/57/8/fotonoticia-20260730142308-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus resorts to the mediation of the SIMA after the tight rejection of the labor pre-agreement.",
+      "medio": "democrata.es",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQcXFEVmVKZnIzVGp3aXg0aEpVeE5CWnRCanBjOVlLZTlGUi1UbzczRFZSUVZOa2NWb1owVy1BWUpuamh6cjZtMHoxbUJwRlY3OFpubmVTYVJWUlZJNkpZSkVFNlhZMndqT3VrLU9CZndvc09CWEVuYkVLdlZ0UTVFS00wbDhxVmxqeGdfVnNWUExWSGc4THJLZEFRSzk1TGRsVzhzZ085eDZpb0xQRXhWcEo3VXlDMXlJYzNfOEhUWFgwOERQWmpVeVRFellnUdIB0wFBVV95cUxPNWI4OWg4YlAwMkYzdV9GWGpvRS1PYXFyRG1HN0QxZGdkbkNfekE3aVJKdzBndFhKVllpNVBxRFZFM3FqYXI0ZW82em95RFFsMm5hNVotallXTnNjaG9mLUxJYm4zaFdHaFRwVEw5MGh6em00NHpKMGRpT1RRZDVMaHFfa2R2WjBqYkNhaGpqYjlCbHJkdE45S0kybzM4c3o5bU1pejdQN0NfQ3RBT0plUHAwbmtGemQxMVE2bENhRVdscXBpdDRjN3dJTjN6b3c3RG1r?oc=5",
+      "fecha": "2026-07-30T12:25:23+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/29/77/57/8/fotonoticia-20260730142308-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus recourt à la médiation du SIMA après le rejet serré du préaccord salarial",
+      "medio": "Demócrata",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPMzViamtGelRiRm5LOG1BSGwzRUZHRUV3UDZRRHFDWHZBM1VmYTdYX0Y1YnRxblJrYWxCMnpiamFKdG9DVlhCNjdmUTBsdjN5SklWZGVZZ2hhQW9Id01aWkRoT1RDbFFMbGZZUUhtN2dSejU2VEoxS1p3ZlZaZlRoWnVVTVRSOWxmMm9IeXBnMFdyRE9iX0NzdHNTZzQ3dUJObV9UNzM0VmNVYkI2SXBKR2dPek5SNUFtaEHSAb8BQVVfeXFMUGdBS0lNN3NzdWNSLTVYUXpaV0pueS1WTmNoZXE1TjhvRlU2aXg4NUh4a3cza0gxN05ZYVdtampHMXZfekVxUzNfNEtWZGowTTRfT2E0NDM4bVlxempxeVlBUkIwREJLSkdzdElLdjR3dDFieVZxVVVhN203emJSX1JPZEwtS3ViY09jNUxWWWsxVHQ1TGxVLVZZWm1MdkFLVTVMaGotYzZRSUo5dzZTa1Y4NjludmZoZ1FoZDdyM3M?oc=5",
+      "fecha": "2026-07-30T12:25:23+00:00",
+      "imagen": "https://www.democrata.es/uploads/s1/29/77/57/8/fotonoticia-20260730142308-1920_23_1200x630.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Economía.- Airbus pide una mediación del SIMA para acercar posturas tras el rechazo de los trabajadores al acuerdo",
+      "medio": "bolsamania.com",
+      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOYWk3NWdyRWNmZWxaOF9BbFRjOGh5N2paTTcwVDB0Slh1ZVlBVnIxY1h5UTRFVUhBb0xsLUxtU1ZIYW10bk51d0RxWVpFLVN1Uy1yYW1rQnhKS2phOS1aZGV4ZWdMTFJ6cWg5emJxV0FsbW1BVThvb05nMVdISGlnUXVXUV9tMXdUdHJ6aVREQ2g3Q0JzYXFvdlJveEdkV2VXbkgxdmRiRUJkb2NGWWp3M091bDllQlRzNExtbTlQbHp1SklZajBQOHdaekFNV1FSNEEyYWVSbTlzWFpHUm1Ib2UwRXY2dk95VzhhSlRwSG1fdGl2djdWM0V5em15R05SUUhn0gGIAkFVX3lxTE5Pa3JtemdjZ3RHNVdqNG5yMDd0Mlo1OGlMOV9rakNOUU5kSUFhU18yYnR1a2t2RDN6MHh0N2RVOVJTOUtmOTJOT2ZVMUJLTkFKOVZBOUJWVERtRk1IcWVSdkU4ZUtZdENncC0xb003cmdib3lieURiMXc5SF9UZFhfcXlLYm4xX1NmVXpJcG1ka1hpM2V3WUlVZlJmMjh1bThtMnpkc01uaGJoOUc5TnN1TWlhSlA4RlR1Zk9TQ1NGYjQ3dm85STQ2WUR1T043TTE3Zm1JTERIS04zR0hmanNNSEMwVmcyRDlzYXhVdkR3bm1GZkJyWTZLUnVoTHQ2WkpQM3BXZHlqZg?oc=5",
+      "fecha": "2026-07-30T12:23:07+00:00",
+      "imagen": "https://img5.s3wfg.com/web/img/images_uploaded/e/5/ep_ugt_fica_andalucia_se_manifiesta_en_sevilla_para_reclamar_un_convenio_que_reconozca_el_esfuerzo.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Futures Rise As Oil Drops, Bond Selling Slows, Meta Tumbles And Microsoft Soars",
+      "medio": "zerohedge.com",
+      "url": "https://www.zerohedge.com/markets/futures-rise-oil-drops-bond-selling-slows-meta-tumbles-and-microsoft-soars",
+      "fecha": "2026-07-30T12:13:26+00:00",
+      "imagen": "https://assets.zerohedge.com/s3fs-public/styles/16_9_max_700/public/2026-07/trader%20looking%201_0.jpg?itok=6mBqCdGW",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus delivers first NH90 designed for special operations to France",
+      "medio": "EDR Magazine - European Defence Review",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQT0FJZUo3cndhSldBNngtY1Jwd1l5N25RUklBWjVrSE96V3NLT2pHRVFrSVV0T0hNQXRmWW91X3ZyS1Qtc0hnaWVLV1FXV2VFUmkwV3kzY2pEbjdjRExqaG51dXc4M1NwaHJzOWUxQjJ5aVQ1V19NNC1rZ0ZIaVMtOFFVSWR0VEdtellPdkYybE8ySHVoc2YwbnRHcw?oc=5",
+      "fecha": "2026-07-30T07:00:00+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La 'guerra' sindical en Airbus se recrudece: Acusaciones de 'vendidos' a sus directivos y derrota para CCOO",
+      "medio": "El Cierre Digital",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQmRtcVFsNndoaE5NVUdyaUZrcE9lZm1vdlhQYVhSVlR6c25BR3laR3hpeFY4bHJHX0pvUjJGZjJXa2dsYzdST1FvbkxEd3MtamJFeE9tR1ItTUI0LTNhMGpIanBOSEhtbS1ycjlBLUNEdEhHbHlsb0xicE5zNE9ySi0wMjU4OU9Sc0FMbXU4SWpQQmdXaHJXR2Z2M2xERkVuanRscF9jc3dxZlZSTW9zLTZ0RjRjM3Bp?oc=5",
+      "fecha": "2026-07-29T23:00:03+00:00",
+      "imagen": "https://d9cn1w0bue18l.cloudfront.net/articulos/articulos-56965.jpg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "La 'guerra' sindical en Airbus se recrudece: Acusaciones de 'vendidos' a sus directivos y derrota para CCOO",
+      "medio": "elcierredigital.com",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNSEZiY2U4OUM3R1M5MXJFNnVwZ3M1bUg5VUg3cm9aeEhvOFJid0toZ3VaTk82VnNRV3I1M1g2WHRuWHJHRWNSc1gzX1RnZzdSbHFDaFhKdkRoZmd4V0I0aWkwcnhDUTMtcG5MdUlYVFp3azBEcVFfVEhhR3dUMHQ5MWNmalV5MlNzRllab0djVkE1VnFPNXdFcDZiLTJWRzlUNXl1MEQ0TVh0eGFEYWRRWW1DclVCczlkYnYwTXo3TFJKWGh4LXhKSHNtclJmN2pzblIwbGpWWGY?oc=5",
+      "fecha": "2026-07-29T23:00:03+00:00",
+      "imagen": "/web/assets/img/cierre-digital/og-image.png",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "A Seville plant had already torn down half its hangars for the A400M, then NATO revived the program everyone had buried",
+      "medio": "Vozpopuli",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQb0dlRXhnVlYtQURhZ1VXTHltZmtGWG82eVpOYVdibEVucDRYenFYWllFWVhsS19GcHh2VmJjb1JodFZWV0tPcU1RSzlrNFRxZTllM3JUYVZ6VmVvWTJTV3BJbHM2SmMxSlNSdEowT1NKbVBUY2xjdHZjVjk5U3YzUzVyOGM1RHRRUGhGZnBpaFNuUl9NampRQ3kxeWVqakxBSHNwRkU4bWdyanJjRlk0V2UzbTg0TVZITExRSVo0OEhMOXFkRloyTGEtLWZ0dC12RFlNZ1FjOWppX1NNSllTaTdjblUtNzdaYl81TnFNY08?oc=5",
+      "fecha": "2026-07-29T07:00:00+00:00",
+      "imagen": "https://www.vozpopuli.com/indux/en/wp-content/uploads/2026/07/airbus-a400m-seville-final-assembly-line-nato-shared-fleet.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "237 Flugzeuge in drei Monaten: Airbus stellt neuen Auslieferungsrekord auf",
+      "medio": "FAZ",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxORk5aRnpySXZhamNKVmtEOHhmYW5wYklCbm1IcVhKOVFPbnVjRFBfMWNlQVhnOWF2bGo3OWEwaVlKVlFMS0VvLU5RQ0VablJEZ0tCZF9KMHdQbWp2Mm9KWkxBVFhNZmdwSG1lLUYtRUE0VW5rQlIxcE5WUDdVZTBaMmJ4ZGg1UTJ2OHFJNWtsLWtKaGJEVTUxTmJHNlBVSzRycm5pWUo2eG96VkNobWRfVURuYlZXZWpKbnhKSmVaX281LUd5ZWEtVUdEb2llUnFyb1RPVzdR?oc=5",
+      "fecha": "2026-07-29T07:00:00+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus profits surge as jet deliveries rise",
+      "medio": "Financial Times",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNaDlrSWZDLUhvSm9la2t6c01uTW5JbVNEcDZOSVZWa21uRmVIMkUya3VWcl9zQTRUN1RRcXFFNllQa1Q1WEpuLWJfdDMxVkFscURCYzZjRkNSdlhnTC1IZThWQlA2bkhvY0h3ZjRCLXExaTNNTXcyZmFQWFJPTkFwdGpsQkQ?oc=5",
+      "fecha": "2026-07-29T07:00:00+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La plantilla de Airbus vuelve hoy al trabajo tras rechazar el preacuerdo con la empresa",
+      "medio": "Fly News",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQdmRaSktpaGRiT0pOR0dpUU9ZZk5mNHFqME15U0VJekVNbl92eUh0bmlPRlF2WnQ0bU0tZVNrbk1SbmpPeXpReXN4bldvOHpZaWtjZy1xZzVHZlY0eTRnc3QyVUhHT29LdEJMdlpLbFZ1bHU2N2VfTW94ZmdkVzluQnNNX21zZw?oc=5",
+      "fecha": "2026-07-28T21:42:46+00:00",
+      "imagen": "https://fly-news.es/wp-content/uploads/Airbus-DS-Getafe.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus A350 jet flies 24 hours nonstop from Australia to France",
+      "medio": "Aaj English TV",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQd2EzTjBqck9OaE40S3A3UzZlWFN1YlVKWVdQM3dfeHYxZW5Jc3k0ZmtTc3hZUEF3ZzdXcjlJc3pCa3FWcTJDdDAzVXFNYldaNnhPMHB2Zk5VVHVyU3FtV1J4VVZhcFZreWtEelVyMjgxUW9WZ2VEM0V4OHJ2MlhvYjdraG5RQVhjMk42bHlqX1JldW54NzhSb1ZGWjJnTDJKbHhZ?oc=5",
+      "fecha": "2026-07-28T15:38:18+00:00",
+      "imagen": "https://i.aaj.tv/large/2026/07/28203811c613544.webp",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus-Belegschaft in Spanien lehnt Vorvereinbarung knapp ab – Streik vorerst beendet",
+      "medio": "airliners.de",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOekZVcnQ1anF5aVVnaDZoSWhGeWZ1dVpPX0swTG5kSGpINE1haDE3SVVzVFJYQmNrNzVrd0hZMExXdVc3UG5YZVBGeHluWU9GZkxabUtDQVRZZ1k3T3k3RUd6c21nakJUd2l4bUUyeldtXy1ZbzM4UXhOVE5JOE1FOG1KcF9VdVU0TW85SW50Z19rV0pLS3QzWWc2WlZyYWhPNDRyeHRwc2J2elZr?oc=5",
+      "fecha": "2026-07-28T13:24:31+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Plantas de Airbus en España vuelven a operar mientras sindicatos debaten nuevas huelgas",
+      "medio": "Aviacionline",
+      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPMXFMTi1TXzVETWNYYXhMeVk1bVRONF9YTDRwSi1PWWc1eERWMHUxWjhvX2xjYXNSWWxxRUZqTUxHU3p0RkY3amJMUy1ra3l0MndlV2tpdHRRcGpKLU54UU16QVoxQTd5dW94YnpnY0ZTRXhUdXNIeElETnRGaTdtM051UmJheFZKd09qN0xNamVxbkxqZGFpeHNNSkFkRGpBTUpmWjdteklBVlFfVnVhTTNuWkFsNnVQd3ZLTUF0NGVRaXIxeFNfVWhlempmaHppTm41ZS15R1hjcGxNdDhaUVA5TGg4RktodnIzcjgyeW0tdmozdHBrU1ZR?oc=5",
+      "fecha": "2026-07-28T12:14:45+00:00",
+      "imagen": "https://flex-app.tadevel-cdn.com/hostname/www.aviacionline.com/api/v1/image/article/6a689a956fc1b3ffc1fcca2c/facebook?v=98063ef498d611273000a5b875f1161f&s=63077294f0fa978d2dcfc65f05c765b0",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La huelga de Airbus amenaza el A400M: siete aliados de la OTAN acaban de apostar por el avión de Sevilla",
+      "medio": "Escudo Digital",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOSnd5cHhMd0p0emZjS3JROE5uaUk5T2FvUlBuQTMzdEhOMHdVN2FZellWbkxqNlV6WTl6aFhnSTdEdEV4MmNtRk9ad3l3cHE4bTVPN1k3SXNlNGs1MXJnbFBXOU9TalZPY3g5d014emVobTdsOTQyWEZqX1VVM21KRTJBMmRDVUgzRlNmcElCWVZmMUY2VlhDWWF0dll3dzJsSFV0MTFNRHZ0cElOYVRNdGotT2hTR2Nvdkdod3RJVWpsaFNwRjdDaVdocEZkc1hrUy11czI0SVQzOThiS2V2Qg?oc=5",
+      "fecha": "2026-07-28T05:10:02+00:00",
+      "imagen": "https://d3fkdmlbzjtjd3.cloudfront.net/articulos/articulos-85702.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Key Events This Busy Week: FOMC, PCE, GDP, War On/War Off... And Earnings Galore",
+      "medio": "zerohedge.com",
+      "url": "https://www.zerohedge.com/markets/key-events-busy-week-fomc-pce-gdp-war-onwar-and-earnings-galore",
+      "fecha": "2026-07-27T14:35:00+00:00",
+      "imagen": "https://assets.zerohedge.com/s3fs-public/styles/16_9_max_700/public/2026-07/data%20week%20ahead%20bac%20teaser.jpg?h=dddd8a2d&amp;itok=OQfSbgjc",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La plantilla de Airbus regresa al trabajo con la mirada puesta en una fecha clave: el 24 de agosto",
+      "medio": "Economía Digital",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNRER4bEg3VGZsYUhXWmxQSGZQZ05SV0IyTTdiX081c21QQnJpajRWcm5wLXhnM1Myc1RvaFkxTU9SR0tKYUhpd0liS3l1ZEhXTlgxdEVMenpHdDNENDFUWHZvZ3N4YnE0ZXVBek93S0VDTThTN1pLUkhvZ2NvVVhVbDhUUVNtRUJDeDJBNDZwT2sxSkhCS2hONWt1VVpUMU5XMVpWb0RsRmFvdExtazlPandzZ9IBuAFBVV95cUxOZmdtTnBPRkpoNDU4aUVHLWhUR0Zha2RnNHVQbnRfcnhzaTBiY010RW9jV2E1cElGUGZhM2lhdjFTOG5IVXdKbk1wM2NSRGYzSjliQm5fR3g5bUhMeS1zQW51OUhHaXZDci1qZk05akc5NTN5alpsVTE2V2YxUnduZzRabVlYeUdZM1BWV20zR1htek04UjI2UjBZTjhMZXZPbVJoUFFJNjlRNXJNM2hWWHpmREpVU2h0?oc=5",
+      "fecha": "2026-07-27T13:00:00+00:00",
+      "imagen": "https://www.economiadigital.es/wp-content/uploads/2026/07/huelga-airbus-ccoo.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La huelga en Airbus se levanta a pesar del rechazo del preacuerdo",
+      "medio": "Avion Revue",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOem5DTWVWcWRtQVVEd2RTaXFYc1dZVkoyWXVDUWdTcU1iYlRjZlZUM0kzWUtnRGtQNEtfZHdzckN2QWJtMUpKNVN2OFQ4dTFObE8zOGxDOXFHQkJhUU1UTkNUVGI2ejczWUlNR3VqaTlMSHI2QXBRaTlMWjFEYTlxekdRUlI5OEx6Z0J3YndmZWlPSHh3WmMzMHRLRjNjbmlQNF9uUjd3?oc=5",
+      "fecha": "2026-07-27T10:51:14+00:00",
+      "imagen": "https://www.avionrevue.com/wp-content/uploads/Airbus.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Los trabajadores de Airbus vuelven al trabajo mientras los sindicatos deciden si continúan con la huelga",
+      "medio": "El Español",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPT216MUFMOGFTLVRjdDRjVDlKcHpKMXYyYnYxQ3NoTFZ2T0ZYYUMwdlJfLTQweXhyeHQtZFBHQnpvdmJrSDhvZ1NzREwyZXhlNFk5NXZxSG4teEQtUXZGSGhkdUZYZ0xwb0psRmxPaC1SRjBIQ3B0WHVoTWxCZkJzWU96ekJKY2F0UzN0MkNDMkFZNkZyU004Yk1XbE1kT3VicktsZHE2T0lYZk5JYmNEb0haWTdvTFIzUDNGMGlRbUNKdUNrblprSG02Y0txSlNtcXfSAdcBQVVfeXFMUFRmTW1nb0JyNDlMczJjekN6Z09XWjdUOVBpck1YaWFwY01oeTFxVzRBdzVrZmpMU3lScVpUeHlSbl84eENBSGsxUFE5MTJIRHVmUFNVYzByd2MxeXZ0OVR3NEFFS3VVOXNXSmZGWFJqVDR1Y01XLUNpZmF1bGQ3Z1drNEFrb3Q3YnhEamU3bUtHa1BMR3hwMHVQVjNWZUxtMUVrMkFObFdlX2czc0Q1SG1pRjYxR2xnbl8xaHhRMnJpMFk1WmFEZ3Jid2NEeW5XZnZveGhSZHc?oc=5",
+      "fecha": "2026-07-27T10:12:36+00:00",
+      "imagen": "https://s3.elespanol.com/k/imgp/cms/elespanol/11297683.jpg?p=f:jpeg/w:1706/h:960&h=dFvTtaPz",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Incertidumbre en Airbus tras el no de los trabajadores al preacuerdo y por la desconvocatoria de la huelga",
+      "medio": "Cadena SER",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxORm9mOVoydGdqel9TQ1BwX3NvSjkySjFFS0M1ZTg3YTNPUlYyWldWNHdvZVR4bFMwc3J2ek5aNVZpUFpJX19BLUsySDdxTmRQVDhwVGFNRHZMYmpqR1U0T3U1NkJNZDZCbFR4TFA3Z3ZmVTQtWXZvY0R1MkxRTmpnQVNYaUcyOUV3QlZ3Ylc1X1J2bHhmOFNUbS1PaUVpM1RYWlZNWDV1cG5ib2NpeDZ0UXFDbmhFa055VEYxYTBVRnF5bHNFcGJpZkY3Q0o5THhPLUFxSEliVnhfa3RNejN2Y1Q0V0pEQk85a1hLRFNTbmvSAYQCQVVfeXFMTVpxV0RoYUc2NFRLYWpyRzVKVGlVVmtYWGJaVTk2b01lbXdnWUNuYlFTT0k2MG9kNlNGS2dlYWpFRFRYTDhZRjRScmZsbGFITzFPQ1IwY2FmNzZKMHlCNHNLRmxRWEZTTTdwdDlDNXdYTHRhR2tJNzNJUUljUzlRMTRxcUY5d0lqRzdMWmdFQVZZY09qWURfTXBwMGEzZWR4aFFHb2VndkdQaTJOaVE2cFliOGJ3elV4MXoxRXZ1ZHFqRHZMbno0UW05dEdwT09VRzZDWkpaS19ib0RaVy1Fc2h3SndrTFd3dE1IeTV3elpmQU1WNHlVOFdwVy1ONWZZN2ozaEI?oc=5",
+      "fecha": "2026-07-27T08:53:56+00:00",
+      "imagen": "https://cadenaser.com/resizer/v2/J73GSEI2EFKR7NB2KGULOE3KAI.jpg?auth=7887c493aee8f09ad2f14b1901bd3f22ffe065422d1c30a62f13d9d4590479cd&amp;quality=70&amp;width=1200&amp;height=675&amp;smart=true",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Rebelión contra la vinculación entre absentismo y bajas laborales",
+      "medio": "Diario de León",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNU0JGSGJoRjdVb0hGbTc5b1I3Q2lKRkhBcUJJVmFuQWw3UzFpQkd1N1BaV3dlblptc2NtTEhpcFhkeW1kZHFtS1prRzVhTjRvejBHMG40VEZLeDNpSHFQcENxekYyaTB1aW41cVFRN19TcWthSUV1MWtBSjdfM2RIM2gxbXVHZDM1MU5ZT2dwbTJqbXF3ZDR3NXBKWjJKMlF0dFlCbE9QMNIBrAFBVV95cUxNRGtMOXBQUmJueUp5M0JaTGU0eFNZMl82MmhVaXlwckpoMTVxVXQxWWROMk5wQ3Jsd0dZVldqQzV4VVBPeE9iYnh5YnVHS194UXlpS012Z054QmhUSm9MWExpNEtQdVVNM0RGazdTRFktT01PZWwtejZPOHgyMS1kSXh5NVYwM3B5X0JqejByVFBELU5yY3ZaMTNwS2lvTWpuVVJEby0tVHdKd3dT?oc=5",
+      "fecha": "2026-07-27T04:00:00+00:00",
+      "imagen": "https://imagenes.diariodeleon.es/files/og_thumbnail/uploads/2026/07/26/6a65f43f7340e.jpeg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus: El REFERENFRAUDE no ha podido borrar veinticuatro días de huelga",
+      "medio": "Izquierda diario.es",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNd2llY0V1LUhmUERTb1R0RFo5YXRkT1VoWmxDdkhIRkR5YkVCb0FWU3JvMldrQVRKYmhjRVFaTm5LbFE2bENQeE9SUmNyWjVsalJSUi16dTNjaTAySktYYS1HVl9BcTBaalJkMWktMmtZRS1lWTZCaTl4ME12bFJxMHNBc0piR0ZFZV96UVdvcFdwUUkyMFhfd3lMZHVvTTdJYlJCQtIBrAFBVV95cUxNdENpMmlEeUFFMmdnZzVUNFBDdW1yN0taby1fOWRNQ3ZWZ3Ayb0JmUk1PRFFPN090X2Z1aVkwMENlMER6QmQ0bVVWQWp4cF8tOWY2LVZuV0NiRTBJajVpaUVIMzlwTEg0RmhaTllNeTZzSGFWRjFseVZhYTR0S29kR19fZGJXc2lkVDVJOWs4YTFvMzg2Z09GZmdURDAtUHhueUhISjdDdUs4QW00?oc=5",
+      "fecha": "2026-07-26T09:15:07+00:00",
+      "imagen": "https://www.izquierdadiario.es/IMG/logo/airbus_casa.jpg?1785071587",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "La plantilla rechaza el preacuerdo en Airbus que afecta a Albacete e Illescas",
+      "medio": "PressReader",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1zcXJiR0VNR0lBeWRWMmtIc3QxSTdPSkxmU2NpdDdJT01paHpLZGhQalRGV2F4S20yQnhvY09qUWI0N3VLN2xscjJCRDNidDNQTE9BNVhKLVBCQ0hDdUdEQ3E1S1ZnZjdZUEdqQXJPeUR4SGtXb2xiZg?oc=5",
+      "fecha": "2026-07-26T08:57:55+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "\"Ce ne sont pas des citernes Castorama\" : pourquoi un seul A400M peut être déployé sur les incendies",
+      "medio": "Actu.fr",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNeEZFUmdmTWd1bFhvR3M5b0RmQm5HVEcwVkZYOHdGU2w2cEFCU2F4RXJ3X0pXMzZuSUoxcXBuOGk4cHZRbHhqdkFoeURLeER4bWVkRS1BWlQ3UXlLakMyUGlHVDI1aVJoWUg3YWdVMnlidUFRSXNJTGRRd1IyZFB0bW8xaGJ6aFpsYmpPeTNTR0hHSzFGNk82aExsekxTcXpPS0xvQ21WcW9tZzh1akZrNkl3Nk1rSDRkT0FMbnlHTWJ2Mjd2aXRhcUZ5SGtTWjB6NVNMbkc3TTZMMko4eXdSeFRpZDhQUQ?oc=5",
+      "fecha": "2026-07-26T07:00:00+00:00",
+      "imagen": "https://static.actu.fr/uploads/2026/07/airbus-remplissage-a400m-2.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Personal & Karriere - Schnieder-Abgang, KI-Pläne der Flugsicherung, Airbus-Tarifstreit in Spanien",
+      "medio": "airliners.de",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNWF9FVHNPMTNuajM4WkpIY0t3Rm1LZThJNXFjR1B4MzVUNmFWbHlKRXBOc3NuYWJNMmhfbkM0ZlJxc2lWTzZheFA1MDQwNVB1aXNpVGxXcmtyM1Z5MFl1VURkWHRoeHBFSTRUbWQ0cjdnMDgxTjJyWWJaUWlhU3FSVXo5ZG93OFd2ZDBwaGE5WkNTZDdxM0dBMURpTlo2RkFvWVNhMVRheThXT1BqZ0p5VVNJUFdFNU0?oc=5",
+      "fecha": "2026-07-26T05:00:00+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La plantilla de Airbus rechaza el preacuerdo del convenio que afecta a la plantas de Albacete e Illescas",
+      "medio": "ABC",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNc3Q3QjJVbGhiLV91REJ6SlVXd0lLaEMwWG8wSU5CamVYbzNfUjR4R0pwVFdzZ0J0WGh0OFp4V3QwdGlwSER6UW52ZXFQRnQ5U1dnbGtUNEJVOTBnN1JoeGZBdmY5bjUyQnJXanRicFU4eUhKc0ZKM3I2d1hSYlN2X2VpWDljUndFdkNsVXdfY3plblE5c1FqRUl6QV9UUERLaUk0bUxZRmt1dVdrYUlZQjRuTGdNbWdzVDdWZVdkZW9YQ01XNHFGS0Jwd1d0Q2ZhTGZ2cl9qVUJFUQ?oc=5",
+      "fecha": "2026-07-25T16:19:15+00:00",
+      "imagen": "https://s1.abcstatics.com/abc/www/multimedia/espana/2026/07/25/50423274-U87066632827rub-1200x630@diario_abc.jpg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Los trabajadores de Airbus rechazan el preacuerdo pese al apoyo de los sindicatos: este lunes retomarán el trabajo",
+      "medio": "El Correo de Andalucía",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbkJ5cnJmeHNHOV9lU3NTTlB4bjdJN0hLeTAxZkxIMml0ZzZCVnJaaXVxUmNqZFFZMnpQc1FaUUJyRHh3R01OVzVkU2VMdFpUMUF2RkVwbHhhcjZ4LUR0N1NhZzFUOG5yT3NSZTIwdmVUNTR3Qjc0blhzZjIzSlFaWmVHaVgtZkF5bWJEeUUyalZPQjBCRXFaOC1zYTBETXlwNUtkOFd1SXTSAa4BQVVfeXFMTTFXRFdPSUxtTl9rNHY1LVl3ZURDZ2Y2b0g1TkJDc2F4WWhtTGk3Y1JRX3lnUG9Gd3JQTDZjQm1aUVpFZkZGWGJSZmNkcmU1dG1OMGxhTTBzRlBMc0tHbkNLVmtTY2tRa3l0UkN4dXZwT0hRX1BmVG13WEl0U3dpRURodVowV1RWcFJEOF83aXBEMHpJUEIzaTRxeTU3OXVQRWM1OTViOENnZWsxOXdB?oc=5",
+      "fecha": "2026-07-25T14:18:01+00:00",
+      "imagen": "https://estaticos-cdn.prensaiberica.es/clip/429e375e-e422-40da-931d-14f4892063d9_16-9-discover-aspect-ratio_default_0_x731y325.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Los trabajadores de Airbus rechazan el preacuerdo pese al apoyo de los sindicatos: este lunes retomarán el trabajo",
+      "medio": "elcorreoweb.es",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbkJ5cnJmeHNHOV9lU3NTTlB4bjdJN0hLeTAxZkxIMml0ZzZCVnJaaXVxUmNqZFFZMnpQc1FaUUJyRHh3R01OVzVkU2VMdFpUMUF2RkVwbHhhcjZ4LUR0N1NhZzFUOG5yT3NSZTIwdmVUNTR3Qjc0blhzZjIzSlFaWmVHaVgtZkF5bWJEeUUyalZPQjBCRXFaOC1zYTBETXlwNUtkOFd1SXQ?oc=5",
+      "fecha": "2026-07-25T14:18:01+00:00",
+      "imagen": "https://estaticos-cdn.prensaiberica.es/clip/429e375e-e422-40da-931d-14f4892063d9_16-9-discover-aspect-ratio_default_0_x731y325.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La plantilla de Airbus rechaza el preacuerdo salarial en referéndum",
+      "medio": "CLM24",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNTXdTd0FQbUhMSHBRTnZvRFJjZHN2RzI2QVF1b3NBU016SGpXSXdXUFI3b1YtYkNMYmlPcVlsZjJ3bHl4aGM1NC1iSEZ6OEpZbW9kNVg1MGxFNVFwMmtfWXprSjdoN1JYVm9wMFI0U0xQNFdBS1VBN3lNNFp6anV3T3RiLTcwNUVqUGtZVGFxNTU3MHN5Yi14VlFUU0hfLU9GWkNsUXh0T1JMVVdjZlpfclgwMldaWGgwM1ZPbtIBwgFBVV95cUxQNzY1ck1wQkxJR28wbmgyMDI0OThkQ0wyejlNQ3lHWmdIWlhTdFdydktrYnNRbTVPNkoyZnpEM1lMaVU3eUlKVGE5eHU4ZHpwSGNKeWU5LWZrcnM0X1dEWDdmM1YzRlkwVmhVb0NKSG1qTHBXZHMtaWJiSkN3Wm9FRHlzNGx6Z1VyT1MyMmZvNzBjejU0elg2dkRvZlBiUVN0STQyQ21iRjU5a3FsQ1AwVXp4Sk9HRnViQzBMdnA0NzZadw?oc=5",
+      "fecha": "2026-07-25T10:10:02+00:00",
+      "imagen": "https://www.clm24.es/media/clm24/images/2026/03/24/2026032413164485188.jpg",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Los trabajadores de Airbus votan en contra del acuerdo con la empresa de revisión salarial y teletrabajo",
+      "medio": "Cinco Días",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOTDg3SmlJYWpuQUJjaVdjMDlpblpTa09jT0JDSzE0LTJxTU5wODA1SEN6UWQ2WWl3b1Z0b3JCVS1jUnVzZkFnV0JpdGtacHFaQ2RsN1NDa19xUUNHNzZZd0NFalhJeWZOeEtNbVpvWW9TVTdDM3FwR252SUpjNDJuTmE2SGFRZEFwQ1lwbnZMbjJaeHhEVDQ2V0tLZkRyUnZrOWZuZUVzWmJrbVBxbHRKM3ZWVnlrLVdyclNqQklNaGxVanJqdlE0Sm9WSzVJTHFDaUJiYVFiMjBYVnVKTGlNeE5Iczc2d3ZRNG45cTBFQW_SAYQCQVVfeXFMTXRWVGFTT3k3NXV6UUNaTE9kMmFvb0NfYlBIM2w1RU1ldXJlYXZmNHlFWVl4RXRuQkFQa0h2UnRwWHVVdmV2RVdGV09fV1lfZ2RUYkRjclJmV2hLMW01dmhXNE5NUk16UWJVUG1nc3dla2cxaUFMVjlrVHlGWDdKRU54ZXdOUExVZ2VSQVJWQmZGSGQ4bXVfX0hQbmFhYmVCdGJBYllueHF6eVdNUTBZX3JGakZRX210elpSaGluSDhIVUNwTXQzbDVkakFWOGpvS0stQXV1NGJsR3F2Q05rdWVvRUZwa3dXQ1lKVE9PZ05HUjJQUW5KV0dtbUFRV2ZQZlRkWG4?oc=5",
+      "fecha": "2026-07-25T10:08:34+00:00",
+      "imagen": "https://imagenes.elpais.com/resizer/v2/VIH3FRF6XJOJHDPYN6RZAM7DKU.jpg?auth=a1190eae070df6bc350c8220e764f7e342333de9717f8341cd734916fee13ad8&amp;width=1200",
+      "sent": "negativo"
+    },
+    {
+      "titulo": "La plantilla de Airbus rechaza el preacuerdo entre dirección y sindicatos",
+      "medio": "Expansión",
+      "url": "https://www.expansion.com/empresas/transporte/2026/07/25/6a647ce3e5fdea3b6e8b4590.html",
+      "fecha": "2026-07-25T09:18:32+00:00",
+      "imagen": "https://e01-phantom-expansion.uecdn.es/61ccd749f6bf129570fe567ab2a457b3/crop/70x43/2021x1343/resize/1200/f/webp/assets/multimedia/imagenes/2026/07/25/17849709471400.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La plantilla de Airbus da la espalda a los sindicatos y tumba el preacuerdo del convenio",
+      "medio": "El Economista",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNSHdCWVNSbGpnU0tVTkdDTE56WjNjV3E0MHpqcHk0SDhDRVVlZHFCSndyOVFDZnBpVFgwNzNNNk00MzhsOFg3NkstT2NSUU96Q2dEQU9jUHF4Yk9aTWpUMHZNQjU2VzROal95ZnkzTzdtVW5wTGJ2NkJGRFdqWElSRF9yVmRZejliMW5MbWx5WUFBU3BoXzAyWkZVSEVSRDR0bTNxb1E4RTl6dW9HMnpQWC1qY29PNi03ejJTRnBrX01VbVRVSGdrNjFGVlVrYUhwdjBORzRGa1R2NkZ1NXBfNGJxMGtNamE4OFdldTItMV9yYWhKaTN5dNIB4wFBVV95cUxQSk9qYWNGYlBxSGc3a2Qza3ZCNGNkRm0xUGNaRUNGY1FvQmNrRHJqNWc5Zk9OcmdEa1ZJWmlVZEg0X3pmd1JiTy1sSW9aczQzVmhyUHFEOGE0dG9lQ1dFZWNHU0ZoMmlBcWNuMkpqbkZKNzNZM1lscW12ZUlHc3M1eTRCMlNUSlFwcS0wRS1BNnl3Zks4b2xzc2Y0NVZMVVZnUXpNMWxjT0wxLTlWQmhOWGtsb01BclpGYUtPS1F5LVRJUEg3N3JwRXdwUC1jdUdFT0pXUGg0X3dRb2ZmUHpKNGd0UQ?oc=5",
+      "fecha": "2026-07-25T08:55:54+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "La huelga de Airbus se levanta pese al rechazo al preacuerdo de la plantilla",
+      "medio": "ABC",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQbVpoeHB0OHJzTXdoOHFYTTJ3ajI4NEtqTGc1MjExZ2MzdEJMenpKeGQ1N25mUWl2RUs5QkZPUS1aMGRLNTNRTXhBZzRxTmMzNFNJYmpSdDBEVE5iRS1JX3l3SjdRV2cta2E3dEVybGp4SHUzS0RRWnhaUTducldDRENJYTk2RXd4SF9PZE9GblZUR0k0WnB1NExiMllMcVdPN28tMTRXT3hHaElMcTB4c1AtUUtId9IBuwFBVV95cUxNSVZpa1NRZ1p0dDd4YjRzd1cxeWZpVnpGMk9ZOWdQQ2FPcW5RY2xJR1RJUkJjb2h1dU1qVHJzbW1BWURhSUpReVpqS3VZa0xldVhIZzFPUGNVYTVRejV2VnBpdFhnNzF5QVpfcmhWNmYyWHJLTURfRHM0WHRVU1QzeW55UktRYnlBZGMycEhoUlZvSGdhLUdfdzVEYzJSV2k0WmJScFhYemROeEQ3LUxEVU9URFdxREZWYVJN?oc=5",
+      "fecha": "2026-07-25T08:21:00+00:00",
+      "imagen": "https://s1.abcstatics.com/abc/www/multimedia/sevilla/2026/07/24/1515140928-U84504522774Xtr-1200x630@diario_abc.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Airbus: la plantilla dice no al preacuerdo en el referéndum y el sindicato convocante de la huelga la retira",
+      "medio": "Industry Talks",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPTXNxZElrQnpMb0lNcklqakhfWjlYWC1KaGJvVkRKYllEOU4tU2phc1NQd0ZraDJBU21JdU91LVhPNEdiWjliMEYwMy1fbVhIV0hSUEs2dFVjYnBPclFXVE1ZYTBUamtyRlFTWDJNcU1QazFNRU9GVjM4WmtBeDdZTmdXbzktTGlUV1NWSzczT0gtQnpxb3hwLUVudkVqM0RBN29FUnMxYWt5VWFCcTZVM2htYXV4UXpDZUF1a0tTT1Nfcms1aC1ZQzhKR0xZdw?oc=5",
+      "fecha": "2026-07-25T07:55:32+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Llega el nuevo helicóptero al Ejército tras finalizar el convenio más significativo de la historia del país",
+      "medio": "El Cronista",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQYWRkUFpVSW1MVy1OQkZ3TDJZVnRZTzRKSDItUTRFT1hkU0M1SUFPbVAtWTBfN0pXZ2Q4a2pIa0RpT2l3RDAtOVdGS1M4c0pHUVMySDFDVmxtWVl3czM2MFhIQWdJRS0xaFZaYk8xTTFTLWdKeTJkS2dybzM1RDNOeHBqdlB2czNDVkxwOUs5OFVMeG05dElBQm92ZENZblY3Q3ljc3J2RkFUQlBXVTliOVJ6V1FHR1UyVGtPZnJqMkRLRjE2TGlkQzNKYTBCT0xfRDU3b1NwbDlIMktCY1hDdlA4RmpYeWlBSlU0SXkyONIBigJBVV95cUxPZmNxVWtEazUzclBNYUlsM0tZQ05sWC1xWkUxLVJ0cUFZMXlTSExJMlBPSEppTlJHcUlvQTVTUkIyVkhnbU1adWJCX1RZbHBkUG43bHU0NGFhbDFtZXhYZ2F4SlBCb2o5Rk9fWmQ1QzJkQlFMT2hadWlaRHNsaVNDWW5BYmpSSFRUZm50Um8zcHNtOFM1LTQ1TzNpemxrV2VqOU5tR1hpd3ZmM01oODZIT0cxNnhyQjRCZHBRdG95RFo1c015NEdZbG5nUXVDeV8zbVdGM3JVNE5ROEVkSnVOVlVraEJyTDBoTzZNTGN1SUktY0dFTnllelBJODd0VVhoQUFidnJJbGN4QQ?oc=5",
+      "fecha": "2026-07-25T07:00:00+00:00",
+      "imagen": "https://www.cronista.com/resizer/v2/4XAZGM7PE5AS5JZRQTBPONKSVE.jpg?auth=0284f8743b4f41a51a290508fd2092a672d17caaa777b28e0d19e9e191f20f54&amp;height=630&amp;width=1200&amp;quality=70&amp;smart=true",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "\"Une capacité de frappe très importante\" : le redoutable avion militaire A400M déployé en Gironde contre les incendies",
+      "medio": "TF1 Info",
+      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQSzVKdW9Tb0N3eThuOERMczdlZU94QnBiSzRzMnV5MzlWN0JoaXJDNDhURldhUmMya3hmdzhGc2I0bXF4bHlRUDVyX01aWGlmTkpVQnY2bEdSUWZPUFhwQWFvSjh5dTV2ZU9GOFJFQzVJR21wbHJFbWNVMkd3cmZlbjFPRjAtSGVVejhLQjN0Vk9BMkpwaDl2VkNoN2ZqZHhjbkdJTGFyUFZLVXdqMjExMzlHdWtBeWs0bnRtdUVFdi1ib182NkYtbnVWVDVkT01WVVBzdUxrcWo2b0I5UnpnaTR5OHUtLUxyMkMyYkdVQ2U4YlZBZnc?oc=5",
+      "fecha": "2026-07-25T07:00:00+00:00",
+      "imagen": "https://photos.tf1info.fr/images/1280/720/airbus-a400m-incendies-espagne-21-juillet-2022-9f0b37-0@1x.jpeg?overlayImage=bG9nby10ZjFpbmZvLWRlZmF1bHQucG5n&amp;overlayWidth=18&amp;overlayGravity=northwest&amp;s=78c802",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Großauftrag für Airbus in Bremen? Luftwaffe könnte neue A400M ordern",
+      "medio": "buten un binnen",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOU21SUW9JNDZrNFpZNDlBaUltdGpxZGdOcUhkMWJNeXVlbEt5X013Y3ZsemMtRXk5RTAyd1Vqd3J0TGs1aUdVVGRWOU15Tk0wVDVzc0kzSlBjazlDdzhpd2lHZ0x0c3dCM1ZLMXF4OElSbFd5SHNoZzNoMWt3MDgzVWtaa2duN0gwWkpN?oc=5",
+      "fecha": "2026-07-25T07:00:00+00:00",
+      "imagen": "https://www.butenunbinnen.de/bilder/airbus-luftwaffe-100~_v-1280x720_c-1784916896763.jpg",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Los trabajadores de Airbus votan en contra del acuerdo con la empresa de revisión salarial y teletrabajo",
+      "medio": "cincodias.elpais.com",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOTDg3SmlJYWpuQUJjaVdjMDlpblpTa09jT0JDSzE0LTJxTU5wODA1SEN6UWQ2WWl3b1Z0b3JCVS1jUnVzZkFnV0JpdGtacHFaQ2RsN1NDa19xUUNHNzZZd0NFalhJeWZOeEtNbVpvWW9TVTdDM3FwR252SUpjNDJuTmE2SGFRZEFwQ1lwbnZMbjJaeHhEVDQ2V0tLZkRyUnZrOWZuZUVzWmJrbVBxbHRKM3ZWVnlrLVdyclNqQklNaGxVanJqdlE0Sm9WSzVJTHFDaUJiYVFiMjBYVnVKTGlNeE5Iczc2d3ZRNG45cTBFQW8?oc=5",
+      "fecha": "2026-07-25T07:00:00+00:00",
+      "imagen": null,
+      "sent": "negativo"
+    },
+    {
+      "titulo": "Airbus A400M : l’armée française déploie son avion anti-feu dans le Sud-Ouest avec une capacité de largage inédite",
+      "medio": "RTL Info",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPUXZMQlhFeXZrVWlWdFdlcEpCQWdEdjQ3aWd0VzJlbWlvZm1CX09CNHROWUpOcTBHR1R6SHhrOWZxeGo4d1p0WU9jaFRDQXBiRWZuaGdCY2hlVnRUYVRGMnZiNHBwbjJGNTBjNkpDX1VDcno3enlqN1BuTVB4cXl6MGZJYmdNQWJ5N2tKZ3M1MnUzUG8tVVdfLTJlYXIxLVJRaGZUQjRaRHRNZUlNRGp6Um90emlEeFlHR1ZKaFBTYlBFNkpuUXBKZGw2d19iNmtldU9JYlIxVm9RZw?oc=5",
+      "fecha": "2026-07-25T07:00:00+00:00",
+      "imagen": null,
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Conflicto en Airbus: los trabajadores rechazan el preacuerdo alcanzado entre tres sindicatos y la empresa",
+      "medio": "Infodefensa",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOYVpHdHRsNEVLNEtsUThObUNLSzJ0RC1HNWxtTG1tWTVBalFwaHNBWEdCSjliNE93aGxxX2kya0FaRVc3WWxvTmk4STlaMDJILTlGS1hOOVhQNFc3OG5FcFAwYzNKT1RCYnJSVUdmSmNOT2E1RXV3OHprc3JtQ0xVb2t5a3RBNktfRG9teFNIcGFCN0QwV0FDazlPVllCQ29ORU1POUtjYlYteWV6V3U1SXlzT3JLOXRkS1dZb2J1MHd5RlI4U1dPQWZvYmFYc29WTHFGdUMydm1RbjIwNnZB?oc=5",
+      "fecha": "2026-07-25T02:05:36+00:00",
+      "imagen": "https://www.infodefensa.com/images/showid/7984718",
+      "sent": "neutro"
+    },
+    {
+      "titulo": "Los trabajadores de Airbus España rechazan el acuerdo de CCOO con la empresa",
+      "medio": "El Conciso",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNeUZIVlNlTmtOVlhOXzNrTTYxRUxJNXNJRURaNExsaW5vQmVyc1N0dm16ZUFCVjNNX3p0ZzlpUTVIZWwzeTN4Z3BmZXcyTVViSmhfUEUzQlA5SVZRLVhRb3pPWjVyRkNhZlBnQUVmcWdWZFlPMFlyMU93V1NMWG01cmo4OHpLckRnZjBCeGZOVEtYVXpPYjRCanFyMNIBoAFBVV95cUxPeVFPY0J0YVN6Rk05bUk2OTR1RHVlTnZKcXk0UDYySC1rN2piSVI0cElPMkFnaEdsOEN6bEp2RHBzSDRRVXJWYXNuV2VETWFrTk5qRFY5c3lJWmEtOEVWSGp0NnU2ZmZVYnlRSV9aQ2pJVlBxd0lqYVZiZm1NQmtwYUU2eTFSN0FmREktYnhjc01jeS02ektnTDllWDlzODFE?oc=5",
+      "fecha": "2026-07-24T21:51:32+00:00",
+      "imagen": "https://static.grupojoly.com/clip/da78df47-578f-44d9-9ef1-788bb3925b34_facebook-aspect-ratio_default_0.jpg",
+      "sent": "neutro"
+    }
+  ],
+  "social": {
+    "telegram": 2935,
+    "telegramGrupo": "Grupo 1",
+    "mastodon": 20,
+    "xPosts": 134,
+    "xIdiomas": 4,
+    "xActualizado": "2026-07-28 14:50",
+    "nota": "LinkedIn e Instagram no tienen forma gratuita ni fiable de consultarse de manera automática sin violar sus Términos de Servicio (LinkedIn persigue el scraping de forma activa; Instagram solo expone datos de la propia cuenta de empresa). Se marcan honestamente como no disponibles en vez de rellenarlos con datos poco fiables o inventados. X sí se cubre arriba, pero mediante recopilación manual, no automatizada."
+  }
+}

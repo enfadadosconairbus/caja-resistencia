@@ -1,0 +1,6 @@
+{
+  "nota": "Fechas del arranque de la huelga indefinida. Solo las lee la chapa superior (ChapaHuelga) para calcular su estado —cuenta atrás → mañana → hoy → en curso → en pausa— en el huso del conflicto. El bloque 'Arranque de la huelga' con los horarios por centro se retiró el 27-ago-2026, ya arrancada la huelga. 'pausa': desde esa fecha la huelga sigue vigente pero pausada en todos los centros; para reanudarla, poner pausa a null.",
+  "inicio": "2026-08-24",
+  "pausa": "2026-09-09",
+  "zona": "Europe/Madrid"
+}

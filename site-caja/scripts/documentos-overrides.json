@@ -1,0 +1,94 @@
+{
+  "nota": "Correcciones a mano sobre el índice de documentos del grupo. Las aplican scripts/snapshot-documentos.mjs y scripts/publicar-indice.mjs (el índice de telegra.ph no se toca). Tras editar esto, vuelve a ejecutar el snapshot.",
+  "comoUsarlo": "Para que un documento NO se liste ni se publique, añade su id de mensaje a 'excluir' con el motivo. Para cambiarle el título, añádelo a 'titulos'. Para ADELANTAR uno que el grupo ha publicado en el canal pero aún no ha catalogado en su índice, añádelo a 'anadir'.",
+  "excluir": {
+    "23543": "REIVINDICACIONES - Commentarios AntonioB.docx — el nombre del fichero lleva el nombre de una persona (decisión de Carlos, 09-ago-2026)",
+    "4317": "Acta SIMA (24-06-2026) — retirada de la web todas las actas del SIMA (decisión de Carlos, 27-ago-2026)"
+  },
+  "titulos": {},
+  "avisoAnadir": "'anadir' se salta la regla del 09-ago ('el filtro es el índice del grupo'), así que es la excepción y no la vía normal: lo habitual es esperar a que el Grupo Documentación catalogue el documento y que la tarea diaria lo recoja sola. Cada entrada lleva por qué se adelantó y cuándo se puede quitar. QUITAR la entrada en cuanto el grupo lo catalogue: si no, el documento saldría DOS VECES, una por el adelanto y otra por el índice.",
+  "anadir": {
+    "41309": {
+      "categoria": "datos-economicos-y-salariales",
+      "titulo": "Dossier recuperacion salarial airbus E1 v10",
+      "fichero": "dossier_recuperacion_salarial_airbus_E1_v10.pdf",
+      "formato": "PDF",
+      "fecha": "2026-08-10",
+      "resumen": "Actualización del dossier técnico de recuperación del poder adquisitivo en Airbus España: pérdida acumulada 2020-2025 y propuesta de recuperación, con métricas oficiales del INE, cálculo verificable y comparativa sectorial. Edición E1 v10, agosto de 2026.",
+      "grupoUrl": "https://t.me/c/3710195540/41309",
+      "versiones": 0,
+      "porque": "Publicado en el canal el 10-ago-2026 (mensaje 41309) y aún sin catalogar en el índice de telegra.ph. Se adelanta por decisión expresa de Carlos ese mismo día: la versión vigente del dossier tenía que estar visible ya, y en la portada («El conflicto») ya apuntaba al v10.",
+      "quitarCuando": "el Grupo Documentación catalogue el v10 en su índice"
+    },
+    "sin-msg-consolidar-y-avanzar-o-la-huelga-como-fin": {
+      "categoria": "comunicados-y-convocatorias-de-huelga",
+      "titulo": "Consolidar y avanzar o la huelga como fin",
+      "fichero": "consolidar-y-avanzar-o-la-huelga-como-fin.pdf",
+      "formato": "PDF",
+      "fecha": "2026-08-20",
+      "resumen": "",
+      "grupoUrl": null,
+      "versiones": 0,
+      "pdf": "/docs/consolidar-y-avanzar-o-la-huelga-como-fin.pdf",
+      "meta": "PDF · 149 KB",
+      "porque": "Aprobado en la revisión del Excel entre jul y ago de 2026 y publicado a una sección que el rediseño del 09-ago había retirado: el fichero estaba en /docs pero no se listaba en ninguna parte.",
+      "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)"
+    },
+    "42144": {
+      "categoria": "difusion-y-materiales-de-movilizacion",
+      "titulo": "Guía huelga indefinida desde 24 agosto 2026 en Airbus",
+      "fichero": "guia-huelga-indefinida-desde-24-agosto-2026-en-airbus.pdf",
+      "formato": "PDF",
+      "fecha": "2026-08-19",
+      "resumen": "",
+      "grupoUrl": "https://t.me/c/3710195540/42144",
+      "versiones": 0,
+      "pdf": "/docs/guia-huelga-indefinida-desde-24-agosto-2026-en-airbus.pdf",
+      "meta": "PDF · 82 KB",
+      "porque": "Aprobado en la revisión del Excel entre jul y ago de 2026 y publicado a una sección que el rediseño del 09-ago había retirado: el fichero estaba en /docs pero no se listaba en ninguna parte.",
+      "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)"
+    },
+    "sin-msg-el-engano-del-presupuesto-de-promociones": {
+      "categoria": "datos-economicos-y-salariales",
+      "titulo": "El engaño del presupuesto de promociones",
+      "fichero": "el-engano-del-presupuesto-de-promociones.pdf",
+      "formato": "PDF",
+      "fecha": "2026-08-18",
+      "resumen": "",
+      "grupoUrl": null,
+      "versiones": 0,
+      "pdf": "/docs/el-engano-del-presupuesto-de-promociones.pdf",
+      "meta": "PDF · 950 KB",
+      "porque": "Aprobado en la revisión del Excel entre jul y ago de 2026 y publicado a una sección que el rediseño del 09-ago había retirado: el fichero estaba en /docs pero no se listaba en ninguna parte.",
+      "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)"
+    },
+    "44318": {
+      "categoria": "comunicados-y-convocatorias-de-huelga",
+      "titulo": "Comunicado ÚTIL sobre reunión en SIMA de 25-Ago-2026",
+      "fichero": "4_5796203638925829350.pdf",
+      "formato": "PDF",
+      "fecha": "2026-08-25",
+      "resumen": "",
+      "grupoUrl": "https://t.me/c/3710195540/44318",
+      "versiones": 0,
+      "pdf": "/docs/comunicado-util-sobre-reunion-en-sima-de-25-ago-2026.pdf",
+      "meta": "PDF · 123 KB",
+      "porque": "Aprobado en la revisión del 26-08-2026 y no catalogado en el índice del grupo.",
+      "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)"
+    },
+    "44970": {
+      "categoria": "cartas-abiertas",
+      "titulo": "Enfado, Orgullo e Incertidumbre Carta abierta a los trabajadores",
+      "fichero": "Enfado,_Orgullo_e_Incertidumbre_Carta_abierta_a_los_trabajadores.pdf",
+      "formato": "PDF",
+      "fecha": "2026-08-26",
+      "resumen": "",
+      "grupoUrl": "https://t.me/c/3710195540/44970",
+      "versiones": 0,
+      "pdf": "/docs/enfado-orgullo-e-incertidumbre-carta-abierta-a-los-trabajadores.pdf",
+      "meta": "PDF · 4.0 MB",
+      "porque": "Aprobado en la revisión del 26-08-2026 y no catalogado en el índice del grupo.",
+      "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)"
+    }
+  }
+}

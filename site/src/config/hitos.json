@@ -1,0 +1,1646 @@
+{
+  "nota": "Cronología del conflicto. Validada por Carlos el 10-ago-2026. Cada hito cita el documento que lo sostiene —descargable desde esta misma web— y los medios que lo publicaron. El texto lleva la LECTURA DEL MOVIMIENTO por decisión expresa de Carlos, también en los hitos que nombran a sindicatos, y las traducciones la mantienen: suavizar al traducir sería cambiar la postura por la puerta de atrás.",
+  "eje": {
+    "desde": "2026-06-18",
+    "hasta": "2026-09-25"
+  },
+  "hitos": [
+    {
+      "fecha": "2026-06-18",
+      "tipo": "movilizacion",
+      "titulo": {
+        "es": "Las primeras movilizaciones",
+        "en": "The first mobilisations",
+        "fr": "Les premières mobilisations",
+        "de": "Die ersten Mobilisierungen"
+      },
+      "texto": {
+        "es": "Antes del inicio de la huelga ya hay concentraciones frente al edificio D5 y un pliego de garantías del colectivo de Espacio relativo al proyecto Bromo.",
+        "en": "Before the strike begins there are already gatherings outside building D5 and a guarantees document from the Space collective concerning the Bromo project.",
+        "fr": "Avant le début de la grève, des rassemblements ont déjà lieu devant le bâtiment D5 et il existe un cahier de garanties du collectif Espace relatif au projet Bromo.",
+        "de": "Vor Beginn des Streiks gibt es bereits Kundgebungen vor Gebäude D5 sowie einen Garantiekatalog des Raumfahrt-Kollektivs zum Projekt Bromo."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/pliego-de-garantias-definitivo-trabajadores-de-espacio-2.pdf",
+          "titulo": {
+            "es": "Pliego de Garantías de Espacio",
+            "en": "Space workers' guarantees document",
+            "fr": "Cahier de garanties — salariés Espace",
+            "de": "Garantiekatalog Raumfahrt-Beschäftigte"
+          }
+        },
+        {
+          "pdf": "/docs/panfleto.pdf",
+          "titulo": {
+            "es": "Panfleto de las concentraciones",
+            "en": "Leaflet for the gatherings",
+            "fr": "Tract des rassemblements",
+            "de": "Flugblatt zu den Kundgebungen"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-06-24",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Acta de desacuerdo en el SIMA",
+        "en": "Record of disagreement at SIMA",
+        "fr": "Constat de désaccord au SIMA",
+        "de": "Nichteinigungsprotokoll bei der SIMA"
+      },
+      "texto": {
+        "es": "La mediación previa termina sin acuerdo y se levanta el acta de desacuerdo. Esa mediación concreta finaliza sin acuerdo y se levanta el acta correspondiente.",
+        "en": "The prior mediation ends without agreement and the record of disagreement is drawn up. That particular mediation ends without agreement and the corresponding record is drawn up.",
+        "fr": "La médiation préalable s'achève sans accord et le constat de désaccord est dressé. Cette médiation précise s'achève sans accord et le procès-verbal correspondant est dressé.",
+        "de": "Die vorgeschaltete Schlichtung endet ohne Einigung, und das Nichteinigungsprotokoll wird aufgenommen. Diese konkrete Schlichtung endet ohne Einigung, und das entsprechende Protokoll wird aufgenommen."
+      }
+    },
+    {
+      "fecha": "2026-06-30",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Se registra la convocatoria de huelga",
+        "en": "The strike call is registered",
+        "fr": "Le préavis de grève est déposé",
+        "de": "Der Streikaufruf wird eingetragen"
+      },
+      "texto": {
+        "es": "SIPA registra la convocatoria de huelga contra Airbus Defence and Space, Airbus Operations y Airbus Helicopters España. La convocatoria y los materiales informativos se difunden por los centros antes del inicio de los paros del 1 de julio.",
+        "en": "SIPA registers the strike call against Airbus Defence and Space, Airbus Operations and Airbus Helicopters Spain. The call and the accompanying information materials are circulated around the sites before the stoppages begin on 1 July.",
+        "fr": "SIPA dépose le préavis de grève contre Airbus Defence and Space, Airbus Operations et Airbus Helicopters Espagne. Le préavis et les documents d'information circulent sur les sites avant le début des arrêts du 1er juillet.",
+        "de": "SIPA meldet den Streik gegen Airbus Defence and Space, Airbus Operations und Airbus Helicopters Spanien an. Der Aufruf und die Informationsmaterialien werden in den Werken verbreitet, bevor am 1. Juli die Arbeitsniederlegungen beginnen."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/convocatoria-huelga-1.pdf",
+          "titulo": {
+            "es": "Convocatoria de huelga",
+            "en": "Strike call",
+            "fr": "Préavis de grève",
+            "de": "Streikaufruf"
+          }
+        },
+        {
+          "pdf": "/docs/octavillas-huelga-sin-logo-2026-07-01.pdf",
+          "titulo": {
+            "es": "Octavillas de la huelga",
+            "en": "Strike leaflets",
+            "fr": "Tracts de la grève",
+            "de": "Streik-Flugblätter"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-01",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Empieza la huelga",
+        "en": "The strike begins",
+        "fr": "La grève commence",
+        "de": "Der Streik beginnt"
+      },
+      "texto": {
+        "es": "Arranca la huelga en todos los centros de Airbus España tras meses sin acuerdo en el convenio. Según las fuentes citadas en este hito, el seguimiento del primer día alcanzó aproximadamente el 30 % en las plantas principales.",
+        "en": "The strike starts at every Airbus Spain site after months without a collective agreement. According to the sources cited in this milestone, first-day participation reached approximately 30 % at the main plants.",
+        "fr": "La grève démarre sur tous les sites d'Airbus Espagne après des mois sans accord de convention. Selon les sources citées dans ce jalon, le suivi du premier jour a atteint environ 30 % dans les usines principales.",
+        "de": "Der Streik beginnt an allen Standorten von Airbus Spanien, nach Monaten ohne Tarifabschluss. Laut den in diesem Meilenstein genannten Quellen erreichte die Beteiligung am ersten Tag in den Hauptwerken rund 30 %."
+      },
+      "prensa": [
+        "MARCA",
+        "Economía Digital",
+        "LaSexta"
+      ]
+    },
+    {
+      "fecha": "2026-07-03",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Carta abierta a Guillaume Faury",
+        "en": "Open letter to Guillaume Faury",
+        "fr": "Lettre ouverte à Guillaume Faury",
+        "de": "Offener Brief an Guillaume Faury"
+      },
+      "texto": {
+        "es": "Se publica una carta abierta dirigida directamente a Guillaume Faury, CEO del Grupo Airbus. La carta traslada también el conflicto a la dirección del Grupo.",
+        "en": "An open letter addressed directly to Guillaume Faury, CEO of the Airbus Group, is published. The letter also takes the dispute to the Group's leadership.",
+        "fr": "Une lettre ouverte adressée directement à Guillaume Faury, PDG du groupe Airbus, est publiée. La lettre porte aussi le conflit devant la direction du Groupe.",
+        "de": "Es wird ein offener Brief veröffentlicht, der direkt an Guillaume Faury, den CEO des Airbus-Konzerns, gerichtet ist. Der Brief trägt den Konflikt auch an die Konzernführung heran."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/carta-abierta-faury.pdf",
+          "titulo": {
+            "es": "Carta abierta a Faury",
+            "en": "Open letter to Faury",
+            "fr": "Lettre ouverte à Faury",
+            "de": "Offener Brief an Faury"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-03",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Carta abierta Faury - Open Letter Faury"
+      },
+      "texto": {
+        "es": "Carta abierta dirigida a Guillaume Faury por un trabajador de Airbus España, denunciando la situación laboral y las prácticas de los directivos locales, y solicitando una mejora en las condiciones de trabajo. La carta detalla las demandas de los trabajadores y acusa a los directivos de desprecio y falta de autocrítica."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/carta-abierta-faury-open-letter-faury-1-12133.pdf",
+          "titulo": {
+            "es": "Carta abierta Faury - Open Letter Faury"
+          }
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-07-08",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "CCOO plantea una vía diferenciada",
+        "en": "CCOO proposes a separate approach",
+        "fr": "CCOO propose une voie différenciée",
+        "de": "CCOO schlägt einen eigenständigen Weg vor"
+      },
+      "texto": {
+        "es": "La huelga la convoca SIPA, con el respaldo de CGT, UGT, ÚTIL y ATP. CCOO no se suma inicialmente a la convocatoria y traslada a la dirección una propuesta propia que incluye revisión salarial y mantenimiento del teletrabajo, con aviso de huelga indefinida si no hay acuerdo. La iniciativa no fue suscrita por el resto de organizaciones que respaldaban entonces la huelga. La propuesta incluye someter un eventual acuerdo a referéndum; posteriormente se celebraría la consulta del 24 de julio.",
+        "en": "The strike is called by SIPA, backed by CGT, UGT, ÚTIL and ATP. CCOO does not initially join the strike call and puts its own proposal to management — including a pay review and maintaining remote work —, with notice of an indefinite strike if there is no agreement. The initiative was not subscribed to by the other organisations then backing the strike. The proposal includes submitting any potential agreement to a referendum; the 24 July consultation would later take place.",
+        "fr": "La grève est convoquée par SIPA, avec le soutien de CGT, UGT, ÚTIL et ATP. CCOO ne se joint pas initialement à la convocation et transmet à la direction une proposition propre incluant révision salariale et maintien du télétravail, avec préavis de grève illimitée faute d’accord. L’initiative n’a pas été souscrite par les autres organisations qui soutenaient alors la grève. La proposition inclut de soumettre tout éventuel accord à un référendum ; la consultation du 24 juillet aurait lieu ultérieurement.",
+        "de": "Zum Streik ruft SIPA auf, gestützt von CGT, UGT, ÚTIL und ATP. CCOO schließt sich dem Streikaufruf anfänglich nicht an und übermittelt der Leitung einen eigenen Vorschlag — einschließlich Gehaltsanpassung und Erhalt der Telearbeit —, mit Streikankündigung für den Fall, dass keine Einigung erzielt wird. Die Initiative wurde von den anderen Organisationen, die den Streik damals unterstützten, nicht unterzeichnet. Der Vorschlag sieht vor, eine eventuelle Einigung einem Referendum zu unterziehen; die Abstimmung vom 24. Juli fand später statt."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/260708-acuerdo-o-conflicto.pdf",
+          "titulo": {
+            "es": "CCOO · Acuerdo o conflicto",
+            "en": "CCOO · Deal or dispute",
+            "fr": "CCOO · Accord ou conflit",
+            "de": "CCOO · Einigung oder Konflikt"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-10",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "La empresa se declara «abierta al diálogo»",
+        "en": "The company declares itself «open to dialogue»",
+        "fr": "L'entreprise se dit « ouverte au dialogue »",
+        "de": "Das Unternehmen erklärt sich «gesprächsbereit»"
+      },
+      "texto": {
+        "es": "Tras más de una semana de paros, Airbus afirma estar abierta al diálogo con la parte social. Ese mismo día San Pablo registra un 99,5 % de seguimiento: el anuncio se produjo después de más de una semana de paros.",
+        "en": "After more than a week of stoppages, Airbus says it is open to dialogue with the social partners. That same day San Pablo records 99.5 % participation: the workforce reads the gesture as late.",
+        "fr": "Après plus d'une semaine d'arrêts, Airbus affirme être ouverte au dialogue avec les partenaires sociaux. Le même jour, San Pablo enregistre 99,5 % de suivi : le personnel juge le geste tardif.",
+        "de": "Nach über einer Woche Arbeitsniederlegungen erklärt sich Airbus gesprächsbereit. Am selben Tag verzeichnet San Pablo 99,5 % Beteiligung: Die Belegschaft hält die Geste für verspätet."
+      },
+      "prensa": [
+        "Europa Press",
+        "Demócrata",
+        {
+          "medio": "Canal Sur",
+          "titulo": "Los trabajadores de Airbus en Sevilla retoman la huelga",
+          "url": "https://www.canalsur.es/noticias/andalucia/sevilla/trabajadores-airbus-sevilla-retoman-huelga_1_1421627.html",
+          "fecha": "2026-07-10"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-10",
+      "tipo": "documento",
+      "titulo": {
+        "es": "La plataforma reivindicativa",
+        "en": "The demands platform",
+        "fr": "La plateforme revendicative",
+        "de": "Die Forderungsplattform"
+      },
+      "texto": {
+        "es": "Se publica una plataforma reivindicativa que recoge las demandas del movimiento.",
+        "en": "A demands platform is published setting out the movement’s claims.",
+        "fr": "Une plateforme revendicative est publiée, qui recense les revendications du mouvement.",
+        "de": "Eine Forderungsplattform wird veröffentlicht, die die Forderungen der Bewegung zusammenfasst."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/20260707-airbus-huelga-plataforma-reivindicativa-trabajadores.pdf",
+          "titulo": {
+            "es": "Plataforma reivindicativa",
+            "en": "Demands platform",
+            "fr": "Plateforme revendicative",
+            "de": "Forderungsplattform"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-10",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Convocatoria asamblea CE"
+      },
+      "texto": {
+        "es": "El documento es una convocatoria para una Asamblea General Participativa y Retribuida convocada por el Comité de Empresa de Airbus, programada para el 13 de julio. Se establece un orden del día centrado en 'Escuchar la voz de Tablada' y se especifica la hora y lugar para dos turnos diferentes, además de recordar la importancia de asistir con camiseta azul como símbolo de unidad y igualdad."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/convocatoria-asamblea-ce-13julio-21518.pdf",
+          "titulo": {
+            "es": "Convocatoria asamblea CE"
+          }
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-07-12",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Manifiesto de reivindicaciones (v3)",
+        "en": "List of demands (v3)",
+        "fr": "Manifeste de revendications (v3)",
+        "de": "Forderungskatalog (v3)"
+      },
+      "texto": {
+        "es": "El manifiesto sistematiza las reivindicaciones en siete bloques: recuperación del poder adquisitivo, conciliación, servicios, indicador Bradford, futuro de Airbus España, igualdad entre generaciones y reparación del conflicto.",
+        "en": "The manifesto sets out the demands in seven sections: purchasing power, work-life balance, services, the Bradford factor, the future of Airbus Spain, fairness between generations and redress for the dispute.",
+        "fr": "Le manifeste structure les revendications en sept rubriques : pouvoir d'achat, conciliation, services, indicateur Bradford, avenir d'Airbus Espagne, équité entre générations et réparation du conflit.",
+        "de": "Das Manifest gliedert die Forderungen in sieben Punkte: Kaufkraft, Vereinbarkeit, Leistungen, Bradford-Index, Zukunft von Airbus Spanien, Gerechtigkeit zwischen den Generationen und Wiedergutmachung."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/manifiesto-enfadados-airbus.pdf",
+          "titulo": {
+            "es": "Manifiesto de reivindicaciones - v3",
+            "en": "List of demands – v3",
+            "fr": "Manifeste de revendications – v3",
+            "de": "Forderungskatalog – v3"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-12",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Manifiesto Enfadados#Airbus v3"
+      },
+      "texto": {
+        "es": "El manifiesto 'EnfadadosAirbus' expresa el compromiso y orgullo de los trabajadores de Airbus, su preocupación por la erosión de la confianza entre empleados y empresa, y la necesidad de reconstruir relaciones basadas en diálogo, respeto y confianza. Los trabajadores critican la falta de negociación efectiva y la imposición de decisiones, y reivindican la aplicación de los valores de Airbus en la dirección de la compañía."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/manifiesto-enfadados-airbus-v3-23267.pdf",
+          "titulo": {
+            "es": "Manifiesto Enfadados#Airbus v3"
+          }
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-07-14",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "CCOO anuncia su incorporación a los paros",
+        "en": "CCOO announces its joining of the stoppages",
+        "fr": "CCOO annonce son ralliement aux arrêts",
+        "de": "CCOO kündigt seine Teilnahme an den Arbeitsniederlegungen an"
+      },
+      "texto": {
+        "es": "CCOO anuncia su incorporación a los paros y propone una huelga indefinida desde el 7 de septiembre. Con esta incorporación aumenta el número de organizaciones que respaldan los paros.",
+        "en": "CCOO announces that it is joining the stoppages and proposes an indefinite strike from 7 September. With this move, the number of organisations backing the stoppages increases.",
+        "fr": "CCOO annonce son ralliement aux arrêts et propose une grève illimitée à partir du 7 septembre. Avec cette adhésion, le nombre d'organisations soutenant les arrêts augmente.",
+        "de": "CCOO kündigt seine Teilnahme an den Arbeitsniederlegungen an und schlägt einen unbefristeten Streik ab dem 7. September vor. Mit diesem Beitritt steigt die Zahl der Organisationen, die die Arbeitsniederlegungen unterstützen."
+      },
+      "prensa": [
+        "Economía Digital",
+        "Revista Capital",
+        {
+          "medio": "Onda Cádiz",
+          "titulo": "La huelga de Airbus se endurece tras sumarse CC.OO. a los paros",
+          "url": "https://ondacadiz.es/noticias/2026-07/la-huelga-de-airbus-se-endurece-tras-sumarse-ccoo-los-paros",
+          "fecha": "2026-07-14"
+        }
+      ],
+      "imagen": {
+        "src": "/img/asamblea-sevilla.webp",
+        "w": 1179,
+        "h": 652,
+        "alt": {
+          "es": "Asamblea a las puertas de la factoría de Sevilla, fotografiada desde atrás: la multitud ocupa el acceso mientras un avión de transporte militar la sobrevuela a baja altura.",
+          "en": "Assembly at the gates of the Seville plant, photographed from behind: the crowd fills the access road while a military transport aircraft flies low overhead.",
+          "fr": "Assemblée aux portes de l'usine de Séville, photographiée de dos : la foule occupe l'accès tandis qu'un avion de transport militaire la survole à basse altitude.",
+          "de": "Versammlung vor den Toren des Werks in Sevilla, von hinten fotografiert: Die Menge füllt die Zufahrt, während ein Militärtransporter tief darüber hinwegfliegt."
+        },
+        "pie": {
+          "es": "Asamblea en Sevilla, 14 de julio. En Sevilla se celebran asambleas desde el 13 de julio: esta foto vale por todas ellas.",
+          "en": "Assembly in Seville, 14 July. Assemblies have been held in Seville since 13 July: this photo stands for all of them.",
+          "fr": "Assemblée à Séville, le 14 juillet. Des assemblées se tiennent à Séville depuis le 13 juillet : cette photo vaut pour toutes.",
+          "de": "Versammlung in Sevilla, 14. Juli. In Sevilla finden seit dem 13. Juli Versammlungen statt: Dieses Foto steht für sie alle."
+        }
+      }
+    },
+    {
+      "fecha": "2026-07-15",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Comunicado conjunto de SIPA, ATP, CGT, UGT y ÚTIL",
+        "en": "Joint statement by SIPA, ATP, CGT, UGT and ÚTIL",
+        "fr": "Communiqué conjoint de SIPA, ATP, CGT, UGT et ÚTIL",
+        "de": "Gemeinsame Mitteilung von SIPA, ATP, CGT, UGT und ÚTIL"
+      },
+      "texto": {
+        "es": "SIPA, ATP, CGT, UGT y UTIL firman un comunicado conjunto. El comunicado recoge el compromiso de las organizaciones firmantes de mantener una posición coordinada.",
+        "en": "SIPA, ATP, CGT, UGT and ÚTIL sign a joint statement. The statement sets out the signatory organisations' commitment to maintaining a coordinated position.",
+        "fr": "SIPA, ATP, CGT, UGT et ÚTIL signent un communiqué commun. Le communiqué recueille l'engagement des organisations signataires à maintenir une position coordonnée.",
+        "de": "SIPA, ATP, CGT, UGT und ÚTIL unterzeichnen eine gemeinsame Mitteilung. Die Mitteilung hält die Zusage der unterzeichnenden Organisationen fest, eine abgestimmte Position beizubehalten."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/comunicado-conjunto-sindicatos-15-07-2026.pdf",
+          "titulo": {
+            "es": "Comunicado conjunto · 15 jul",
+            "en": "Joint statement · 15 Jul",
+            "fr": "Communiqué commun · 15 juil.",
+            "de": "Gemeinsame Mitteilung · 15. Juli"
+          }
+        }
+      ],
+      "imagen": {
+        "src": "/img/asamblea-getafe.webp",
+        "w": 1179,
+        "h": 860,
+        "alt": {
+          "es": "Asamblea multitudinaria a las puertas de la factoría de Getafe, fotografiada desde atrás: cientos de personas levantan la mano a la vez para votar, con el edificio de Airbus y las banderas al fondo.",
+          "en": "Mass assembly at the gates of the Getafe plant, photographed from behind: hundreds of people raise their hands together to vote, with the Airbus building and the flags in the background.",
+          "fr": "Assemblée massive aux portes de l'usine de Getafe, photographiée de dos : des centaines de personnes lèvent la main en même temps pour voter, le bâtiment d'Airbus et les drapeaux en fond.",
+          "de": "Massenversammlung vor den Toren des Werks in Getafe, von hinten fotografiert: Hunderte heben gleichzeitig die Hand zur Abstimmung, im Hintergrund das Airbus-Gebäude und die Fahnen."
+        },
+        "pie": {
+          "es": "Asamblea en Getafe, 15 de julio. En Getafe se celebran asambleas desde el 1 de julio: esta foto vale por todas ellas.",
+          "en": "Assembly in Getafe, 15 July. Assemblies have been held in Getafe since 1 July: this photo stands for all of them.",
+          "fr": "Assemblée à Getafe, le 15 juillet. Des assemblées se tiennent à Getafe depuis le 1er juillet : cette photo vaut pour toutes.",
+          "de": "Versammlung in Getafe, 15. Juli. In Getafe finden seit dem 1. Juli Versammlungen statt: Dieses Foto steht für sie alle."
+        }
+      }
+    },
+    {
+      "fecha": "2026-07-15",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Comunicado conjunto SIPA, ATP, CGT, UGT y UTIL - 20260715"
+      },
+      "texto": {
+        "es": "Comunicado conjunto de sindicatos SIPA, ATP, CGT, UGT y UTIL, donde plantean propuestas de revisión salarial, vacaciones, trabajo a distancia y BROMO frente a la negativa de la dirección de la empresa."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/comunicado-conjunto-sipa-atp-cgt-ugt-y-util-20260715-27018.pdf",
+          "titulo": {
+            "es": "Comunicado conjunto SIPA, ATP, CGT, UGT y UTIL - 20260715"
+          }
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-07-16",
+      "tipo": "movilizacion",
+      "titulo": {
+        "es": "Marcha de Getafe",
+        "en": "Getafe march",
+        "fr": "Marche de Getafe",
+        "de": "Marsch in Getafe"
+      },
+      "texto": {
+        "es": "Unas 4.000 personas recorren Getafe, recuperando el recorrido de la marcha histórica de 1981. Ese mismo día, nueve horas de negociación terminan sin acuerdo.",
+        "en": "Around 4,000 people walk through Getafe, retracing the route of the historic 1981 march. That same day, nine hours of negotiation end without agreement.",
+        "fr": "Environ 4 000 personnes défilent à Getafe, reprenant le parcours de la marche historique de 1981. Le même jour, neuf heures de négociation s'achèvent sans accord.",
+        "de": "Rund 4.000 Menschen ziehen durch Getafe, auf der Route des historischen Marsches von 1981. Am selben Tag enden neun Stunden Verhandlung ohne Ergebnis."
+      },
+      "prensa": [
+        "EFE",
+        "Europa Press",
+        "Cadena SER",
+        "ABC",
+        {
+          "medio": "Infobae",
+          "titulo": "Trabajadores de Airbus siguen en huelga y reivindican sus derechos en una marcha en Getafe",
+          "url": "https://www.infobae.com/espana/agencias/2026/07/16/trabajadores-de-airbus-siguen-en-huelga-y-reivindican-sus-derechos-en-una-marcha-en-getafe/",
+          "fecha": "2026-07-16"
+        }
+      ],
+      "imagen": {
+        "src": "/img/marcha-getafe.webp",
+        "w": 774,
+        "h": 497,
+        "alt": {
+          "es": "La marcha de Getafe avanza por la carretera junto a las naves de la factoría, encabezada por una bandera blanca pintada a mano: «Vuelta a casa · Airbus en lucha».",
+          "en": "The Getafe march advances along the road beside the factory hangars, led by a hand-painted white flag reading «Vuelta a casa · Airbus en lucha».",
+          "fr": "La marche de Getafe avance sur la route le long des hangars de l'usine, en tête un drapeau blanc peint à la main : « Vuelta a casa · Airbus en lucha ».",
+          "de": "Der Marsch in Getafe zieht die Straße entlang der Werkshallen, angeführt von einer handgemalten weißen Fahne: «Vuelta a casa · Airbus en lucha»."
+        }
+      }
+    },
+    {
+      "fecha": "2026-07-16",
+      "tipo": "ruptura",
+      "titulo": {
+        "es": "CCOO anuncia un preacuerdo con Airbus",
+        "en": "CCOO announces a pre-agreement with Airbus",
+        "fr": "CCOO annonce un préaccord avec Airbus",
+        "de": "CCOO kündigt eine Vorabeinigung mit Airbus an"
+      },
+      "texto": {
+        "es": "CCOO comunica a la plantilla que ha alcanzado un preacuerdo con la empresa. SIPA, ATP, CGT, UGT y ÚTIL publican ese mismo día un comunicado conjunto que incorpora la propuesta de la empresa. Los documentos publicados ese día muestran posiciones diferentes entre las organizaciones sindicales respecto de la propuesta empresarial.",
+        "en": "CCOO tells the workforce it has reached a pre-agreement with the company. SIPA, ATP, CGT, UGT and ÚTIL publish a joint statement that same day incorporating the company's proposal. The documents published that day show differing positions among the unions regarding the company's proposal.",
+        "fr": "CCOO annonce au personnel avoir conclu un préaccord avec l'entreprise. SIPA, ATP, CGT, UGT et ÚTIL publient le même jour un communiqué commun qui reprend la proposition de l'entreprise. Les documents publiés ce jour-là font apparaître des positions différentes entre les organisations syndicales à l'égard de la proposition patronale.",
+        "de": "CCOO teilt der Belegschaft mit, eine Vorabeinigung mit dem Unternehmen erzielt zu haben. SIPA, ATP, CGT, UGT und ÚTIL veröffentlichen am selben Tag eine gemeinsame Mitteilung, die den Unternehmensvorschlag aufnimmt. Die an diesem Tag veröffentlichten Dokumente zeigen unterschiedliche Positionen der Gewerkschaften zum Unternehmensvorschlag."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/comunicado-ccoo-16-07-2026.pdf",
+          "titulo": {
+            "es": "CCOO · «Alcanzamos un acuerdo»",
+            "en": "CCOO · «We have reached an agreement»",
+            "fr": "CCOO · « Nous avons un accord »",
+            "de": "CCOO · «Wir haben eine Einigung»"
+          }
+        },
+        {
+          "pdf": "/docs/comunicado-conjunto-sindicatos-16-07-2026.pdf",
+          "titulo": {
+            "es": "Comunicado conjunto + propuesta de la empresa",
+            "en": "Joint statement + company proposal",
+            "fr": "Communiqué commun + proposition patronale",
+            "de": "Gemeinsame Mitteilung + Firmenangebot"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-16",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Comunicado conjunto SIPA, ATP, CGT, UGT y UTIL + propuesta empresa"
+      },
+      "texto": {
+        "es": "Comunicado conjunto de sindicatos y propuesta de la empresa tras reunión con el CEO de Airbus, incluyendo aumento salarial, complemento IT, trabajo a distancia, vacaciones y continuidad de condiciones laborales en la Joint Venture."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/comunicado-conjunto-sipa-atp-cgt-ugt-y-util-propuesta-empresa-28459.pdf",
+          "titulo": {
+            "es": "Comunicado conjunto SIPA, ATP, CGT, UGT y UTIL + propuesta empresa"
+          }
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-07-17",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Preacuerdo de CCOO: 12 % hasta 2027",
+        "en": "CCOO's pre-agreement: 12 % to 2027",
+        "fr": "Préaccord de CCOO : 12 % jusqu'en 2027",
+        "de": "CCOO-Vorabeinigung: 12 % bis 2027"
+      },
+      "texto": {
+        "es": "CCOO y Airbus anuncian un preacuerdo que presentan como una revisión salarial del 12 % hasta 2027. El 12 % comunicado no corresponde íntegramente a incrementos generales: incluye un 10 % general, un 1 % destinado a RSI y un 1 % destinado a promociones. Varias organizaciones sindicales rechazan el preacuerdo y mantienen los paros.",
+        "en": "CCOO and Airbus announce a pre-agreement they present as a 12 % pay review to 2027. The 12 % reported does not correspond entirely to general increases: it includes a 10 % general rise, 1 % allocated to RSI and 1 % allocated to promotions. Several unions reject the pre-agreement and keep up the stoppages.",
+        "fr": "CCOO et Airbus annoncent un préaccord présenté comme une révision salariale de 12 % jusqu'en 2027. Les 12 % annoncés ne correspondent pas intégralement à des augmentations générales : ils comprennent 10 % de hausse générale, 1 % affecté au RSI et 1 % affecté aux promotions. Plusieurs organisations syndicales rejettent le préaccord et maintiennent les arrêts.",
+        "de": "CCOO und Airbus verkünden eine Vorabeinigung, die sie als Gehaltsanpassung von 12 % bis 2027 darstellen. Die genannten 12 % entsprechen nicht vollständig allgemeinen Erhöhungen: Sie umfassen 10 % allgemein, 1 % für RSI und 1 % für Beförderungen. Mehrere Gewerkschaften lehnen die Vorabeinigung ab und setzen die Arbeitsniederlegungen fort."
+      },
+      "prensa": [
+        "Europa Press",
+        {
+          "medio": "elDiario.es",
+          "titulo": "Airbus y CCOO logran un preacuerdo con una revisión salarial global del 12% hasta 2027 y compromisos en teletrabajo",
+          "url": "https://www.eldiario.es/economia/airbus-ccoo-logran-preacuerdo-contempla-revision-salarial-global-12_1_13386933.html",
+          "fecha": "2026-07-17"
+        },
+        "Cinco Días",
+        "Expansión"
+      ]
+    },
+    {
+      "fecha": "2026-07-18",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "La empresa vuelve a convocar",
+        "en": "The company reconvenes talks",
+        "fr": "L'entreprise reconvoque",
+        "de": "Das Unternehmen lädt erneut ein"
+      },
+      "texto": {
+        "es": "Airbus convoca de nuevo la negociación para el lunes mientras la huelga se mantiene. La negociación continúa sin suspensión de los paros.",
+        "en": "Airbus reconvenes negotiations for Monday while the strike holds. The negotiations continue without suspension of the stoppages.",
+        "fr": "Airbus reconvoque la négociation pour lundi alors que la grève se maintient. La négociation se poursuit sans suspension des arrêts.",
+        "de": "Airbus lädt für Montag erneut zu Verhandlungen, während der Streik anhält. Die Verhandlungen werden ohne Aussetzung der Arbeitsniederlegungen fortgesetzt."
+      },
+      "prensa": [
+        {
+          "medio": "Infobae",
+          "titulo": "Airbus convoca de nuevo la negociación el lunes mientras se mantiene la huelga en España",
+          "url": "https://www.infobae.com/espana/agencias/2026/07/18/airbus-convoca-de-nuevo-la-negociacion-el-lunes-mientras-se-mantiene-la-huelga-en-espana/",
+          "fecha": "2026-07-18"
+        },
+        "El Debate"
+      ]
+    },
+    {
+      "fecha": "2026-07-20",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Airbus fija un plazo de 24 horas para responder",
+        "en": "Airbus sets a 24-hour deadline to respond",
+        "fr": "Airbus fixe un délai de 24 heures pour répondre",
+        "de": "Airbus setzt eine 24-Stunden-Frist zur Antwort"
+      },
+      "texto": {
+        "es": "Según el comunicado incorporado a este hito, la empresa fija un plazo de 24 horas para responder al preacuerdo. La respuesta es un nuevo comunicado conjunto",
+        "en": "According to the statement included in this milestone, the company sets a 24-hour deadline to respond to the pre-agreement. The response is another joint statement",
+        "fr": "Selon le communiqué intégré à ce jalon, l'entreprise fixe un délai de 24 heures pour répondre au préaccord. La réponse est un nouveau communiqué commun",
+        "de": "Laut der in diesem Meilenstein enthaltenen Mitteilung setzt das Unternehmen eine Frist von 24 Stunden, um auf die Vorabeinigung zu antworten. Die Antwort ist eine weitere gemeinsame Mitteilung"
+      },
+      "docs": [
+        {
+          "pdf": "/docs/comunicado-conjunto-sindicatos-20-07-2026.pdf",
+          "titulo": {
+            "es": "Comunicado conjunto · 20 jul",
+            "en": "Joint statement · 20 Jul",
+            "fr": "Communiqué commun · 20 juil.",
+            "de": "Gemeinsame Mitteilung · 20. Juli"
+          }
+        }
+      ],
+      "prensa": [
+        "La Razón",
+        "Infobae"
+      ]
+    },
+    {
+      "fecha": "2026-07-20",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Comunicado conjunto SIPA, ATP, CGT, UGT y UTIL - 20260720"
+      },
+      "texto": {
+        "es": "El comunicado conjunto de sindicatos SIPA, ATP, CGT, UGT y UTIL informa sobre una reunión de negociación con la dirección de la empresa, en la que se presentó una propuesta similar a la anterior con detalles sobre teletrabajo. Se rechaza la postura de la empresa y se mantiene la determinación de continuar con la lucha."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/comunicado-conjunto-sipa-atp-cgt-ugt-y-util-20260720-31351.pdf",
+          "titulo": {
+            "es": "Comunicado conjunto SIPA, ATP, CGT, UGT y UTIL - 20260720"
+          }
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-07-21",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Se anuncia la huelga indefinida",
+        "en": "An indefinite strike is announced",
+        "fr": "La grève illimitée est annoncée",
+        "de": "Unbefristeter Streik angekündigt"
+      },
+      "texto": {
+        "es": "Ante la ausencia de acuerdo, varias organizaciones plantean una nueva convocatoria que comienza el 24 de agosto y prevé huelga indefinida a jornada completa desde el 25. Las asambleas plantean reanudar la movilización tras el periodo vacacional.",
+        "en": "With no agreement reached, several organisations propose a new strike call beginning on 24 August and providing for an indefinite full-day strike from the 25th. The assemblies propose resuming the mobilisation after the holiday period.",
+        "fr": "Faute d'accord, plusieurs organisations proposent une nouvelle convocation qui commence le 24 août et prévoit une grève illimitée à journée complète à partir du 25. Les assemblées proposent de reprendre la mobilisation après la période des vacances.",
+        "de": "Angesichts fehlender Einigung schlagen mehrere Organisationen einen neuen Aufruf vor, der am 24. August beginnt und ab dem 25. einen unbefristeten Vollstreik vorsieht. Die Versammlungen schlagen vor, die Mobilisierung nach der Urlaubszeit wieder aufzunehmen."
+      },
+      "prensa": [
+        "Cinco Días",
+        "ABC",
+        "elDiario.es",
+        "Cadena SER"
+      ]
+    },
+    {
+      "fecha": "2026-07-22",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Preacuerdo en la CNC, firmado",
+        "en": "Pre-agreement signed at the CNC",
+        "fr": "Préaccord signé à la CNC",
+        "de": "Vorabeinigung bei der CNC unterzeichnet"
+      },
+      "texto": {
+        "es": "Queda firmado el preacuerdo en la Comisión Negociadora del Convenio. El preacuerdo es firmado por CCOO, SIPA y ATP y posteriormente sometido a consulta de la plantilla. Se enlaza el documento completo firmado.",
+        "en": "The pre-agreement is signed at the collective bargaining committee. It is signed by CCOO, SIPA and ATP and subsequently put to the workforce for consultation. The full signed document is linked.",
+        "fr": "Le préaccord est signé au sein de la commission de négociation de la convention. Il est signé par CCOO, SIPA et ATP, puis soumis à la consultation du personnel. Le document intégral signé est mis en lien.",
+        "de": "Die Vorabeinigung wird im Tarifverhandlungsausschuss unterzeichnet. Sie wird von CCOO, SIPA und ATP unterzeichnet und anschließend der Belegschaft zur Befragung vorgelegt. Das vollständige unterzeichnete Dokument ist verlinkt."
+      }
+    },
+    {
+      "fecha": "2026-07-23",
+      "tipo": "movilizacion",
+      "titulo": {
+        "es": "Marcha de Sevilla",
+        "en": "Seville march",
+        "fr": "Marche de Séville",
+        "de": "Marsch in Sevilla"
+      },
+      "texto": {
+        "es": "Trabajadores de los centros andaluces participan en una marcha conjunta en Sevilla mientras continúa la negociación. Ese mismo día el preacuerdo firmado por CCOO, SIPA y ATP pasa a someterse a referéndum de toda la plantilla.",
+        "en": "Workers from the Andalusian sites take part in a joint march through Seville while negotiations continue. That same day the pre-agreement signed by CCOO, SIPA and ATP goes to a referendum of the whole workforce.",
+        "fr": "Des salariés des sites andalous participent à une marche conjointe à Séville alors que la négociation se poursuit. Le même jour, le préaccord signé par CCOO, SIPA et ATP est soumis à un référendum de tout le personnel.",
+        "de": "Beschäftigte der andalusischen Standorte nehmen an einem gemeinsamen Marsch durch Sevilla teil, während die Verhandlungen weitergehen. Am selben Tag wird die von CCOO, SIPA und ATP unterzeichnete Vorabeinigung der gesamten Belegschaft zur Abstimmung vorgelegt."
+      },
+      "prensa": [
+        {
+          "medio": "elDiario.es",
+          "titulo": "Marcha en Sevilla por las condiciones laborales en Airbus en plenas negociaciones por un nuevo convenio",
+          "url": "https://www.eldiario.es/sevilla/marcha-sevilla-condiciones-laborales-airbus-plenas-negociaciones-nuevo-convenio_1_13401387.html",
+          "fecha": "2026-07-23"
+        },
+        "Canal Sur",
+        "El Mundo",
+        "Cadena SER",
+        {
+          "medio": "Infobae",
+          "titulo": "Los trabajadores de Airbus en Sevilla y Cádiz continúan su huelga con una manifestación",
+          "url": "https://www.infobae.com/espana/agencias/2026/07/23/los-trabajadores-de-airbus-en-sevilla-y-cadiz-continuan-su-huelga-con-una-manifestacion/",
+          "fecha": "2026-07-23"
+        }
+      ],
+      "imagen": {
+        "src": "/img/marcha-sevilla.webp",
+        "w": 1179,
+        "h": 811,
+        "alt": {
+          "es": "Cabecera de la marcha de Sevilla: cientos de personas llenan la calle tras una pancarta azul que dice «Trabajadores de Airbus en lucha · Unidos por el respeto y la recuperación de nuestras condiciones».",
+          "en": "Head of the Seville march: hundreds of people fill the street behind a blue banner reading «Trabajadores de Airbus en lucha · Unidos por el respeto y la recuperación de nuestras condiciones».",
+          "fr": "Tête de la marche de Séville : des centaines de personnes remplissent la rue derrière une banderole bleue portant « Trabajadores de Airbus en lucha · Unidos por el respeto y la recuperación de nuestras condiciones ».",
+          "de": "Spitze des Marsches in Sevilla: Hunderte Menschen füllen die Straße hinter einem blauen Transparent mit der Aufschrift «Trabajadores de Airbus en lucha · Unidos por el respeto y la recuperación de nuestras condiciones»."
+        }
+      }
+    },
+    {
+      "fecha": "2026-07-24",
+      "tipo": "votacion",
+      "titulo": {
+        "es": "Referéndum",
+        "en": "Referendum",
+        "fr": "Référendum",
+        "de": "Referendum"
+      },
+      "texto": {
+        "es": "La plantilla vota el preacuerdo alcanzado por CCOO, SIPA y ATP con la empresa. El resultado del referéndum determinará si la plantilla ratifica el preacuerdo respaldado por los tres firmantes.",
+        "en": "The workforce votes on the pre-agreement reached by CCOO, SIPA and ATP with the company. The result of the referendum will determine whether the workforce ratifies the pre-agreement backed by the three signatories.",
+        "fr": "Le personnel vote le préaccord conclu par CCOO, SIPA et ATP avec l'entreprise. Le résultat du référendum déterminera si le personnel ratifie le préaccord soutenu par les trois signataires.",
+        "de": "Die Belegschaft stimmt über die Vorabeinigung von CCOO, SIPA und ATP mit dem Unternehmen ab. Das Ergebnis des Referendums bestimmt, ob die Belegschaft die Vorabeinigung der drei Unterzeichner ratifiziert."
+      },
+      "prensa": [
+        "Europa Press",
+        "ABC",
+        {
+          "medio": "Fly News",
+          "titulo": "Los trabajadores de Airbus votan hoy el preacuerdo alcanzado con tres de los sindicatos convocantes de la huelga",
+          "url": "https://fly-news.es/industria/airbus-y-tres-de-los-sindicatos-convocantes-de-la-huelga-firman-un-preacuerdo-para-poner-fin-a-la-huelga/",
+          "fecha": "2026-07-24"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-25",
+      "tipo": "votacion",
+      "titulo": {
+        "es": "El preacuerdo es rechazado en referéndum",
+        "en": "The pre-agreement is rejected in a referendum",
+        "fr": "Le préaccord est rejeté par référendum",
+        "de": "Die Vorabeinigung wird im Referendum abgelehnt"
+      },
+      "texto": {
+        "es": "El preacuerdo se rechaza en referéndum pese al apoyo de los tres sindicatos firmantes. Tras el referéndum, cesan los paros correspondientes a la convocatoria de julio. Tras el resultado, sectores del movimiento reclaman nuevas asambleas y continuar la negociación.",
+        "en": "The pre-agreement is rejected in a referendum despite the backing of the three signatory unions. After the referendum, the stoppages under the July strike call come to an end. Following the result, sections of the movement call for new assemblies and for negotiations to continue.",
+        "fr": "Le préaccord est rejeté par référendum malgré le soutien des trois syndicats signataires. Après le référendum, les arrêts relevant de la convocation de juillet cessent. À la suite du résultat, des secteurs du mouvement réclament de nouvelles assemblées et la poursuite de la négociation.",
+        "de": "Die Vorabeinigung wird im Referendum abgelehnt, trotz der Unterstützung der drei unterzeichnenden Gewerkschaften. Nach dem Referendum enden die Arbeitsniederlegungen des Juli-Aufrufs. Nach dem Ergebnis fordern Teile der Bewegung neue Versammlungen und die Fortsetzung der Verhandlungen."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/ccoo-consulta-a-la-plantilla.pdf",
+          "titulo": {
+            "es": "CCOO · Consulta a la plantilla",
+            "en": "CCOO · Consultation of the workforce",
+            "fr": "CCOO · Consultation du personnel",
+            "de": "CCOO · Befragung der Belegschaft"
+          }
+        }
+      ],
+      "prensa": [
+        "El Economista",
+        {
+          "medio": "Expansión",
+          "titulo": "La plantilla de Airbus rechaza el preacuerdo entre dirección y sindicatos",
+          "url": "https://www.expansion.com/empresas/transporte/2026/07/25/6a647ce3e5fdea3b6e8b4590.html",
+          "fecha": "2026-07-25T09:18:32+00:00"
+        },
+        "Cinco Días",
+        {
+          "medio": "Infodefensa",
+          "titulo": "Conflicto en Airbus: los trabajadores rechazan el preacuerdo alcanzado entre tres sindicatos y la empresa",
+          "url": "https://www.infodefensa.com/texto-diario/mostrar/5964931/conflicto-airbus-trabajadores-rechazan-preacuerdo-alcanzado-entre-tres-sindicatos-empresa",
+          "fecha": "2026-07-24"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-25",
+      "tipo": "documento",
+      "titulo": {
+        "es": "CGT: asamblea, asamblea, asamblea",
+        "en": "CGT: assembly, assembly, assembly",
+        "fr": "CGT : assemblée, assemblée, assemblée",
+        "de": "CGT: Versammlung, Versammlung, Versammlung"
+      },
+      "texto": {
+        "es": "Tras el resultado del referéndum, CGT reclama nuevas asambleas, pide responsabilidades a la dirección y plantea una huelga indefinida si no se alcanza un nuevo acuerdo. CGT reclama nuevas asambleas y plantea una huelga indefinida si no se alcanza un nuevo acuerdo.",
+        "en": "Following the referendum result, CGT calls for new assemblies, demands accountability from management and puts forward an indefinite strike if no new agreement is reached. CGT calls for new assemblies and puts forward an indefinite strike if no new agreement is reached.",
+        "fr": "À la suite du résultat du référendum, la CGT réclame de nouvelles assemblées, demande des comptes à la direction et propose une grève illimitée si aucun nouvel accord n'est conclu. La CGT réclame de nouvelles assemblées et propose une grève illimitée si aucun nouvel accord n'est conclu.",
+        "de": "Nach dem Ergebnis des Referendums fordert die CGT neue Versammlungen, verlangt Rechenschaft von der Leitung und bringt einen unbefristeten Streik ins Spiel, falls keine neue Einigung erzielt wird. Die CGT fordert neue Versammlungen und bringt einen unbefristeten Streik ins Spiel, falls keine neue Einigung erzielt wird."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/cgt-asamblea-asamblea-asamblea.pdf",
+          "titulo": {
+            "es": "CGT · Asamblea, asamblea, asamblea",
+            "en": "CGT · Assembly, assembly, assembly",
+            "fr": "CGT · Assemblée, assemblée, assemblée",
+            "de": "CGT · Versammlung, Versammlung, Versammlung"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-25",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Documento que refleja la rechazo a un acuerdo laboral por parte de la plantilla, la dem…"
+      },
+      "texto": {
+        "es": "Documento que refleja la rechazo a un acuerdo laboral por parte de la plantilla, la demanda de responsabilidades a la dirección de la empresa y la disposición a llevar a cabo una huelga indefinida si no se alcanza un nuevo acuerdo."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/doc-20260725-wa0055-37602.pdf",
+          "titulo": {
+            "es": "Documento que refleja la rechazo a un acuerdo laboral por parte de la plantilla, la dem…"
+          }
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-07-27",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Convocatoria del 24 de agosto",
+        "en": "The 24 August strike call",
+        "fr": "Le préavis du 24 août",
+        "de": "Der Streikaufruf zum 24. August"
+      },
+      "texto": {
+        "es": "Se registra la convocatoria de huelga para el 24 de agosto. La nueva convocatoria fija ya una siguiente jornada de movilización para el 24 de agosto.",
+        "en": "The strike call for 24 August is formally registered. The new strike call already sets the next day of mobilisation for 24 August.",
+        "fr": "Le préavis de grève pour le 24 août est enregistré. La nouvelle convocation fixe d’emblée une prochaine journée de mobilisation au 24 août.",
+        "de": "Der Streikaufruf für den 24. August wird registriert. Der neue Streikaufruf setzt bereits den nächsten Mobilisierungstag auf den 24. August fest."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/convocatoria-de-huelga-en-airbus-24-de-agosto-2026.pdf",
+          "titulo": {
+            "es": "Convocatoria de huelga · 24 de agosto",
+            "en": "Strike call · 24 August",
+            "fr": "Préavis de grève · 24 août",
+            "de": "Streikaufruf · 24. August"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-28",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Vuelta al trabajo",
+        "en": "Back to work",
+        "fr": "Retour au travail",
+        "de": "Zurück an die Arbeit"
+      },
+      "texto": {
+        "es": "La plantilla regresa al trabajo tras los paros de julio; la siguiente convocatoria está fijada para el 24 de agosto.",
+        "en": "The workforce returns to work after the July stoppages; the next strike call is set for 24 August.",
+        "fr": "Le personnel reprend le travail après les arrêts de juillet ; la prochaine convocation est fixée au 24 août.",
+        "de": "Die Belegschaft kehrt nach den Arbeitsniederlegungen im Juli an die Arbeit zurück; der nächste Aufruf ist auf den 24. August festgesetzt."
+      },
+      "prensa": [
+        {
+          "medio": "Fly News",
+          "titulo": "La plantilla de Airbus vuelve hoy al trabajo tras rechazar el preacuerdo con la empresa",
+          "url": "https://fly-news.es/industria/plantilla-airbus-vuelve-a-sus-centros-de-trabajo/",
+          "fecha": "2026-07-28"
+        },
+        "Economía Digital"
+      ]
+    },
+    {
+      "fecha": "2026-07-28",
+      "tipo": "documento",
+      "titulo": {
+        "es": "Punto por punto: lo que se pedía y lo que se firmó",
+        "en": "Point by point: what was asked and what was signed",
+        "fr": "Point par point : ce qui était demandé et ce qui a été signé",
+        "de": "Punkt für Punkt: was gefordert und was unterschrieben wurde"
+      },
+      "texto": {
+        "es": "Un manifiesto compara las siete reivindicaciones con los términos del preacuerdo de la CNC. El manifiesto concluye que ninguno de los siete puntos queda plenamente recogido en los términos reclamados. El documento compara las siete reivindicaciones con el contenido del preacuerdo.",
+        "en": "A manifesto compares the seven demands with the terms of the CNC pre-agreement. The manifesto concludes that none of the seven points is fully reflected on the terms demanded. The document compares the seven demands with the content of the pre-agreement.",
+        "fr": "Un manifeste compare les sept revendications aux termes du préaccord de la CNC. Le manifeste conclut qu'aucun des sept points n'est pleinement repris dans les termes réclamés. Le document compare les sept revendications au contenu du préaccord.",
+        "de": "Ein Manifest vergleicht die sieben Forderungen mit den Bedingungen der CNC-Vorabeinigung. Das Manifest kommt zu dem Schluss, dass keiner der sieben Punkte vollständig in den geforderten Bedingungen enthalten ist. Das Dokument vergleicht die sieben Forderungen mit dem Inhalt der Vorabeinigung."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/cc5a6620.pdf",
+          "titulo": {
+            "es": "Reivindicaciones frente al preacuerdo",
+            "en": "Demands versus the pre-agreement",
+            "fr": "Revendications face au préaccord",
+            "de": "Forderungen gegenüber der Vorabeinigung"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-07-30",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "La empresa pide mediación del SIMA",
+        "en": "The company asks for SIMA mediation",
+        "fr": "L'entreprise demande la médiation du SIMA",
+        "de": "Das Unternehmen ruft die SIMA-Schlichtung an"
+      },
+      "texto": {
+        "es": "Airbus solicita una mediación del SIMA tras el rechazo del preacuerdo. Ese mismo día arranca la papeleta de huelga.",
+        "en": "Airbus requests SIMA mediation after the pre-agreement is rejected. That same day the strike ballot opens.",
+        "fr": "Airbus sollicite une médiation du SIMA après le rejet du préaccord. Le même jour, le vote de grève s'ouvre.",
+        "de": "Airbus beantragt eine SIMA-Schlichtung, nachdem die Vorabeinigung abgelehnt wurde. Am selben Tag beginnt die Streikabstimmung."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/informacion-inicio-de-la-papeleta-de-huelga-1.pdf",
+          "titulo": {
+            "es": "Inicio de la papeleta de huelga",
+            "en": "Start of the strike ballot",
+            "fr": "Ouverture du vote de grève",
+            "de": "Beginn der Streikabstimmung"
+          }
+        }
+      ],
+      "prensa": [
+        {
+          "medio": "Expansión",
+          "titulo": "Airbus pide una mediación del SIMA para desencallar el conflicto laboral con la plantilla en España",
+          "url": "https://www.expansion.com/empresas/2026/07/30/6a6b5971e5fdea64468b4590.html",
+          "fecha": "2026-07-30T14:02:28+00:00"
+        },
+        {
+          "medio": "El Mundo",
+          "titulo": "Airbus recurre a la mediación profesional para resolver los conflictos con su plantilla",
+          "url": "https://www.elmundo.es/economia/empresas/2026/07/30/6a6b6beee4d4d860568b459f.html",
+          "fecha": "2026-07-30T16:48:48+00:00"
+        },
+        "Demócrata"
+      ]
+    },
+    {
+      "fecha": "2026-07-31",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Convocatoria formal: huelga indefinida",
+        "en": "Formal call: indefinite strike",
+        "fr": "Préavis formel : grève illimitée",
+        "de": "Formeller Aufruf: unbefristeter Streik"
+      },
+      "texto": {
+        "es": "CGT, UGT y ÚTIL formalizan una convocatoria que comienza el 24 de agosto con paros parciales y prevé huelga indefinida a jornada completa desde el 25. La convocatoria queda formalmente registrada. SIPA dice que actuará según lo que decida su afiliación; En la documentación incorporada a esta cronología no consta en ese momento adhesión de CCOO o ATP a esta convocatoria.",
+        "en": "CGT, UGT and ÚTIL formalise a strike call that begins on 24 August with partial stoppages and provides for an indefinite full-day strike from the 25th. The call is formally registered. SIPA says it will act according to what its members decide; the documentation included in this timeline records no support from CCOO or ATP for this call at that point.",
+        "fr": "CGT, UGT et ÚTIL formalisent une convocation qui commence le 24 août par des arrêts partiels et prévoit une grève illimitée à journée complète à partir du 25. La convocation est officiellement enregistrée. SIPA indique qu'il agira selon la décision de ses adhérents ; la documentation intégrée à cette chronologie ne fait état, à ce moment-là, d'aucune adhésion de CCOO ou d'ATP à cette convocation.",
+        "de": "CGT, UGT und ÚTIL formalisieren einen Aufruf, der am 24. August mit Teilstreiks beginnt und ab dem 25. einen unbefristeten Vollstreik vorsieht. Der Aufruf wird formell eingetragen. SIPA erklärt, es werde sich nach der Entscheidung seiner Mitglieder richten; die in dieser Chronologie enthaltene Dokumentation vermerkt zu diesem Zeitpunkt keine Unterstützung von CCOO oder ATP für diesen Aufruf."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/comunicado-conjunto-cgt-ugt-y-util-huelga-indefinida-en-airbus.pdf",
+          "titulo": {
+            "es": "Comunicado conjunto CGT, UGT y UTIL",
+            "en": "Joint statement by CGT, UGT and UTIL",
+            "fr": "Communiqué commun CGT, UGT et UTIL",
+            "de": "Gemeinsame Mitteilung von CGT, UGT und UTIL"
+          }
+        },
+        {
+          "pdf": "/docs/convocatoria-huelga-en-airbus-comunicacion-a-airbus-20260731-anonimiza.pdf",
+          "titulo": {
+            "es": "Comunicación a la empresa",
+            "en": "Notice to the company",
+            "fr": "Notification à l'entreprise",
+            "de": "Mitteilung an das Unternehmen"
+          }
+        }
+      ],
+      "prensa": [
+        {
+          "medio": "Infobae",
+          "titulo": "Los sindicatos CGT, UGT y UTIL anuncian la convocatoria de huelga indefinida en Airbus desde el 24 de agosto",
+          "url": "https://www.infobae.com/america/agencias/2026/07/31/los-sindicatos-cgt-ugt-y-util-anuncian-la-convocatoria-de-huelga-indefinida-en-airbus-desde-el-24-de-agosto/",
+          "fecha": "2026-07-31T13:33:00+00:00"
+        },
+        {
+          "medio": "Expansión",
+          "titulo": "Sindicatos convocan una huelga indefinida en Airbus España a partir del 24 de agosto",
+          "url": "https://www.expansion.com/empresas/2026/07/31/6a6cccb8468aeb3b348b4595.html",
+          "fecha": "2026-07-31T16:27:45+00:00"
+        },
+        {
+          "medio": "Infodefensa",
+          "titulo": "Huelga indefinida en Airbus España: UGT, CGT y ÚTIL convocan paros totales a partir del 24 de agosto",
+          "url": "https://www.infodefensa.com/texto-diario/mostrar/5971952/plantilla-airbus-decide-retomar-huelga-esta-vez-indefinida-partir-24-agosto",
+          "fecha": "2026-07-31"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-06",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Mediación en el SIMA",
+        "en": "Mediation at SIMA",
+        "fr": "Médiation au SIMA",
+        "de": "Schlichtung bei der SIMA"
+      },
+      "texto": {
+        "es": "Se celebra la mediación en el SIMA. Hay dos expedientes abiertos y diferenciados; el movimiento informa del detalle a través de sus canales.",
+        "en": "The SIMA mediation takes place. Two separate cases are open; the movement reports the detail through its own channels.",
+        "fr": "La médiation du SIMA se tient. Deux dossiers distincts sont ouverts ; le mouvement en détaille le contenu sur ses propres canaux.",
+        "de": "Die SIMA-Schlichtung findet statt. Zwei getrennte Verfahren laufen; die Bewegung berichtet die Einzelheiten über ihre eigenen Kanäle."
+      },
+      "prensa": [
+        "Resúmenes del grupo"
+      ]
+    },
+    {
+      "fecha": "2026-08-11",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Airbus solicita una nueva mediación",
+        "en": "Airbus requests new mediation",
+        "fr": "Airbus sollicite une nouvelle médiation",
+        "de": "Airbus beantragt eine neue Schlichtung"
+      },
+      "texto": {
+        "es": "Airbus solicita una nueva mediación para el 11 de agosto.",
+        "en": "Airbus requests a new mediation for 11 August.",
+        "fr": "Airbus sollicite une nouvelle médiation pour le 11 août.",
+        "de": "Airbus beantragt eine neue Schlichtung für den 11. August."
+      },
+      "prensa": [
+        {
+          "medio": "elDiario.es",
+          "titulo": "Airbus pretende abrir una mesa negociación el día 11 para intentar un acuerdo que evite la nueva huelga",
+          "url": "https://www.eldiario.es/economia/airbus-pretende-abrir-mesa-negociacion-dia-11-acuerdo-evite-nueva-huelga_1_13433435.html",
+          "fecha": "2026-08-07T07:32:43+00:00"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-19",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Mediación"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre mediación en el conflicto de Airbus España. Publicado por elDiario.es, Radio Intereconomía, Industry Talks."
+      },
+      "prensa": [
+        {
+          "medio": "elDiario.es",
+          "titulo": "Los sindicatos convocantes de la huelga en Airbus no acudirán a la mediación con la empresa",
+          "url": "https://www.eldiario.es/economia/sindicatos-convocantes-huelga-airbus-no-acudiran-mediacion-empresa_1_13456308.html",
+          "fecha": "2026-08-19"
+        },
+        "Radio Intereconomía",
+        "Industry Talks"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-08-20",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Huelga indefinida"
+      },
+      "texto": {
+        "es": "La nueva convocatoria de huelga recibe cobertura simultánea en varios medios. Publicado por El Independiente, Cinco Días, El Conciso, Aviación Digital.",
+        "en": "The new strike call receives simultaneous coverage across several outlets. Published by El Independiente, Cinco Días, El Conciso, Aviación Digital.",
+        "fr": "La nouvelle convocation de grève reçoit une couverture simultanée dans plusieurs médias. Publié par El Independiente, Cinco Días, El Conciso, Aviación Digital.",
+        "de": "Der neue Streikaufruf erhält gleichzeitige Berichterstattung in mehreren Medien. Veröffentlicht von El Independiente, Cinco Días, El Conciso, Aviación Digital."
+      },
+      "prensa": [
+        {
+          "medio": "El Independiente",
+          "titulo": "Airbus se asoma al abismo de la huelga indefinida en España tras el último 'plantón' de los sindicatos",
+          "url": "https://www.elindependiente.com/economia/2026/08/20/airbus-huelga-indefinida-espana-planton-sindicatos/",
+          "fecha": "2026-08-20"
+        },
+        "Cinco Días",
+        {
+          "medio": "El Conciso",
+          "titulo": "Los sindicatos plantarán a Airbus en la reunión para anular la huelga indefinida",
+          "url": "https://www.elconciso.es/empresas/ugt-no-acudira-jueves-reunion_0_2007745250.html",
+          "fecha": "2026-08-19"
+        },
+        {
+          "medio": "Aviación Digital",
+          "titulo": "Los sindicatos acusan a Airbus de «mala fe» ante la huelga indefinida",
+          "url": "https://aviaciondigital.com/huelga-airbus-sindicatos-mala-fe-agosto-2026/",
+          "fecha": "2026-08-20"
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-08-21",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Reunión en el SIMA por la huelga",
+        "en": "SIMA session on the strike",
+        "fr": "Réunion au SIMA sur la grève",
+        "de": "SIMA-Sitzung zum Streik"
+      },
+      "texto": {
+        "es": "Nueva reunión en el SIMA derivada de la convocatoria de huelga (expediente M/396/2026/H). El acta recoge precisiones de la empresa sobre once materias, entre ellas el desistimiento del recurso ante el Tribunal Supremo, la devolución de las cantidades descontadas, una garantía salarial vinculada al IPC más un porcentaje adicional y la apertura de negociación sobre distintas condiciones laborales. Airbus vincula su propuesta a la consecución de un acuerdo global y señala como elemento fundamental la «paz social» durante el periodo negociador. Las partes fijan reuniones diarias desde el 25 y los mediadores piden aplazar el inicio de la huelga. El acta define el texto como documento base para las asambleas del 24 y no recoge un acuerdo final.",
+        "en": "A further SIMA session arising from the strike call (case M/396/2026/H). The record sets out the company's clarifications on eleven matters, including the withdrawal of its Supreme Court appeal, the refund of the amounts deducted, a pay guarantee linked to CPI plus an additional percentage, and the opening of negotiations on various working conditions. Airbus ties its proposal to reaching a global agreement and identifies «social peace» during the negotiating period as a fundamental element. The parties set daily meetings from the 25th and the mediators ask for the start of the strike to be postponed. The record defines the text as a base document for the assemblies of the 24th and does not amount to a final agreement.",
+        "fr": "Nouvelle réunion au SIMA découlant du préavis de grève (dossier M/396/2026/H). Le procès-verbal consigne des précisions de l'entreprise sur onze matières, dont le désistement de son pourvoi devant le Tribunal suprême, la restitution des sommes retenues, une garantie salariale liée à l'IPC majorée d'un pourcentage supplémentaire et l'ouverture de négociations sur différentes conditions de travail. Airbus lie sa proposition à la conclusion d'un accord global et désigne la « paix sociale » pendant la période de négociation comme un élément fondamental. Les parties fixent des réunions quotidiennes à partir du 25 et les médiateurs demandent le report du début de la grève. Le procès-verbal qualifie le texte de document de base pour les assemblées du 24 et ne constitue pas un accord définitif.",
+        "de": "Erneute SIMA-Sitzung infolge des Streikaufrufs (Verfahren M/396/2026/H). Das Protokoll hält Klarstellungen des Unternehmens zu elf Themen fest, darunter die Rücknahme seiner Revision beim Obersten Gerichtshof, die Erstattung der einbehaltenen Beträge, eine an den Verbraucherpreisindex zuzüglich eines weiteren Prozentsatzes gekoppelte Lohngarantie sowie die Aufnahme von Verhandlungen über verschiedene Arbeitsbedingungen. Airbus knüpft seinen Vorschlag an das Erreichen einer Gesamtvereinbarung und benennt den «sozialen Frieden» während des Verhandlungszeitraums als grundlegendes Element. Die Parteien vereinbaren tägliche Treffen ab dem 25., und die Schlichter bitten, den Streikbeginn zu verschieben. Das Protokoll bezeichnet den Text als Basisdokument für die Versammlungen am 24. und stellt keine endgültige Einigung dar."
+      }
+    },
+    {
+      "fecha": "2026-08-24",
+      "tipo": "futuro",
+      "titulo": {
+        "es": "24 de agosto: paros y asambleas",
+        "en": "24 August: stoppages and assemblies",
+        "fr": "24 août : arrêts et assemblées",
+        "de": "24. August: Arbeitsniederlegungen und Versammlungen"
+      },
+      "texto": {
+        "es": "El 24 se celebraron paros de 3 horas y asambleas en los centros, que ratificaron mayoritariamente mantener el inicio de la huelga indefinida a jornada completa el 25.",
+        "en": "On the 24th, 3-hour stoppages and assemblies were held at the sites, which voted by a majority to keep the indefinite full-day strike starting on the 25th.",
+        "fr": "Le 24, des arrêts de 3 heures et des assemblées se sont tenus dans les centres, qui ont ratifié majoritairement le maintien du début de la grève illimitée à journée complète le 25.",
+        "de": "Am 24. fanden in den Werken dreistündige Arbeitsniederlegungen und Versammlungen statt, die mehrheitlich bestätigten, den Beginn des unbefristeten Vollstreiks am 25. beizubehalten."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/convocatoria-de-huelga-en-airbus-24-de-agosto-2026.pdf",
+          "titulo": {
+            "es": "Convocatoria de huelga · 24 de agosto",
+            "en": "Strike call · 24 August",
+            "fr": "Préavis de grève · 24 août",
+            "de": "Streikaufruf · 24. August"
+          }
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-25",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Inicio del calendario de negociación",
+        "en": "Start of the negotiating calendar",
+        "fr": "Début du calendrier de négociation",
+        "de": "Beginn des Verhandlungskalenders"
+      },
+      "texto": {
+        "es": "El 25 de agosto comienza en el SIMA el calendario de negociación acordado el día 21, con periodicidad diaria salvo acuerdo distinto entre las partes y participación abierta a todos los sindicatos. El acta prevé que las materias planteadas se desarrollen dentro de ese calendario de negociación.",
+        "en": "On 25 August the negotiating calendar agreed on the 21st begins at SIMA, meeting daily unless the parties agree otherwise and open to every union. The record provides that the matters raised will be dealt with within that negotiating calendar.",
+        "fr": "Le 25 août débute au SIMA le calendrier de négociation convenu le 21, à raison d'une séance par jour sauf accord contraire des parties et avec une participation ouverte à tous les syndicats. Le procès-verbal prévoit que les matières soulevées soient traitées dans le cadre de ce calendrier de négociation.",
+        "de": "Am 25. August beginnt bei der SIMA der am 21. vereinbarte Verhandlungskalender, täglich, sofern die Parteien nichts anderes vereinbaren, und offen für alle Gewerkschaften. Das Protokoll sieht vor, dass die aufgeworfenen Themen innerhalb dieses Verhandlungskalenders behandelt werden."
+      }
+    },
+    {
+      "fecha": "2026-08-25",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Arranca la huelga indefinida",
+        "en": "The indefinite strike begins",
+        "fr": "La grève illimitée commence",
+        "de": "Der unbefristete Streik beginnt"
+      },
+      "texto": {
+        "es": "Votación en todos los centros de Airbus España: la mayoría vota no aplazar el inicio de la huelga. La huelga indefinida arranca ese mismo día.",
+        "en": "A vote in every Airbus España centre: the majority vote not to postpone the start of the strike. The indefinite strike begins that same day.",
+        "fr": "Vote dans tous les centres d'Airbus España : la majorité vote contre le report du début de la grève. La grève illimitée commence ce même jour.",
+        "de": "Abstimmung in allen Standorten von Airbus España: die Mehrheit stimmt gegen eine Verschiebung des Streikbeginns. Der unbefristete Streik beginnt noch am selben Tag."
+      }
+    },
+    {
+      "fecha": "2026-08-26",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Huelga indefinida"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre huelga indefinida en el conflicto de Airbus España. Publicado por CGT Andalucía, Ceuta y Melilla, ABC, La Razón, Aviación Digital."
+      },
+      "prensa": [
+        {
+          "medio": "CGT Andalucía, Ceuta y Melilla",
+          "titulo": "Resistencia Sonora dedica hoy un especial a la huelga indefinida de Airbus en Sevilla",
+          "url": "https://cgtandalucia.org/resistencia-sonora-dedica-hoy-un-especial-a-la-huelga-indefinida-de-airbus-en-sevilla/",
+          "fecha": "2026-08-26"
+        },
+        "ABC",
+        "La Razón",
+        {
+          "medio": "Aviación Digital",
+          "titulo": "La huelga indefinida de Airbus España sigue sin acuerdo tras el SIMA",
+          "url": "https://aviaciondigital.com/huelga-indefinida-airbus-espana-sima-agosto-2026/",
+          "fecha": "2026-08-26"
+        }
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-08-27",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Mediación"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre mediación en el conflicto de Airbus España. Publicado por Infobae, Economía Digital, Cinco Días, Demócrata, democrata.es."
+      },
+      "prensa": [
+        "Infobae",
+        "Economía Digital",
+        "Cinco Días",
+        "Demócrata",
+        "democrata.es"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-08-28",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Huelga indefinida"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre huelga indefinida en el conflicto de Airbus España. Publicado por Expansión, expansion.com, Radio Intereconomía, Elplural.com."
+      },
+      "prensa": [
+        "Expansión",
+        "expansion.com",
+        "Radio Intereconomía",
+        "Elplural.com"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-08-31",
+      "tipo": "votacion",
+      "titulo": {
+        "es": "La plantilla vota seguir: el 81 % rechaza pausar la huelga",
+        "en": "The workforce votes to carry on: 81 % refuse to pause the strike",
+        "fr": "Le personnel vote pour continuer : 81 % refusent de suspendre la grève",
+        "de": "Die Belegschaft stimmt fürs Weitermachen: 81 % lehnen eine Streikpause ab"
+      },
+      "texto": {
+        "es": "Mientras sigue abierto el calendario diario de negociación en el SIMA, las asambleas de todos los centros votan si pausar la huelga indefinida. El 81,2 % rechaza la pausa, frente a un 16,4 % a favor y un 2,4 % de abstención; Albacete y Cádiz se adhieren al resultado de la mayoría. El mensaje es inequívoco: «Esto no se para».",
+        "en": "With the daily negotiating calendar at SIMA still open, assemblies at every site vote on whether to pause the indefinite strike. 81.2 % reject the pause, against 16.4 % in favour and 2.4 % abstaining; Albacete and Cádiz defer to the majority result. The message is unmistakable: «This does not stop».",
+        "fr": "Alors que le calendrier quotidien de négociation au SIMA reste ouvert, les assemblées de tous les centres votent sur la suspension de la grève illimitée. 81,2 % rejettent la pause, contre 16,4 % pour et 2,4 % d'abstention ; Albacete et Cadix s'en remettent au résultat majoritaire. Le message est sans équivoque : « Ça ne s'arrête pas ».",
+        "de": "Während der tägliche Verhandlungskalender bei der SIMA weiter offen ist, stimmen die Versammlungen aller Standorte über eine Pause des unbefristeten Streiks ab. 81,2 % lehnen die Pause ab, gegenüber 16,4 % dafür und 2,4 % Enthaltung; Albacete und Cádiz schließen sich dem Mehrheitsergebnis an. Die Botschaft ist unmissverständlich: «Das wird nicht gestoppt»."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/resultado-votacion-pausa-huelga-20260831.pdf",
+          "titulo": {
+            "es": "Resultado de la votación · 31 ago",
+            "en": "Vote result · 31 Aug",
+            "fr": "Résultat du vote · 31 août",
+            "de": "Abstimmungsergebnis · 31. Aug."
+          }
+        }
+      ],
+      "prensa": [
+        "Infobae",
+        "Economía Digital",
+        "Europa Press",
+        "El Economista"
+      ]
+    },
+    {
+      "fecha": "2026-09-01",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Acuerdo"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre acuerdo en el conflicto de Airbus España. Publicado por Andalucía Información, farodevigo.es, elperiodico.com, El Periódico, Infobae, 20minutos.es."
+      },
+      "prensa": [
+        "Andalucía Información",
+        "farodevigo.es",
+        "elperiodico.com",
+        "El Periódico",
+        "Infobae",
+        "20minutos.es"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-01",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Huelga indefinida"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre huelga indefinida en el conflicto de Airbus España. Publicado por Cadena SER, cadenaser.com, Diario Socialista."
+      },
+      "prensa": [
+        "Cadena SER",
+        "cadenaser.com",
+        "Diario Socialista"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-01",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Mediación"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre mediación en el conflicto de Airbus España. Publicado por ABC, Infobae, Europa Press."
+      },
+      "prensa": [
+        "ABC",
+        "Infobae",
+        "Europa Press"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-02",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Negociación"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre negociación en el conflicto de Airbus España. Publicado por Infobae, Infodefensa, Telemadrid, telemadrid.es, RRHH Digital, La Voz de Galicia."
+      },
+      "prensa": [
+        "Infobae",
+        "Infodefensa",
+        "Telemadrid",
+        "telemadrid.es",
+        "RRHH Digital",
+        "La Voz de Galicia"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-03",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "El SIMA se cierra en desacuerdo: la negociación entra en parálisis",
+        "en": "SIMA ends in disagreement: the negotiation grinds to a halt",
+        "fr": "Le SIMA s'achève sur un désaccord : la négociation se paralyse",
+        "de": "Die SIMA endet ohne Einigung: die Verhandlung gerät ins Stocken"
+      },
+      "texto": {
+        "es": "La reanudación prevista en el SIMA (expediente 394/2026) llegaba tras el aplazamiento que pidió la dirección para presentar una propuesta que mejorara el preacuerdo rechazado en julio y garantizara el empleo —contratación, jubilación anticipada y cargas de trabajo en las plantas—. No hubo avance: la mesa entra en «parálisis absoluta» y se cierra firmando un Acta de Desacuerdo. Con la huelga y la negociación cerradas en desacuerdo, el conflicto se adentra en un escenario incierto.",
+        "en": "The scheduled resumption at SIMA (case 394/2026) followed the postponement management had requested in order to put forward a proposal that would improve on the pre-agreement rejected in July and safeguard jobs —hiring, early retirement and plant workloads—. There was no progress: the table falls into «absolute paralysis» and closes with a Record of Disagreement. With both the strike and the negotiation closed in disagreement, the dispute enters uncertain ground.",
+        "fr": "La reprise prévue au SIMA (dossier 394/2026) faisait suite au report demandé par la direction pour présenter une proposition améliorant le préaccord rejeté en juillet et garantissant l'emploi — embauches, préretraite et charges de travail dans les usines —. Aucune avancée : la table tombe dans une « paralysie absolue » et s'achève par la signature d'un constat de désaccord. La grève et la négociation closes sur un désaccord, le conflit entre en terrain incertain.",
+        "de": "Die vorgesehene Wiederaufnahme bei der SIMA (Verfahren 394/2026) folgte auf die von der Leitung erbetene Verschiebung, um einen Vorschlag vorzulegen, der die im Juli abgelehnte Vorabeinigung verbessern und die Beschäftigung sichern sollte — Einstellungen, Vorruhestand und Arbeitslast in den Werken —. Es gab keinen Fortschritt: der Tisch gerät in «absolute Lähmung» und wird mit einem Nichteinigungsprotokoll geschlossen. Mit Streik und Verhandlung im Nichteinvernehmen geschlossen, tritt der Konflikt in ungewisses Gelände."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/atp-sae-resumen-de-la-reunion-del-sima-20260903.pdf",
+          "titulo": {
+            "es": "Resumen de la reunión del SIMA · 3 sep",
+            "en": "Summary of the SIMA meeting · 3 Sep",
+            "fr": "Compte rendu de la réunion du SIMA · 3 sept.",
+            "de": "Zusammenfassung der SIMA-Sitzung · 3. Sep."
+          }
+        }
+      ],
+      "prensa": [
+        "Industry Talks",
+        "El Economista",
+        "Cinco Días",
+        "Europa Press",
+        "El Confidencial"
+      ]
+    },
+    {
+      "fecha": "2026-09-04",
+      "tipo": "ruptura",
+      "titulo": {
+        "es": "La «propuesta final» va al Ministerio, no a las asambleas",
+        "en": "The «final proposal» goes to the Ministry, not the assemblies",
+        "fr": "La « proposition finale » va au ministère, pas aux assemblées",
+        "de": "Der «Endvorschlag» geht ins Ministerium, nicht in die Versammlungen"
+      },
+      "texto": {
+        "es": "El Ministerio de Industria acoge una reunión que no es una negociación, sino la presentación de la «propuesta final de entendimiento» de la empresa para llevarla directa a referéndum. CGT y ÚTIL, con sus observadores, quedan retenidos fuera de la sala mientras en X circula una foto de los sindicatos firmantes junto a la empresa y el ministro. El comité de huelga lo lee como una escenificación para señalar ante la prensa quién acepta y un puenteo de las asambleas: «la huelga continúa, y sigue siendo legal». El camino se decide el lunes en asamblea.",
+        "en": "The Ministry of Industry hosts a meeting that is not a negotiation but the presentation of the company's «final understanding proposal», to be taken straight to a referendum. CGT and ÚTIL, with their observers, are held outside the room while a photo of the signing unions alongside the company and the minister circulates on X. The strike committee reads it as a piece of theatre to flag to the press who accepts, and a bypass of the assemblies: «the strike goes on, and it remains legal». The way forward is decided at Monday's assembly.",
+        "fr": "Le ministère de l'Industrie accueille une réunion qui n'est pas une négociation, mais la présentation de la « proposition finale d'entente » de l'entreprise, destinée à passer directement en référendum. La CGT et ÚTIL, avec leurs observateurs, sont retenus hors de la salle tandis que circule sur X une photo des syndicats signataires aux côtés de l'entreprise et du ministre. Le comité de grève y voit une mise en scène pour désigner devant la presse qui accepte, et un court-circuitage des assemblées : « la grève continue, et elle reste légale ». La suite se décidera lundi en assemblée.",
+        "de": "Das Industrieministerium richtet ein Treffen aus, das keine Verhandlung ist, sondern die Präsentation des «Endvorschlags zur Verständigung» des Unternehmens, um ihn direkt in ein Referendum zu geben. CGT und ÚTIL werden mit ihren Beobachtern vor dem Saal festgehalten, während auf X ein Foto der unterzeichnenden Gewerkschaften neben Unternehmen und Minister kursiert. Das Streikkomitee liest dies als Inszenierung, um vor der Presse zu zeigen, wer zustimmt, und als Übergehung der Versammlungen: «der Streik geht weiter und bleibt legal». Der weitere Weg wird am Montag in der Versammlung entschieden."
+      },
+      "docs": [
+        {
+          "pdf": "/docs/propuesta-final-de-entendimiento-20260904.pdf",
+          "titulo": {
+            "es": "Propuesta final de entendimiento · 4 sep",
+            "en": "Final understanding proposal · 4 Sep",
+            "fr": "Proposition finale d'entente · 4 sept.",
+            "de": "Endvorschlag zur Verständigung · 4. Sep."
+          }
+        },
+        {
+          "pdf": "/docs/comunicado-cgt-estatal-20260904.pdf",
+          "titulo": {
+            "es": "CGT · «Esta vez, en el Ministerio»",
+            "en": "CGT · «This time, at the Ministry»",
+            "fr": "CGT · « Cette fois, au ministère »",
+            "de": "CGT · «Diesmal im Ministerium»"
+          }
+        },
+        {
+          "pdf": "/docs/notas-util-reunion-ministerio-de-industria-20260904.pdf",
+          "titulo": {
+            "es": "ÚTIL · Notas de la reunión en el Ministerio",
+            "en": "ÚTIL · Notes from the Ministry meeting",
+            "fr": "ÚTIL · Notes de la réunion au ministère",
+            "de": "ÚTIL · Notizen zum Ministeriumstreffen"
+          }
+        },
+        {
+          "pdf": "/docs/atp-sae-reunion-en-el-ministerio-20260904.pdf",
+          "titulo": {
+            "es": "ATP-SAe · Reunión en el Ministerio",
+            "en": "ATP-SAe · Meeting at the Ministry",
+            "fr": "ATP-SAe · Réunion au ministère",
+            "de": "ATP-SAe · Treffen im Ministerium"
+          }
+        }
+      ],
+      "prensa": [
+        "La Vanguardia",
+        "Expansión",
+        "publico.es",
+        "Onda Cero",
+        "ABC",
+        "Infobae"
+      ]
+    },
+    {
+      "fecha": "2026-09-05",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Acuerdo"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre acuerdo en el conflicto de Airbus España. Publicado por El Debate, Canal Sur, Hispanidad."
+      },
+      "prensa": [
+        "El Debate",
+        "Canal Sur",
+        "Hispanidad"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-07",
+      "tipo": "futuro",
+      "titulo": {
+        "es": "El lunes, las asambleas deciden el camino",
+        "en": "On Monday, the assemblies decide the way forward",
+        "fr": "Lundi, les assemblées décident de la suite",
+        "de": "Am Montag entscheiden die Versammlungen über den weiteren Weg"
+      },
+      "texto": {
+        "es": "Tras la maniobra del Ministerio, el comité de huelga convoca a las asambleas de todos los centros para decidir en común los próximos pasos. El movimiento pide que se le mida «por la transparencia y la honradez» y llama a sostener los piquetes.",
+        "en": "After the Ministry manoeuvre, the strike committee calls the assemblies at every site to decide the next steps together. The movement asks to be judged «by transparency and honesty» and calls to keep the pickets going.",
+        "fr": "Après la manœuvre du ministère, le comité de grève convoque les assemblées de tous les centres pour décider ensemble des prochaines étapes. Le mouvement demande à être jugé « sur la transparence et l'honnêteté » et appelle à tenir les piquets.",
+        "de": "Nach dem Manöver des Ministeriums beruft das Streikkomitee die Versammlungen aller Standorte ein, um die nächsten Schritte gemeinsam zu entscheiden. Die Bewegung will «an Transparenz und Ehrlichkeit» gemessen werden und ruft dazu auf, die Streikposten aufrechtzuerhalten."
+      }
+    },
+    {
+      "fecha": "2026-09-08",
+      "tipo": "votacion",
+      "titulo": {
+        "es": "Referéndum"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre referéndum en el conflicto de Airbus España. Publicado por El Diario Vasco, Europa Press, The Objective, Infobae, elespanol.com, heraldo.es."
+      },
+      "prensa": [
+        "El Diario Vasco",
+        "Europa Press",
+        "The Objective",
+        "Infobae",
+        "elespanol.com",
+        "heraldo.es"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-08",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Huelga indefinida"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre huelga indefinida en el conflicto de Airbus España. Publicado por Infobae, elimparcial.es, La Voz de Galicia, La Voz Digital."
+      },
+      "prensa": [
+        "Infobae",
+        "elimparcial.es",
+        "La Voz de Galicia",
+        "La Voz Digital"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-08",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Acuerdo"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre acuerdo en el conflicto de Airbus España. Publicado por Andalucía Información, Cadena SER, El Mundo, elimparcial.es, La Razón, elDiario.es."
+      },
+      "prensa": [
+        "Andalucía Información",
+        "Cadena SER",
+        "El Mundo",
+        "elimparcial.es",
+        "La Razón",
+        "elDiario.es"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-09",
+      "tipo": "huelga",
+      "titulo": {
+        "es": "Huelga indefinida"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre huelga indefinida en el conflicto de Airbus España. Publicado por El Mundo, La Razón, Aviación Digital, izquierdarevolucionaria.net."
+      },
+      "prensa": [
+        "El Mundo",
+        "La Razón",
+        "Aviación Digital",
+        "izquierdarevolucionaria.net"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-10",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Acuerdo"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre acuerdo en el conflicto de Airbus España. Publicado por izquierdadiario.es, Izquierda diario.es, cincodias.elpais.com, Cinco Días."
+      },
+      "prensa": [
+        "izquierdadiario.es",
+        "Izquierda diario.es",
+        "cincodias.elpais.com",
+        "Cinco Días"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-11",
+      "tipo": "movilizacion",
+      "titulo": {
+        "es": "Marcha"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre marcha en el conflicto de Airbus España. Publicado por economiadigital.es, Demócrata, democrata.es, Infobae."
+      },
+      "prensa": [
+        "economiadigital.es",
+        "Demócrata",
+        "democrata.es",
+        "Infobae"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-12",
+      "tipo": "movilizacion",
+      "titulo": {
+        "es": "Marcha"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre marcha en el conflicto de Airbus España. Publicado por Aviación Digital, Demócrata, La Razón."
+      },
+      "prensa": [
+        "Aviación Digital",
+        "Demócrata",
+        "La Razón"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-16",
+      "tipo": "votacion",
+      "titulo": {
+        "es": "Referéndum"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre referéndum en el conflicto de Airbus España. Publicado por CLM24, Infobae, El Conciso, Demócrata."
+      },
+      "prensa": [
+        "CLM24",
+        "Infobae",
+        "El Conciso",
+        "Demócrata"
+      ],
+      "auto": true
+    },
+    {
+      "fecha": "2026-09-18",
+      "tipo": "ruptura",
+      "titulo": {
+        "es": "La Audiencia Nacional suspende el referéndum",
+        "en": "Spain's National Court suspends the referendum",
+        "fr": "L'Audiencia Nacional suspend le référendum",
+        "de": "Der Nationale Gerichtshof stoppt das Referendum"
+      },
+      "texto": {
+        "es": "La Sala de lo Social de la Audiencia Nacional acuerda medidas cautelarísimas y deja en suspenso el referéndum que la empresa había convocado para el 24 y 25 de septiembre. Estima las cautelares pedidas por CGT en su demanda de conflicto colectivo, que denuncia vulneración del derecho de huelga y mala fe negociadora. La huelga indefinida sigue en pie.",
+        "en": "The Social Chamber of the Audiencia Nacional grants urgent interim measures and puts on hold the referendum the company had called for 24 and 25 September. It upholds the measures requested by CGT in its collective-dispute claim, which alleges a breach of the right to strike and bad faith in the negotiations. The open-ended strike remains in force.",
+        "fr": "La chambre sociale de l'Audiencia Nacional ordonne des mesures conservatoires en urgence et suspend le référendum que l'entreprise avait convoqué les 24 et 25 septembre. Elle fait droit aux mesures demandées par la CGT dans sa demande de conflit collectif, qui dénonce une atteinte au droit de grève et une mauvaise foi dans la négociation. La grève illimitée reste en vigueur.",
+        "de": "Die Sozialkammer der Audiencia Nacional erlässt einstweilige Eilmaßnahmen und setzt das Referendum aus, das das Unternehmen für den 24. und 25. September angesetzt hatte. Sie gibt den von der CGT in ihrer Kollektivklage beantragten Maßnahmen statt, die eine Verletzung des Streikrechts und unredliches Verhalten in den Verhandlungen rügt. Der unbefristete Streik bleibt in Kraft."
+      },
+      "prensa": [
+        "El Economista",
+        "Forbes",
+        "Press Digital",
+        "Infobae",
+        "Demócrata"
+      ]
+    },
+    {
+      "fecha": "2026-09-24",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Vista de las medidas cautelares",
+        "en": "Hearing on the interim measures",
+        "fr": "Audience sur les mesures conservatoires",
+        "de": "Anhörung über die einstweiligen Maßnahmen"
+      },
+      "texto": {
+        "es": "La Audiencia Nacional celebra la vista sobre las medidas cautelares pedidas por CGT. De ella depende que se confirme o se levante la suspensión del referéndum. Coincide con el primer día para el que estaba convocada la consulta.",
+        "en": "The Audiencia Nacional holds the hearing on the interim measures requested by CGT. Whether the suspension of the referendum is confirmed or lifted depends on it. It falls on the first day for which the ballot had been called.",
+        "fr": "L'Audiencia Nacional tient l'audience sur les mesures conservatoires demandées par la CGT. C'est d'elle que dépend la confirmation ou la levée de la suspension du référendum. Elle coïncide avec le premier jour pour lequel la consultation avait été convoquée.",
+        "de": "Die Audiencia Nacional hält die Anhörung über die von der CGT beantragten einstweiligen Maßnahmen ab. Von ihr hängt ab, ob die Aussetzung des Referendums bestätigt oder aufgehoben wird. Sie fällt auf den ersten Tag, für den die Abstimmung angesetzt war."
+      }
+    },
+    {
+      "fecha": "2026-09-24",
+      "tipo": "votacion",
+      "titulo": {
+        "es": "Referéndum convocado (24 y 25 de septiembre)",
+        "en": "Referendum called (24 and 25 September)",
+        "fr": "Référendum convoqué (24 et 25 septembre)",
+        "de": "Referendum angesetzt (24. und 25. September)"
+      },
+      "texto": {
+        "es": "Fechas en las que la empresa había convocado a la plantilla a votar la «propuesta de acuerdo» del 4 de septiembre —firmada con ATP, CCOO y SIPA—: IPC real y recuperación del 7,95 % del poder adquisitivo hasta 2029, con el teletrabajo vigente intacto. La consulta queda en suspenso por las medidas cautelarísimas de la Audiencia Nacional.",
+        "en": "The dates on which the company had called the workforce to vote on the «proposed agreement» of 4 September —signed with ATP, CCOO and SIPA—: real CPI and a 7.95 % recovery of purchasing power to 2029, with the current remote-work arrangement kept intact. The ballot is on hold owing to the National Court's urgent interim measures.",
+        "fr": "Dates auxquelles l'entreprise avait convoqué le personnel pour voter la « proposition d'accord » du 4 septembre —signée avec ATP, CCOO et SIPA— : IPC réel et récupération de 7,95 % du pouvoir d'achat jusqu'en 2029, le télétravail actuel restant intact. La consultation est suspendue en raison des mesures conservatoires de l'Audiencia Nacional.",
+        "de": "Termine, zu denen das Unternehmen die Belegschaft zur Abstimmung über den «Einigungsvorschlag» vom 4. September —mit ATP, CCOO und SIPA unterzeichnet— aufgerufen hatte: realer VPI und eine Rückgewinnung der Kaufkraft von 7,95 % bis 2029, bei unverändertem Telearbeitsmodell. Die Abstimmung ist wegen der Eilmaßnahmen der Audiencia Nacional ausgesetzt."
+      }
+    }
+  ]
+}

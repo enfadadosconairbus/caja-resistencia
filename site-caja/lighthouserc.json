@@ -1,0 +1,65 @@
+{
+  "$comment": [
+    "AUDITORÍA LOCAL — se ejecuta con: npm run audit",
+    "",
+    "Mide SOLO lo que en localhost es fiable y repetible:",
+    "  · Accesibilidad  >= 90   (criterio 8: WCAG AA, foco de teclado, HTML semántico)",
+    "  · SEO INTRÍNSECO         (criterio 8: meta tags reales) — audit por audit, ver abajo",
+    "  · errors-in-console      (cero errores: innegociable)",
+    "",
+    "SEO: por qué NO se asevera 'categories:seo >= 0.9' (PILOT-FIX-002 / INC-008).",
+    "  Una DEMO especulativa es NOINDEX a propósito (robots.ts -> 'Disallow: /'), y eso es",
+    "  CORRECTO: no queremos la demo de un negocio ajeno en Google. Pero Lighthouse penaliza",
+    "  el audit 'is-crawlable' y hunde la CATEGORÍA seo a ~0.66 -> ninguna demo podía pasar",
+    "  el gate, por un motivo que NO es un defecto. Se medía 'estado de indexación' cuando se",
+    "  quería medir 'calidad SEO'. Ahora se aseveran los audits SEO reales uno a uno y se",
+    "  desactiva 'is-crawlable'.",
+    "  · El ESTADO DE INDEXACIÓN se verifica aparte (A4): robots.txt debe casar con el estado",
+    "    -> demo = Disallow ; produccion = Allow + Sitemap (SITE_INDEXABLE=true).",
+    "  · Para ver el SEO tal y como quedará publicado: SITE_INDEXABLE=true npm run audit",
+    "",
+    "NO se mide el RENDIMIENTO aquí, a propósito. En localhost el número es basura:",
+    "  1. HTTP, no HTTPS: falsea 'best-practices' siempre.",
+    "  2. Los antivirus (Kaspersky) INYECTAN scripts por red en páginas HTTP",
+    "     (gc.kis.v2.scr.kaspersky-labs.com) y contaminan la medición.",
+    "  3. El rendimiento depende del HOSTING, y el cliente lo sufre en Vercel, no aquí.",
+    "",
+    "El rendimiento se mide contra la demo YA PUBLICADA:",
+    "  npm run audit:prod -- --collect.url=https://<cliente>-demo.vercel.app",
+    "(config: lighthouserc.prod.json). A4 exige LAS DOS auditorías."
+  ],
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "Ready in",
+      "startServerReadyTimeout": 60000,
+      "url": ["http://localhost:3000"],
+      "numberOfRuns": 1
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": ["error", { "minScore": 0.9 }],
+        "errors-in-console": "error",
+
+        "document-title": "error",
+        "meta-description": "error",
+        "http-status-code": "error",
+        "link-text": "error",
+        "crawlable-anchors": "error",
+        "robots-txt": "error",
+        "canonical": "error",
+        "hreflang": "error",
+
+        "is-crawlable": "off",
+        "categories:seo": "off",
+        "categories:performance": "off",
+        "categories:best-practices": "off",
+        "is-on-https": "off"
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".next/lighthouse"
+    }
+  }
+}

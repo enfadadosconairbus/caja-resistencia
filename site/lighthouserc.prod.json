@@ -1,0 +1,59 @@
+{
+  "$comment": [
+    "AUDITORÍA DE PRODUCCIÓN — contra la demo YA PUBLICADA en Vercel.",
+    "",
+    "Uso:",
+    "  npm run audit:prod -- --collect.url=https://<cliente>-demo.vercel.app",
+    "",
+    "Aquí SÍ se mide el RENDIMIENTO, porque aquí es donde el cliente lo sufre:",
+    "HTTPS real, CDN real, build de producción real. Es el único número que significa algo.",
+    "",
+    "Umbrales (emulación MÓVIL — coherente con 'móvil diseñado, no encogido'):",
+    "  Rendimiento >= 90 · Accesibilidad >= 90 · Buenas prácticas >= 90 · SEO intrínseco (audit a audit)",
+    "",
+    "SEO: por qué NO se asevera 'categories:seo >= 0.9' (PILOT-FIX-002b / INC-008).",
+    "  Mismo criterio que en la auditoría local (lighthouserc.json). Una DEMO especulativa está",
+    "  PUBLICADA pero es NOINDEX a propósito (robots.ts -> 'Disallow: /'), y eso es CORRECTO.",
+    "  Lighthouse penaliza 'is-crawlable' y hunde la CATEGORÍA seo a ~0.66 -> la demo publicada",
+    "  fallaba el gate por un motivo que NO es un defecto (medido: 0.66). Se medía 'estado de",
+    "  indexación' cuando se quería medir 'calidad SEO'. Ahora se aseveran los audits SEO reales.",
+    "",
+    "  ⚠️ CONSECUENCIA IMPORTANTE: al quitar 'is-crawlable' de los DOS gates (local y prod), la",
+    "  comprobación del robots.txt que hace A4 pasa a ser la ÚNICA red que detecta que a un CLIENTE",
+    "  REAL se le olvidó SITE_INDEXABLE=true (y por tanto no saldría en Google). Esa comprobación",
+    "  es OBLIGATORIA y BLOQUEANTE en cliente real: demo -> Disallow ; producción -> Allow + Sitemap.",
+    "",
+    "Si Buenas prácticas falla por peticiones de tu ANTIVIRUS (Kaspersky inyecta scripts",
+    "en Chrome), no es un fallo de la web: repite la auditoría desde una ventana de incógnito",
+    "o desde PageSpeed Insights (pagespeed.web.dev) con la misma URL."
+  ],
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "categories:accessibility": ["error", { "minScore": 0.9 }],
+        "categories:best-practices": ["error", { "minScore": 0.9 }],
+        "errors-in-console": "error",
+
+        "document-title": "error",
+        "meta-description": "error",
+        "http-status-code": "error",
+        "link-text": "error",
+        "crawlable-anchors": "error",
+        "robots-txt": "error",
+        "canonical": "error",
+        "hreflang": "error",
+
+        "is-crawlable": "off",
+        "categories:seo": "off"
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".next/lighthouse-prod"
+    }
+  }
+}

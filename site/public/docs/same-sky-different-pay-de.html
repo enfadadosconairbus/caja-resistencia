@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Same Sky, Different Pay — The Spanish Gap · #EnfadadosAirbus (DE)</title>
+<style>
+:root{
+  --ink:#0B1626; --panel:#13233B; --panel2:#172B47; --line:#24395C;
+  --sky:#4EA3FF; --alert:#FF4D5E; --lift:#3DDC97; --caution:#FFC24D; --mist:#9FB3CE;
+  --white:#F4F8FF;
+  --disp:'Arial Narrow','Helvetica Neue Condensed',Impact,Arial,sans-serif;
+  --body:'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:'SF Mono','Cascadia Mono',Consolas,Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--ink);color:var(--white);font-family:var(--body);font-size:15px;line-height:1.55}
+a{color:var(--sky)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+.topbar{position:sticky;top:0;z-index:50;background:rgba(11,22,38,.94);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;height:52px}
+.brand{font-family:var(--disp);font-weight:800;font-size:1.05rem;letter-spacing:.05em;color:var(--alert);white-space:nowrap}
+.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-family:var(--mono);font-size:.7rem;color:var(--mist);text-decoration:none;padding:6px 9px;border-radius:6px;white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{color:var(--white);background:var(--panel2);outline:none}
+
+.hero{padding:64px 0 44px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-180px;top:-220px;width:540px;height:540px;border-radius:50%;background:var(--panel);z-index:0}
+.hero::after{content:"";position:absolute;right:-40px;top:-80px;width:310px;height:310px;border-radius:50%;background:var(--panel2);z-index:0}
+.hero .wrap{position:relative;z-index:1}
+.kicker{font-family:var(--mono);font-size:.76rem;letter-spacing:.26em;color:var(--sky);font-weight:600;text-transform:uppercase}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.9rem,8vw,5.2rem);line-height:.97;margin:14px 0 6px;text-transform:uppercase}
+.subtitle{font-family:var(--disp);font-weight:700;font-size:clamp(1.2rem,3vw,1.7rem);letter-spacing:.18em;color:var(--sky);margin:0 0 12px;text-transform:uppercase}
+.hero .sub{font-size:1.1rem;color:var(--mist);max-width:640px}
+.claim{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-width:680px}
+.claim strong{color:var(--white)} .claim .r{color:var(--alert);font-weight:700}
+.meta{margin-top:20px;font-weight:600;color:var(--caution);font-size:.95rem}
+.meta2{margin-top:6px;font-family:var(--mono);font-size:.72rem;color:var(--mist)}
+
+section{padding:48px 0;border-top:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;color:var(--sky);font-weight:600;text-transform:uppercase}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.05;margin:8px 0 20px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 18px 14px}
+.kpi .v{font-family:var(--disp);font-weight:800;font-size:2.5rem;line-height:1}
+.kpi .l{font-weight:700;margin-top:8px}
+.kpi .s{color:var(--mist);font-size:.85rem;margin-top:4px}
+.g{color:var(--lift)} .r{color:var(--alert)} .b{color:var(--sky)} .y{color:var(--caution)}
+
+.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}
+@media(max-width:880px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{font-family:var(--disp);font-weight:800;font-size:1.3rem;margin-bottom:6px;text-transform:uppercase;letter-spacing:.03em}
+.card p{color:var(--mist);font-size:.92rem}
+.stack{display:grid;gap:12px}
+.chartbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.chartbox h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--mist);text-transform:uppercase;margin-bottom:14px}
+.cap{font-family:var(--mono);font-size:.7rem;color:var(--mist);margin-top:12px;line-height:1.5}
+
+/* CSS bar charts — sin dependencias externas */
+.hbar{display:grid;gap:10px}
+.hrow{display:grid;grid-template-columns:minmax(120px,164px) 1fr 78px;gap:10px;align-items:center}
+.hrow .lb{font-size:.82rem;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){
+  .hrow{grid-template-columns:minmax(92px,120px) 1fr 66px;gap:7px}
+  .hrow .lb{font-size:.73rem}
+  .hrow .val{font-size:.71rem}
+}
+.hrow .track{display:block;background:var(--panel2);border-radius:5px;height:26px;overflow:hidden;position:relative}
+.hrow .fill{display:block;height:26px;border-radius:5px;min-width:3px}
+.hrow .val{font-family:var(--mono);font-size:.8rem;font-weight:600;text-align:right;white-space:nowrap}
+
+.src{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.src span.tag{font-family:var(--mono);font-size:.66rem;color:var(--mist);align-self:center;letter-spacing:.14em}
+.src a{font-family:var(--mono);font-size:.7rem;text-decoration:none;color:var(--sky);background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:2px 9px}
+.src a:hover,.src a:focus-visible{color:var(--white);border-color:var(--sky);outline:none}
+.est{font-family:var(--mono);font-size:.7rem;color:var(--caution)}
+
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.step .n{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;font-weight:800;color:var(--ink);font-family:var(--disp);font-size:1rem}
+.step .d{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;margin-left:8px}
+.step h3{font-family:var(--disp);font-size:1.2rem;font-weight:800;margin:10px 0 4px}
+.step p{color:var(--mist);font-size:.85rem}
+
+.shield{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:200px 150px 1fr;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.row .who{font-weight:700}
+.row .verdict{font-family:var(--mono);font-weight:600;font-size:.8rem;letter-spacing:.05em}
+.row .why{color:var(--mist);font-size:.86rem}
+.row.es-row{background:#2A1622;border-color:var(--alert);border-width:1.5px}
+@media(max-width:760px){.row{grid-template-columns:1fr;gap:4px}}
+
+.args{display:grid;gap:14px}
+.arg{display:grid;grid-template-columns:56px 1fr;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.arg .n{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:1.4rem;color:var(--ink)}
+.arg h3{font-family:var(--disp);font-weight:800;font-size:1.35rem;margin-bottom:4px}
+.arg p{color:var(--mist);font-size:.93rem}
+.banner{margin-top:20px;background:#2A1622;border:1.5px solid var(--alert);border-radius:10px;padding:14px 18px;font-size:1rem}
+.banner b{color:var(--alert)}
+
+.registry{display:grid;gap:8px}
+.sitem{display:grid;grid-template-columns:54px 1fr;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;scroll-margin-top:70px}
+.sitem .id{font-family:var(--mono);font-weight:600;color:var(--sky);font-size:.78rem;padding-top:2px}
+.sitem .t{font-weight:700;font-size:.9rem}
+.sitem .d{color:var(--mist);font-size:.82rem;margin-top:2px;word-break:break-word}
+.sitem .d a{font-family:var(--mono);font-size:.75rem}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 18px;color:var(--mist);font-size:.86rem;margin-top:16px}
+.note b{color:var(--caution)}
+.srchead{font-family:var(--disp);font-size:1.25rem;font-weight:800;margin:20px 0 10px;color:var(--sky);text-transform:uppercase;letter-spacing:.04em}
+
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--mist);font-size:.82rem;text-align:center}
+footer .tag{color:var(--alert);font-weight:700}
+
+/* tabla comparativa intra-grupo: apilar en móvil (anula el grid inline) */
+.cmp-label{display:none;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--sky);margin-bottom:2px}
+@media(max-width:820px){
+  #intragrupo .row{grid-template-columns:1fr!important;gap:10px!important}
+  #intragrupo .row .who{border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:2px}
+  #intragrupo .row.cmp-head{display:none!important}
+  .cmp-label{display:block}
+}
+
+/* ===== Tarjetas-marcador comparativas (vista ejecutiva) ===== */
+.scorecards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.scorecards.sc3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1000px){.scorecards,.scorecards.sc3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.scorecards,.scorecards.sc3{grid-template-columns:1fr}}
+.sc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;display:flex;flex-direction:column}
+.sc.sc-es{border-color:var(--alert);border-width:1.5px;background:#22161F}
+.sc h5{font-family:var(--disp);font-weight:800;font-size:1.18rem;letter-spacing:.03em;text-transform:uppercase;margin-bottom:2px}
+.sc .sub{font-family:var(--mono);font-size:.66rem;color:var(--mist);letter-spacing:.08em;margin-bottom:12px}
+.sc .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.sc .duo .cell .k{font-family:var(--mono);font-size:.6rem;color:var(--mist);letter-spacing:.08em;display:block;line-height:1.3}
+.sc .duo .cell .v{font-family:var(--disp);font-weight:800;font-size:1.35rem;line-height:1.1;white-space:nowrap}
+.sc ul{list-style:none;display:grid;gap:7px;margin-top:11px;font-size:.79rem;line-height:1.35;flex:1}
+.sc li{display:grid;grid-template-columns:16px 1fr;gap:7px;align-items:start}
+.sc li .ico{font-weight:800;font-size:.85rem;line-height:1.3}
+.ok{color:var(--lift)} .no{color:var(--alert)} .nd{color:var(--mist)}
+.sc .foot{margin-top:11px;padding-top:9px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:.68rem;line-height:1.4}
+details.detail{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0 18px}
+details.detail summary{cursor:pointer;padding:14px 0;font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;color:var(--sky);text-transform:uppercase;list-style:none}
+details.detail summary::-webkit-details-marker{display:none}
+details.detail summary::before{content:"▸ ";color:var(--sky)}
+details.detail[open] summary::before{content:"▾ "}
+details.detail .inner{padding-bottom:16px}
+.flash{outline:2px solid var(--sky);outline-offset:2px}
+@media print{
+  .sitem a[href^="http"]::after{content:" — " attr(href);font-size:.66rem;color:#555;word-break:break-all}
+  .topbar{display:none}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <div class="brand">#ENFADADOSAIRBUS</div>
+  <nav class="nav">
+    <a href="#resumen">ÜBERBLICK</a><a href="#contexto">KONTEXT</a><a href="#eficiencia">EFFIZIENZ</a><a href="#reparto">WERTVERTEILUNG</a><a href="#rentabilidad">RENTABILITÄT</a><a href="#intragrupo">KONZERNVERGLEICH</a><a href="#blindaje">INFLATIONSSCHUTZ</a><a href="#jornada">ARBEITSZEIT</a><a href="#boeing">BOEING</a><a href="#conclusiones">FAZIT</a><a href="#fuentes">QUELLEN</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">Management-Dossier · August 2026</div>
+  <h1>Same Sky,<br><span class="r">Different Pay</span></h1>
+  <div class="subtitle">The Spanish Gap</div>
+  <p class="sub">Airbus Spanien im Vergleich zum Konzern und zur weltweiten Luft- und Raumfahrtbranche: Vergütung, Inflationsschutz, Arbeitszeit und Wertverteilung.</p>
+  <div class="claim"><strong>Derselbe Konzern. Dieselben Rekordgewinne.</strong> <span class="r">Drei unterschiedliche Behandlungen.</span><br>
+  <span style="color:var(--mist);font-size:.9rem">Airbus Spanien · Airbus GmbH · Airbus Frankreich · Leonardo · Saab · Dassault · BAE Systems · Boeing</span></div>
+  <div class="meta">Unbefristeter Streik ab dem 24. August 2026 angemeldet · SIMA-Schlichtung läuft</div>
+  <div class="meta2">Jede Zahl trägt eine Kennung [F·n] → nachprüfbares Quellenverzeichnis am Seitenende</div>
+</div></header>
+
+<section id="resumen"><div class="wrap">
+  <div class="eyebrow">Zusammenfassung</div>
+  <h2>Der Konflikt in vier Zahlen</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v g">5.221 Mio. €</div><div class="l">Nettogewinn Airbus 2025</div><div class="s">Historischer Rekord · +23 % ggü. 2024 · Auftragsbestand 619.000 Mio. €</div><div class="src"><span class="tag">QUELLEN</span><a href="#f1">F1</a></div></div>
+    <div class="kpi"><div class="v r">−14,1 %</div><div class="l">Kaufkraft in Spanien</div><div class="s">Bruttoverlust 2020-2025 ggü. realen Lebenshaltungskosten (VPI + Wohnen) · −17 % netto (Referenzbeschäftigter, Madrid) · ggü. offiziellem VPI: −8,4 %</div><div class="src"><span class="tag">QUELLEN</span><a href="#f20">F20</a></div></div>
+    <div class="kpi"><div class="v b">465 T€</div><div class="l">Umsatz je Beschäftigten</div><div class="s">2. Platz weltweit · der Beschäftigte erhält rund 16 % dessen, was er erwirtschaftet</div><div class="src"><span class="tag">QUELLEN</span><a href="#f1">F1</a><a href="#f22">F22</a></div></div>
+    <div class="kpi"><div class="v y">&gt;90 %</div><div class="l">Streikbeteiligung</div><div class="s">Juli 2026 · unbefristet ab dem 24. August</div><div class="src"><span class="tag">QUELLEN</span><a href="#f17">F17</a><a href="#f19">F19</a></div></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <div class="eyebrow">Zentraler Befund</div>
+    <p style="font-size:1.05rem;color:var(--white);margin-top:8px">Alle Belegschaften des Konzerns haben 2020-2025 Kaufkraft verloren — Deutschland (−11,7 %) und das Vereinigte Königreich (−11,0 %) sogar mehr als Spanien (−8,4 %), jeweils gemessen am nationalen Verbraucherpreisindex. <b class="r">Der spanische Unterschied liegt nicht im Prozentsatz, sondern in der Struktur: Es ist der einzige Standort ohne Inflationsklausel, ohne zusätzliche dauerhafte Jahressonderzahlungen und mit den meisten Arbeitsstunden pro Jahr. Die konzernweite Erfolgsprämie (Success Award) erhalten dagegen alle Standorte, gewichtet nach Division.</b></p>
+    <p style="margin-top:10px">Deutschland (IG Metall): Revisionsklauseln + rund 4.100 € Einmalzahlungen + dauerhafte Jahressonderzahlungen (T-Geld / T-ZUG) + 35-Stunden-Woche. Frankreich (NAO): Revisionsklausel, die das Budget 2023 von 2,9 % auf 5,5 % anhob, + gesetzliche Gewinnbeteiligung. Vereinigtes Königreich: jährliche Verhandlung mit Unite. Italien (CCNL): automatische Inflationsindexierung (IPCA-NEI). <b class="y">Spanien: einseitige Erhöhungen von 2 % bei höherer Inflation — bis der Streik das Angebot auf 10 % linear anhob (nominell 12 %, inklusive individueller Anpassungen und Beförderungen).</b></p>
+    <div class="src"><span class="tag">QUELLEN</span><a href="#f9">F9</a><a href="#f10">F10</a><a href="#f12">F12</a><a href="#f15">F15</a><a href="#f16">F16</a><a href="#f18">F18</a><a href="#f20">F20</a></div>
+  </div>
+
+  <div class="card" style="margin-top:16px;background:var(--panel2)">
+    <div class="eyebrow">Warum es zwei Verlustzahlen gibt</div>
+    <p style="margin-top:8px;color:var(--white)">Im gesamten Dokument tauchen zwei Zahlen auf: <b class="y">−8,4 %</b> und <b class="r">−14,1 %</b>. Sie widersprechen einander nicht — sie messen an zwei verschiedenen Maßstäben.</p>
+    <p style="margin-top:10px"><b style="color:var(--white)">−8,4 % · gemessen am offiziellen VPI.</b> Der Standardvergleich: Der spanische Verbraucherpreisindex stieg 2020-2025 kumuliert um 22,8 %, die Tabellenentgelte von Airbus Spanien um 12,5 %. Diese Kennzahl erlaubt den Vergleich mit Deutschland, Frankreich und dem Vereinigten Königreich, weil jedes Land seinen eigenen VPI veröffentlicht.</p>
+    <p style="margin-top:8px"><b style="color:var(--white)">−14,1 % · gemessen an den realen Lebenshaltungskosten.</b> Die Kennzahl des Dossiers v10: Sie gewichtet <b>65 % VPI + 35 % Häuserpreisindex</b> des spanischen Statistikamts INE. Dieser kombinierte Index stieg um 31,0 %, weil sich Wohnen im Zeitraum um 45 % verteuerte — mehr als doppelt so stark wie der allgemeine VPI. Netto — nach Einkommensteuer und Arbeitnehmerbeiträgen — steigt der Verlust auf <b class="r">−17 %</b> für den Referenzbeschäftigten (Madrid, ledig, Basisgehalt 50.000 € im Jahr 2020), dessen persönlicher Effektivsatz durch die kalte Progression und die neue MEI-Abgabe von 26,50 % auf 29,30 % kletterte.</p>
+    <p style="margin-top:8px;font-size:.88rem"><b class="y">In einem Satz:</b> Der offizielle VPI unterschätzt, was das Leben für jemanden kostet, der eine Hypothek oder Miete zahlt. Deshalb verwendet diese Bewegung die realen Lebenshaltungskosten als Referenzgröße und den VPI nur für den Ländervergleich.</p>
+    <div class="src"><span class="tag">QUELLEN</span><a href="#f20">F20</a><a href="#f28">F28</a></div>
+  </div>
+</div></section>
+
+<section id="contexto"><div class="wrap">
+  <div class="eyebrow">Kontext</div>
+  <h2>Von der blockierten Verhandlung zum unbefristeten Streik</h2>
+  <div class="timeline">
+    <div class="step"><span class="n" style="background:var(--caution)">1</span><span class="d y">1. JUL 2026</span><h3>Der Streik beginnt</h3><p>Beteiligung &gt;90 % · Arbeitsniederlegungen in Getafe, San Pablo und Tablada (Sevilla), Cádiz, Albacete und Illescas.</p><div class="src"><a href="#f19">F19</a></div></div>
+    <div class="step"><span class="n" style="background:var(--sky)">2</span><span class="d b">MITTE JUL</span><h3>Faury reist nach Madrid</h3><p>Der Konzernchef verlangt einen kurzfristigen Abschluss.</p><div class="src"><a href="#f18">F18</a></div></div>
+    <div class="step"><span class="n" style="background:var(--sky)">3</span><span class="d b">24.-27. JUL</span><h3>Vorvereinbarung unterzeichnet</h3><p><b style="color:var(--white)">Nur 10 % sind linear</b> (5 % 2026 + 5 % im April 2027). Der Rest der plakatierten „12 %" erreicht nicht alle: 1 % individuelle Anpassung (nicht für jeden) + 1 % reserviert für Beförderungen. Dazu 2.000 € und eine VPI-Klausel. Unterzeichnet von CCOO, SIPA und ATP.</p><div class="src"><a href="#f17">F17</a><a href="#f18">F18</a></div></div>
+    <div class="step"><span class="n" style="background:var(--alert)">4</span><span class="d r">28.-30. JUL</span><h3>Die Belegschaft lehnt ab</h3><p>Die Vorvereinbarung wird zur Abstimmung gestellt und von der Belegschaft abgelehnt · das Unternehmen ruft die SIMA-Schlichtung an.</p><div class="src"><a href="#f17">F17</a><a href="#f18">F18</a></div></div>
+    <div class="step"><span class="n" style="background:var(--alert)">5</span><span class="d r">24. AUG</span><h3>Unbefristeter Streik</h3><p>Angemeldet von CGT, UGT und UTIL. SIPA steht nicht auf der Anmeldung und lässt die Beteiligung von den Mitgliedern abstimmen; CCOO und ATP haben sich nicht positioniert und setzen auf die SIMA-Schlichtung.</p><div class="src"><a href="#f17">F17</a></div></div>
+  </div>
+
+</div></section>
+
+<section id="eficiencia"><div class="wrap">
+  <div class="eyebrow">Branchenvergleich · Effizienz</div>
+  <h2>Umsatz je Beschäftigten, Unternehmen für Unternehmen (GJ 2025)</h2>
+  <div class="grid2">
+    <div class="chartbox">
+      <h4>Umsatz je Beschäftigten · Tausend € / Jahr</h4>
+      <div class="hbar">
+        <div class="hrow"><span class="lb">Dassault</span><span class="track"><span class="fill" style="width:98%;background:var(--sky)"></span></span><span class="val b">494</span></div>
+        <div class="hrow"><span class="lb">Airbus Group</span><span class="track"><span class="fill" style="width:92%;background:var(--sky)"></span></span><span class="val b">465</span></div>
+        <div class="hrow"><span class="lb">Boeing</span><span class="track"><span class="fill" style="width:89%;background:#2E6FB5"></span></span><span class="val">450</span></div>
+        <div class="hrow"><span class="lb">Airbus DS (Div.)</span><span class="track"><span class="fill" style="width:73%;background:#2E6FB5"></span></span><span class="val">370</span></div>
+        <div class="hrow"><span class="lb">BAE Systems</span><span class="track"><span class="fill" style="width:66%;background:#2E6FB5"></span></span><span class="val">331</span></div>
+        <div class="hrow"><span class="lb">Leonardo</span><span class="track"><span class="fill" style="width:62%;background:#2E6FB5"></span></span><span class="val">315</span></div>
+        <div class="hrow"><span class="lb">Saab</span><span class="track"><span class="fill" style="width:49%;background:#2E6FB5"></span></span><span class="val">250</span></div>
+      </div>
+      <div class="cap">Eigene Berechnung auf Basis von Umsatz und Beschäftigtenzahl GJ 2025 · <span class="est">Durchschnittskurse 2025: USD 0,92 · GBP 1,20 · SEK 0,088 (Schätzung)</span></div>
+      <div class="src"><span class="tag">QUELLEN</span><a href="#f1">F1</a><a href="#f2">F2</a><a href="#f3">F3</a><a href="#f5">F5</a><a href="#f6">F6</a><a href="#f7">F7</a><a href="#f8">F8</a><a href="#f22">F22</a></div>
+    </div>
+    <div class="stack">
+      <div class="kpi"><div class="v b">2.</div><div class="l">Platz von Airbus im Ranking</div><div class="s">465 T€ je Beschäftigten — fast das Doppelte von Saab oder Leonardo</div></div>
+      <div class="kpi"><div class="v y">~75 T€</div><div class="l">Arbeitgeberkosten je Beschäftigten (ES)</div><div class="s">Durchschnittsgehalt 56 T€ × 1,345 (Sozialabgaben + indirekte Kosten)</div><div class="src"><span class="tag">QUELLEN</span><a href="#f20">F20</a></div></div>
+      <div class="kpi"><div class="v r">~16 %</div><div class="l">Rückflussquote Spanien</div><div class="s">Anteil des Pro-Kopf-Umsatzes, der beim Beschäftigten ankommt — einer der niedrigsten der europäischen Branche <span class="est">(eigene Schätzung)</span></div><div class="src"><span class="tag">QUELLEN</span><a href="#f22">F22</a></div></div>
+    </div>
+  </div>
+</div></section>
+
+
+<section id="reparto"><div class="wrap">
+  <div class="eyebrow">Die Wertverteilung · Lohnquote</div>
+  <h2>Von 100 € Umsatz: Wie viel kommt bei der Belegschaft an?</h2>
+
+  <div class="grid2">
+    <div class="chartbox">
+      <h4>Lohnquote · Personalaufwand / Umsatz · GJ 2025 <span class="est">(Schätzung)</span></h4>
+      <div class="hbar">
+        <div class="hrow"><span class="lb">Saab</span><span class="track"><span class="fill" style="width:89%;background:#2E6FB5"></span></span><span class="val">~31%</span></div>
+        <div class="hrow"><span class="lb">BAE Systems</span><span class="track"><span class="fill" style="width:86%;background:#2E6FB5"></span></span><span class="val">~30%</span></div>
+        <div class="hrow"><span class="lb">Leonardo</span><span class="track"><span class="fill" style="width:80%;background:#2E6FB5"></span></span><span class="val">~28%</span></div>
+        <div class="hrow"><span class="lb">Airbus Group</span><span class="track"><span class="fill" style="width:63%;background:var(--sky)"></span></span><span class="val b">~22%</span></div>
+        <div class="hrow"><span class="lb">Dassault</span><span class="track"><span class="fill" style="width:57%;background:#2E6FB5"></span></span><span class="val">~20%</span></div>
+      </div>
+      <div class="cap">Eigene Schätzung auf Basis der geprüften Personalaufwandsposition jedes Geschäftsberichts, geteilt durch den Umsatz GJ 2025. Die Chips verlinken auf die offiziellen Dokumente mit der exakten Zahl (Airbus: Anhangangaben 28-29 des Konzernabschlusses; übrige: Personalaufwandsangabe des jeweiligen Geschäftsberichts). Boeing weist diese Position nach US-GAAP nicht aus.</div>
+      <div class="src"><span class="tag">QUELLEN</span><a href="#f25">F25</a><a href="#f3">F3</a><a href="#f5">F5</a><a href="#f6">F6</a><a href="#f7">F7</a><a href="#f22">F22</a></div>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <h3>Wie diese Kennzahl zu lesen ist</h3>
+        <p>Es handelt sich um die <b style="color:var(--white)">Lohnquote</b>: den Anteil jedes umgesetzten Euros, der an die gesamte weltweite Belegschaft geht (Löhne + Sozialabgaben + Altersversorgung). Ihr Kehrwert ist der Vergleich <b style="color:var(--white)">Umsatz je Beschäftigten gegenüber Arbeitskosten je Beschäftigten</b> im Block darunter. Eine niedrige Quote bei Rekordgewinnen bedeutet, dass die geschaffene Wertschöpfung anderswo landet — bei Airbus 2025: 5.221 Mio. € Gewinn und 2.372 Mio. € Ausschüttung an die Aktionäre.</p>
+        <div class="src"><a href="#f1">F1</a><a href="#f25">F25</a></div>
+      </div>
+      <div class="kpi"><div class="v b">~22%</div><div class="l">Lohnquote bei Airbus</div><div class="s">Eine der niedrigsten der europäischen Branche, obwohl Airbus beim Umsatz je Beschäftigten den 2. Platz belegt <span class="est">(Schätzung)</span></div></div>
+    </div>
+  </div>
+
+  <div class="chartbox" style="margin-top:20px">
+    <h4>Der Kehrwert, innerhalb des Konzerns · Umsatz je Beschäftigten gegenüber Arbeitskosten je Beschäftigten <span class="est">(Kosten: Schätzung)</span></h4>
+    <div class="hbar">
+      <div class="hrow"><span class="lb">Deutschland erwirtschaftet</span><span class="track"><span class="fill" style="width:100%;background:#2E6FB5"></span></span><span class="val b">465 T€</span></div>
+      <div class="hrow"><span class="lb">Deutschland kostet</span><span class="track"><span class="fill" style="width:23%;background:var(--lift)"></span></span><span class="val g">~105 T€</span></div>
+      <div class="hrow"><span class="lb">Frankreich erwirtschaftet</span><span class="track"><span class="fill" style="width:100%;background:#2E6FB5"></span></span><span class="val b">465 T€</span></div>
+      <div class="hrow"><span class="lb">Frankreich kostet</span><span class="track"><span class="fill" style="width:20%;background:var(--sky)"></span></span><span class="val b">~95 T€</span></div>
+      <div class="hrow"><span class="lb">Spanien erwirtschaftet</span><span class="track"><span class="fill" style="width:100%;background:#2E6FB5"></span></span><span class="val b">465 T€</span></div>
+      <div class="hrow"><span class="lb">Spanien kostet</span><span class="track"><span class="fill" style="width:16%;background:var(--alert)"></span></span><span class="val r">~75 T€</span></div>
+    </div>
+    <div class="cap">Der Konzernabschluss schlüsselt den Umsatz nicht nach dem Land der Beschäftigten auf: Rechnerisch erwirtschaftet jeder Konzernbeschäftigte im Schnitt dieselben 465 T€ (geprüft, F1/F25). Die durchschnittlichen Arbeitskosten je Beschäftigten unterscheiden sich dagegen nach Land — Spanien: 56 T€ × 1,345 = ~75 T€ (F20); Deutschland und Frankreich: eigene Schätzung auf Basis der IG-Metall-/NAO-Tabellen und der jeweiligen Sozialabgaben, konsistent mit Eurostat (Arbeitskosten je Stunde 2024: DE 43,4 € · FR 43,7 € · ES 25,5 € — die spanische Stunde kostet rund 41 % weniger als die deutsche, F26).</div>
+    <div class="src"><span class="tag">QUELLEN</span><a href="#f1">F1</a><a href="#f9">F9</a><a href="#f12">F12</a><a href="#f20">F20</a><a href="#f25">F25</a><a href="#f26">F26</a></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <div class="card" style="border-color:var(--alert)">
+      <h3 class="r">Das Fazit des Konzernvergleichs</h3>
+      <p>Resultierende Rückflussquote: <b class="g">Deutschland ~23 %</b> · <b class="b">Frankreich ~20 %</b> · <b class="r">Spanien ~16 %</b>. Rechnerisch erwirtschaftet der spanische Beschäftigte dasselbe wie seine Kolleginnen und Kollegen im Konzern, kostet aber 20 bis 30 % weniger: <b style="color:var(--white)">Es ist die Belegschaft, die je Kopf die größte Marge übrig lässt</b> — und die einzige im Konzern ohne Inflationsklausel.</p>
+      <div class="src"><a href="#f20">F20</a><a href="#f22">F22</a><a href="#f26">F26</a></div>
+    </div>
+
+  </div>
+</div></section>
+
+<section id="rentabilidad"><div class="wrap">
+  <div class="eyebrow">Branchenvergleich · Rentabilität</div>
+  <h2>2025: ein Rekordjahr für (fast) die gesamte Branche</h2>
+  <div class="grid2">
+    <div class="chartbox">
+      <h4>EBIT-Marge GJ 2025 · %</h4>
+      <div class="hbar">
+        <div class="hrow"><span class="lb">BAE Systems</span><span class="track"><span class="fill" style="width:90%;background:var(--lift)"></span></span><span class="val g">10,8</span></div>
+        <div class="hrow"><span class="lb">Saab</span><span class="track"><span class="fill" style="width:80%;background:var(--lift)"></span></span><span class="val g">9,6</span></div>
+        <div class="hrow"><span class="lb">Leonardo*</span><span class="track"><span class="fill" style="width:75%;background:var(--lift)"></span></span><span class="val g">9,0</span></div>
+        <div class="hrow"><span class="lb">Dassault</span><span class="track"><span class="fill" style="width:72%;background:var(--lift)"></span></span><span class="val g">8,6</span></div>
+        <div class="hrow"><span class="lb">Airbus Group</span><span class="track"><span class="fill" style="width:69%;background:var(--lift)"></span></span><span class="val g">8,3</span></div>
+      </div>
+      <div class="cap">* Leonardo: EBITA-Marge (1,75 Mrd. € / 19,5 Mrd. €)</div>
+      <div class="src"><span class="tag">QUELLEN</span><a href="#f1">F1</a><a href="#f3">F3</a><a href="#f5">F5</a><a href="#f6">F6</a><a href="#f7">F7</a></div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3 class="g">Airbus</h3><p>Nettogewinn 5.221 Mio. € (+23 %) · Dividende 3,20 €/Aktie · Auftragsbestand 619 Mrd. €.</p><div class="src"><a href="#f1">F1</a></div></div>
+      <div class="card"><h3 class="g">Leonardo · Saab · BAE</h3><p>Leonardo: Nettogewinn 1.220 Mio. € (+14 %) und 6.600 Einstellungen. Saab: Umsatz +24 %, +3.300 Beschäftigte. BAE: Umsatz +10 %, 1.530 Mio. £ an die Aktionäre zurückgeführt.</p><div class="src"><a href="#f3">F3</a><a href="#f4">F4</a><a href="#f5">F5</a><a href="#f7">F7</a></div></div>
+      <div class="card"><h3 class="y">Boeing</h3><p>Erstmals seit 2018 wieder in der Gewinnzone (2.238 Mio. $) — nachdem 2024 der IAM 751 +38 % zugestanden wurden.</p><div class="src"><a href="#f8">F8</a><a href="#f21">F21</a></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="intragrupo"><div class="wrap">
+  <div class="eyebrow">Konzerninterner Vergleich · Spanien · Deutschland · Frankreich · Vereinigtes Königreich</div>
+  <h2>Derselbe CEO, dieselben Gewinne: vier unterschiedliche Behandlungen (2020-2025)</h2>
+  <div class="chartbox" style="margin-bottom:18px">
+    <h4>Kumulierte lineare Tabellenerhöhung · 2020-2025 · %</h4>
+    <div class="hbar">
+      <div class="hrow"><span class="lb">Spanien</span><span class="track"><span class="fill" style="width:83%;background:var(--alert)"></span></span><span class="val r">+12,5</span></div>
+      <div class="hrow"><span class="lb">Deutschland</span><span class="track"><span class="fill" style="width:72%;background:var(--lift)"></span></span><span class="val g">+10,8</span></div>
+      <div class="hrow"><span class="lb">Ver. Königreich</span><span class="track"><span class="fill" style="width:59%;background:var(--sky)"></span></span><span class="val b">+8,8*</span></div>
+      <div class="hrow"><span class="lb">Frankreich</span><span class="track"><span class="fill" style="width:47%;background:var(--sky)"></span></span><span class="val b">+7,0</span></div>
+    </div>
+    <div class="cap">Jahr für Jahr: <b>Spanien</b> 0 · 1,0 · 1,5 · 4,4 · 3,0 · 2,0 — <b>Deutschland</b> 0 · 0 · 0 · 5,2 · 3,3 · 2,0 — <b>Frankreich</b> 0 · 1,0 · 3,9 · 2,0 · 0 · 0 — <b>Ver. Königreich</b> 0 · 0 · 5,1 · 3,5 · ohne Angabe · ohne Angabe. <span class="est">* Vereinigtes Königreich: kumuliert bis 2023; die Quelle weist Erhöhungen für 2024 und 2025 aus, nennt aber keinen Wert — der tatsächliche Wert liegt also höher.</span><br><b style="color:var(--caution)">Lesart:</b> Spanien führt bei den Tabellenerhöhungen im Konzern. Deutschland ließ die Tabellen drei Jahre lang unangetastet (2020-2022), und Frankreich lenkte sein Budget 2024-2025 in die individuelle Vergütung statt in eine lineare Erhöhung.</div>
+    <div class="src"><span class="tag">QUELLEN</span><a href="#f20">F20</a><a href="#f28">F28</a><a href="#f9">F9</a><a href="#f27">F27</a></div>
+  </div>
+
+  <div class="chartbox" style="margin-bottom:18px">
+    <h4>Kumulierter Kaufkraftverlust · Entgelterhöhungen gegenüber dem VPI des jeweiligen Landes · 2020-2025</h4>
+    <div class="hbar">
+      <div class="hrow"><span class="lb">Deutschland</span><span class="track"><span class="fill" style="width:93%;background:var(--alert)"></span></span><span class="val r">−11,7 %</span></div>
+      <div class="hrow"><span class="lb">Ver. Königreich</span><span class="track"><span class="fill" style="width:88%;background:var(--alert)"></span></span><span class="val r">−11,0 %</span></div>
+      <div class="hrow"><span class="lb">Spanien</span><span class="track"><span class="fill" style="width:67%;background:var(--caution)"></span></span><span class="val y">−8,4 %</span></div>
+      <div class="hrow"><span class="lb">Frankreich</span><span class="track"><span class="fill" style="width:65%;background:var(--caution)"></span></span><span class="val y">−8,2 %</span></div>
+    </div>
+    <div class="cap"><b style="color:var(--caution)">Die unbequeme Zahl — und die, die alles Übrige glaubwürdig macht:</b> Kein Standort des Konzerns hat seine Kaufkraft gehalten, und Spanien ist nicht der Standort mit dem größten Verlust gegenüber dem nationalen VPI. Deutschland erreichte seine größte Lücke 2022 (−13,2 %) nach drei Jahren ohne Tabellenerhöhung. Für Spanien beziffert das Dossier v10 den Verlust gegenüber dem VPI auf <b>−8,4 %</b> (Entgeltindex 112,5 gegenüber VPI 122,8, Basis 2020 = 100) und, gemessen an den <b>realen Lebenshaltungskosten</b> (0,65·VPI + 0,35·Häuserpreisindex), auf <b class="r">−14,1 % brutto und −17 % netto</b> — die Referenzzahl dieser Bewegung.<br><span class="est">Die Werte für Deutschland, Frankreich und das Vereinigte Königreich stammen aus der Infografik [F28]; der spanische Wert wurde aus den Reihen des Dossiers v10 [F20] neu berechnet, die Vorrang haben (die Infografik wies für Spanien −8,6 % aus).</span></div>
+    <div class="src"><span class="tag">QUELLEN</span><a href="#f20">F20</a><a href="#f28">F28</a><a href="#f9">F9</a><a href="#f27">F27</a></div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px;background:var(--panel2);border-color:var(--caution)">
+    <h3 class="y">Was unterscheidet Spanien also?</h3>
+    <p style="color:var(--white)">Nicht der Prozentsatz der Entgelttabelle: Spanien kommt 2020-2025 auf +12,5 % und liegt damit vor Deutschland (+10,8 %), dem Vereinigten Königreich (+8,8 % bis 2023) und Frankreich (+7,0 %), und sein Verlust gegenüber dem VPI ist geringer als der deutsche oder britische. <b>Der Unterschied liegt in allem, was diesen Prozentsatz umgibt</b> — den dauerhaften Jahressonderzahlungen, die Deutschland konsolidierte, während es die Tabellen einfror, der Arbeitszeit, der Gewinnbeteiligung über den Success Award des Konzerns hinaus, der Inflationsklausel und der Tatsache, der einzige Standort zu sein, an dem 2026-27 einseitig festgelegt wurde. Die folgende Übersicht stellt diesen Vergleich dar.</p>
+  </div>
+
+  <h4 style="font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--mist);text-transform:uppercase;margin-bottom:12px">Vergleichsübersicht · was jede Belegschaft im Konzern erhalten hat · 2020-2025</h4>
+  <div class="scorecards">
+
+    <div class="sc">
+      <h5 class="g">Deutschland</h5><div class="sub">AIRBUS GMBH · IG METALL</div>
+      <div class="duo">
+        <div class="cell"><span class="k">TABELLEN</span><span class="v g">+10,8 %</span></div>
+        <div class="cell"><span class="k">GGÜ. VPI</span><span class="v r">−11,7 %</span></div>
+      </div>
+      <ul>
+        <li><span class="ico ok">✓</span><span>Inflationsklausel (IG-Metall-Revision)</span></li>
+        <li><span class="ico ok">✓</span><span><b>T-Geld + T-ZUG B</b>: dauerhaft ein zusätzliches Monatsentgelt pro Jahr</span></li>
+        <li><span class="ico ok">✓</span><span>~4.100 € Einmalzahlungen (3.000 € steuerfrei)</span></li>
+        <li><span class="ico ok">✓</span><span>Beschäftigungsgarantie bis 2030</span></li>
+        <li><span class="ico ok">✓</span><span>~1.540 Std./Jahr (35-Std.-Woche, 30 Urlaubstage)</span></li>
+        <li><span class="ico nd">=</span><span>Success Award des Konzerns</span></li>
+      </ul>
+      <div class="foot g">2026-27 VERHANDELT (+2,0 % und +3,1 %)</div>
+    </div>
+
+    <div class="sc">
+      <h5 class="b">Frankreich</h5><div class="sub">AIRBUS SAS · NAO</div>
+      <div class="duo">
+        <div class="cell"><span class="k">TABELLEN</span><span class="v b">+7,0 %</span></div>
+        <div class="cell"><span class="k">GGÜ. VPI</span><span class="v y">−8,2 %</span></div>
+      </div>
+      <ul>
+        <li><span class="ico ok">✓</span><span>NAO-Revisionsklausel (2,9 % → 5,5 % im Jahr 2023)</span></li>
+        <li><span class="ico ok">✓</span><span>Gesetzliche <b>Intéressement + Participation</b>, zusätzlich zum Success Award</span></li>
+        <li><span class="ico nd">~</span><span>Einmalzahlungen je nach NAO unterschiedlich</span></li>
+        <li><span class="ico nd">?</span><span>Beschäftigungsgarantie: keine Angabe</span></li>
+        <li><span class="ico ok">✓</span><span>1.607 Std./Jahr (vertraglich festgelegt)</span></li>
+        <li><span class="ico no">✗</span><span>Keine lineare Erhöhung 2024 und 2025 (in individuelle Vergütung umgelenkt)</span></li>
+      </ul>
+      <div class="foot b">2026-27 NOCH ZU VERHANDELN</div>
+    </div>
+
+    <div class="sc">
+      <h5 class="b">Ver. Königreich</h5><div class="sub">AIRBUS UK · UNITE</div>
+      <div class="duo">
+        <div class="cell"><span class="k">TABELLEN</span><span class="v b">+8,8 %*</span></div>
+        <div class="cell"><span class="k">GGÜ. VPI</span><span class="v r">−11,0 %</span></div>
+      </div>
+      <ul>
+        <li><span class="ico ok">✓</span><span>Jährliche Verhandlung mit Unite the Union</span></li>
+        <li><span class="ico nd">?</span><span>Dauerhafte Jahressonderzahlungen: keine Angabe</span></li>
+        <li><span class="ico nd">?</span><span>Einmalzahlungen: keine Angabe</span></li>
+        <li><span class="ico nd">?</span><span>Beschäftigungsgarantie: keine Angabe</span></li>
+        <li><span class="ico ok">✓</span><span>~1.596 Std./Jahr (35-Std.-Woche, 25 Urlaubstage)</span></li>
+        <li><span class="ico nd">=</span><span>Success Award des Konzerns</span></li>
+      </ul>
+      <div class="foot b">2026-27 NOCH ZU VERHANDELN</div>
+    </div>
+
+    <div class="sc sc-es">
+      <h5 class="r">Spanien</h5><div class="sub">AIRBUS SPANIEN · VII. TARIFVERTRAG</div>
+      <div class="duo">
+        <div class="cell"><span class="k">TABELLEN</span><span class="v r">+12,5 %</span></div>
+        <div class="cell"><span class="k">GGÜ. VPI</span><span class="v y">−8,4 %</span></div>
+      </div>
+      <ul>
+        <li><span class="ico no">✗</span><span><b>Keine Inflationsklausel</b> im gesamten Zeitraum</span></li>
+        <li><span class="ico no">✗</span><span>Keine zusätzlichen dauerhaften Jahressonderzahlungen</span></li>
+        <li><span class="ico no">✗</span><span>3.100 € Einmalzahlungen, <b>voll steuerpflichtig</b></span></li>
+        <li><span class="ico no">✗</span><span>Keine Beschäftigungsgarantie</span></li>
+        <li><span class="ico no">✗</span><span><b>1.685 Std./Jahr — der höchste Wert im Konzern</b></span></li>
+        <li><span class="ico nd">=</span><span>Success Award des Konzerns, ohne Zusätze</span></li>
+      </ul>
+      <div class="foot r">2026-27 EINSEITIG FESTGELEGT (2 % / 1,5 %)</div>
+    </div>
+
+  </div>
+
+  <div class="card" style="margin-top:16px;border-color:var(--caution)">
+    <p style="color:var(--white)"><b class="y">Lesart der Übersicht:</b> Spanien hat die höchste Tabellenerhöhung und, zusammen mit Frankreich, den geringsten Verlust gegenüber dem eigenen VPI — <b>und ist zugleich der einzige Standort im Konzern ganz ohne strukturellen Ausgleichsmechanismus</b>. Es ist der einzige mit fünf Kreuzen: keine Inflationsklausel, keine dauerhaften Sonderzahlungen, keine Steuerbefreiung der Einmalzahlungen, keine Beschäftigungsgarantie und das längste Arbeitsjahr. Und der einzige, an dem 2026-27 ohne Verhandlung festgelegt wurde.</p>
+    <p style="margin-top:9px;font-size:.86rem">Gemessen an den <b>realen Lebenshaltungskosten</b> (VPI + Wohnen) statt am offiziellen VPI steigt der spanische Verlust von −8,4 % auf <b class="r">−14,1 % brutto und −17 % netto</b> (Referenzbeschäftigter, Madrid). <span class="est">* Vereinigtes Königreich: kumuliert bis 2023; die Quelle nennt für 2024-2025 keine Werte, der tatsächliche Wert liegt also höher.</span></p>
+    <div class="src"><span class="tag">QUELLEN</span><a href="#f9">F9</a><a href="#f10">F10</a><a href="#f11">F11</a><a href="#f12">F12</a><a href="#f20">F20</a><a href="#f24">F24</a><a href="#f27">F27</a><a href="#f28">F28</a><a href="#f29">F29</a></div>
+  </div>
+
+  <details class="detail"><summary>Details nach Ländern anzeigen</summary><div class="inner">
+    <div class="grid2">
+      <div class="card"><h3 class="g">Deutschland · Airbus GmbH</h3><p>IG-Metall-Revisionsklausel · T-Geld (ein zusätzliches Monatsentgelt pro Jahr, 27,6 % des Grundentgelts, neu seit 2022) und T-ZUG B von 18,5 % auf 26,5 % als dauerhafte Jahressonderzahlungen · ~4.100 € Einmalzahlungen (3.000 € steuerfrei) · 35-Stunden-Woche · Beschäftigungsgarantie bis 2030. Drei Jahre ohne Tabellenerhöhung (2020-2022) bescherten Deutschland die größte Lücke gegenüber dem VPI im Konzern. <b>Das T-Geld entspricht rund +2,3 % dauerhafter Jahresvergütung, die in der Entgelttabelle nicht auftaucht:</b> zusammen mit dem T-ZUG B stieg die garantierte deutsche Vergütung im Zeitraum um rund 14 %.</p><div class="src"><a href="#f9">F9</a><a href="#f10">F10</a><a href="#f11">F11</a><a href="#f27">F27</a></div></div>
+      <div class="card"><h3 class="b">Frankreich · Airbus SAS</h3><p>NAO-Revisionsklausel: Budget 2023 von 2,9 % auf 5,5 % angehoben, mit einer linearen Mindesterhöhung von 100 €/Monat · gesetzliche <i>Intéressement</i> + <i>Participation</i> (Tausende € pro Jahr) <b>zusätzlich zum Success Award des Konzerns</b> · lineare Erhöhung von nur +7,0 % kumuliert (0 · 1,0 · 3,9 · 2,0 · 0 · 0): keine lineare Erhöhung 2024 und 2025, das Budget wurde in die individuelle Vergütung umgelenkt.</p><div class="src"><a href="#f12">F12</a><a href="#f13">F13</a><a href="#f14">F14</a><a href="#f28">F28</a></div></div>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="card"><h3 class="b">Vereinigtes Königreich · Airbus UK</h3><p>Jährliche Verhandlung mit Unite the Union · keine Erhöhung 2020 und 2021, +5,1 % im Jahr 2022 und +3,5 % im Jahr 2023 (Erhöhungen 2024 und 2025, ohne veröffentlichten Wert in der Quelle) · die britische Inflation, die höchste im Konzern, hinterlässt einen kumulierten Verlust von −11,0 % · 2026 steht noch aus. Die Felder ohne Angabe betreffen Informationen, die wir nicht aus öffentlicher Quelle belegen konnten und die wir nicht schätzen.</p><div class="src"><a href="#f28">F28</a></div></div>
+      <div class="card" style="border-color:var(--alert)"><h3 class="r">Airbus Spanien</h3><p>Keine Inflationsklausel 2020-2025 · keine dauerhaften Jahressonderzahlungen über den konzernweiten Success Award hinaus · 3.100 € Einmalzahlungen (600 + 1.500 + 1.000) voll steuerpflichtig, gegenüber den weitgehend steuerfreien 4.100 € in Deutschland · 145 Arbeitsstunden pro Jahr mehr als in Deutschland (Spanne 138-152 je nach Standort) · einziger Standort, an dem die Erhöhungen 2026-27 einseitig festgelegt wurden (2 % / 1,5 %), bis der Streik die Verhandlung erzwang.</p><div class="src"><a href="#f20">F20</a><a href="#f18">F18</a><a href="#f24">F24</a></div></div>
+    </div>
+  </div></details>
+</div></section>
+
+<section id="blindaje"><div class="wrap">
+  <div class="eyebrow">Inflationsschutz</div>
+  <h2>Wer schützt die Löhne vor der Inflation? Alle außer Spanien</h2>
+  <div class="shield">
+    <div class="row"><div class="who">Airbus GmbH (DE)</div><div class="verdict g">JA</div><div class="why">IG-Metall-Revisionsklauseln + steuerfreie Inflationsprämien (3.000 €). <a href="#f9">[F9]</a> <a href="#f10">[F10]</a></div></div>
+    <div class="row"><div class="who">Airbus Frankreich (FR)</div><div class="verdict g">JA</div><div class="why">NAO-Revisionsklausel — 2023 ausgelöst: Budget 2,9 % → 5,5 %. <a href="#f12">[F12]</a></div></div>
+    <div class="row"><div class="who">Leonardo (IT)</div><div class="verdict g">JA · AUTOMATISCH</div><div class="why">Metall-CCNL: automatische jährliche Anpassung an den IPCA-NEI + Schutzklausel. <a href="#f15">[F15]</a> <a href="#f16">[F16]</a></div></div>
+    <div class="row"><div class="who">Saab (SE)</div><div class="verdict g">JA</div><div class="why">Industrielles „Märket": national verhandelte Lohnnorm oberhalb der Inflation (~7,4 % in 2023-24 <span class="est">gesch.</span>). <a href="#f23">[F23]</a></div></div>
+    <div class="row"><div class="who">Airbus UK (UK)</div><div class="verdict b">VERHANDELT</div><div class="why">Jährliche Verhandlung mit Unite the Union · keine Erhöhung 2020-2021, +5,1 % 2022, +3,5 % 2023 · 2026 steht aus. <a href="#f28">[F28]</a></div></div>
+    <div class="row"><div class="who">Boeing (US)</div><div class="verdict y">JA · NACH DEM STREIK</div><div class="why">IAM 751: +38 % linear (43,65 % kumuliert) nach 53 Streiktagen — und das in der Verlustzone. <a href="#f21">[F21]</a></div></div>
+    <div class="row"><div class="who">BAE Systems (UK)</div><div class="verdict g">JA</div><div class="why">Jährliche Anpassungen mit Bezug auf die britische Inflation (RPI/CPI) <span class="est">britische Marktpraxis</span>. <a href="#f7">[F7]</a></div></div>
+    <div class="row es-row"><div class="who">Airbus Spanien (ES)</div><div class="verdict r">NEIN</div><div class="why">Einzige Belegschaft ohne Klausel 2020-2025 · Lücke von −8,4 Prozentpunkten zwischen Entgelterhöhung und VPI · die VPI-Klausel erscheint erst in der durch den Streik erzwungenen Vorvereinbarung. <a href="#f20">[F20]</a> <a href="#f18">[F18]</a></div></div>
+  </div>
+</div></section>
+
+<section id="jornada"><div class="wrap">
+  <div class="eyebrow">Arbeitszeit</div>
+  <h2>Mehr Stunden pro Jahr als an jedem anderen Standort des Konzerns</h2>
+  <div class="grid2">
+    <div class="chartbox">
+      <h4>Vergleichbare Jahresarbeitszeit · 2025 · Stunden</h4>
+      <div class="hbar">
+        <div class="hrow"><span class="lb">Spanien</span><span class="track"><span class="fill" style="width:78%;background:var(--alert)"></span></span><span class="val r">1.685</span></div>
+        <div class="hrow"><span class="lb">Frankreich</span><span class="track"><span class="fill" style="width:52%;background:var(--sky)"></span></span><span class="val b">1.607</span></div>
+        <div class="hrow"><span class="lb">Ver. Königreich</span><span class="track"><span class="fill" style="width:49%;background:var(--sky)"></span></span><span class="val b">~1.596</span></div>
+        <div class="hrow"><span class="lb">Deutschland</span><span class="track"><span class="fill" style="width:30%;background:var(--lift)"></span></span><span class="val g">~1.540</span></div>
+      </div>
+      <div class="cap">Einheitliche Bezugsgröße: Vollzeitbeschäftigte, reguläre Arbeitszeit, ohne Überstunden, abzüglich Urlaub und Feiertagen. Skala 1.450-1.750 Std.<br>
+      <b>Spanien 1.685 Std.</b> und <b>Frankreich 1.607 Std.</b> sind ausdrückliche vertragliche Werte (VII. Tarifvertrag, Art. 9 · Annualisierungsschwelle Airbus Operations SAS). <span class="est">Deutschland (~1.540 Std., Spanne 1.533-1.554) und das Vereinigte Königreich (~1.596 Std.) sind eigene Schätzungen aus den veröffentlichten Bedingungen — 35 Std./Woche und 30 bzw. 25 Urlaubstage —, keine offiziell vom Unternehmen konsolidierten Zahlen.</span></div>
+      <div class="src"><span class="tag">QUELLEN</span><a href="#f24">F24</a><a href="#f20">F20</a></div>
+    </div>
+    <div class="stack">
+      <div class="kpi"><div class="v r">+145 Std.</div><div class="l">Mehr als Deutschland</div><div class="s">Zwischen 138 und 152 Std./Jahr je nach deutschem Standort — rund <b>18 spanische Achtstundentage</b>, fast ein zusätzlicher Arbeitsmonat</div></div>
+      <div class="kpi"><div class="v y">+78 Std. / +89 Std.</div><div class="l">Mehr als Frankreich und das Ver. Königreich</div><div class="s">Entspricht rund 10 bzw. 11 Achtstundentagen</div></div>
+      <div class="card"><h3>Wirkung auf den Stundenlohn</h3><p>Bei gleichem Nominalgehalt ist jede in Spanien geleistete Stunde rund 9 % weniger wert als in Deutschland und rund 5 % weniger als in Frankreich. Am besten belegt ist der Vergleich Spanien-Frankreich, da beide über ausdrückliche vertragliche Werte verfügen: <b style="color:var(--white)">78 Stunden Unterschied pro Jahr, schwarz auf weiß im Tarifvertrag</b>.</p></div>
+    </div>
+  </div>
+  <details class="detail"><summary>Weitere Arbeitszeitmodelle nach Ländern anzeigen</summary><div class="inner">
+    <div class="grid2">
+      <div class="card"><h3 class="r">Spanien · VII. Tarifvertrag (2024-2027)</h3><p>Regelarbeitszeit <b>1.685 Std.</b> · Zweischichtbetrieb 1.649 Std. 33 Min. · Dreischichtbetrieb 1.622 Std. 03 Min. · feste Spät- oder Nachtschicht 1.597 Std. 21 Min. · Sättigungskalender 1.541 Std. Alle Werte sind ausdrückliche vertragliche Angaben aus Artikel 9.</p><div class="src"><a href="#f24">F24</a></div></div>
+      <div class="card"><h3 class="b">Frankreich · Airbus Operations SAS</h3><p><i>Non-cadre</i>-Beschäftigte ohne Pauschalvereinbarung: <b>1.607 Std.</b> pro Jahr, einschließlich des Solidaritätstags · <i>non cadres</i> mit Pauschale und <i>cadres</i> mit Stundenpauschale: 1.700 Std. · <i>cadres</i> mit Tagespauschale: ~214 Tage pro Jahr, ohne vertragliche Messung in Stunden.</p><div class="src"><a href="#f24">F24</a></div></div>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="card"><h3 class="g">Deutschland · Metall- und Elektrotarif</h3><p>35 Std./Woche und 30 Urlaubstage für einen großen Teil der Belegschaft unter dem IG-Metall-Tarifvertrag. Die Jahressumme variiert je nach Bundesland und Gemeinde mit den Feiertagen: ~1.547 Std. in Hamburg, Bremen oder Niedersachsen; ~1.540 Std. mit einem zusätzlichen regionalen Feiertag; ~1.533 Std. an bayerischen Standorten. <b>Gegenbeispiel:</b> Die Airbus Logistik GmbH wendet 37,5 Std./Woche an, außerhalb dieses Tarifvertrags.</p><div class="src"><a href="#f24">F24</a></div></div>
+      <div class="card"><h3 class="b">Vereinigtes Königreich · Broughton und Filton</h3><p>35 Std./Woche, 25 Urlaubstage und 8 Bankfeiertage (England und Wales, 2025), üblicherweise auf 4,5 Tage verteilt mit freiem Freitagnachmittag → ~1.596 Std. <b>Gegenbeispiel:</b> Bestimmte Positionen bei Airbus Defence and Space UK (Stevenage) arbeiten 37 Std./Woche, ~1.687 Std. pro Jahr — praktisch das spanische Arbeitsjahr.</p><div class="src"><a href="#f24">F24</a></div></div>
+    </div>
+    <div class="note" style="margin-top:14px"><b>Methodischer Hinweis:</b> Es gibt keine einheitliche öffentliche Arbeitszeitzahl, die alle Airbus-Beschäftigten in jedem Land abdeckt. Der Vergleich gilt innerhalb der verglichenen Modelle — reguläre Vollzeitarbeitszeit — und darf nicht auf alle Gesellschaften, Standorte, Schichten und Entgeltgruppen verallgemeinert werden.</div>
+  </div></details>
+</div></section>
+
+<section id="boeing"><div class="wrap">
+  <div class="eyebrow">Der Boeing-Präzedenzfall · IAM 751</div>
+  <h2>In chronischen Verlusten gewährt, was Airbus bei Rekordgewinnen verweigert</h2>
+  <div class="grid2">
+      <div class="card" style="margin-bottom:14px;background:var(--panel2)">
+        <h3 style="font-size:1.15rem">Wie diese Grafik zu lesen ist</h3>
+        <p>Dies ist ein <b style="color:var(--white)">Entgeltindex</b>, keine Euro-Angabe: Das Gehalt von 2020 wird auf 100 gesetzt, die Linie zeigt den Anstieg seither. Steht die Linie bei 148, ist dieses Gehalt seit 2020 kumuliert um 48 % gestiegen.</p>
+        <p style="margin-top:8px"><b class="y">Gelb — Boeing IAM 751:</b> erreicht nach 53 Streiktagen 148,0 im Jahr 2027 (+48,0 %).<br>
+        <b class="r">Rot — Airbus Spanien, einseitige Erhöhungen:</b> bleibt bei 116,5 (+16,5 %).<br>
+        <b class="g">Grün — Airbus Spanien mit der Forderung aus Dossier v10:</b> Die +20,9 % werden in <b>zwei konsolidierbaren Stufen</b> umgesetzt — 15 % im Januar 2026 (Index 129,4) und 5,9 % im Januar 2027, zusammenfallend mit der ersten Anpassung VPI + 1,5 % aus Mechanismus C, womit 141,4 erreicht werden (+41,4 %).</p>
+        <p style="margin-top:8px">Der vertikale Abstand zwischen gelber und roter Linie im Jahr 2027 (~31,5 Punkte) ist der Abstand zu einem Boeing-Beschäftigten. <b style="color:var(--white)">Selbst bei voller Erfüllung der Forderung läge Spanien noch unter Boeing</b> — einem Unternehmen, das 35.127 Mio. $ Verluste anhäufte, während Airbus 20.569 Mio. € verdiente.</p>
+        <p style="margin-top:8px;font-size:.88rem"><b class="y">Und der Maßstab ist nicht Boeing, sondern die Lebenshaltung:</b> Die auf 2027 fortgeschriebenen realen Lebenshaltungskosten liegen bei 141,0. Die Forderung (141,4) erreicht diesen Wert knapp; das einseitige Angebot (116,5) lässt die Lücke bei <b class="r">24,5 Punkten</b> offen.</p>
+      </div>
+    <div class="chartbox">
+      <h4>Entgeltindizes · Basis 2020 = 100</h4>
+      <svg viewBox="0 0 700 385" style="width:100%;height:auto" role="img" aria-label="Boeing IAM 751 erreicht 2027 den Index 148,0; Forderung Airbus Spanien 141,4; einseitiges Angebot 116,5">
+        <g stroke="#24395C" stroke-width="1">
+          <line x1="36" y1="304" x2="672" y2="304"/><line x1="36" y1="253" x2="672" y2="253"/><line x1="36" y1="201" x2="672" y2="201"/><line x1="36" y1="149" x2="672" y2="149"/><line x1="36" y1="98" x2="672" y2="98"/><line x1="36" y1="46" x2="672" y2="46"/>
+        </g>
+        <g fill="#9FB3CE" font-size="12" font-family="monospace" text-anchor="end">
+          <text x="32" y="308">100</text><text x="32" y="257">110</text><text x="32" y="205">120</text><text x="32" y="153">130</text><text x="32" y="102">140</text><text x="32" y="50">150</text>
+        </g>
+        <polyline fill="none" stroke="#FFC24D" stroke-width="3" points="44,299 132,294 220,289 308,283 396,213 484,158 572,108 660,56"/>
+        <polyline fill="none" stroke="#3DDC97" stroke-width="3" points="44,304 132,299 220,291 308,268 396,252 484,240 572,152 660,90"/>
+        <polyline fill="none" stroke="#FF4D5E" stroke-width="3" points="44,304 132,299 220,291 308,268 396,252 484,240 572,228 660,219"/>
+        <g fill="#FFC24D"><circle cx="44" cy="299" r="4"/><circle cx="132" cy="294" r="4"/><circle cx="220" cy="289" r="4"/><circle cx="308" cy="283" r="4"/><circle cx="396" cy="213" r="4"/><circle cx="484" cy="158" r="4"/><circle cx="572" cy="108" r="4"/><circle cx="660" cy="56" r="4"/></g>
+        <g fill="#3DDC97"><circle cx="396" cy="252" r="4"/><circle cx="484" cy="240" r="4"/><circle cx="572" cy="152" r="4"/><circle cx="660" cy="90" r="4"/></g>
+        <g fill="#FF4D5E"><circle cx="44" cy="304" r="4"/><circle cx="132" cy="299" r="4"/><circle cx="220" cy="291" r="4"/><circle cx="308" cy="268" r="4"/><circle cx="572" cy="228" r="4"/><circle cx="660" cy="219" r="4"/></g>
+        <g fill="#9FB3CE" font-size="12" font-family="monospace" text-anchor="middle">
+          <text x="44" y="330">2020</text><text x="132" y="330">2021</text><text x="220" y="330">2022</text><text x="308" y="330">2023</text><text x="396" y="330">2024</text><text x="484" y="330">2025</text><text x="572" y="330">2026*</text><text x="660" y="330">2027*</text>
+        </g>
+        <g font-size="12" font-family="monospace">
+          <rect x="44" y="352" width="12" height="12" fill="#FFC24D"/><text x="62" y="362" fill="#F4F8FF">Boeing IAM 751 (+48,0 %)</text>
+          <rect x="268" y="352" width="12" height="12" fill="#3DDC97"/><text x="286" y="362" fill="#F4F8FF">Forderung ES (+41,4 %)</text>
+          <rect x="480" y="352" width="12" height="12" fill="#FF4D5E"/><text x="498" y="362" fill="#F4F8FF">Einseitig (+16,5 %)</text>
+        </g>
+      </svg>
+      <div class="cap">Indizes Basis 2020 = 100 · 2026-2027 Prognose (*) · die Reihe der Forderung stammt aus der Indextabelle des Dossiers v10 §2.1 (112,5 → 129,4 → 141,4), die den Zwei-Stufen-Plan abbildet.<br><span class="est">Konsistenzhinweis: Die Vergleichstabelle in v10 §3.3 nennt weiterhin +40,4 % und eine Restlücke von −7,6 Prozentpunkten gegenüber Boeing; diese Werte stammen aus dem früheren Plan, bei dem die vollen 20,9 % im Januar 2026 wirksam wurden. Mit dem Zwei-Stufen-Plan beträgt die Restlücke 6,6 Prozentpunkte.</span></div>
+      <div class="src"><span class="tag">QUELLEN</span><a href="#f20">F20</a><a href="#f21">F21</a></div>
+    </div>
+    <div class="stack">
+      <div class="kpi"><div class="v y">−35.127 Mio. $</div><div class="l">Verluste Boeing 2020-24</div><div class="s">Und dennoch wurden +38 % linear + eine Prämie von 12.000 $ unterzeichnet</div><div class="src"><a href="#f21">F21</a></div></div>
+      <div class="kpi"><div class="v r">+20.569 Mio. €</div><div class="l">Gewinne Airbus 2020-25</div><div class="s">Und im selben Zeitraum werden einseitig +16,5 % angeboten</div><div class="src"><a href="#f1">F1</a><a href="#f20">F20</a></div></div>
+      <div class="kpi"><div class="v g">53 Tage</div><div class="l">Dauer des IAM-751-Streiks</div><div class="s">Angebot 25 % → 35 % → 38 %, angenommen unter Vermittlung der Regierung</div><div class="src"><a href="#f21">F21</a></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="conclusiones"><div class="wrap">
+  <div class="eyebrow">Fazit</div>
+  <h2>Was die Daten zeigen</h2>
+  <div class="args">
+    <div class="arg"><div class="n" style="background:var(--sky)">1</div><div><h3>Die Inflationsklausel ist der Standard im Konzern und in der Branche</h3><p>Sie existiert in Deutschland (IG-Metall-Revision), in Frankreich (clause de révision, die das Budget 2023 von 2,9 % auf 5,5 % anhob) und in Italien (automatischer IPCA-NEI), und das Vereinigte Königreich verhandelt jährlich mit Unite. Spanien ist der einzige Standort im Konzern, der 2020-2025 ohne jeden derartigen Mechanismus durchlief.</p><div class="src"><a href="#f9">F9</a><a href="#f12">F12</a><a href="#f15">F15</a><a href="#f28">F28</a></div></div></div>
+    <div class="arg"><div class="n" style="background:var(--caution)">2</div><div><h3>Der Verlust betrifft den gesamten Konzern; die spanische Struktur ist die Ausnahme</h3><p>Kein Standort hielt 2020-2025 seine Kaufkraft: Deutschland −11,7 %, Vereinigtes Königreich −11,0 %, Spanien −8,4 % und Frankreich −8,2 % gegenüber dem VPI des jeweiligen Landes. Deutschland glich dies jedoch mit dauerhaften Jahressonderzahlungen, 4.100 € steuerfrei und der 35-Stunden-Woche aus; Frankreich mit gesetzlicher Intéressement und Participation zusätzlich zum Success Award des Konzerns. Spanien hat keine dieser Komponenten hinzugefügt: Es erhält lediglich den für alle Standorte gemeinsamen Success Award, gewichtet nach Division.</p><div class="src"><a href="#f9">F9</a><a href="#f12">F12</a><a href="#f20">F20</a><a href="#f27">F27</a><a href="#f28">F28</a></div></div></div>
+    <div class="arg"><div class="n" style="background:var(--alert)">3</div><div><h3>Die Kosten der Korrektur sind für den Konzern nicht wesentlich</h3><p>Airbus schloss 2025 mit 5.221 Mio. € Nettogewinn, einem Rekordauftragsbestand von 619.000 Mio. € und 2.372 Mio. € Ausschüttung an die Aktionäre ab. Ein Airbus-Beschäftigter erwirtschaftet 465 T€ pro Jahr, die zweithöchste Quote der Branche weltweit, und die spanischen Arbeitskosten je Beschäftigten (~75 T€) sind die niedrigsten der drei großen europäischen Standorte. <b style="color:var(--white)">Das Dossier v10 beziffert die vollständige Forderung auf ~764 Mio. € im ersten Jahr — 13,9 % des Konzerngewinns und weniger, als im selben Geschäftsjahr an Dividenden ausgeschüttet wird — sowie auf ~235 Mio. €/Jahr wiederkehrend, 4,3 % des Jahresgewinns.</b> Die Einmalzahlung (~545 Mio. €) entspricht 7,6 % der 2020-2025 ausgeschütteten Dividenden.</p><div class="src"><a href="#f1">F1</a><a href="#f20">F20</a><a href="#f22">F22</a><a href="#f26">F26</a></div></div></div>
+  </div>
+  <h4 style="font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--mist);text-transform:uppercase;margin:26px 0 12px">Die Forderung · drei sich ergänzende Mechanismen (Dossier v10, Teil 2)</h4>
+  <div class="scorecards sc3">
+    <div class="sc">
+      <h5 class="g">Mechanismus A</h5><div class="sub">KONSOLIDIERTE ERHÖHUNG · 2026-2027</div>
+      <div class="duo">
+        <div class="cell"><span class="k">AUF DAS GEHALT 2025</span><span class="v g">+20,9 %</span></div>
+        <div class="cell"><span class="k">KOSTEN KONZERN</span><span class="v b">~219 Mio. €/J.</span></div>
+      </div>
+      <ul>
+        <li><span class="ico ok">✓</span><span><b>+15 %</b> im Januar 2026</span></li>
+        <li><span class="ico ok">✓</span><span><b>+5,9 %</b> im Januar 2027</span></li>
+        <li><span class="ico ok">✓</span><span>Beide Stufen sind konsolidierbar und kumulierbar im individuellen Gehalt, mit entsprechender Aktualisierung der Entgelttabellen</span></li>
+      </ul>
+      <div class="foot g">KORRIGIERT DAS GEHALT AB 2026</div>
+    </div>
+
+    <div class="sc">
+      <h5 class="y">Mechanismus B</h5><div class="sub">NICHT KONSOLIDIERBARE EINMALZAHLUNG</div>
+      <div class="duo">
+        <div class="cell"><span class="k">DES GEHALTS 2025</span><span class="v y">46,3 %</span></div>
+        <div class="cell"><span class="k">KOSTEN KONZERN</span><span class="v b">~545 Mio. €</span></div>
+      </div>
+      <ul>
+        <li><span class="ico ok">✓</span><span><b>~26.030 € brutto</b> für den Referenzbeschäftigten, bereits abzüglich der 3.100 € an Einmalzahlungen aus 2021-2023</span></li>
+        <li><span class="ico ok">✓</span><span>Rund <b>15.600 €</b> netto (~5,6 Nettomonatsgehälter 2025)</span></li>
+        <li><span class="ico no">!</span><span>Erfordert die Vereinbarung der Nachzahlungsregelung nach <b>Art. 14.2.b des spanischen Einkommensteuergesetzes</b>; eine reguläre Besteuerung würde den Beschäftigten ~1.800 € netto kosten</span></li>
+      </ul>
+      <div class="foot y">GLEICHT AUS, WAS 2020-2025 NICHT GEZAHLT WURDE</div>
+    </div>
+
+    <div class="sc">
+      <h5 class="b">Mechanismus C</h5><div class="sub">JÄHRLICHE FORMEL · AB 2026</div>
+      <div class="duo">
+        <div class="cell"><span class="k">ERHÖHUNG JAHR N</span><span class="v b">VPI + 1,5 %</span></div>
+        <div class="cell"><span class="k">KOSTEN KONZERN</span><span class="v b">~16 Mio. €/J.</span></div>
+      </div>
+      <ul>
+        <li><span class="ico ok">✓</span><span><b>Obergrenze 6 %</b> (schützt das Unternehmen vor Hyperinflation) und <b>Untergrenze 1,5 %</b> (schützt die Beschäftigten vor Deflation)</span></li>
+        <li><span class="ico ok">✓</span><span>Die Anpassung wird jeweils mit Wirkung zum 1. Januar des Folgejahres gezahlt; erste Anwendung im Januar 2027</span></li>
+        <li><span class="ico ok">✓</span><span>Die +1,5 % sind die für 2020-2025 gemessene Strukturprämie: reale Lebenshaltungskosten +4,66 %/Jahr gegenüber einem VPI von +3,42 %/Jahr</span></li>
+      </ul>
+      <div class="foot b">VERHINDERT, DASS DIE LÜCKE ERNEUT AUFGEHT</div>
+    </div>
+  </div>
+  <div class="banner"><b>Gesamtkosten für den Konzern:</b> ~764 Mio. € im ersten Jahr (13,9 % des Gewinns) und ~235 Mio. €/Jahr wiederkehrend (4,3 %). Airbus schloss 2025 mit 5.221 Mio. € Nettogewinn ab und schüttete 2.372 Mio. € an Dividenden aus. <a href="#f20" style="font-family:var(--mono);font-size:.75rem">[F20]</a></div>
+</div></section>
+
+<section id="fuentes"><div class="wrap">
+  <div class="eyebrow">Anhang</div>
+  <h2>Quellenverzeichnis</h2>
+
+  <div class="srchead">Finanzergebnisse GJ 2025</div>
+  <div class="registry">
+    <div class="sitem" id="f1"><div class="id">[F1]</div><div><div class="t">Airbus SE — Full-Year 2025 Results (19.02.2026)</div><div class="d">Umsatz 73,4 Mrd. € · Nettogewinn 5.221 Mio. € · EBIT 6.082 Mio. € · Auftragsbestand 619 Mrd. € · Dividende 3,20 € · <a href="https://www.airbus.com/en/newsroom/press-releases/2026-02-airbus-reports-full-year-fy-2025-results">airbus.com/…/fy-2025-results</a></div></div></div>
+    <div class="sitem" id="f2"><div class="id">[F2]</div><div><div class="t">Airbus SE — FY2025 Analyst Presentation</div><div class="d">Airbus Defence and Space: Umsatz 13.405 Mio. € (+11 %) · bereinigtes EBIT 798 Mio. € · <a href="https://www.airbus.com/sites/g/files/jlcbta136/files/2026-03/airbus_fy_2025_final_for_publication.pdf">airbus.com (PDF)</a></div></div></div>
+    <div class="sitem" id="f3"><div class="id">[F3]</div><div><div class="t">Leonardo S.p.A. — Vorläufige Ergebnisse GJ 2025 (25.02.2026)</div><div class="d">Umsatz 19,5 Mrd. € (+9,8 %) · EBITA 1,75 Mrd. € · +2.294 Beschäftigte, 6.600 Einstellungen · <a href="https://www.leonardo.com/en/press-release-detail/-/detail/leonardo-fy-preliminary-results-2025">leonardo.com</a></div></div></div>
+    <div class="sitem" id="f4"><div class="id">[F4]</div><div><div class="t">Leonardo S.p.A. — Billigung der Ergebnisse GJ 2025 durch den Verwaltungsrat (12.03.2026)</div><div class="d">Nettogewinn 1.220 Mio. € (+14 %) · Dividende 0,63 € (+21 %) · <a href="https://www.leonardo.com/en/press-release-detail/-/detail/12-03-2026-leonardo-board-of-directors-approves-fy2025-results-and-2026-guidance">leonardo.com</a></div></div></div>
+    <div class="sitem" id="f5"><div class="id">[F5]</div><div><div class="t">Saab AB — Year-End Report 2025 und Annual Report 2025</div><div class="d">Umsatz 79,1 Mrd. SEK (+24 %) · ~28.000 Beschäftigte (+3.300 in 2025) · Rekordauftragseingang · <a href="https://www.saab.com/newsroom/press-releases/2026/saab-year-end-report-2025record-order-bookings---building-for-growth">saab.com</a> · <a href="https://www.saab.com/investors/annual-report-2025">Geschäftsbericht</a></div></div></div>
+    <div class="sitem" id="f6"><div class="id">[F6]</div><div><div class="t">Dassault Aviation — Communiqué financier Résultats annuels 2025 (04.03.2026)</div><div class="d">Bereinigter Umsatz 7.420 Mio. € · bereinigter Nettogewinn 1.061 Mio. € · 15.024 Beschäftigte (1.579 Einstellungen) · <a href="https://www.dassault-aviation.com/wp-content/blogs.dir/1/files/2026/03/Communique-financier-Resultats-2025.pdf">dassault-aviation.com (PDF)</a></div></div></div>
+    <div class="sitem" id="f7"><div class="id">[F7]</div><div><div class="t">BAE Systems plc — Preliminary Results 2025 (18.02.2026)</div><div class="d">Umsatz 30,7 Mrd. £ (+10 %) · zugrunde liegendes EBIT 3,32 Mrd. £ (Marge 10,8 %) · Belegschaft 111.400 · 1.530 Mio. £ an die Aktionäre · <a href="https://www.investegate.co.uk/announcement/rns/bae-systems--ba./preliminary-results-announcement-2025-/9435221">investegate.co.uk</a></div></div></div>
+    <div class="sitem" id="f8"><div class="id">[F8]</div><div><div class="t">Boeing — Ergebnisse Q4/GJ 2025 (27.01.2026) und SEC-10-K</div><div class="d">Umsatz 89,5 Mrd. $ · Nettogewinn 2.238 Mio. $ (erster Gewinn seit 2018) · ~182.000 Beschäftigte · <a href="https://boeing.mediaroom.com/2026-01-27-Boeing-Reports-Fourth-Quarter-Results">boeing.mediaroom.com</a></div></div></div>
+    <div class="sitem" id="f25"><div class="id">[F25]</div><div><div class="t">Airbus SE — Geprüfter IFRS-Abschluss 2025 · Anhangangaben 28-29: Belegschaft und Personalaufwand</div><div class="d">Geprüfte Personalaufwandsposition des Konzerns (S. 40 des offiziellen PDF) · die interne Planung unterstellt +3,5 % Arbeitskostenanstieg für 2026 · <a href="https://www.airbus.com/sites/g/files/jlcbta136/files/2026-02/airbus_fy_2025_financial_statements.pdf">airbus.com — Financial Statements 2025 (PDF)</a></div></div></div>
+    <div class="sitem" id="f26"><div class="id">[F26]</div><div><div class="t">Eurostat — Arbeitskosten je Stunde 2024</div><div class="d">Durchschnittliche Arbeitskosten je Stunde (Gesamtwirtschaft, 2024): Deutschland 43,4 € · Frankreich 43,7 € · Spanien 25,5 € · <span class="est">offizielle Kontrollreferenz für die konzerninternen Schätzungen</span> · <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Hourly_labour_costs">ec.europa.eu/eurostat — Hourly labour costs</a></div></div></div>
+
+  </div>
+
+  <div class="srchead">Tarifverträge und Entgeltabschlüsse</div>
+  <div class="registry">
+    <div class="sitem" id="f9"><div class="id">[F9]</div><div><div class="t">IG Metall — Tarifrunde Metall + Elektro 2024</div><div class="d">600 € Einmalzahlung · +2,0 % (April 2025) · +3,1 % (April 2026) · T-ZUG B 18,5 % → 26,5 % · <a href="https://www.igmetall.de/tarif/tarifrunden/metall-und-elektro/tarifrunde-metall-und-elektro-2024">igmetall.de</a> (der Abschluss 2022 sah +5,2 % für 2023, +3,3 % für 2024 und 3.000 € Inflationsausgleichsprämie vor)</div></div></div>
+    <div class="sitem" id="f10"><div class="id">[F10]</div><div><div class="t">IG Metall — Umsetzung der Erhöhung vom April 2026 (+3,1 %)</div><div class="d"><a href="https://www.igmetall.de/tarif/tarifrunden/metall-und-elektro/jetzt-mehr-geld-in-der-metall-und-elektroindustrie">igmetall.de</a></div></div></div>
+    <div class="sitem" id="f11"><div class="id">[F11]</div><div><div class="t">Vereinbarung Airbus – IG Metall 2024 (Zukunftstarifvertrag)</div><div class="d">Beschäftigungsgarantie bis Ende 2030, Grenzen für Befristungen und Leiharbeit mit Equal Pay · <a href="https://www.igmetall.de/tarif/tarifrunden/metall-und-elektro/beschaeftigungssicherung-und-flexibilisierung-bei-airbus">igmetall.de</a></div></div></div>
+    <div class="sitem" id="f27"><div class="id">[F27]</div><div><div class="t">IG Metall — Tarifrunden 2020-2022: keine Tabellenerhöhung</div><div class="d">Die IG Metall bestätigt selbst, dass die letzte Tabellenerhöhung vor 2022 im April 2018 erfolgte und dass sie in den Runden 2020 und 2021 die Beschäftigungssicherung vor Entgelterhöhungen stellte und dies mit zwei neuen Jahressonderzahlungen (T-ZUG und T-Geld) ausglich · <a href="https://www.igmetall.de/tarif/tarifrunden/metall-und-elektro/forderung-tarifrunde-metall-elektro-2022">igmetall.de — Tarifrunde 2022</a> · <a href="https://www.igmetall.de/tarif/tarifrunden/metall-und-elektro/metall-tarifabschluss-2021-erklaert">igmetall.de — Abschluss 2021 (T-Geld 27,6 %)</a></div></div></div>
+
+    <div class="sitem" id="f12"><div class="id">[F12]</div><div><div class="t">FO Airbus (Frankreich) — Zusatzvereinbarung zur Entgeltpolitik 2023</div><div class="d">Revisionsklausel ausgelöst: Gesamtbudget 2023 von 2,9 % auf 5,5 % angehoben, lineare Mindesterhöhung 100 €/Monat, identische Bedingungen im gesamten Konzern in Frankreich · <a href="https://www.fo-airbus-operations-toulouse.fr/actus/i/72040192/article-n-1154">fo-airbus-operations-toulouse.fr</a></div></div></div>
+    <div class="sitem" id="f13"><div class="id">[F13]</div><div><div class="t">CGT Airbus Commercial — Augmentations 2024 / NAO 2025</div><div class="d">Budget 2024 ≈ +4,4 % im Schnitt (BDESE-Daten) · <a href="https://avions.cgtairbus.com/actualite/augmentations-2024-et-nao-2025/">cgtairbus.com</a></div></div></div>
+    <div class="sitem" id="f14"><div class="id">[F14]</div><div><div class="t">AEF info — NAO-Abschluss 2025 bei Airbus Helicopters (Frankreich)</div><div class="d">+2,6 % der Lohnsumme, unterzeichnet von FO, CFE-CGC und CFTC · <a href="https://www.aefinfo.fr/depeche/728847">aefinfo.fr</a></div></div></div>
+    <div class="sitem" id="f15"><div class="id">[F15]</div><div><div class="t">CCNL Metalmeccanici 2025-2028 — Erneuerung (22.11.2025)</div><div class="d">+205,32 €/Monat (+9,64 %), oberhalb des prognostizierten IPCA (7,2 %), mit IPCA-NEI-Garantie und Schutzklausel · FIM-FIOM-UILM / Federmeccanica · <a href="https://www.cisl.it/contratto-metalmeccanici-aumento-mensile-di-205-32-euro-pari-al-964-superiori-al-dato-inflattivo-ipca-conquistati-miglioramenti-su-welfare-orario-di-lavoro-ambiente-di-lavoro-lavori-precari-mi/">cisl.it</a></div></div></div>
+    <div class="sitem" id="f16"><div class="id">[F16]</div><div><div class="t">CCNL Metalmeccanici — IPCA-NEI-Garantieklausel (Mechanismus)</div><div class="d">Automatische Anpassung der Tabellen jeweils zum 1. Juni, wenn die tatsächliche Inflation den vereinbarten Satz übersteigt · <a href="https://metalmeccanicinews.it/2025/06/12/metalmeccanici-scatta-laumento-da-giugno-2025-confermato-indice-ipca-nei-dell13/">metalmeccanicinews.it</a></div></div></div>
+    <div class="sitem" id="f21"><div class="id">[F21]</div><div><div class="t">Vereinbarung Boeing – IAM District 751 (04.11.2024)</div><div class="d">+38 % linear (43,65 % kumuliert über 4 Jahre) + Prämie von 12.000 $ + Verbesserung des 401(k), nach 53 Streiktagen und bei aufgelaufenen Verlusten von 35.127 Mio. $ zwischen 2020 und 2024 (Boeing SEC-10-K), davon 11.875 Mio. $ allein im Jahr 2024; der Streik kostete Boeing weitere ~2.650 Mio. $ an entgangenem Umsatz (50 Mio. $/Tag) · Einzelheiten in Abschnitt 3.3 des Dossiers v10 [F20]</div></div></div>
+    <div class="sitem" id="f23"><div class="id">[F23]</div><div><div class="t">Industriavtalet / „Märket" (Schweden)</div><div class="d">Lohnnorm der schwedischen Industrie, anwendbar auf Saab: ~7,4 % im Zeitraum 2023-2024 · <span class="est">sektorale Referenzgröße, direkte dokumentarische Prüfung steht aus</span></div></div></div>
+    <div class="sitem" id="f24"><div class="id">[F24]</div><div><div class="t">Jahresarbeitszeit nach Standort · einheitlicher Vergleich 2025</div><div class="d"><b>Spanien 1.685 Std.</b> — VII. Tarifvertrag Airbus Spanien, Art. 9 (BOE) · <a href="https://www.boe.es/eli/es/res/2025/05/05/%285%29">boe.es</a>. <b>Frankreich 1.607 Std.</b> — Annualisierungsschwelle Airbus Operations SAS, bestätigt von CFE-CGC Airbus (Jan. 2025) · <a href="https://airbus.avions.cfe-cgc.fr/2025/01/28/annualisation-du-temps-de-travail/">airbus.avions.cfe-cgc.fr</a>. <b>Deutschland ~1.540 Std.</b> und <b>Vereinigtes Königreich ~1.596 Std.</b> — <span class="est">eigene einheitliche Schätzung: (261 Arbeitstage − Urlaub − Feiertage) × 7 Std., auf Basis der in Airbus-Stellenausschreibungen veröffentlichten Bedingungen und des offiziellen Feiertagskalenders (gov.uk). Dies sind keine offiziell vom Unternehmen konsolidierten Zahlen.</span></div></div></div>
+  </div>
+
+  <div class="srchead">Konflikt 2026 und interne Dokumentation</div>
+  <div class="registry">
+    <div class="sitem" id="f17"><div class="id">[F17]</div><div><div class="t">Anmeldung eines unbefristeten Streiks ab dem 24. August (31.07.2026)</div><div class="d">CGT, UGT und UTIL melden den Streik an (SIPA nicht auf der Anmeldung, Beteiligung vorbehaltlich einer Mitgliederabstimmung; CCOO und ATP ohne Positionierung, in Erwartung der SIMA-Schlichtung); das Unternehmen beantragt die SIMA-Schlichtung; Einzelheiten der abgelehnten Vorvereinbarung · <a href="https://www.menorca.info/actualidad/nacional/2026/07/31/2681107/sindicatos-cgt-ugt-util-anuncian-convocatoria-huelga-indefinida-airbus-desde-agosto.html">menorca.info (EFE)</a> · <a href="https://www.elconciso.es/empresas/preparan-huelga-indefinida-airbus-espana_0_2007627333.html">elconciso.es</a></div></div></div>
+    <div class="sitem" id="f18"><div class="id">[F18]</div><div><div class="t">elEconomista / EFE — Die 12-%-Vorvereinbarung und ihre Ablehnung (28.07.2026)</div><div class="d">Als 12 % präsentierte Entgeltanpassung — tatsächliche Aufschlüsselung: 10 % linear (5 % + 5 %) + 1 % individuelle Anpassung + 1 % Beförderungen, sodass die 12 % nicht die gesamte Belegschaft erreichen. Vorvereinbarung unterzeichnet von CCOO, SIPA und ATP und anschließend von der Belegschaft in einer Abstimmung abgelehnt. Faurys Reise nach Madrid · <a href="https://www.eleconomista.es/industria/noticias/14001847/07/26/los-sindicatos-de-airbus-estudian-iniciar-una-huelga-indefinida.html">eleconomista.es</a></div></div></div>
+    <div class="sitem" id="f19"><div class="id">[F19]</div><div><div class="t">OKDiario — Streikbeteiligung (Juli 2026)</div><div class="d">SIPA: Beteiligung über 90 % seit dem 1. Juli · <a href="https://okdiario.com/economia/airbus-afronta-huelga-hasta-finales-julio-amenaza-paro-indefinido-agosto-falta-acuerdo-19041361">okdiario.com</a></div></div></div>
+    <div class="sitem" id="f20"><div class="id">[F20]</div><div><div class="t">Technisches Dossier zur Wiederherstellung der Kaufkraft bei Airbus Spanien — Ausgabe E1 v10 (August 2026), internes Dokument der Bewegung</div><div class="d">Teile 1-3 und Anhänge A-E · Teil 1: Verlust von −14,1 % brutto und −17 % netto für den Madrider Referenzbeschäftigten (INE: VPI Dez.-Dez., Häuserpreisindex, Haushaltsbudgeterhebung 2025) · Teil 2: Mechanismus A +20,9 % in zwei Stufen (15 % 2026 + 5,9 % im Januar 2027), Mechanismus B Einmalzahlung von 46,3 % des Gehalts 2025 (~26.030 € brutto), Mechanismus C Formel VPI + 1,5 % mit Obergrenze 6 % und Untergrenze 1,5 % · Teil 3: Machbarkeit (Kosten ~764 Mio. € im ersten Jahr, ~235 Mio. €/Jahr wiederkehrend) und Boeing-Präzedenzfall IAM 751 (§3.3) · Anhang A INE-Reihen, Anhang B persönlicher Effektivsatz, Anhang C Methodik der Einmalzahlung und Steuerregime, Anhang D Herkunft der +1,5 %, Anhang E Finanzdaten des Konzerns 2020-2027. <span class="est">Ersetzt die v8, die in früheren Fassungen dieses Dokuments zitiert wurde.</span></div></div></div>
+    <div class="sitem" id="f22"><div class="id">[F22]</div><div><div class="t">Methodik der eigenen Berechnungen</div><div class="d">Umsatz/Beschäftigten = konsolidierter Umsatz GJ 2025 ÷ durchschnittliche Belegschaft [F1-F8] · Umrechnung in € zu Durchschnittskursen 2025 (USD 0,92 · GBP 1,20 · SEK 0,088) · Rückflussquote = Arbeitgeberkosten je Beschäftigten (56 T€ × 1,345 [F20]) ÷ Umsatz je Beschäftigten · Belegschaftszahlen von Airbus Group (~158.000) und Leonardo (~62.000) näherungsweise aus den Geschäftsberichten</div></div></div>
+    <div class="sitem" id="f28"><div class="id">[F28]</div><div><div class="t">Infografik #salvemosairbus — Entgeltanpassungen gegenüber VPI nach Standort 2020-2027 (August 2026)</div><div class="d">Vergleichende Reihe von Entgeltanpassungen und VPI bei Airbus Spanien, Deutschland, Frankreich und dem Vereinigten Königreich, mit kumuliertem Kaufkraftverlust je Land. In der Infografik selbst angegebene Quellen: tradingeconomics.com, Airbus Group Financial Results, BOE, IG Metall, FO Airbus Groupe und Unite the Union · <span class="est">internes Dokument der Bewegung; für Spanien haben die Zahlen des Dossiers v10 [F20] Vorrang, die den Verlust gegenüber dem VPI auf −8,4 % statt auf die −8,6 % der Infografik beziffern</span></div></div></div>
+    <div class="sitem" id="f29"><div class="id">[F29]</div><div><div class="t">Airbus — Success Award (Erfolgsprämie des Konzerns)</div><div class="d">Airbus führt das <i>success sharing</i> unter den finanziellen Leistungen für seine Beschäftigten auf; es wird an allen Standorten gezahlt und nach Division gewichtet (Commercial Aircraft, Defence and Space, Helicopters) · <a href="https://www.airbus.com/en/careers/life-at-airbus/reward-and-benefits">airbus.com — Rewards and Benefits</a> · <span class="est">die Gewichtungsregeln nach Division stammen aus der internen Dokumentation des Unternehmens</span></div></div></div>
+
+
+  </div>
+
+  <div class="note"><b>Hinweis zur Sorgfalt:</b> Die als <i>Schätzung</i> gekennzeichneten Werte (Wechselkurse, Jahresarbeitszeit, Rückflussquote, schwedisches Märket) sind klar ausgewiesene eigene Näherungen; alles Übrige stammt aus geprüften Abschlüssen, offiziellen Unternehmens- oder Gewerkschaftsmitteilungen oder datierter Wirtschaftspresse. Parteidokument, erstellt für die Tarifverhandlungen — es stellt weder eine Rechts- noch eine Finanzberatung dar.</div>
+</div></section>
+
+<footer><div class="wrap">Erstellt von und für die Beschäftigtenbewegung <span class="tag">#EnfadadosAirbus</span> · August 2026 · Ergänzt das technische Dossier zur Entgeltwiederherstellung, Ausgabe E1 v10</div></footer>
+
+<script>
+try{
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    a.setAttribute('target','_blank');
+    a.setAttribute('rel','noopener noreferrer');
+    a.title=a.href;
+  });
+  var prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.getElementById(a.getAttribute('href').slice(1));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:prefersReduced?'auto':'smooth',block:'start'});
+        t.classList.add('flash');setTimeout(function(){t.classList.remove('flash')},1600);}
+    });
+  });
+}catch(err){/* la navegación por anclas nativas sigue funcionando */}
+</script>
+</body>
+</html>

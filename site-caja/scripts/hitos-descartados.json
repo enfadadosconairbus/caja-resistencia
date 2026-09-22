@@ -1,0 +1,14 @@
+{
+  "_nota": "Candidatos a hito que NO van a la cronología. La clave es el 'pdf' (candidatos por documento) o la 'clave' fecha|tema (candidatos por prensa). Aquí se anota lo que se decide dejar fuera, para que no se vuelva a proponer ni se publique solo.",
+  "2026-07-02|inicio o fin de huelga": "Cobertura del arranque de la huelga: ya está contado en el hito del 1 de julio.",
+  "/docs/convocatoria-asamblea-ce-13julio.pdf": "Convocatoria de una asamblea concreta. Es logística del movimiento, no un giro del conflicto.",
+  "/docs/plataforma-reivindicativa-de-los-trabajadores.pdf": "Reedición escaneada de la plataforma del 10-jul, que ya es hito. Sin texto extraíble, además.",
+  "/docs/octavillas-huelga-sin-logo-2026-07-01.pdf": "Ya va como documento del hito del 30 de junio.",
+  "/docs/ccoo-alcanzamos-un-acuerdo-para-la-revision-salarial-teletrabajo-28148.pdf": "Reenvío del mismo comunicado de CCOO del 16-jul. Mismo texto extraído que la copia sin sufijo, que ya es hito.",
+  "/docs/consulta-a-la-plantilla-docx-1-2.pdf": "Carta de CCOO del 25-jul. Ya cuelga del hito «La plantilla dice no» como ccoo-consulta-a-la-plantilla.pdf, mismo texto extraído.",
+  "/docs/consulta-a-la-plantilla-docx-1-2-37601.pdf": "Reenvío de la anterior. Mismo texto extraído.",
+  "/docs/acta-sima-4317.pdf": "Reenvío del acta del SIMA del 24-jun. Escaneada, idéntica página a página a acta-desacuerdo-sima-24-06-2026.pdf, que ya cuelga del hito de ese día.",
+  "/docs/preacuerdo-cnc-23072026-firmado-33337.pdf": "Reenvío del preacuerdo de la CNC del 22-jul. Escaneado, idéntico a preacuerdo-cnc-23072026-firmado.pdf, que ya cuelga del hito de ese día.",
+  "/docs/plataforma-reivindicativa-de-los-trabajadores-38365.pdf": "Reenvío de la reedición ya descartada arriba. Escaneada, idéntica a plataforma-reivindicativa-de-los-trabajadores.pdf.",
+  "/docs/convocatoria-huelga-en-airbus-comunicacion-a-airbus-20260731-anonimiza-40413.pdf": "Reenvío de la convocatoria del 31-jul. Escaneada, idéntica a la copia sin sufijo, que ya cuelga del hito «Convocatoria formal: huelga indefinida»."
+}

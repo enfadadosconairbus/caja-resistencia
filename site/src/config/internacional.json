@@ -1,0 +1,56 @@
+{
+  "_nota": "Listas de descargas que NO viven en actas.json: los idiomas del manifiesto (sección El Conflicto) y los comunicados internacionales de solidaridad (sección Solidaridad Internacional). Las escribe a mano scripts/revisar-y-publicar.py cuando marcas esas secciones en el Excel de revisión, así que MANTÉN EL FORMATO (page.tsx las recorre tal cual).",
+  "_notaManifiesto": "AQUÍ HAY DOS DOCUMENTOS DISTINTOS, no un manifiesto en cuatro idiomas. `doc` dice cuál: «v3» es el Manifiesto de reivindicaciones (6 páginas, 7 puntos, solo en español) y «grupo» es el Manifiesto al Grupo Airbus de julio de 2026 (2 páginas, 6 demandas, en en/fr/de). Se comprobó abriendo los PDF: el internacional condensa la v3 y se deja fuera el punto 6 (igualdad entre generaciones). Por eso cada uno se ofrece con su nombre y no como traducción del otro. `lang` es el código de idioma de la página: page.tsx pone ESA entrada en el botón grande y agrupa el resto por documento. Una entrada sin `doc` cuenta como «grupo» — es lo que añade revisar-y-publicar.py, que solo da de alta idiomas del internacional. `mb` es el peso real del PDF; el separador decimal y la unidad los pone el diccionario.",
+  "manifiestoIdiomas": [
+    {
+      "doc": "v3",
+      "lang": "es",
+      "label": "Español",
+      "pdf": "/docs/manifiesto-enfadados-airbus.pdf",
+      "mb": 0.5
+    },
+    {
+      "doc": "grupo",
+      "lang": "en",
+      "label": "English",
+      "pdf": "/docs/manifiesto-airbus-en.pdf",
+      "mb": 0.4
+    },
+    {
+      "doc": "grupo",
+      "lang": "fr",
+      "label": "Français",
+      "pdf": "/docs/manifiesto-airbus-fr.pdf",
+      "mb": 0.4
+    },
+    {
+      "doc": "grupo",
+      "lang": "de",
+      "label": "Deutsch",
+      "pdf": "/docs/manifiesto-airbus-de.pdf",
+      "mb": 0.4
+    }
+  ],
+  "comunicados": [
+    {
+      "titulo": "CGT Marignane (Airbus, Francia)",
+      "pdf": "/docs/comunicado-cgt-marignane-airbus-francia.pdf",
+      "meta": "PDF · FR"
+    },
+    {
+      "titulo": "FO / CFE-CGC — Comité Europeo",
+      "pdf": "/docs/comunicado-fo-cfe-cgc-comite-europeo-07-07-2026.pdf",
+      "meta": "PDF · 07/07 · FR"
+    },
+    {
+      "titulo": "Le Spigaou nº37 — CGT Airbus Marignane",
+      "pdf": "/docs/spigaou-cgt-marignane-05-2026.pdf",
+      "meta": "PDF · 05/2026 · FR"
+    },
+    {
+      "titulo": "Tract Espagne Septembre - 2026",
+      "pdf": "/docs/tract-espagne-septembre-2026.pdf",
+      "meta": "PDF · 416 KB"
+    }
+  ]
+}
