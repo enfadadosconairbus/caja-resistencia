@@ -36,12 +36,15 @@ export async function generateMetadata({
 
 export default async function TiendaPagina({
   params,
+  searchParams,
 }: {
   params: Promise<{ lang: string }>;
+  searchParams: Promise<{ pago?: string }>;
 }) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const d = await getDictionary(lang);
+  const { pago } = await searchParams;
   const hoyEnMadrid = new Intl.DateTimeFormat("en-CA", {
     timeZone: ARRANQUE.zona,
     year: "numeric",
@@ -93,6 +96,31 @@ export default async function TiendaPagina({
           <Rise>
             <p className="mt-6 max-w-3xl text-lg text-[var(--color-tinta-suave)]">{d.tienda.intro}</p>
           </Rise>
+
+          {pago === "ok" || pago === "cancelado" ? (
+            <div
+              role="status"
+              className={`mt-8 max-w-3xl rounded-xl border p-5 ${
+                pago === "ok"
+                  ? "border-[var(--color-confianza)] bg-[var(--color-superficie)]"
+                  : "border-[var(--color-linea)] bg-[var(--color-fondo)]"
+              }`}
+            >
+              <p className="font-[family-name:var(--ff-display)] text-lg font-bold">
+                {pago === "ok" ? d.tienda.pago.okTitulo : d.tienda.pago.canceladoTitulo}
+              </p>
+              <p className="mt-1 text-sm text-[var(--color-tinta-suave)]">
+                {pago === "ok" ? d.tienda.pago.okTexto : d.tienda.pago.canceladoTexto}
+              </p>
+              <Link
+                href={`/${lang}/tienda`}
+                className="mt-3 inline-block font-[family-name:var(--ff-mono)] text-xs uppercase tracking-wider text-[var(--color-acento-tinta)] underline underline-offset-4"
+              >
+                {d.tienda.pago.cerrar}
+              </Link>
+            </div>
+          ) : null}
+
           <Merchandising s={d.tienda} lang={lang} />
         </section>
       </main>

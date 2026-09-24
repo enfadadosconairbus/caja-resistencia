@@ -453,33 +453,27 @@
   "guiaTallas": "Ver guía de tallas",
   "guiaAlt": "Tabla de tallas: medidas de la prenda (ancho de pecho y largo) en centímetros, de la XS a la 5XL.",
   "guiaNota": "Medidas de la prenda plana (ancho de pecho × largo), en cm.",
-  "donacionLabel": "Añadir una donación (opcional)",
-  "sinDonacion": "Sin donación",
-  "donacionNota": "Se suma a tu pedido y se paga junto, en la misma transferencia.",
-  "totalLabel": "Total a transferir",
+  "totalLabel": "Total",
   "nombreLabel": "Nombre y apellidos",
   "emailLabel": "Email",
   "siteLabel": "Centro de recogida",
   "sitePlaceholder": "Elige tu centro",
   "entrega": "Producción bajo pedido (4-5 días laborables desde que confirmamos el pago). La entrega la realiza el coordinador del Grupo de Logística de tu centro; te avisamos por email cuando esté disponible.",
-  "legalNota": "Al crear el pedido aceptas las Condiciones de aportación y la Política de privacidad (enlaces al pie). Tus datos —nombre, email y centro— se usan solo para gestionar y entregarte este pedido.",
-  "confirmar": "Crear pedido y ver cómo pagar",
-  "enviando": "Registrando…",
-  "exito": {
-   "titulo": "PEDIDO REGISTRADO",
-   "intro": "Ya casi está. Haz una transferencia con estos datos —el concepto es lo que nos permite reconocer tu pedido— y listo.",
-   "conceptoLabel": "Concepto (imprescindible)",
-   "beneficiarioLabel": "Beneficiario",
-   "ibanLabel": "IBAN",
-   "totalLabel": "Importe",
-   "copiar": "Copiar",
-   "copiado": "Copiado",
-   "pasos": [
-    "Abre la app de tu banco y haz una transferencia por el importe indicado.",
-    "Pon EXACTAMENTE el concepto de arriba: sin él no podemos identificar tu pedido.",
-    "Cuando la recibamos, te confirmamos por email; la camiseta la recoges en tu site."
-   ],
-   "otro": "Hacer otro pedido"
+  "legalNota": "Al continuar al pago aceptas las Condiciones de aportación y la Política de privacidad (enlaces al pie). Tus datos —nombre, email y centro— se usan solo para gestionar y entregarte este pedido.",
+  "pagarLabel": "Pagar de forma segura",
+  "pagando": "Redirigiendo al pago…",
+  "pagoNota": "Pago seguro con tarjeta o Bizum a través de Stripe. No guardamos los datos de tu tarjeta.",
+  "errorGenerico": "No se pudo iniciar el pago. Inténtalo de nuevo.",
+  "pago": {
+   "okTitulo": "¡Pago recibido!",
+   "okTexto": "Gracias. Tu pedido está confirmado; te avisaremos por email cuando la camiseta esté lista para recoger en tu centro.",
+   "canceladoTitulo": "Pago cancelado",
+   "canceladoTexto": "No se ha cobrado nada. Puedes intentarlo de nuevo cuando quieras.",
+   "cerrar": "Cerrar"
+  },
+  "proximamente": {
+   "titulo": "Disponible muy pronto",
+   "texto": "Estamos activando el pago con tarjeta y Bizum. Vuelve en unos días para conseguir tu camiseta."
   }
  },
  "donantes": {

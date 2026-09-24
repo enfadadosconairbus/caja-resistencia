@@ -453,33 +453,27 @@
   "guiaTallas": "See size guide",
   "guiaAlt": "Size chart: garment measurements (chest width and length) in centimetres, from XS to 5XL.",
   "guiaNota": "Flat-garment measurements (chest width × length), in cm.",
-  "donacionLabel": "Add a donation (optional)",
-  "sinDonacion": "No donation",
-  "donacionNota": "Added to your order and paid together, in the same transfer.",
-  "totalLabel": "Total to transfer",
+  "totalLabel": "Total",
   "nombreLabel": "Full name",
   "emailLabel": "Email",
   "siteLabel": "Pickup point",
   "sitePlaceholder": "Choose your pickup point",
   "entrega": "Made to order (4-5 working days from when we confirm payment). Handed to you by your pickup point's Logistics Group coordinator; we'll email you when it's ready.",
-  "legalNota": "By creating the order you accept the Contribution Terms and the Privacy Policy (links in the footer). Your data —name, email and pickup point— is used only to manage and deliver this order.",
-  "confirmar": "Create order and see how to pay",
-  "enviando": "Registering…",
-  "exito": {
-   "titulo": "ORDER REGISTERED",
-   "intro": "Almost there. Make a bank transfer with these details —the reference is what lets us match your order— and you're done.",
-   "conceptoLabel": "Reference (required)",
-   "beneficiarioLabel": "Beneficiary",
-   "ibanLabel": "IBAN",
-   "totalLabel": "Amount",
-   "copiar": "Copy",
-   "copiado": "Copied",
-   "pasos": [
-    "Open your banking app and transfer the amount shown.",
-    "Use EXACTLY the reference above: without it we can't identify your order.",
-    "When it arrives we'll confirm by email; pick up the T-shirt at your site."
-   ],
-   "otro": "Place another order"
+  "legalNota": "By continuing to payment you accept the Contribution Terms and the Privacy Policy (links in the footer). Your data —name, email and site— is used only to manage and deliver this order.",
+  "pagarLabel": "Pay securely",
+  "pagando": "Redirecting to payment…",
+  "pagoNota": "Secure payment by card or Bizum via Stripe. We never store your card details.",
+  "errorGenerico": "Payment couldn't be started. Please try again.",
+  "pago": {
+   "okTitulo": "Payment received!",
+   "okTexto": "Thank you. Your order is confirmed; we'll email you when the T-shirt is ready to pick up at your site.",
+   "canceladoTitulo": "Payment cancelled",
+   "canceladoTexto": "Nothing was charged. You can try again whenever you like.",
+   "cerrar": "Close"
+  },
+  "proximamente": {
+   "titulo": "Available very soon",
+   "texto": "We're switching on card and Bizum payments. Check back in a few days to get your T-shirt."
   }
  },
  "donantes": {

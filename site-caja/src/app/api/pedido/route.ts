@@ -1,24 +1,19 @@
 import { NextResponse } from "next/server";
 import { env } from "cloudflare:workers";
-import { FONDO } from "@/config/fondo";
-import {
-  CAMISETA,
-  DONACIONES,
-  MAX_UNIDADES,
-  SITES,
-  PREFIJO_REF,
-  BENEFICIARIO,
-} from "@/config/pedidos";
+import { CAMISETA, MAX_UNIDADES, SITES, TIENDA_ACTIVA } from "@/config/pedidos";
+import { SITE_URL } from "@/lib/site-url";
+import { crearCheckoutSession, type LineaCheckout } from "@/lib/stripe";
 
 /**
- * Crea un pedido de la tienda y devuelve los datos de la transferencia.
- *
- * Todo se valida AQUÍ (servidor): tallas, cantidades, tope, donación y precio. El navegador
- * nunca decide el dinero. La referencia es correlativa y atómica (Durable Object `PEDIDO_REF`),
- * y el pedido se guarda en D1 (`PEDIDOS_DB`) en estado `pendiente` hasta que Tesorería concilia
- * la transferencia por su concepto (= referencia).
+ * Inicia la compra de merchandising. Modelo **pago = orden**: aquí NO se toca la base de datos.
+ * Se valida todo en servidor (tallas, cantidades, tope, precio — el navegador nunca decide el
+ * dinero), se crea una Checkout Session de Stripe (tarjeta + Bizum) con el pedido en `metadata`,
+ * y se devuelve su URL. El pedido se materializa YA PAGADO en el webhook (`checkout.session.
+ * completed`). Las transferencias quedan solo para donaciones sin producto (otro bloque).
  */
 export const dynamic = "force-dynamic";
+
+const LOCALES = ["es", "en", "fr", "de"] as const;
 
 type LineaEntrada = { talla?: unknown; cantidad?: unknown };
 
@@ -27,12 +22,15 @@ function error(msg: string, status = 400) {
 }
 
 export async function POST(request: Request) {
+  // Tienda cerrada (Stripe en test): rechaza cualquier intento de pedido, venga de donde venga.
+  if (!TIENDA_ACTIVA) return error("La tienda no está disponible ahora mismo.", 503);
+
   let body: {
     lineas?: unknown;
-    donacion?: unknown;
     nombre?: unknown;
     email?: unknown;
     site?: unknown;
+    lang?: unknown;
   };
   try {
     body = await request.json();
@@ -43,12 +41,13 @@ export async function POST(request: Request) {
   const nombre = typeof body.nombre === "string" ? body.nombre.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim() : "";
   const site = typeof body.site === "string" ? body.site.trim() : "";
-  const donacion = Math.floor(Number(body.donacion ?? 0));
   const lineasRaw = Array.isArray(body.lineas) ? (body.lineas as LineaEntrada[]) : [];
+  const lang = (LOCALES as readonly string[]).includes(body.lang as string)
+    ? (body.lang as string)
+    : "es";
 
   if (!nombre) return error("Indica tu nombre.");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return error("Revisa tu email.");
-  if (!(DONACIONES as readonly number[]).includes(donacion)) return error("Donación no válida.");
 
   // Normaliza líneas: agrupa por talla válida, cantidades enteras positivas.
   const porTalla = new Map<string, number>();
@@ -62,41 +61,43 @@ export async function POST(request: Request) {
   const lineas = [...porTalla.entries()].map(([talla, cantidad]) => ({ talla, cantidad }));
   const unidades = lineas.reduce((a, l) => a + l.cantidad, 0);
 
-  if (unidades === 0 && donacion === 0) return error("Añade al menos una camiseta o una donación.");
+  if (unidades === 0) return error("Añade al menos una camiseta.");
   if (unidades > MAX_UNIDADES) return error(`Máximo ${MAX_UNIDADES} unidades por pedido.`);
-  if (unidades > 0 && !(SITES as readonly string[]).includes(site))
-    return error("Elige tu site de recogida.");
+  if (!(SITES as readonly string[]).includes(site)) return error("Elige tu site de recogida.");
 
-  const iban = FONDO.cuenta.iban;
-  if (!iban) return error("La cuenta del fondo no está disponible.", 503);
+  const stripeKey = (env as { STRIPE_SECRET_KEY?: string }).STRIPE_SECRET_KEY;
+  if (!stripeKey) return error("El pago no está disponible ahora mismo.", 503);
 
-  const total = unidades * CAMISETA.precio + donacion;
+  const total = unidades * CAMISETA.precio;
+  const lineasCheckout: LineaCheckout[] = lineas.map((l) => ({
+    nombre: `Camiseta solidaria · talla ${l.talla}`,
+    unitAmount: CAMISETA.precio * 100,
+    cantidad: l.cantidad,
+  }));
 
-  // Referencia correlativa y atómica.
-  const ns = env.PEDIDO_REF;
-  const stub = ns.get(ns.idFromName("tienda"));
-  const numero = await stub.siguiente();
-  const referencia = `${PREFIJO_REF}-${String(numero).padStart(5, "0")}`;
-
-  await env.PEDIDOS_DB.prepare(
-    `INSERT INTO pedidos (referencia, creado, nombre, email, site, lineas, unidades, donacion, total, estado)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pendiente')`,
-  )
-    .bind(
-      referencia,
-      new Date().toISOString(),
-      nombre,
+  try {
+    const sesion = await crearCheckoutSession(stripeKey, {
+      lineas: lineasCheckout,
       email,
-      unidades > 0 ? site : null,
-      JSON.stringify(lineas),
-      unidades,
-      donacion,
-      total,
-    )
-    .run();
-
-  return NextResponse.json(
-    { ok: true, referencia, beneficiario: BENEFICIARIO, iban, total, concepto: referencia },
-    { headers: { "Cache-Control": "no-store" } },
-  );
+      successUrl: `${SITE_URL}/${lang}/tienda?pago=ok`,
+      cancelUrl: `${SITE_URL}/${lang}/tienda?pago=cancelado`,
+      locale: lang,
+      // Sin `paymentMethodTypes`: Stripe ofrece los métodos ACTIVADOS en el dashboard
+      // (tarjeta + Bizum cuando lo actives), sin fallar si alguno no está habilitado.
+      metadata: {
+        lineas: JSON.stringify(lineas),
+        unidades: String(unidades),
+        total: String(total),
+        site,
+        nombre,
+        email,
+      },
+    });
+    return NextResponse.json(
+      { ok: true, url: sesion.url },
+      { headers: { "Cache-Control": "no-store" } },
+    );
+  } catch {
+    return error("No se pudo iniciar el pago. Inténtalo de nuevo.", 502);
+  }
 }

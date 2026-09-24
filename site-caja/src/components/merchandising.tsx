@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
-import { CAMISETA, DONACIONES, MAX_UNIDADES, SITES } from "@/config/pedidos";
-import { Copiar } from "./copiar";
+import { CAMISETA, MAX_UNIDADES, SITES, TIENDA_ACTIVA } from "@/config/pedidos";
 
 export type MerchStrings = {
   kicker: string;
@@ -20,9 +19,6 @@ export type MerchStrings = {
   guiaTallas: string;
   guiaAlt: string;
   guiaNota: string;
-  donacionLabel: string;
-  sinDonacion: string;
-  donacionNota: string;
   totalLabel: string;
   nombreLabel: string;
   emailLabel: string;
@@ -30,31 +26,14 @@ export type MerchStrings = {
   sitePlaceholder: string;
   entrega: string;
   legalNota: string;
-  confirmar: string;
-  enviando: string;
-  exito: {
-    titulo: string;
-    intro: string;
-    conceptoLabel: string;
-    beneficiarioLabel: string;
-    ibanLabel: string;
-    totalLabel: string;
-    copiar: string;
-    copiado: string;
-    pasos: string[];
-    otro: string;
-  };
+  pagarLabel: string;
+  pagando: string;
+  pagoNota: string;
+  errorGenerico: string;
+  proximamente: { titulo: string; texto: string };
 };
 
-type Respuesta = {
-  ok: boolean;
-  referencia?: string;
-  beneficiario?: string;
-  iban?: string;
-  total?: number;
-  concepto?: string;
-  error?: string;
-};
+type Respuesta = { ok: boolean; url?: string; error?: string };
 
 function eur(v: number, lang: string) {
   return new Intl.NumberFormat(lang, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(v);
@@ -66,16 +45,14 @@ const LABEL = `${MONO} text-[10px] uppercase tracking-wider text-[var(--color-ti
 export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
   const [talla, setTalla] = React.useState<string>("");
   const [cantidad, setCantidad] = React.useState(1);
-  const [donacion, setDonacion] = React.useState(0);
   const [nombre, setNombre] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [site, setSite] = React.useState("");
   const [enviando, setEnviando] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
-  const [ok, setOk] = React.useState<Respuesta | null>(null);
 
   const pctCaja = Math.round((CAMISETA.aLaCaja / CAMISETA.precio) * 100);
-  const total = cantidad * CAMISETA.precio + donacion;
+  const total = cantidad * CAMISETA.precio;
 
   async function enviar(e: React.FormEvent) {
     e.preventDefault();
@@ -89,75 +66,22 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
       const r = await fetch("/api/pedido", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lineas: [{ talla, cantidad }], donacion, nombre, email, site }),
+        body: JSON.stringify({ lineas: [{ talla, cantidad }], nombre, email, site, lang }),
       });
       const data = (await r.json()) as Respuesta;
-      if (data.ok) setOk(data);
-      else setError(data.error ?? "No se pudo registrar el pedido.");
+      if (data.ok && data.url) {
+        // Redirige al pago alojado de Stripe (tarjeta o Bizum).
+        window.location.href = data.url;
+        return;
+      }
+      setError(data.error ?? s.errorGenerico);
+      setEnviando(false);
     } catch {
-      setError("No se pudo conectar. Inténtalo de nuevo.");
-    } finally {
+      setError(s.errorGenerico);
       setEnviando(false);
     }
   }
 
-  // ── Pantalla de éxito: datos para transferir ──────────────────────────────
-  if (ok && ok.referencia && ok.iban) {
-    return (
-      <div className="mt-12 max-w-2xl">
-        <div className="rounded-2xl border border-[var(--color-linea)] bg-[var(--color-superficie)] p-6 md:p-8">
-          <p className="kicker !mb-0 text-[var(--color-confianza-tinta)]">{s.exito.titulo}</p>
-          <p className="mt-3 text-[var(--color-tinta-suave)]">{s.exito.intro}</p>
-
-          <dl className="mt-6 divide-y divide-[var(--color-linea)]">
-            {[
-              { k: s.exito.conceptoLabel, v: ok.concepto ?? ok.referencia, copiar: ok.concepto ?? ok.referencia },
-              { k: s.exito.beneficiarioLabel, v: ok.beneficiario ?? "" },
-              { k: s.exito.ibanLabel, v: ok.iban, copiar: ok.iban },
-              { k: s.exito.totalLabel, v: eur(ok.total ?? total, lang) },
-            ].map((row) => (
-              <div key={row.k} className="flex flex-wrap items-center justify-between gap-3 py-3">
-                <div>
-                  <dt className={LABEL}>{row.k}</dt>
-                  <dd className={`mt-0.5 ${MONO} text-sm text-[var(--color-tinta)]`}>{row.v}</dd>
-                </div>
-                {"copiar" in row && row.copiar ? (
-                  <Copiar valor={row.copiar} label={s.exito.copiar} hecho={s.exito.copiado} />
-                ) : null}
-              </div>
-            ))}
-          </dl>
-
-          <ol className="mt-6 space-y-2">
-            {s.exito.pasos.map((p, i) => (
-              <li key={i} className="flex gap-3 text-sm text-[var(--color-tinta-suave)]">
-                <span className={`${MONO} font-semibold text-[var(--color-acento-tinta-fuerte)]`}>{i + 1}.</span>
-                <span>{p}</span>
-              </li>
-            ))}
-          </ol>
-
-          <p className="mt-6 rounded-lg border border-[var(--color-linea)] bg-[var(--color-fondo)] px-4 py-3 text-xs leading-relaxed text-[var(--color-tinta-suave)]">
-            {s.entrega}
-          </p>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => {
-            setOk(null);
-            setCantidad(1);
-            setDonacion(0);
-          }}
-          className={`mt-4 ${MONO} text-xs uppercase tracking-wider text-[var(--color-acento-tinta)] underline underline-offset-4`}
-        >
-          {s.exito.otro}
-        </button>
-      </div>
-    );
-  }
-
-  // ── Ficha + pedido ────────────────────────────────────────────────────────
   return (
     <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:items-start">
       {/* Producto */}
@@ -233,6 +157,12 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
       </div>
 
       {/* Pedido */}
+      {!TIENDA_ACTIVA ? (
+        <div className="rounded-2xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-6 text-center md:p-8">
+          <p className="kicker !mb-0 text-[var(--color-confianza-tinta)]">{s.proximamente.titulo}</p>
+          <p className="mt-3 text-sm text-[var(--color-tinta-suave)]">{s.proximamente.texto}</p>
+        </div>
+      ) : (
       <form onSubmit={enviar} className="rounded-2xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-6 md:p-8">
         <fieldset>
           <legend className={LABEL}>{s.tallaLabel}</legend>
@@ -285,28 +215,6 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
             </div>
           </fieldset>
         </div>
-
-        <fieldset className="mt-6">
-          <legend className={LABEL}>{s.donacionLabel}</legend>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {DONACIONES.map((d) => (
-              <button
-                key={d}
-                type="button"
-                aria-pressed={donacion === d}
-                onClick={() => setDonacion(d)}
-                className={`rounded-full border px-3 py-1.5 ${MONO} text-xs transition-colors ${
-                  donacion === d
-                    ? "border-[var(--color-acento)] bg-[var(--color-acento)] text-white"
-                    : "border-[var(--color-linea)] text-[var(--color-tinta)] hover:border-[var(--color-acento)]"
-                }`}
-              >
-                {d === 0 ? s.sinDonacion : `+${eur(d, lang)}`}
-              </button>
-            ))}
-          </div>
-          <p className={`mt-2 ${MONO} text-[10px] leading-relaxed text-[var(--color-tinta-suave)]`}>{s.donacionNota}</p>
-        </fieldset>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           <label className="block">
@@ -372,12 +280,14 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
           disabled={enviando}
           className="mt-5 w-full rounded-full bg-[var(--color-acento)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-acento-hondo)] disabled:opacity-50"
         >
-          {enviando ? s.enviando : s.confirmar}
+          {enviando ? s.pagando : `${s.pagarLabel} · ${eur(total, lang)}`}
         </button>
 
-        <p className={`mt-4 ${MONO} text-[10px] leading-relaxed text-[var(--color-tinta-suave)]`}>{s.legalNota}</p>
+        <p className={`mt-4 ${MONO} text-[10px] leading-relaxed text-[var(--color-tinta-suave)]`}>{s.pagoNota}</p>
         <p className={`mt-2 ${MONO} text-[10px] leading-relaxed text-[var(--color-tinta-suave)]`}>{s.entrega}</p>
+        <p className={`mt-2 ${MONO} text-[10px] leading-relaxed text-[var(--color-tinta-suave)]`}>{s.legalNota}</p>
       </form>
+      )}
     </div>
   );
 }

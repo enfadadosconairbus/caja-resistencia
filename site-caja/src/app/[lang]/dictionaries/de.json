@@ -453,33 +453,27 @@
   "guiaTallas": "Größentabelle ansehen",
   "guiaAlt": "Größentabelle: Maße des Kleidungsstücks (Brustbreite und Länge) in Zentimetern, von XS bis 5XL.",
   "guiaNota": "Maße am flach liegenden Kleidungsstück (Brustbreite × Länge), in cm.",
-  "donacionLabel": "Spende hinzufügen (optional)",
-  "sinDonacion": "Keine Spende",
-  "donacionNota": "Wird zu deiner Bestellung addiert und zusammen per Überweisung bezahlt.",
-  "totalLabel": "Zu überweisender Gesamtbetrag",
+  "totalLabel": "Gesamt",
   "nombreLabel": "Vor- und Nachname",
   "emailLabel": "E-Mail",
   "siteLabel": "Abholstelle",
   "sitePlaceholder": "Abholstelle wählen",
   "entrega": "Auf Bestellung gefertigt (4-5 Werktage ab Zahlungsbestätigung). Übergabe durch den Koordinator der Logistikgruppe deiner Abholstelle; wir benachrichtigen dich per E-Mail, wenn es bereit ist.",
-  "legalNota": "Mit dem Erstellen der Bestellung akzeptierst du die Beitragsbedingungen und die Datenschutzerklärung (Links im Footer). Deine Daten —Name, E-Mail und Abholstelle— werden nur zur Verwaltung und Zustellung dieser Bestellung verwendet.",
-  "confirmar": "Bestellung erstellen und Zahlung ansehen",
-  "enviando": "Wird registriert…",
-  "exito": {
-   "titulo": "BESTELLUNG REGISTRIERT",
-   "intro": "Fast geschafft. Überweise mit diesen Angaben —der Verwendungszweck erlaubt uns, deine Bestellung zuzuordnen— und fertig.",
-   "conceptoLabel": "Verwendungszweck (erforderlich)",
-   "beneficiarioLabel": "Empfänger",
-   "ibanLabel": "IBAN",
-   "totalLabel": "Betrag",
-   "copiar": "Kopieren",
-   "copiado": "Kopiert",
-   "pasos": [
-    "Öffne deine Banking-App und überweise den angezeigten Betrag.",
-    "Gib GENAU den obigen Verwendungszweck an: ohne ihn können wir deine Bestellung nicht identifizieren.",
-    "Wenn sie eingeht, bestätigen wir per E-Mail; das T-Shirt holst du an deinem Standort ab."
-   ],
-   "otro": "Weitere Bestellung aufgeben"
+  "legalNota": "Mit dem Fortfahren zur Zahlung akzeptierst du die Beitragsbedingungen und die Datenschutzerklärung (Links in der Fußzeile). Deine Daten —Name, E-Mail und Standort— werden nur zur Abwicklung und Zustellung dieser Bestellung verwendet.",
+  "pagarLabel": "Sicher bezahlen",
+  "pagando": "Weiterleitung zur Zahlung…",
+  "pagoNota": "Sichere Zahlung per Karte oder Bizum über Stripe. Wir speichern keine Kartendaten.",
+  "errorGenerico": "Die Zahlung konnte nicht gestartet werden. Bitte versuche es erneut.",
+  "pago": {
+   "okTitulo": "Zahlung erhalten!",
+   "okTexto": "Danke. Deine Bestellung ist bestätigt; wir benachrichtigen dich per E-Mail, sobald das T-Shirt an deinem Standort abholbereit ist.",
+   "canceladoTitulo": "Zahlung abgebrochen",
+   "canceladoTexto": "Es wurde nichts abgebucht. Du kannst es jederzeit erneut versuchen.",
+   "cerrar": "Schließen"
+  },
+  "proximamente": {
+   "titulo": "Sehr bald verfügbar",
+   "texto": "Wir schalten gerade die Zahlung per Karte und Bizum frei. Schau in ein paar Tagen wieder vorbei, um dein T-Shirt zu bekommen."
   }
  },
  "donantes": {

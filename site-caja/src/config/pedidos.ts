@@ -9,6 +9,13 @@
  */
 export const PREFIJO_REF = "AIRW";
 
+/**
+ * Interruptor de la tienda. `false` mientras Stripe está en modo TEST (las tarjetas reales no se
+ * cobran): el frontend muestra un aviso en vez del formulario y el backend rechaza el pedido.
+ * Pásalo a `true` cuando la cuenta Stripe esté activada (claves live) para empezar a cobrar.
+ */
+export const TIENDA_ACTIVA = false;
+
 /** Camiseta solidaria: precio único y cuánto va a la caja (el resto cubre coste + IVA). */
 export const CAMISETA = {
   id: "camiseta",

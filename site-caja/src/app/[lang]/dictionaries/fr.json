@@ -453,33 +453,27 @@
   "guiaTallas": "Voir le guide des tailles",
   "guiaAlt": "Guide des tailles : mesures du vêtement (largeur de poitrine et longueur) en centimètres, de la XS à la 5XL.",
   "guiaNota": "Mesures du vêtement à plat (largeur de poitrine × longueur), en cm.",
-  "donacionLabel": "Ajouter un don (facultatif)",
-  "sinDonacion": "Sans don",
-  "donacionNota": "S'ajoute à ta commande et se paie ensemble, dans le même virement.",
-  "totalLabel": "Total à virer",
+  "totalLabel": "Total",
   "nombreLabel": "Nom et prénom",
   "emailLabel": "E-mail",
   "siteLabel": "Point de retrait",
   "sitePlaceholder": "Choisis ton point de retrait",
   "entrega": "Fabriqué à la commande (4-5 jours ouvrés à partir de la confirmation du paiement). Remis par le coordinateur du Groupe Logistique de ton point de retrait ; nous te préviendrons par e-mail quand il sera prêt.",
-  "legalNota": "En créant la commande, tu acceptes les Conditions de contribution et la Politique de confidentialité (liens en bas de page). Tes données —nom, e-mail et point de retrait— servent uniquement à gérer et à te livrer cette commande.",
-  "confirmar": "Créer la commande et voir comment payer",
-  "enviando": "Enregistrement…",
-  "exito": {
-   "titulo": "COMMANDE ENREGISTRÉE",
-   "intro": "Presque fini. Fais un virement avec ces informations —le libellé nous permet de reconnaître ta commande— et c'est bon.",
-   "conceptoLabel": "Libellé (indispensable)",
-   "beneficiarioLabel": "Bénéficiaire",
-   "ibanLabel": "IBAN",
-   "totalLabel": "Montant",
-   "copiar": "Copier",
-   "copiado": "Copié",
-   "pasos": [
-    "Ouvre l'appli de ta banque et vire le montant indiqué.",
-    "Indique EXACTEMENT le libellé ci-dessus : sans lui, nous ne pouvons pas identifier ta commande.",
-    "Dès réception, nous confirmons par e-mail ; tu récupères le t-shirt sur ton site."
-   ],
-   "otro": "Passer une autre commande"
+  "legalNota": "En continuant vers le paiement, tu acceptes les Conditions de contribution et la Politique de confidentialité (liens en bas de page). Tes données —nom, e-mail et site— servent uniquement à gérer et te livrer cette commande.",
+  "pagarLabel": "Payer en toute sécurité",
+  "pagando": "Redirection vers le paiement…",
+  "pagoNota": "Paiement sécurisé par carte ou Bizum via Stripe. Nous ne conservons pas tes données de carte.",
+  "errorGenerico": "Le paiement n'a pas pu démarrer. Réessaie.",
+  "pago": {
+   "okTitulo": "Paiement reçu !",
+   "okTexto": "Merci. Ta commande est confirmée ; nous t'enverrons un e-mail quand le t-shirt sera prêt à retirer sur ton site.",
+   "canceladoTitulo": "Paiement annulé",
+   "canceladoTexto": "Rien n'a été débité. Tu peux réessayer quand tu veux.",
+   "cerrar": "Fermer"
+  },
+  "proximamente": {
+   "titulo": "Disponible très bientôt",
+   "texto": "Nous activons le paiement par carte et Bizum. Reviens dans quelques jours pour obtenir ton t-shirt."
   }
  },
  "donantes": {
