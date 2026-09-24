@@ -1,6 +1,6 @@
 {
   "nota": "Candidatos a hito de la cronología. NADA de esto está publicado: los hitos se escriben a mano en src/config/hitos.json, con su texto y su lectura. Esto solo evita que se pase algo por alto. Para que un candidato deje de proponerse sin subirlo, añade su 'pdf' (documentos) o su 'clave' (prensa) a scripts/hitos-descartados.json con el motivo.",
-  "generado": "2026-09-22T19:34:44.459Z",
+  "generado": "2026-09-24T09:53:00.202Z",
   "candidatos": [
     {
       "senal": "documento",

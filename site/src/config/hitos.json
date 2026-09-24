@@ -306,6 +306,22 @@
       "auto": true
     },
     {
+      "fecha": "2026-07-13",
+      "tipo": "negociacion",
+      "titulo": {
+        "es": "Negociación"
+      },
+      "texto": {
+        "es": "Varios medios informan el mismo día sobre negociación en el conflicto de Airbus España. Publicado por industria.ccoo.es, CCOO de Industria, Andalucía Información."
+      },
+      "prensa": [
+        "industria.ccoo.es",
+        "CCOO de Industria",
+        "Andalucía Información"
+      ],
+      "auto": true
+    },
+    {
       "fecha": "2026-07-14",
       "tipo": "negociacion",
       "titulo": {
