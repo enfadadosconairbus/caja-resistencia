@@ -26,6 +26,13 @@ window.TIENDA_CONFIG = {
   // Cuando la tengáis: pon true, guarda y haz push → se abre todo (y desaparece el aviso).
   APORTACIONES_ACTIVAS: true,
 
+  // Venta de camisetas SUSPENDIDA temporalmente.
+  //   true  = se pueden encargar camisetas (tienda normal).
+  //   false = pausa: se oculta la compra (talla, cantidad, «Añadir») y la web queda
+  //           orientada a sostener la caja por transferencia y por Bizum. Aparece el
+  //           banner informativo. Para reabrir la venta: pon true, guarda y haz push.
+  VENTA_CAMISETAS_ACTIVA: false,
+
   // Avisos de entrega (vacaciones del proveedor: los pedidos hechos a partir del
   // 8-sep se entregan a partir del 24-sep):
   // 1) por fecha: pedidos a partir de este instante (8-sep, 00:00 hora peninsular).

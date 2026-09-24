@@ -73,6 +73,7 @@
     var t = 0; for (var k in state.lines) t += state.lines[k].qty; return t;
   }
   function addToCart() {
+    if (CFG.VENTA_CAMISETAS_ACTIVA === false) return;   // venta en pausa: no se añaden camisetas
     var p = bySku(state.selectedSku);
     if (!p) return;
     var free = MAX_UNITS - unitsInCart();
@@ -362,6 +363,7 @@
 
   // ---- avisos de entrega (fecha / stock) -------------------------------------
   function evaluarAvisoEntrega(tardePorStock) {
+    if (CFG.VENTA_CAMISETAS_ACTIVA === false) return;   // sin venta no hay avisos de entrega de camiseta
     var limite = CFG.AVISO_FECHA_LIMITE ? new Date(CFG.AVISO_FECHA_LIMITE) : null;
     var tardePorFecha = !!(limite && !isNaN(limite.getTime()) && new Date() >= limite);
     var tarde = tardePorFecha || !!tardePorStock;
@@ -382,12 +384,29 @@
   }
 
   function comprobarStock() {
+    if (CFG.VENTA_CAMISETAS_ACTIVA === false) return;     // venta en pausa: no se consulta stock de camisetas
     if (CFG.APORTACIONES_ACTIVAS !== true) return;        // solo con la adquisición abierta
     var umbral = Number(CFG.AVISO_STOCK_UMBRAL) || 0; if (umbral <= 0) return;
     fetch(CFG.API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'estado' }) })
       .then(function (r) { return r.json(); })
       .then(function (resp) { if (resp && resp.ok && Number(resp.camisetas) >= umbral) evaluarAvisoEntrega(true); })
       .catch(function () {});
+  }
+
+  // ---- venta de camisetas en pausa -------------------------------------------
+  // Con CFG.VENTA_CAMISETAS_ACTIVA === false, la tienda queda orientada a sostener
+  // la caja por transferencia y por Bizum: se muestra el banner, se oculta todo lo
+  // marcado .only-venta (compra de camiseta) y se revela lo marcado .only-suspendida.
+  // Reversible: pon el flag en true y todo vuelve a su sitio.
+  function setHiddenByClass(cls, hide) {
+    Array.prototype.forEach.call(document.querySelectorAll('.' + cls), function (el) { el.hidden = hide; });
+  }
+  function applyVentaSuspendida() {
+    if (CFG.VENTA_CAMISETAS_ACTIVA === false) {
+      document.body.classList.add('venta-suspendida');
+      setHiddenByClass('only-venta', true);
+      setHiddenByClass('only-suspendida', false);
+    }
   }
 
   // ---- init ------------------------------------------------------------------
@@ -419,6 +438,8 @@
       var oc = $('ordenNoDisponible'); if (oc) oc.hidden = false;
       var sub = $('submitOrder'); if (sub) { sub.disabled = true; sub.textContent = 'DISPONIBLE MUY PRONTO'; }
     }
+
+    applyVentaSuspendida();       // venta de camisetas en pausa (banner + solo aportaciones)
 
     evaluarAvisoEntrega(false);   // aviso de entrega por fecha (visible desde ya)
     comprobarStock();             // y por stock, si la adquisición está abierta
