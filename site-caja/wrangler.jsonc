@@ -7,14 +7,12 @@
     // Puentea `vars` (abajo) a `process.env`, que es de donde lee src/lib/site-url.ts.
     "nodejs_compat_populate_process_env"
   ],
-  // URL pública real del sitio (canonical, hreflang, sitemap, Open Graph). En Vercel venía
-  // de VERCEL_PROJECT_PRODUCTION_URL; en Cloudflare hay que ponerla aquí. PROVISIONAL: el
-  // propio subdominio workers.dev mientras se compra el dominio propio — así canonical/OG
-  // dejan de emitir el placeholder `TODO-…example`. Cámbiala al dominio propio cuando lo
-  // conectes y vuelve a desplegar, y pon SITE_INDEXABLE="true" solo entonces (deja indexar).
+  // URL pública real del sitio (canonical, hreflang, sitemap, Open Graph). Dominio propio,
+  // registrado en Cloudflare a nombre del sindicato ÚTIL y servido por este mismo Worker
+  // (ver `routes` abajo). SITE_INDEXABLE="true": ya es el dominio definitivo, deja indexar.
   "vars": {
-    "SITE_URL": "https://caja-resistencia-huelga-airbus-2026.enfadadosconairbus-contacto.workers.dev",
-    "SITE_INDEXABLE": "false",
+    "SITE_URL": "https://cajaderesistencia-asi-no.org",
+    "SITE_INDEXABLE": "true",
     // Cloudflare Access protege /panel (Tesorería). El panel verifica por su cuenta el JWT que
     // Access inyecta en `Cf-Access-Jwt-Assertion` contra el JWKS del team domain, exigiendo esta
     // audiencia (AUD de la aplicación Access). Ambos son identificadores públicos, no secretos.
@@ -23,6 +21,16 @@
   },
   // Entry propio (worker/index.ts): re-exporta el handler de vinext y publica la DO del contador.
   "main": "./worker/index.ts",
+  // Dominio propio servido por este Worker. `custom_domain` hace que wrangler cree en el deploy
+  // el registro DNS + certificado (el dominio está en esta misma cuenta Cloudflare).
+  "routes": [
+    { "pattern": "cajaderesistencia-asi-no.org", "custom_domain": true },
+    { "pattern": "www.cajaderesistencia-asi-no.org", "custom_domain": true }
+  ],
+  // Mantener activo el host *.workers.dev: Cloudflare Access SOLO hace cumplir sus políticas en
+  // el Worker a través de ese host (no sobre el Custom Domain), así que Tesorería entra a /panel
+  // por la URL workers.dev (interna, no publicada). La web pública va por el dominio propio.
+  "workers_dev": true,
   "assets": {
     "directory": "dist/client",
     "not_found_handling": "none",

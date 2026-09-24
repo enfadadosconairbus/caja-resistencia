@@ -160,10 +160,10 @@ export const FONDO: Fondo = {
     // Mostrar «Globalcaja» es lo correcto y lo que la persona verá al verificar el beneficiario.
     banco: "Globalcaja",
     iban: "ES80 3190 0974 3065 0292 1825",
-    // Provisional (BCOEESMM = Banco Cooperativo Español, cabecera de las Cajas Rurales, del que
-    // Globalcaja es entidad adherida). La coordinación lo confirma con el banco; para transferencia
-    // nacional basta el IBAN.
-    bic: "BCOEESMM",
+    // Confirmado por la coordinación con el banco (BCOEESMM = Banco Cooperativo Español, cabecera
+    // de las Cajas Rurales del que Globalcaja es entidad adherida; 190 = código de oficina). Para
+    // transferencia nacional basta el IBAN; el BIC hace falta para SEPA/internacional.
+    bic: "BCOEESMM190",
     concepto: "CAJA RESISTENCIA",
   },
   pasarela: {
