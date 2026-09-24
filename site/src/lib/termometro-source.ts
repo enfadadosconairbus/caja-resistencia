@@ -11,9 +11,9 @@ export type { Horquilla, PuntoHorquilla } from "@/lib/dashboard-parse";
  * por visita. Si la descarga o el parseo fallan, se sirve el último snapshot bueno
  * versionado en el repo (config/termometro.json) — nunca una página rota.
  *
- * Incluye riesgo y sentimiento por decisión de Carlos.
+ * Incluye riesgo y sentimiento por decisión de la coordinación.
  *
- * ⚠️ CAMBIO DE POSTURA (09-ago-2026, decisión de Carlos): se INCLUYE la horquilla de
+ * ⚠️ CAMBIO DE POSTURA (09-ago-2026, decisión de la coordinación): se INCLUYE la horquilla de
  * impacto económico a la empresa (el "punto de ruptura"), que hasta ahora se excluía a
  * propósito y vivía solo en el dashboard enlazado. Sigue fuera la cotización. La horquilla
  * es una ESTIMACIÓN por escenarios de un tercero independiente, no una cifra de Airbus:

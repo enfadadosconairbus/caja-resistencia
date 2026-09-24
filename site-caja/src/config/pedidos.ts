@@ -29,7 +29,7 @@ export const MAX_UNIDADES = 20;
 export const SITES = ["Getafe", "Illescas", "Albacete", "San Pablo", "Tablada", "Cádiz"] as const;
 export type Site = (typeof SITES)[number];
 
-/** Beneficiario de la transferencia (confirmado por Carlos, 19-sep-2026). */
+/** Beneficiario de la transferencia (confirmado por la coordinación, 19-sep-2026). */
 export const BENEFICIARIO = "Caja de Resistencia Huelga Airbus 2026 - Sindicato Útil";
 
 export type EstadoPedido = "pendiente" | "pagado" | "anulado";

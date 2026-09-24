@@ -62,7 +62,7 @@ Reparto claro por tipo de contenido:
   **dedup es global** contra `actas.json`, así que una misma acta publicada en los dos
   canales entra una sola vez. Un canal nuevo sin estado escanea su histórico completo.
 - **DOCUMENTOS** (PDF/docx/xlsx: comunicados, tablas, dossiers, actas escaneadas…) → **los
-  lleva el PC de Carlos**, con revisión humana antes de publicar. Dos tareas de Windows
+  lleva el PC de la coordinación**, con revisión humana antes de publicar. Dos tareas de Windows
   (`instalar-tareas.ps1`):
 
 | Hora | Tarea | Qué hace |
@@ -97,7 +97,7 @@ Reparto claro por tipo de contenido:
 > `actas-lista.tsx` dejó de pintar en el rediseño del 09-ago, cuando esos bloques se
 > sustituyeron por el índice del grupo. Nadie tocó el Excel, así que siguió ofreciéndolas
 > —y publicando, commiteando y desplegando— durante casi dos meses: **21 documentos
-> aprobados por Carlos acabaron en `public/docs/` sin salir en ninguna página**. Se
+> aprobados por la coordinación acabaron en `public/docs/` sin salir en ninguna página**. Se
 > rescataron con `rescatar-huerfanos-actas.py`. Las tres etiquetas viejas siguen valiendo
 > en un Excel ya generado, mapeadas a la categoría más parecida.
 >
@@ -140,7 +140,7 @@ despliega. Antes de nada sincroniza con git, para no chocar con el bot de la nub
 > revisión humana en el Excel (regla nacida del volcado de 43 documentos internos del
 > 18-jul). Ahora **el filtro es el índice del grupo**: lo que ellos catalogan, se publica.
 > La red de seguridad es `documentos-overrides.json` → `excluir`, que el script respeta y
-> ni siquiera descarga. Decisión de Carlos, registrada en `CLIENTE.md`.
+> ni siquiera descarga. Decisión de la coordinación, registrada en `CLIENTE.md`.
 
 Modos útiles: `--dry-run` (dice qué haría), `--sin-bajar` (solo publica lo que ya está en
 local), `--reintentar` (vuelve a pedir los que dio por perdidos). Los mensajes borrados en
@@ -193,7 +193,7 @@ copias algo a `public/docs/` por tu cuenta. Qué hace, y por qué no es opcional
   porque si no reaparecerían en cuanto respondiese el índice en vivo.
 
 **Privacidad:** el índice original trae, por documento, el nick de quien lo subió, sus
-reacciones y una puntuación de utilidad. Nada de eso se replica (decisión de Carlos,
+reacciones y una puntuación de utilidad. Nada de eso se replica (decisión de la coordinación,
 09-ago-2026): son personas identificables dentro de un conflicto laboral abierto. La
 lógica vive en `src/lib/indice-parse.ts`, compartida por la web y los scripts.
 
@@ -229,7 +229,7 @@ volcado, etc.). El flujo vivo es el de arriba.
 
 ---
 
-Dos piezas, decididas con Carlos (**fuera de la envolvente del sistema, D-19; decisión suya registrada**):
+Dos piezas, decididas con la coordinación (**fuera de la envolvente del sistema, D-19; decisión suya registrada**):
 
 1. **Histórico** → `backfill-actas.py` (userbot, se corre **una vez, en local**).
 2. **Lo nuevo** → `bot-actas.mjs` (bot, de aquí en adelante).
@@ -291,7 +291,7 @@ te volverá a pedir teléfono/código.)*
 > y pisó el manifiesto curado. Se revirtió y **cambió la política**:
 > - **TEXTO** de actas/resúmenes (patrón estricto de inicio + ≥300 car.) → **se publica solo**.
 > - **PDF** → **NO se publican**. Solo se anota su metadato (id, nombre, fecha, tamaño) en
->   `scripts/actas-pendientes.json`. **No se descargan los bytes.** Carlos revisa esa cola y
+>   `scripts/actas-pendientes.json`. **No se descargan los bytes.** La coordinación revisa esa cola y
 >   añade a mano los buenos a `public/docs/` + `actas.json`.
 >
 > Implementado en `userbot-incremental.py` (la vía B2, que es la viva). El `bot-actas.mjs`
@@ -315,7 +315,7 @@ posición en `scripts/actas-offset.json` (gitignored) para no repetir. Repite pe
 
 ## 3) B2 — Automático en la nube (userbot en GitHub Actions)
 
-Elegido cuando **no se puede meter el bot como admin** (Carlos no es admin del canal). Usa
+Elegido cuando **no se puede meter el bot como admin** (la coordinación no es admin del canal). Usa
 la **cuenta** (miembro del canal), no un bot. Corre en un cron de GitHub Actions.
 
 > ⚠️ **`TG_SESSION` es la cuenta de Telegram ENTERA.** Vive como secreto en GitHub para

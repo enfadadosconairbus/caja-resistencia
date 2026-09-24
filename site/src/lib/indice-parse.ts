@@ -6,7 +6,7 @@
  *   · src/lib/documentos-source.ts  → la web, en vivo (revalidado 1 h, con fallback)
  *   · scripts/snapshot-documentos.mjs → congela el snapshot versionado del repo
  *
- * ⚠️ PRIVACIDAD (decisión de Carlos, 09-ago-2026): el índice trae, por documento, el nick
+ * ⚠️ PRIVACIDAD (decisión de la coordinación, 09-ago-2026): el índice trae, por documento, el nick
  * de quien lo subió, sus reacciones y una puntuación de utilidad. NADA de eso sale de
  * aquí: son personas identificables dentro de un conflicto laboral abierto. Este parser
  * se queda solo con título, fecha, resumen y el id del mensaje (para el enlace al grupo).

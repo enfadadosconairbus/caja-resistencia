@@ -3,7 +3,7 @@ import fallback from "@/config/actas.json";
 /**
  * Actas de asamblea para la sección Actualizaciones.
  *
- * ESTADO DE LA FUENTE (17-jul-2026): el canal que dio Carlos (t.me/+MnuqJDCAAgYyMGQ0)
+ * ESTADO DE LA FUENTE (17-jul-2026): el canal que dio la coordinación (t.me/+MnuqJDCAAgYyMGQ0)
  * es un canal PRIVADO (enlace de invitación), y Telegram NO expone los canales privados
  * por web. Por eso `CANAL` está a null y de momento se sirven actas de EJEMPLO.
  *

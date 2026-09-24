@@ -72,7 +72,7 @@ export interface Contacto {
 /**
  * Canales PÚBLICOS del movimiento —los que la plantilla ya usa a diario—, no el contacto
  * formal de la comisión gestora del fondo (eso es `Contacto`, y sigue pendiente hasta que
- * exista entidad). Estos los confirmó Carlos el 11-ago-2026, así que se publican.
+ * exista entidad). Estos los confirmó la coordinación el 11-ago-2026, así que se publican.
  */
 export interface Redes {
   telegram: Dato<string>;
@@ -85,7 +85,7 @@ export interface Redes {
   email: Dato<string>;
   /**
    * Buzón propio de la WEB: sugerencias sobre el sitio, contacto de organizaciones y los
-   * textos legales. Separado del histórico a propósito (Carlos, 14-ago-2026) para que lo
+   * textos legales. Separado del histórico a propósito (la coordinación, 14-ago-2026) para que lo
    * de la web no se mezcle con el correo del día a día del movimiento.
    */
   emailWeb: Dato<string>;

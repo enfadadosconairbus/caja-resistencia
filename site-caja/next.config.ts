@@ -54,7 +54,7 @@ const securityHeaders = [
 ];
 
 /**
- * Los documentos NO se indexan, aunque la web sí (decisión de Carlos, 13-ago-2026).
+ * Los documentos NO se indexan, aunque la web sí (decisión de la coordinación, 13-ago-2026).
  *
  * La web quiere alcance: que quien busque el conflicto la encuentre. Los PDFs de
  * `public/docs/` son otra cosa — hay material interno de Airbus (tablas salariales,

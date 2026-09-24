@@ -9,7 +9,7 @@
  * depender de una página ajena que no controlamos. El JSON en el repo es la fuente de
  * verdad; se refresca corriendo esto y redesplegando:  npm run snapshot:termometro
  *
- * Incluye riesgo y sentimiento por decisión expresa de Carlos (registro adversarial:
+ * Incluye riesgo y sentimiento por decisión expresa de la coordinación (registro adversarial:
  * cambia la postura de la página, es su decisión registrada). Desde el 09-ago-2026
  * incluye también la HORQUILLA de impacto a la empresa (ver termometro-source.ts); sigue
  * fuera la cotización.
@@ -61,7 +61,7 @@ try {
       total: D.kpi?.total ?? null,
       medios: D.kpi?.medios ?? null,
     },
-    // Riesgo y sentimiento: por decisión de Carlos. `detalle` del origen dice "retrata
+    // Riesgo y sentimiento: por decisión de la coordinación. `detalle` del origen dice "retrata
     // mal a la empresa"; NO lo copiamos — el texto lo pone la web (dict) desde pct, para
     // controlar el tono. Aquí solo el dato numérico y el nivel.
     riesgo: D.riesgo ? { nivel: D.riesgo.nivel ?? null } : null,

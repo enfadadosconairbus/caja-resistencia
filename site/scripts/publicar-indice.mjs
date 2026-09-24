@@ -7,7 +7,7 @@
  *   3. le borra los metadatos de autoría y lo copia a `public/docs/` con un nombre legible;
  *   4. rehace el snapshot, que es lo que convierte la entrada en descarga.
  *
- * ⚠️ CAMBIO DE POLÍTICA (09-ago-2026, decisión de Carlos): hasta hoy ningún PDF se
+ * ⚠️ CAMBIO DE POLÍTICA (09-ago-2026, decisión de la coordinación): hasta hoy ningún PDF se
  * publicaba sin revisión humana en el Excel (política de PILOT-001, nacida del volcado de
  * 43 documentos internos del 18-jul). Ahora **el filtro es el índice del grupo**: lo que el
  * Grupo Documentación cataloga, se publica. La red de seguridad es

@@ -1,5 +1,5 @@
 {
-  "nota": "A qué hito va cada foto de la cronología, y con qué texto. Lo lee scripts/fotos-cronologia.mjs, que convierte el original a WebP y escribe el bloque `imagen` en src/config/hitos.json. La clave es el NOMBRE DEL FICHERO que se deja en scripts/fotos-elegidas/ (con la extensión que sea). Destinos validados por Carlos el 10-ago-2026.",
+  "nota": "A qué hito va cada foto de la cronología, y con qué texto. Lo lee scripts/fotos-cronologia.mjs, que convierte el original a WebP y escribe el bloque `imagen` en src/config/hitos.json. La clave es el NOMBRE DEL FICHERO que se deja en scripts/fotos-elegidas/ (con la extensión que sea). Destinos validados por la coordinación el 10-ago-2026.",
   "leyenda": {
     "hito": "fecha + trozo del título en español, porque hay seis fechas repetidas en la cronología y la fecha sola no identifica",
     "alt": "qué se ve, para quien no puede verlo",

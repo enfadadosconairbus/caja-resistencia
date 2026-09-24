@@ -7,10 +7,10 @@
  *
  * ⚠️ Este script NO decide qué se publica. Convierte lo que ya está en `fotos-elegidas/`,
  * carpeta que se rellena a mano después de mirar las fotos una a una. El criterio acordado con
- * Carlos (10-ago-2026) es publicar solo planos donde no se reconozca a nadie —son trabajadores
+ * la coordinación (10-ago-2026) es publicar solo planos donde no se reconozca a nadie —son trabajadores
  * identificables en un conflicto laboral abierto—, con la única excepción registrada en
  * `CLIENTE.md` §7. Tampoco decide DÓNDE va cada una: eso está en `fotos-cronologia.json`,
- * validado por Carlos, y aquí solo se ejecuta.
+ * validado por la coordinación, y aquí solo se ejecuta.
  *
  * El ancho de salida (1400 px) es el que necesita la ficha abierta del sendero —384 px— servida
  * a 3× en pantallas densas, con margen para el raíl de móvil a pantalla completa. Más allá solo

@@ -10,7 +10,7 @@
  *                como texto, igual que las minutas de Getafe convertidas a mano.
  *              - COMUNICADO / OTROS → se descarga a public/docs/, se le borran los
  *                metadatos de autoría y se publica como tarjeta de descarga.
- *              ⚠️ AUTOMÁTICO por decisión expresa de Carlos: cualquier PDF del canal
+ *              ⚠️ AUTOMÁTICO por decisión expresa de la coordinación: cualquier PDF del canal
  *              aparece en la web sin revisión previa. Necesita la dependencia `pdf-parse`
  *              (devDependency); si falta, las actas-PDF caen a descarga en vez de romperse.
  *

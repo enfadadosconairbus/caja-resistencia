@@ -58,7 +58,7 @@ INICIO_ACTA = re.compile(r"^[\W_]*(ACTA|RESUMEN|MINUTAS)\s+(?:DE\s+(?:LA\s+)?)?A
 # dejó de encontrarlos (se perdieron 4 resúmenes). Se admite un calificativo intermedio.
 INICIO_GRUPO = re.compile(r"^[\W_]*RESUMEN(?:\s+[A-ZÁÉÍÓÚÑ]+)?\s+GRUPO\s+ENFADADOS\s+CON\s+AIRBUS")
 
-# ── El topic «Resúmenes» es la FUENTE de los resúmenes (decisión de Carlos, 09-ago-2026).
+# ── El topic «Resúmenes» es la FUENTE de los resúmenes (decisión de la coordinación, 09-ago-2026).
 #
 # Es un hilo moderado —solo publican los administradores—, así que lo que hay dentro ya
 # viene revisado: se publica TAL CUAL, sin exigir que case con ningún patrón. Antes solo
@@ -341,7 +341,7 @@ async def main():
                 continue
 
             # ── Resto del canal: solo actas de asamblea, por patrón estricto.
-            # Los adjuntos los lleva el PC de Carlos (descarga + Excel). Aquí se ignoran.
+            # Los adjuntos los lleva el PC de la coordinación (descarga + Excel). Aquí se ignoran.
             if es_documento(msg) or clasificar(msg.message or "") != "acta":
                 continue
             guardar(parse_item(msg.message or "", "acta", msg.date))

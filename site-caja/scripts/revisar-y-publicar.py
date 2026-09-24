@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Revisión + publicación de documentos (flujo de las 20:00, en el PC de Carlos).
+Revisión + publicación de documentos (flujo de las 20:00, en el PC de la coordinación).
 
 Es el paso HUMANO del flujo híbrido. Lo que NO hace: actas y resúmenes del grupo — esos
 los publica solo el bot de la nube (userbot-incremental.py). Aquí van los documentos que
-Carlos quiere mirar antes de publicar: comunicados, soporte, otros y actas escaneadas.
+la coordinación quiere mirar antes de publicar: comunicados, soporte, otros y actas escaneadas.
 
 Secuencia (una sola tarea programada, sin más intervención que revisar el Excel):
   1. Descarga lo nuevo del canal y genera el Excel DELTA (solo lo no revisado antes).
   2. Si no hay nada nuevo → avisa y termina.
-  3. Abre el Excel y muestra un diálogo que bloquea hasta que Carlos termina.
-  4. Carlos marca ¿Subir? + Sección (+ Sede/Título si aplica), GUARDA y pulsa Aceptar.
+  3. Abre el Excel y muestra un diálogo que bloquea hasta que la coordinación termina.
+  4. La coordinación marca ¿Subir? + Sección (+ Sede/Título si aplica), GUARDA y pulsa Aceptar.
   5. Se sincroniza con git (para no pisar las actas que haya subido la nube), copia los
      ficheros marcados a public/docs/, los añade a actas.json, commitea, hace push y
      despliega en Vercel.
@@ -54,7 +54,7 @@ LOG = REVISION / "ultimo-run.log"
 # - Soporte y Otra doc - Otros—, y eran un agujero negro: escribían en actas.json un `tipo`
 # que `actas-lista.tsx` dejó de pintar en el rediseño del 09-ago, cuando esos dos bloques
 # se sustituyeron por el índice de documentos del grupo. El Excel los siguió ofreciendo
-# nueve meses y 21 documentos aprobados por Carlos no llegaron nunca a verse.
+# nueve meses y 21 documentos aprobados por la coordinación no llegaron nunca a verse.
 SECCIONES = {
     "Acta por centro": "acta",
 }
@@ -113,7 +113,7 @@ def slug(s):
 
 
 def bonito(nombre):
-    """Título legible a partir del nombre de fichero, si Carlos no puso uno."""
+    """Título legible a partir del nombre de fichero, si la coordinación no puso uno."""
     base = re.sub(r"\.[a-z0-9]+$", "", nombre, flags=re.I)
     base = re.sub(r"[-_]+", " ", base).strip()
     return (base[:1].upper() + base[1:]) if base else nombre
@@ -416,7 +416,7 @@ def desplegar(n):
     if not git("diff", "--staged", "--name-only"):
         return "No había cambios que commitear."
     git("commit", "-m", f"docs: publicar {n} documento(s) revisado(s)\n\n"
-                        "Revisados a mano por Carlos en el Excel de revisión y publicados\n"
+                        "Revisados a mano por la coordinación en el Excel de revisión y publicados\n"
                         "por scripts/revisar-y-publicar.py.\n\n"
                         "Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>")
     git("push", "origin", f"HEAD:{rama}")

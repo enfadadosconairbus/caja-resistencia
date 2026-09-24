@@ -60,7 +60,7 @@ const PRENSA_ULTIMA_HORA: { medio: string; url: string }[] = [
 /**
  * PORTADA. Cuenta el conflicto y lo documenta; el dinero vive en su propia página.
  *
- * Reparto de páginas (decisión de Carlos, 09-ago-2026):
+ * Reparto de páginas (decisión de la coordinación, 09-ago-2026):
  *   · portada   → conflicto, termómetro, solidaridad, documentación, preguntas, contacto
  *   · /la-caja  → qué es la caja, transparencia, muro, aportar y grandes donantes
  *   · /tienda   → merchandising
@@ -442,7 +442,7 @@ export default async function Home({
             <Rise>
               <p className="mt-6 max-w-3xl text-[var(--color-tinta-suave)]">{d.cronologia.intro}</p>
             </Rise>
-            {/* Cronología colapsable (Carlos, 28-ago-2026): 30 hitos servidos dos veces
+            {/* Cronología colapsable (la coordinación, 28-ago-2026): 30 hitos servidos dos veces
                 —sendero en `xl`, raíl por debajo— hacían la página interminable. Va dentro de
                 un <details> plegado por defecto para cortar la sensación de scroll infinito;
                 el visitante la despliega cuando quiere. Colapsa igual en escritorio y móvil. */}
@@ -504,7 +504,7 @@ export default async function Home({
             El `id` no es un ancla de navegación (nadie enlaza a `#caja-cta`): existe para
             que el scroll-spy de la barra sepa que esta banda es «La caja». Sin él se
             quedaba marcado «El conflicto» del termómetro de arriba mientras se leía una
-            banda que habla de la caja. (Carlos, 14-ago-2026.) */}
+            banda que habla de la caja. (la coordinación, 14-ago-2026.) */}
         <section
           id="caja-cta"
           className="border-y border-[var(--color-linea)] bg-[var(--color-confianza)] text-[var(--color-papel-fijo)]"
@@ -573,7 +573,7 @@ export default async function Home({
                 versiones del mismo documento en la misma página, y la vieja presentada como
                 el dossier del conflicto: quien llegara aquí primero se descargaba la antigua. */}
             {/* «Contacto para organizaciones» → buzón de la WEB (config/fondo.ts). Antes
-                llevaba a /la-caja#donantes; Carlos pidió (11-ago-2026) que sea el mail directo.
+                llevaba a /la-caja#donantes; la coordinación pidió (11-ago-2026) que sea el mail directo.
                 Va a `emailWeb`, no al correo histórico de los iconos: una organización que
                 escribe por la web no es lo mismo que la plantilla escribiendo al canal de
                 siempre. Si algún día no hubiera correo, cae al enlace de la caja para no
@@ -627,7 +627,7 @@ export default async function Home({
               </ul>
             </div>
 
-            {/* Vídeo de solidaridad internacional. Va SOLO aquí (petición de Carlos): es un
+            {/* Vídeo de solidaridad internacional. Va SOLO aquí (petición de la coordinación): es un
                 mensaje de un obrero de Airbus Marignane al piquete de Madrid, no cobertura
                 de un informativo, y su sitio es la solidaridad, no el bloque de la huelga.
                 Reproductor propio de la cadena (no embebible) → tarjeta con enlace. */}
@@ -713,7 +713,7 @@ export default async function Home({
                   </p>
                   {/* El botón abre el REDACTOR DE GMAIL en una pestaña, no un `mailto:`.
                       Motivo (14-ago-2026): `mailto:` no hace absolutamente nada en un
-                      escritorio sin cliente de correo asociado —el caso de Carlos, con
+                      escritorio sin cliente de correo asociado —el caso de la coordinación, con
                       Gmail abierto en otra pestaña— y el usuario se queda mirando un botón
                       muerto. Quien use otro programa tiene el `mailto:` justo debajo, y la
                       dirección en texto para copiarla. La URL la arma `lib/gmail.ts`, que es
@@ -746,7 +746,7 @@ export default async function Home({
                       secundario, y la dirección en texto para copiarla. Sin esto, mandar a
                       Gmail a un sindicato francés con Outlook sería dejarle sin vía.
                       Aquí había además una línea explicando que se abría el gestor de correo;
-                      Carlos la retiró (14-ago-2026): con el botón yendo ya a Gmail, sobraba. */}
+                      la coordinación la retiró (14-ago-2026): con el botón yendo ya a Gmail, sobraba. */}
                   <p className="mt-4 font-[family-name:var(--ff-mono)] text-[11px] leading-relaxed text-[var(--color-tinta-suave)]">
                     <a
                       href={`mailto:${FONDO.redes.emailWeb}?subject=${encodeURIComponent(

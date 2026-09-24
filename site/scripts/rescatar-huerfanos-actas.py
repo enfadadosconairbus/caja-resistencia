@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Rescate único: los documentos que Carlos aprobó y que nunca llegaron a verse.
+Rescate único: los documentos que la coordinación aprobó y que nunca llegaron a verse.
 
 Qué pasó
 --------

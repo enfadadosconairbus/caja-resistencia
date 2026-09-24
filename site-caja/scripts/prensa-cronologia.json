@@ -4,7 +4,7 @@
     "solo medios ya citados": "Enlazar el artículo de un medio que el hito ya citaba termina la cita. Añadir un medio nuevo la cambia, y la cronología está validada. Se puede hacer, pero hay que marcarlo con \"anadir\": true entrada por entrada, para que sea una decisión y no un descuido.",
     "solo enlace directo al medio": "Nada de redirectores. De los 85 artículos del snapshot, 76 llegan como enlace de Google News: caducan y meten un salto de seguimiento en una web que promete no llamar a terceros.",
     "medios": "Emparejamientos que resuelve el snapshot del termómetro. La URL sale de ahí, no se escribe.",
-    "externos": "Artículos que el panel solo trae vía Google News, buscados en la web del propio medio. Cada URL se abrió y se comprobó que responde y que titular y fecha son los que dice este fichero; la fecha de esa comprobación va en \"verificado\". Petición de Carlos del 10-ago-2026: ampliar la prensa enlazada con EFE, Cadena SER, Infobae, Fly News y Canal Sur.",
+    "externos": "Artículos que el panel solo trae vía Google News, buscados en la web del propio medio. Cada URL se abrió y se comprobó que responde y que titular y fecha son los que dice este fichero; la fecha de esa comprobación va en \"verificado\". Petición de la coordinación del 10-ago-2026: ampliar la prensa enlazada con EFE, Cadena SER, Infobae, Fly News y Canal Sur.",
     "url": "Solo hace falta cuando el medio publicó varias veces cerca del hito, o cuando el artículo cae fuera del margen de dos días. Sin ella, el script exige un único candidato y falla si hay empate."
   },
   "sin_enlace_posible": {

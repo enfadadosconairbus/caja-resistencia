@@ -17,7 +17,7 @@
 const DESKTOP = "/img/cartel-desktop.webp";
 const MOBILE = "/img/cartel-mobile.webp";
 
-// Centros de Airbus España en huelga, en orden alfabético (los pidió Carlos).
+// Centros de Airbus España en huelga, en orden alfabético (los pidió la coordinación).
 const CENTROS = ["Albacete", "Cádiz", "Getafe", "Illescas", "San Pablo", "Tablada"];
 
 export function Cartel({ alt, centrosLabel }: { alt: string; centrosLabel: string }) {

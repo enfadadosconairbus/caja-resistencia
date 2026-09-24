@@ -94,7 +94,7 @@ export interface Contacto {
 /**
  * Canales PÚBLICOS del movimiento —los que la plantilla ya usa a diario—, no el contacto
  * formal de la comisión gestora del fondo (eso es `Contacto`, y sigue pendiente hasta que
- * exista entidad). Estos los confirmó Carlos el 11-ago-2026, así que se publican.
+ * exista entidad). Estos los confirmó la coordinación el 11-ago-2026, así que se publican.
  */
 export interface Redes {
   telegram: Dato<string>;
@@ -107,7 +107,7 @@ export interface Redes {
   email: Dato<string>;
   /**
    * Buzón propio de la WEB: sugerencias sobre el sitio, contacto de organizaciones y los
-   * textos legales. Separado del histórico a propósito (Carlos, 14-ago-2026) para que lo
+   * textos legales. Separado del histórico a propósito (la coordinación, 14-ago-2026) para que lo
    * de la web no se mezcle con el correo del día a día del movimiento.
    */
   emailWeb: Dato<string>;
@@ -161,7 +161,7 @@ export const FONDO: Fondo = {
     banco: "Globalcaja",
     iban: "ES80 3190 0974 3065 0292 1825",
     // Provisional (BCOEESMM = Banco Cooperativo Español, cabecera de las Cajas Rurales, del que
-    // Globalcaja es entidad adherida). Carlos lo confirma con el banco; para transferencia
+    // Globalcaja es entidad adherida). La coordinación lo confirma con el banco; para transferencia
     // nacional basta el IBAN.
     bic: "BCOEESMM",
     concepto: "CAJA RESISTENCIA",

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Descargador LOCAL de documentos del canal → carpeta de revisión (para Carlos).
+Descargador LOCAL de documentos del canal → carpeta de revisión (para la coordinación).
 
-Corre en el PC de Carlos vía el Programador de tareas de Windows (cada 24 h, con
+Corre en el PC de la coordinación vía el Programador de tareas de Windows (cada 24 h, con
 recuperación si el PC estaba apagado). Baja los DOCUMENTOS nuevos del canal (PDF, docx,
-xlsx…) a `scripts/pendientes/` para que Carlos los revise y decida cuáles publicar.
+xlsx…) a `scripts/pendientes/` para que la coordinación los revise y decida cuáles publicar.
 
 ⚠️ Esto NO publica nada. Los bytes se quedan EN LOCAL (la carpeta está en .gitignore):
    nunca llegan al repo ni a la web. Publicar es manual: revisas pendientes/ y subes lo
@@ -71,7 +71,7 @@ def slug(s):
 
 
 def tipo_sugerido(nombre, caption):
-    """Solo una PISTA para que Carlos ordene; no decide nada."""
+    """Solo una PISTA para que la coordinación ordene; no decide nada."""
     t = norm(f"{nombre} {caption or ''}")
     if "COMUNICADO" in t:
         return "comunicado"

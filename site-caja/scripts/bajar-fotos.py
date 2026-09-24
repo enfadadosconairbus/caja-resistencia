@@ -7,13 +7,13 @@ Hermano de `bajar-mensajes.py`, que solo trae documentos ofimáticos: las fotos 
 `msg.photo`, no en `msg.document`, y por eso aquél las ignora.
 
 ⚠️ Estas fotos NO se publican solas. Van a `scripts/fotos-revision/` —gitignored, como
-`pendientes/`— para mirarlas una a una antes de decidir. El criterio acordado con Carlos
+`pendientes/`— para mirarlas una a una antes de decidir. El criterio acordado con la coordinación
 (10-ago-2026) es publicar **solo planos donde no se reconozca a nadie**: son trabajadores
 identificables en un conflicto laboral abierto, y pasar de un grupo privado a una web
 pública indexable es un salto de exposición que ellos no han autorizado.
 
 El criterio tiene **una excepción, y una sola**: la foto frontal de la marcha de Sevilla, que
-Carlos decidió publicar con las caras el 10-ago-2026 después de que se le planteara. Está
+la coordinación decidió publicar con las caras el 10-ago-2026 después de que se le planteara. Está
 razonada en `CLIENTE.md` §7. No la tomes como precedente: para cualquier foto nueva vuelve a
 regir la regla de arriba.
 

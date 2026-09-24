@@ -32,7 +32,7 @@ type NavStrings = {
  * la continuación de «El conflicto» y ahí es donde se quedan. Antes se observaban igual
  * pero sin traducir a ningún enlace, así que al entrar en ellas la barra se quedaba SIN
  * nada marcado — y son dos de las secciones más largas de la página, donde más rato pasa
- * la gente. (Carlos, 14-ago-2026.)
+ * la gente. (la coordinación, 14-ago-2026.)
  *
  * El orden importa: se recorre en orden de documento para elegir la sección activa.
  * Cadena vacía = ningún epígrafe; es el caso de «Contacto», que no tiene enlace propio y
@@ -143,7 +143,7 @@ export function SiteNav({
                     aria-current={on ? "location" : undefined}
                     /* El activo, además de rojo y en seminegrita, va subrayado: solo con
                        el color se pierde de vista en la barra oscura, y es justo lo que
-                       Carlos dibujó a mano al pedirlo (14-ago-2026). */
+                       la coordinación dibujó a mano al pedirlo (14-ago-2026). */
                     className={`whitespace-nowrap transition-colors ${
                       on
                         ? "font-semibold text-[var(--color-acento-tinta)] underline decoration-2 underline-offset-[6px]"

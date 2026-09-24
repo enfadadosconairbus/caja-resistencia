@@ -9,7 +9,7 @@ import { FASE_2_INICIO } from "@/lib/huelga";
  * oficial), que baja el SERVIDOR con fallback al snapshot del repo. La web NO llama al
  * tercero desde el navegador del visitante.
  *
- * Incluye riesgo y sentimiento por decisión de Carlos (registro adversarial), y desde el
+ * Incluye riesgo y sentimiento por decisión de la coordinación (registro adversarial), y desde el
  * 09-ago-2026 también la HORQUILLA de impacto económico a la empresa, que antes se
  * excluía a propósito. Sigue fuera la cotización. Refrescar el fallback:
  *   npm run snapshot:termometro   (y redesplegar).

@@ -2,8 +2,8 @@
   "nota": "Correcciones a mano sobre el índice de documentos del grupo. Las aplican scripts/snapshot-documentos.mjs y scripts/publicar-indice.mjs (el índice de telegra.ph no se toca). Tras editar esto, vuelve a ejecutar el snapshot.",
   "comoUsarlo": "Para que un documento NO se liste ni se publique, añade su id de mensaje a 'excluir' con el motivo. Para cambiarle el título, añádelo a 'titulos'. Para ADELANTAR uno que el grupo ha publicado en el canal pero aún no ha catalogado en su índice, añádelo a 'anadir'.",
   "excluir": {
-    "23543": "REIVINDICACIONES - Commentarios AntonioB.docx — el nombre del fichero lleva el nombre de una persona (decisión de Carlos, 09-ago-2026)",
-    "4317": "Acta SIMA (24-06-2026) — retirada de la web todas las actas del SIMA (decisión de Carlos, 27-ago-2026)"
+    "23543": "REIVINDICACIONES - Commentarios AntonioB.docx — el nombre del fichero lleva el nombre de una persona (decisión de la coordinación, 09-ago-2026)",
+    "4317": "Acta SIMA (24-06-2026) — retirada de la web todas las actas del SIMA (decisión de la coordinación, 27-ago-2026)"
   },
   "titulos": {},
   "avisoAnadir": "'anadir' se salta la regla del 09-ago ('el filtro es el índice del grupo'), así que es la excepción y no la vía normal: lo habitual es esperar a que el Grupo Documentación catalogue el documento y que la tarea diaria lo recoja sola. Cada entrada lleva por qué se adelantó y cuándo se puede quitar. QUITAR la entrada en cuanto el grupo lo catalogue: si no, el documento saldría DOS VECES, una por el adelanto y otra por el índice.",
@@ -17,7 +17,7 @@
       "resumen": "Actualización del dossier técnico de recuperación del poder adquisitivo en Airbus España: pérdida acumulada 2020-2025 y propuesta de recuperación, con métricas oficiales del INE, cálculo verificable y comparativa sectorial. Edición E1 v10, agosto de 2026.",
       "grupoUrl": "https://t.me/c/3710195540/41309",
       "versiones": 0,
-      "porque": "Publicado en el canal el 10-ago-2026 (mensaje 41309) y aún sin catalogar en el índice de telegra.ph. Se adelanta por decisión expresa de Carlos ese mismo día: la versión vigente del dossier tenía que estar visible ya, y en la portada («El conflicto») ya apuntaba al v10.",
+      "porque": "Publicado en el canal el 10-ago-2026 (mensaje 41309) y aún sin catalogar en el índice de telegra.ph. Se adelanta por decisión expresa de la coordinación ese mismo día: la versión vigente del dossier tenía que estar visible ya, y en la portada («El conflicto») ya apuntaba al v10.",
       "quitarCuando": "el Grupo Documentación catalogue el v10 en su índice"
     },
     "sin-msg-consolidar-y-avanzar-o-la-huelga-como-fin": {
@@ -143,7 +143,7 @@
       "versiones": 0,
       "pdf": "/docs/comunicado-comite-de-huelga-20260901.pdf",
       "meta": "PDF · 453 KB",
-      "porque": "Entregado por Carlos el 01-09-2026 (comunicado del comité de huelga CGT/UGT/ÚTIL, «¡Esto no se para!»). Llegó como imagen y se convirtió a PDF a A4. No catalogado aún en el índice del grupo.",
+      "porque": "Entregado por la coordinación el 01-09-2026 (comunicado del comité de huelga CGT/UGT/ÚTIL, «¡Esto no se para!»). Llegó como imagen y se convirtió a PDF a A4. No catalogado aún en el índice del grupo.",
       "quitarCuando": "el Grupo Documentación lo catalogue"
     },
     "sin-msg-comunicado-plantilla-en-huelga-20260901-manana": {
@@ -157,7 +157,7 @@
       "versiones": 0,
       "pdf": "/docs/comunicado-plantilla-en-huelga-20260901.pdf",
       "meta": "PDF · 31 KB",
-      "porque": "Entregado por Carlos el 01-09-2026 (comunicado de la plantilla en huelga, «¡Ni un paso atrás!»). Metadatos de autoría limpiados antes de publicar. No catalogado aún en el índice del grupo.",
+      "porque": "Entregado por la coordinación el 01-09-2026 (comunicado de la plantilla en huelga, «¡Ni un paso atrás!»). Metadatos de autoría limpiados antes de publicar. No catalogado aún en el índice del grupo.",
       "quitarCuando": "el Grupo Documentación lo catalogue"
     },
     "48609": {
