@@ -160,8 +160,8 @@ for (const [id, doc] of porId) {
 
 // Los metadatos de autoría se borran ANTES de copiar, sobre el original de `pendientes/`.
 // Lo que entra en `public/docs` sale a producción tal cual, y un PDF enseña su campo Autor a
-// dos clics desde el navegador: por aquí pasaron matrículas de Airbus (kosita2, C90170,
-// C01037), que dentro de la empresa señalan por dónde salió el documento. Este era el agujero
+// dos clics desde el navegador: por aquí pasaron matrículas de Airbus, que dentro de la
+// empresa señalan por dónde salió el documento. Este era el agujero
 // —`revisar-y-publicar.py` sí limpiaba, esta vía no— y por él se colaron 81 documentos.
 // Va aquí, en el único punto por el que pasan todos, para que no dependa de que nadie se
 // acuerde. Si el limpiador no está, no se publica: un día sin documentos nuevos se arregla,
