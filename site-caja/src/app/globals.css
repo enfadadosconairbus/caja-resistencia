@@ -79,7 +79,8 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  /* SEÑAL ciñe la esquina: menos redondez, más instrumento. */
+  --radius: 0.45rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -112,17 +113,37 @@
    Nombra los tokens con el vocabulario de ESTA marca, no con nombres genéricos.
    ========================================================================== */
 @theme {
-  /* Caja de Resistencia — solidaridad obrera / documental cívico.
-     Paleta sobria: papel + tinta + rojo solidaridad (contención) + azul acero (confianza).
-     Sin púrpura, sin dark-default (D-09). Contraste ≥ 4.5:1 en texto. */
-  --color-fondo: #f7f4ee;        /* papel cálido */
-  --color-superficie: #efe9df;   /* superficie/tarjeta */
-  --color-tinta: #1a1d21;        /* tinta casi negra */
-  --color-tinta-suave: #55585e;  /* texto secundario (AA sobre papel) */
-  --color-acento: #c0392b;       /* rojo solidaridad — RELLENO (botones, bandas) */
-  --color-acento-hondo: #99271c; /* rojo hover/press — RELLENO */
-  --color-confianza: #24425f;    /* azul acero — RELLENO de banda */
-  --color-linea: #e2ddd3;        /* gris cálido de línea */
+  /* Caja de Resistencia — variante «SEÑAL» (26-sep-2026).
+     ==========================================================================
+     Antes era papel cálido sobre papel cálido. Se cambió porque la versión clara
+     no se sostenía, y el motivo salió MEDIDO, no de una impresión: el texto
+     pasaba AA de sobra, pero la ARQUITECTURA no existía — la tarjeta se separaba
+     del fondo 1,10:1 y las líneas que la dibujan, 1,23:1. Papel sobre papel. En
+     oscuro las líneas iban un 20 % más separadas y las tintas de color brillaban
+     contra el grafito, y por eso «se veía mejor» sin que ningún número de
+     accesibilidad lo dijera.
+
+     La respuesta de SEÑAL: el lienzo se vuelve gris y la tarjeta blanca pura, así
+     que la jerarquía la hace el papel y no un borde de 1 px. Y el color deja de
+     ser decoración para marcar el dato — el saldo disponible va en teal.
+
+       fondo ↔ superficie   1,10 → 1,23
+       línea ↔ fondo        1,23 → 1,56
+       tinta acento ↔ fondo 4,95 → 7,98
+
+     Todo lo de aquí abajo está medido contra sus usos reales (mezclas del hero,
+     chapa de huelga, muro sobre la banda azul incluidos). Si tocas un valor,
+     vuelve a medirlo: el texto no es lo único que se mide.
+     ========================================================================== */
+  --color-fondo: #e8e8e3;        /* lienzo gris: la tarjeta blanca se separa sola */
+  --color-superficie: #ffffff;   /* tarjeta y banda alterna — blanco puro */
+  --color-tinta: #101114;        /* 17,7:1 sobre el fondo */
+  --color-tinta-suave: #4f5157;  /* 8,8:1 sobre fondo · 7,2:1 sobre tarjeta */
+  --color-acento: #cf3517;       /* bermellón — RELLENO (botones, chapa) */
+  --color-acento-hondo: #a82910; /* hover/press — RELLENO. Baja en los DOS modos:
+                                    subirlo dejaba el blanco de encima en 3,8:1 */
+  --color-confianza: #123a52;    /* azul profundo — RELLENO de banda */
+  --color-linea: #bcbcb3;        /* 1,56:1 sobre fondo — la línea vuelve a existir */
 
   /* ── Tokens de TINTA de color ────────────────────────────────────────────
      Mismo valor que su relleno en claro; en oscuro se ACLARAN. La regla:
@@ -131,24 +152,60 @@
      Existen porque el rojo de marca sobre el fondo oscuro da 3,3:1 (falla AA) y
      el azul acero 1,7:1 (invisible); pero como relleno con texto blanco encima
      siguen siendo correctos, así que no se pueden cambiar los dos a la vez. */
-  --color-acento-tinta: #c0392b;
-  --color-acento-tinta-fuerte: #99271c; /* énfasis/hover de la tinta roja */
-  --color-confianza-tinta: #24425f;
+  --color-acento-tinta: #bf2f13;        /* 7,98:1 sobre fondo · 6,55:1 sobre tarjeta */
+  --color-acento-tinta-fuerte: #9e2610; /* énfasis/hover de la tinta roja */
+  --color-confianza-tinta: #0f3247;     /* 9,96:1 sobre fondo */
+
+  /* El lema «ASÍ, NO» de la ficha huelga-2026 (`lema-asi-no.tsx`): el marino y el acero
+     del cartel original. Decorativo y a tamaño de cartel: el acero da 4,1:1 sobre tarjeta. */
+  --color-lema: #0d2a5e;
+  --color-lema-n: #5d7fab;
+
+  /* ── SEÑAL: el color sobre el dato ───────────────────────────────────────
+     Lo que SEÑAL añade a la paleta anterior. No es adorno: el saldo disponible
+     —la cifra que contesta «¿cuánto queda?»— va en teal, y el ámbar queda para
+     lo que está pendiente. Sustituyen a `--color-riesgo-*`, que existían para un
+     `termometro.tsx` que vive en la Web A y no en esta, así que llevaban desde
+     el principio sin usarse. */
+  --color-senal: #0a6f66;        /* teal — 10,6:1 sobre fondo */
+  --color-senal-ambar: #8f5800;  /* ámbar — 10,6:1 sobre fondo */
+
+  /* Bizum. Su teal de marca ayuda a reconocer el método, así que se usa SOLO en ese
+     bloque — pero se le aplica la misma disciplina que al resto de la paleta, que es lo
+     que le faltaba: estaba escrito a pelo como `#0f766e` en `aportar-bizum.tsx` y en
+     modo oscuro los números de paso daban 3,31:1 (medido), por debajo del 4,5:1 de AA.
+     El RELLENO no se toca (blanco sobre #0f766e da 5,47:1 en los dos modos); la TINTA
+     se aclara de noche, igual que la roja. */
+  --color-bizum: #0f766e;
+  --color-bizum-tinta: #0a6f66;
 
   /* Pareja que NO cambia con el tema, para lo que se pinta sobre una FOTO (el cartel)
      o sobre la banda azul, que sigue siendo azul oscuro en los dos modos. Una foto no
      se entera de que ha cambiado el tema: si el texto de encima se invirtiera, quedaría
      papel sobre cielo claro. */
-  --color-papel-fijo: #f7f4ee;
-  --color-tinta-fija: #1a1d21;
-
-  /* Semáforo de riesgo del termómetro (ver termometro.tsx). */
-  --color-riesgo-ambar: #8f5d14;        /* 4,65:1 sobre superficie */
-  --color-riesgo-ambar-fuerte: #7f5310; /* texto sobre superficie ya teñida de ámbar */
-  --color-riesgo-verde: #2a702e;        /* 5,03:1 sobre superficie */
+  --color-papel-fijo: #f7f7f5;   /* 11,2:1 sobre la banda azul · 4,69:1 sobre la chapa roja */
+  /* Su pareja oscura. Se retiró al aplicar SEÑAL porque no la usaba nadie; vuelve con la
+     mudanza del referéndum, que abre con una banda negra fija. Tiene que ser FIJA porque
+     `--color-tinta` se invierte con el tema: en modo noche vale #f2f2f0, así que una banda
+     pintada con ella saldría blanca y el papel de encima desaparecería. */
+  --color-tinta-fija: #101114;   /* papel fijo encima: 18,2:1 */
+  /* Pizarra: el gris oscuro de las bandas de actualidad de la portada (1-oct-2026; antes
+     iban en tinta fija y se leían como un agujero negro). Fija por lo mismo que la tinta.
+     Papel encima 13,3:1 · papel al 55 % 5,1:1 · coral fijo 5,8:1. El rojo de tinta en modo
+     claro (#bf2f13) daría 2,5:1: sobre esta banda los rótulos van en `--color-acento-fijo`. */
+  --color-pizarra: #262b30;
+  /* El acento del MURO es fijo por lo mismo: el muro se pinta sobre la banda azul,
+     que no cambia de tema. El bermellón de relleno sobre ese azul da 2,38:1 y no
+     llega al 3:1 que pide un gráfico con significado (los acentos marcan cada diez
+     cuadros: sirven para contar). Este coral da 4,83:1. */
+  --color-acento-fijo: #ff7f61;
+  /* Y la señal, por lo mismo: el saldo disponible va en teal también en las tarjetas del
+     hero, que viven sobre la banda azul. El `--color-senal` de claro (#0a6f66) sobre ese
+     azul sería ilegible; este da 5,10:1 sobre la tarjeta y 6,40:1 sobre la banda pelada. */
+  --color-senal-fijo: #4fd1c0;
 
   /* Sombras: en oscuro un negro al 6 % no existe; hay que subirlo. */
-  --sombra-sutil: rgba(0, 0, 0, 0.07);
+  --sombra-sutil: rgba(0, 0, 0, 0.09);
   --sombra-media: rgba(0, 0, 0, 0.12);
 
   /* Fuentes (next/font en [lang]/layout.tsx). PROHIBIDO Inter y Roboto. */
@@ -158,18 +215,27 @@
 }
 
 /* ==========================================================================
-   MODO NOCHE — opt-in, nunca por defecto
+   MODO NOCHE — EL DEFECTO DE ESTA WEB desde el 26-sep-2026
    --------------------------------------------------------------------------
-   D-09 prohíbe el *dark-default* (fondo oscuro de salida = cliché de IA), no el
-   modo oscuro como opción. Por eso: se entra solo pulsando el interruptor de la
-   barra, la elección se guarda en `localStorage` y el HTML sale en claro salvo
-   que el guion sin parpadeo de `[lang]/layout.tsx` diga lo contrario. Tampoco se
-   sigue `prefers-color-scheme`: eso convertiría el oscuro en el defecto para
-   quien tenga el sistema en oscuro, que es justo lo que D-09 veta.
+   Estaba al revés: el papel era el defecto y la noche se elegía, porque D-09
+   prohíbe el *dark-default* (fondo oscuro de salida = cliché de IA). Con la
+   paleta SEÑAL se invierte, por decisión de la coordinación: aquí el modo
+   fuerte es este —lienzo casi negro, tintas de color brillando, la línea
+   separando a 1,94:1 frente a 1,56:1 en claro— y el argumento de D-09 va de
+   marca y hostelería, no de un fondo de huelga que se lee en el móvil a pie de
+   fábrica.
 
-   No es un filtro de inversión: es la misma paleta documental de noche —
-   grafito con una punta de azul en vez de papel, y la tinta roja aclarada para
-   mantener el 4,5:1. Los contrastes de esta tabla están medidos, no estimados.
+   **Es una excepción de ESTA web.** `_PLANTILLA-SITE` sigue arrancando en claro
+   y D-09 sigue en pie para el resto de sitios del estudio.
+
+   Cómo funciona ahora: el HTML sale del servidor CON la clase `dark`, y el guion
+   sin parpadeo de `lib/tema.ts` la QUITA antes del primer pintado si la visita
+   anterior eligió papel. Sigue sin mirarse `prefers-color-scheme` — ya no por
+   D-09, sino porque el defecto es una decisión nuestra.
+
+   No es un filtro de inversión: es la misma paleta documental de noche, con la
+   tinta roja aclarada para mantener el 4,5:1. Los contrastes de esta tabla están
+   medidos, no estimados.
    ========================================================================== */
 :root {
   color-scheme: light;
@@ -178,30 +244,41 @@
 html.dark {
   color-scheme: dark;
 
-  --color-fondo: #14161a;        /* grafito, no negro puro */
-  --color-superficie: #1e2229;   /* tarjeta: un escalón por encima del fondo */
-  --color-tinta: #ece8e0;        /* papel cálido como tinta — 14,8:1 */
-  --color-tinta-suave: #a5a8ae;  /* 7,6:1 sobre fondo · 6,7:1 sobre superficie */
+  /* NOCHE AZUL (30-sep-2026): el lienzo deja el casi negro (#090a0d) y pasa al azul
+     marino del dossier «Same Sky, Different Pay» (public/docs/same-sky-*), un punto
+     más claro que su #0B1626 porque el negro se leía demasiado cerrado. El color va
+     en NOTAS — tintas de datos y enlaces —, no en superficies: el lienzo y la
+     tarjeta siguen siendo neutros dentro del azul. Contrastes medidos. */
+  --color-fondo: #101e33;        /* azul marino: el lienzo */
+  --color-superficie: #1a3050;   /* tarjeta: un escalón claro por encima (1,19:1) */
+  --color-tinta: #f4f8ff;        /* 15,7:1 sobre fondo · 13,2:1 sobre tarjeta */
+  --color-tinta-suave: #a3b6d0;  /* «mist» de Same Sky · 8,1:1 fondo · 6,8:1 tarjeta */
 
-  /* Los rellenos NO se tocan: el blanco sobre #c0392b da 5,4:1 en los dos modos.
-     Aclararlos rompería los botones «Aportar» de toda la web. */
-  --color-acento: #c0392b;
-  --color-acento-hondo: #a12e21; /* hover: aquí sube en vez de bajar, para que se vea */
-  --color-confianza: #24425f;
+  /* Los rellenos de acento NO se tocan: el blanco sobre #cf3517 da 5,03:1 en los dos
+     modos. Aclararlos rompería los botones «Aportar» de toda la web. Y el hover BAJA
+     también aquí: subirlo dejaba el blanco de encima en 3,8:1. La banda azul sí se
+     mueve al azul del dossier: papel fijo 11,2:1 · acento fijo 4,85:1 · señal fija 6,4:1. */
+  --color-acento: #cf3517;
+  --color-acento-hondo: #a82910;
+  --color-confianza: #16375f;
 
-  /* La tinta sí se aclara. */
-  --color-acento-tinta: #e8705e;         /* 5,96:1 sobre fondo · 5,25:1 sobre superficie */
-  --color-acento-tinta-fuerte: #f3a093;  /* 8,8:1 — hover más claro, no más oscuro */
-  --color-confianza-tinta: #8fb6d8;      /* 7,7:1 sobre superficie */
+  /* Las tintas son las notas de color. */
+  --color-acento-tinta: #ff7f61;         /* 6,7:1 sobre fondo · 5,7:1 sobre tarjeta */
+  --color-acento-tinta-fuerte: #ffa48d;  /* hover más claro, no más oscuro */
+  --color-confianza-tinta: #5aaeff;      /* «sky» de Same Sky · 7,1:1 fondo · 6,0:1 tarjeta */
+  --color-bizum-tinta: #4fd1c0;          /* 8,9:1 sobre fondo */
+  --color-senal: #3ddc97;                /* «lift» de Same Sky — el saldo disponible · 9,5:1 */
+  --color-senal-ambar: #ffc24d;          /* «caution» de Same Sky — lo pendiente · 10,4:1 */
 
-  --color-linea: #303540;
+  --color-linea: #2f4a72;                /* «line» de Same Sky, un punto más visible */
 
-  --color-riesgo-ambar: #d9a441;        /* 7,1:1 sobre superficie */
-  --color-riesgo-ambar-fuerte: #e8bb6a; /* 8,9:1 — aquí «fuerte» es más claro */
-  --color-riesgo-verde: #6fbf73;        /* 7,4:1 sobre superficie */
+  /* Lema de noche: el marino desaparecería en el fondo, así que pasa a papel; el acero se
+     aclara para que la «N» no se hunda (5,5:1 sobre tarjeta). */
+  --color-lema: #f4f8ff;
+  --color-lema-n: #8aa9d4;
 
-  --sombra-sutil: rgba(0, 0, 0, 0.5);
-  --sombra-media: rgba(0, 0, 0, 0.65);
+  --sombra-sutil: rgba(0, 0, 0, 0.6);
+  --sombra-media: rgba(0, 0, 0, 0.7);
 }
 
 /* El cambio de tema se cruza en 240 ms en vez de dar un salto seco. La clase la
@@ -247,10 +324,18 @@ html.dark {
    y criterio 8: "lo caro invisible"). Se conserva íntegro en cada proyecto.
    ========================================================================== */
 
-/* Foco de teclado visible (accesibilidad — criterio 8). */
+/* Foco de teclado visible (accesibilidad — criterio 8).
+   Los campos de formulario entran en la lista desde el 26-sep-2026: sin ellos, un
+   `outline-none` en un `<input>` lo dejaba SIN ningún indicador de foco (2.4.7), y eso
+   pasaba en el campo de importe de `aportar-selector.tsx`. `summary` va por lo mismo:
+   `faq-accordion.tsx` no trae estilo propio de foco. */
 @layer base {
   a:focus-visible,
   button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible,
   [role="button"]:focus-visible,
   [tabindex]:focus-visible {
     outline: 2px solid var(--color-acento);
@@ -316,6 +401,10 @@ html.dark {
   .rise-in {
     animation: none;
   }
+  /* El muro entra sin animación: las marcas están, simplemente. */
+  .muro-marca {
+    animation: none;
+  }
 }
 
 /* ==========================================================================
@@ -331,14 +420,192 @@ html.dark {
   color: var(--color-acento-tinta);
 }
 
-/* Muro de aportaciones: unidad de la retícula (resistencia colectiva). */
-.muro-unit {
+/* ── EL LEMA «ASÍ, NO» (ficha huelga-2026, `lema-asi-no.tsx`) ──
+   Solo desde 1024 px: es el hueco a la derecha del desglose de «Lo que ha costado», y por
+   debajo el <h1> ya dice lo mismo; apilado encima o debajo sería repetirlo. Tamaño en `em` para que todo —el Ø,
+   su trazo, el hueco entre filas— escale junto con la letra. */
+.lema-asi-no {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .lema-asi-no {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    font-family: var(--ff-display), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(6rem, 9vw, 8.75rem);
+    font-weight: 900;
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    color: var(--color-lema);
+    user-select: none;
+  }
+}
+.lema-fila {
+  display: flex;
+  align-items: baseline;
+}
+/* En el cartel la segunda fila va a más cuerpo (la «N» mide ~1,4 veces la «A»): es lo que
+   hace que «NØ» ocupe el mismo ancho que «ASÍ,». Se escala la fila entera, no se ensancha
+   la letra, para no cargar el eje `wdth` de Archivo (otro fichero de fuente, D-32). */
+.lema-fila + .lema-fila {
+  margin-top: 0.05em;
+  font-size: 1.3em;
+}
+.lema-fila > * {
+  display: inline-block;
+}
+.lema-n {
+  color: var(--color-lema-n);
+}
+/* El Ø mide lo que la altura de mayúscula de Archivo y se asienta en la línea base. */
+.lema-o {
+  width: var(--lema-alto, 0.72em);
+  height: var(--lema-alto, 0.72em);
+  margin-left: 0.03em;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--lema-trazo, 17);
+}
+.lema-barra {
+  stroke-linecap: butt;
+}
+/* Pie en mono con una raya de acento delante: la firma de dossier de esta web. */
+.lema-pie {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  font-family: var(--ff-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-tinta-suave);
+}
+.lema-pie::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: var(--color-acento-tinta);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lema-fila > * {
+    animation: lema-sube 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms + 200ms);
+  }
+  .lema-barra {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: lema-traza 0.55s cubic-bezier(0.6, 0, 0.2, 1) 0.95s forwards;
+  }
+  .lema-pie {
+    animation: lema-aparece 0.8s ease 1.2s both;
+  }
+
+  /* Al aparecer, no al cargar (1-oct-2026). El lema bajó del hero a «Lo que ha costado» y,
+     con la animación ligada a la carga, cuando llegabas haciendo scroll ya había terminado.
+     Aquí cada pieza avanza con el recorrido del propio lema por la pantalla (línea de tiempo
+     `--lema`, porcentajes del rango `cover`: 0 % es cuando su borde superior asoma por
+     abajo). Las letras suben escalonadas por `--i`, luego se traza la barra y entra el pie;
+     a la altura del 42 % —el lema por encima de media pantalla— está entero.
+     Sin JavaScript: donde no hay `animation-timeline` (Firefox, hoy) se queda la animación
+     de carga de arriba, que es la de siempre. Va DESPUÉS de los `animation:` de arriba
+     porque el atajo resetea `animation-timeline`. */
+  @supports (animation-timeline: view()) {
+    .lema-asi-no {
+      view-timeline: --lema block;
+    }
+    .lema-fila > *,
+    .lema-barra,
+    .lema-pie {
+      animation-timeline: --lema;
+      animation-delay: 0s;
+    }
+    .lema-fila > * {
+      animation-range: cover calc(4% + var(--i, 0) * 2.5%) cover calc(22% + var(--i, 0) * 2.5%);
+    }
+    .lema-barra {
+      animation-fill-mode: both;
+      animation-range: cover 28% cover 38%;
+    }
+    .lema-pie {
+      animation-range: cover 32% cover 42%;
+    }
+  }
+}
+@keyframes lema-sube {
+  from {
+    opacity: 0;
+    transform: translateY(0.22em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes lema-traza {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes lema-aparece {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Muro de aportaciones. Ya no hay retícula: solo se ven las MARCAS, y el hueco existe
+   únicamente para sostener el reparto (ver `muro-aportaciones.tsx`).
+   El muro se pinta SIEMPRE sobre la banda azul, que no cambia con el tema, así que el
+   coral de la marca tampoco: el bermellón de relleno sobre ese azul da 2,38:1 y no llega
+   al 3:1 que pide un gráfico con significado; `--color-acento-fijo` da 4,83:1. */
+.muro-hueco {
+  aspect-ratio: 1 / 1;
+}
+@keyframes marcaIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.muro-marca {
   aspect-ratio: 1 / 1;
   border-radius: 2px;
-  background-color: color-mix(in srgb, var(--color-confianza) 16%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-confianza) 22%, transparent);
+  background-color: var(--color-acento-fijo);
+  /* La entrada en CSS, no en framer: el `whileInView` servía `opacity:0` en línea y no
+     llegaba a dispararse, así que el muro se quedaba invisible. El retardo por marca lo
+     pone el componente. */
+  animation: marcaIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.muro-unit[data-accent="true"] {
-  background-color: color-mix(in srgb, var(--color-acento) 78%, transparent);
-  border-color: var(--color-acento);
+
+/* ── GRANO de las bandas de pizarra (portada) ──
+   Tile PNG de 128×128 pre-rasterizado (20 KB, cacheado, se repite), traído de Pingüy. Un
+   `feTurbulence` en SVG pesaría menos bytes pero lo rasteriza el navegador en cada banda.
+   Va en un PSEUDOELEMENTO a propósito: los pseudoelementos no son candidatos a LCP, y un
+   <div> con imagen de fondo del tamaño de la banda sí lo sería (medido en Pingüy).
+   `isolation: isolate` deja al `::before` (y al canvas de `polvo.tsx`) en `z-index: -1`:
+   encima del fondo, debajo del contenido, sin tocar a los hijos. */
+.grano {
+  position: relative;
+  isolation: isolate;
+}
+.grano::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/img/grano.png");
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: -1;
 }

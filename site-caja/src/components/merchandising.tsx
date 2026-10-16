@@ -1,6 +1,13 @@
 "use client";
 import * as React from "react";
-import { CAMISETA, MAX_UNIDADES, SITES, TIENDA_ACTIVA } from "@/config/pedidos";
+import {
+  CAMISETA,
+  COMISION_STRIPE,
+  MAX_UNIDADES,
+  REPARTO_CAMISETA,
+  SITES,
+  TIENDA_ACTIVA,
+} from "@/config/pedidos";
 
 export type MerchStrings = {
   kicker: string;
@@ -9,8 +16,10 @@ export type MerchStrings = {
   producto: { nombre: string; desc: string; alt: string };
   desglose: string;
   costeLabel: string;
+  comisionLabel: string;
   cajaLabel: string;
   porcentaje: string;
+  repartoNota: string;
   tallaLabel: string;
   tallaAviso: string;
   cantidadLabel: string;
@@ -22,6 +31,8 @@ export type MerchStrings = {
   totalLabel: string;
   nombreLabel: string;
   emailLabel: string;
+  telefonoLabel: string;
+  telefonoAyuda: string;
   siteLabel: string;
   sitePlaceholder: string;
   entrega: string;
@@ -39,6 +50,20 @@ function eur(v: number, lang: string) {
   return new Intl.NumberFormat(lang, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(v);
 }
 
+/** Importes del reparto, siempre con céntimos (5,00 € · 0,38 € · 4,62 €): como en el extracto. */
+function eurExacto(v: number, lang: string) {
+  return new Intl.NumberFormat(lang, {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(v);
+}
+
+function pct(v: number, lang: string) {
+  return new Intl.NumberFormat(lang, { style: "percent", maximumFractionDigits: 2 }).format(v);
+}
+
 const MONO = "font-[family-name:var(--ff-mono)]";
 const LABEL = `${MONO} text-[10px] uppercase tracking-wider text-[var(--color-tinta-suave)]`;
 
@@ -47,11 +72,14 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
   const [cantidad, setCantidad] = React.useState(1);
   const [nombre, setNombre] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [telefono, setTelefono] = React.useState("");
   const [site, setSite] = React.useState("");
   const [enviando, setEnviando] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  const pctCaja = Math.round((CAMISETA.aLaCaja / CAMISETA.precio) * 100);
+  // Anchos de la barra y cifra del pie, sobre el precio de una camiseta pagada sola.
+  const parte = (v: number) => (v / CAMISETA.precio) * 100;
+  const tarifa = `${pct(COMISION_STRIPE.pct, lang)} + ${eurExacto(COMISION_STRIPE.fijo, lang)}`;
   const total = cantidad * CAMISETA.precio;
 
   async function enviar(e: React.FormEvent) {
@@ -66,7 +94,7 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
       const r = await fetch("/api/pedido", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lineas: [{ talla, cantidad }], nombre, email, site, lang }),
+        body: JSON.stringify({ lineas: [{ talla, cantidad }], nombre, email, telefono, site, lang }),
       });
       const data = (await r.json()) as Respuesta;
       if (data.ok && data.url) {
@@ -103,12 +131,13 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
         </div>
         <p className="mt-2 text-sm text-[var(--color-tinta-suave)]">{s.producto.desc}</p>
 
-        {/* Desglose 5/5 */}
+        {/* Desglose: coste · comisión de Stripe · caja */}
         <div className="mt-5 rounded-xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-4">
           <p className={LABEL}>{s.desglose}</p>
           <div className="mt-3 flex h-2 overflow-hidden rounded-full" aria-hidden="true">
-            <span className="bg-[var(--color-tinta-suave)]" style={{ width: `${100 - pctCaja}%` }} />
-            <span className="bg-[var(--color-acento)]" style={{ width: `${pctCaja}%` }} />
+            <span className="bg-[var(--color-tinta-suave)]" style={{ width: `${parte(REPARTO_CAMISETA.coste)}%` }} />
+            <span className="bg-[var(--color-confianza-tinta)]" style={{ width: `${parte(REPARTO_CAMISETA.comision)}%` }} />
+            <span className="bg-[var(--color-acento)]" style={{ width: `${parte(REPARTO_CAMISETA.caja)}%` }} />
           </div>
           <dl className="mt-3 space-y-1.5">
             <div className="flex items-baseline justify-between gap-2">
@@ -117,7 +146,16 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
                 {s.costeLabel}
               </dt>
               <dd className={`${MONO} text-sm tabular-nums text-[var(--color-tinta-suave)]`}>
-                {eur(CAMISETA.precio - CAMISETA.aLaCaja, lang)}
+                {eurExacto(REPARTO_CAMISETA.coste, lang)}
+              </dd>
+            </div>
+            <div className="flex items-baseline justify-between gap-2">
+              <dt className="flex items-center gap-2 text-xs text-[var(--color-tinta-suave)]">
+                <span className="inline-block h-2 w-2 rounded-full bg-[var(--color-confianza-tinta)]" />
+                {s.comisionLabel.replace("{tarifa}", tarifa)}
+              </dt>
+              <dd className={`${MONO} text-sm tabular-nums text-[var(--color-tinta-suave)]`}>
+                {eurExacto(REPARTO_CAMISETA.comision, lang)}
               </dd>
             </div>
             <div className="flex items-baseline justify-between gap-2">
@@ -126,13 +164,14 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
                 {s.cajaLabel}
               </dt>
               <dd className={`${MONO} text-sm font-semibold tabular-nums text-[var(--color-acento-tinta-fuerte)]`}>
-                {eur(CAMISETA.aLaCaja, lang)}
+                {eurExacto(REPARTO_CAMISETA.caja, lang)}
               </dd>
             </div>
           </dl>
           <p className={`mt-3 ${MONO} text-[10px] uppercase tracking-wider text-[var(--color-acento-tinta-fuerte)]`}>
-            {s.porcentaje.replace("{pct}", String(pctCaja))}
+            {s.porcentaje.replace("{pct}", pct(REPARTO_CAMISETA.caja / CAMISETA.precio, lang))}
           </p>
+          <p className="mt-2 text-xs text-[var(--color-tinta-suave)]">{s.repartoNota}</p>
         </div>
 
         <details className="group mt-4">
@@ -166,14 +205,19 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
       <form onSubmit={enviar} className="rounded-2xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-6 md:p-8">
         <fieldset>
           <legend className={LABEL}>{s.tallaLabel}</legend>
-          <div className="mt-2 flex flex-wrap gap-2">
+          {/* Una sola fila, siempre: una columna por talla que se reparte el ancho. Con botones de
+              ancho fijo, las nueve (XS a 5XL) no cabían y la 5XL bajaba sola a otra línea. */}
+          <div
+            className="mt-2 grid gap-1.5 sm:gap-2"
+            style={{ gridTemplateColumns: `repeat(${CAMISETA.tallas.length}, minmax(0, 1fr))` }}
+          >
             {CAMISETA.tallas.map((t) => (
               <button
                 key={t}
                 type="button"
                 aria-pressed={talla === t}
                 onClick={() => setTalla(t)}
-                className={`min-w-12 rounded-md border px-3 py-2 ${MONO} text-xs transition-colors ${
+                className={`min-h-10 rounded-md border px-0 py-2 text-center ${MONO} text-[11px] transition-colors sm:text-xs ${
                   talla === t
                     ? "border-[var(--color-tinta)] bg-[var(--color-tinta)] text-[var(--color-fondo)]"
                     : "border-[var(--color-linea)] text-[var(--color-tinta)] hover:border-[var(--color-tinta)]"
@@ -238,7 +282,23 @@ export function Merchandising({ s, lang }: { s: MerchStrings; lang: string }) {
               className="mt-1 w-full rounded-md border border-[var(--color-linea)] bg-[var(--color-fondo)] px-3 py-2 text-sm outline-none focus:border-[var(--color-tinta)]"
             />
           </label>
-          <label className="block sm:col-span-2">
+          {/* Opcional: solo para avisar de la recogida si el correo no llega. */}
+          <label className="block">
+            <span className={LABEL}>{s.telefonoLabel}</span>
+            <input
+              type="tel"
+              autoComplete="tel"
+              inputMode="tel"
+              value={telefono}
+              onChange={(e) => setTelefono(e.target.value)}
+              aria-describedby="telefono-ayuda"
+              className="mt-1 w-full rounded-md border border-[var(--color-linea)] bg-[var(--color-fondo)] px-3 py-2 text-sm outline-none focus:border-[var(--color-tinta)]"
+            />
+            <span id="telefono-ayuda" className="mt-1 block text-xs text-[var(--color-tinta-suave)]">
+              {s.telefonoAyuda}
+            </span>
+          </label>
+          <label className="block">
             <span className={LABEL}>{s.siteLabel}</span>
             <select
               required

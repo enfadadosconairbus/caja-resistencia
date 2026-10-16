@@ -2,9 +2,9 @@
 import * as React from "react";
 import Link from "next/link";
 import { FONDO, type TitularJuridico } from "@/config/fondo";
-import { redactorGmail, mailtoRedactor } from "@/lib/gmail";
+import { mailtoRedactor } from "@/lib/gmail";
 import { ContadorVisitas } from "@/components/contador-visitas";
-import { Canales } from "@/components/canales";
+import { abrirBuzon } from "@/lib/buzon-eventos";
 
 // Lectura del "consentimiento visto" sin setState-en-efecto (useSyncExternalStore).
 const subscribeCookie = () => () => {};
@@ -38,23 +38,20 @@ type FooterStrings = {
   tagline: string;
   independence: string;
   legal: Record<LegalKey, string>;
-  rights: string;
+  /** Atribución que exige la licencia CC BY 4.0 del modelo 3D del huelguista (plan gratis de Meshy). */
+  creditos: string;
   visitasLabel: string;
   visitasNota: string;
-  /** Etiqueta de la fila de canales (Telegram, Instagram, correo). */
-  redes: string;
-  /** Asunto con el que el sobre abre el redactor de Gmail. */
-  redesAsunto: string;
-  /** Aviso de pestaña nueva para los canales. Sin texto visible. */
-  redesNuevaPestana: string;
   /** Enlace a la página «Gobernanza». */
   sobre: string;
+  /** Abre el buzón de sugerencias (`components/buzon.tsx`). Es la entrada que no depende del
+   *  huelguista: sirve con él oculto, en móvil y con teclado o lector de pantalla. */
+  buzon: string;
   /** Bloque de contacto: tres funciones, cada una con su correo (o pendiente). */
   contacto: {
     heading: string;
-    incidencias: string;
-    tienda: string;
-    conflicto: string;
+    /** Caja de resistencia e incidencias de la web: comparten correo, van en una fila. */
+    cajaWeb: string;
     gestion: string;
     gestionPendiente: string;
   };
@@ -96,45 +93,27 @@ function TitularBloque({
   );
 }
 
-/** Una función de contacto: etiqueta + correo (abre el redactor de Gmail) o «pendiente». */
-function ContactoFila({
-  label,
-  email,
-  pendiente,
-  pestana,
-}: {
-  label: string;
-  email: string | null;
-  pendiente?: string;
-  pestana: string;
-}) {
+/**
+ * Una función de contacto: la función arriba, su correo debajo, con un filo de color que los
+ * agrupa. Antes iban en la misma línea y, en móvil, el correo saltaba a la línea siguiente
+ * pegado al rótulo de la fila de abajo: no se sabía qué correo era de qué. El correo abre el
+ * programa de correo (mailto) y se ve entero para copiarlo. El enlace «Gmail» (redactor web)
+ * se quitó el 6-oct-2026 a petición de la coordinación.
+ */
+function ContactoFila({ label, email, pendiente }: { label: string; email: string | null; pendiente?: string }) {
   return (
-    <li className="flex flex-wrap items-baseline justify-between gap-x-3">
-      <span className="text-sm text-[var(--color-tinta)]">{label}</span>
+    <li className="border-l-2 border-[var(--color-acento)] pl-3">
+      <span className="block text-sm font-semibold text-[var(--color-tinta)]">{label}</span>
       {email ? (
-        <span className="flex flex-wrap items-baseline gap-x-2">
-          {/* Correo nativo (mailto): abre el programa de correo de quien lo tenga y muestra
-              la dirección para copiarla. El «Gmail» de al lado es el redactor web, para
-              quien usa webmail sin cliente asociado (ver lib/gmail.ts). */}
-          <a
-            href={mailtoRedactor(email, label)}
-            aria-label={`${label}: ${email}`}
-            className="font-[family-name:var(--ff-mono)] text-xs text-[var(--color-acento-tinta)] underline underline-offset-4 hover:text-[var(--color-tinta)]"
-          >
-            {email}
-          </a>
-          <a
-            href={redactorGmail(email, label)}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${label} — Gmail (${pestana})`}
-            className="font-[family-name:var(--ff-mono)] text-[10px] uppercase tracking-wider text-[var(--color-tinta-suave)] underline underline-offset-4 hover:text-[var(--color-tinta)]"
-          >
-            Gmail
-          </a>
-        </span>
+        <a
+          href={mailtoRedactor(email, label)}
+          aria-label={`${label}: ${email}`}
+          className="mt-0.5 inline-block break-all font-[family-name:var(--ff-mono)] text-xs text-[var(--color-acento-tinta)] underline underline-offset-4 hover:text-[var(--color-tinta)]"
+        >
+          {email}
+        </a>
       ) : (
-        <span className="font-[family-name:var(--ff-mono)] text-[10px] uppercase tracking-wider text-[var(--color-tinta-suave)]">
+        <span className="mt-0.5 block font-[family-name:var(--ff-mono)] text-[10px] uppercase tracking-wider text-[var(--color-tinta-suave)]">
           {pendiente}
         </span>
       )}
@@ -197,17 +176,6 @@ export function SiteFooter({
             </p>
             <p className="mt-3 text-sm text-[var(--color-tinta-suave)]">{footer.independence}</p>
 
-            {/* Canales del movimiento, los mismos que en «Contacto». El marcado vive en
-                `components/canales.tsx`: aquí van con rótulo, allí sin él. */}
-            <Canales
-              etiqueta={footer.redes}
-              asunto={footer.redesAsunto}
-              nuevaPestana={footer.redesNuevaPestana}
-              className="mt-6"
-              conEtiqueta
-              soloSocial
-            />
-
             {/* Contacto por funciones: cada una a su buzón. El correo va aquí etiquetado (no
                 como un sobre suelto que no dice para qué). La gestión de la caja está pendiente
                 hasta que el sindicato dé su canal. */}
@@ -215,11 +183,9 @@ export function SiteFooter({
               <p className="font-[family-name:var(--ff-mono)] text-[10px] uppercase tracking-wider text-[var(--color-tinta-suave)]">
                 {footer.contacto.heading}
               </p>
-              <ul className="mt-2 space-y-1.5">
-                <ContactoFila label={footer.contacto.incidencias} email={FONDO.redes.emailWeb} pestana={footer.redesNuevaPestana} />
-                <ContactoFila label={footer.contacto.tienda} email="enfadadosconairbus.contacto@gmail.com" pestana={footer.redesNuevaPestana} />
-                <ContactoFila label={footer.contacto.conflicto} email={FONDO.redes.email} pestana={footer.redesNuevaPestana} />
-                <ContactoFila label={footer.contacto.gestion} email={FONDO.contacto.general} pendiente={footer.contacto.gestionPendiente} pestana={footer.redesNuevaPestana} />
+              <ul className="mt-3 space-y-4">
+                <ContactoFila label={footer.contacto.cajaWeb} email={FONDO.redes.emailWeb} />
+                <ContactoFila label={footer.contacto.gestion} email={FONDO.contacto.general} pendiente={footer.contacto.gestionPendiente} />
               </ul>
             </div>
 
@@ -237,6 +203,15 @@ export function SiteFooter({
                   {footer.sobre}
                 </Link>
               </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={abrirBuzon}
+                  className="text-[var(--color-tinta)] underline underline-offset-4 hover:text-[var(--color-acento-tinta)]"
+                >
+                  {footer.buzon}
+                </button>
+              </li>
               {legalOrder.map((k) => (
                 <li key={k}>
                   <button
@@ -249,8 +224,17 @@ export function SiteFooter({
                 </li>
               ))}
             </ul>
-            <p className="mt-4 max-w-sm font-[family-name:var(--ff-mono)] text-xs text-[var(--color-tinta-suave)]">
-              {footer.rights}
+            <p className="mt-2 max-w-sm font-[family-name:var(--ff-mono)] text-xs text-[var(--color-tinta-suave)]">
+              {footer.creditos}{" "}
+              <a
+                href="https://creativecommons.org/licenses/by/4.0/"
+                target="_blank"
+                rel="noopener noreferrer license"
+                className="underline underline-offset-2 hover:text-[var(--color-tinta)]"
+              >
+                CC BY 4.0
+              </a>
+              .
             </p>
           </div>
         </div>
@@ -259,7 +243,7 @@ export function SiteFooter({
       <dialog
         ref={dialogRef}
         onClose={() => setActive(null)}
-        className="m-auto w-[min(92vw,640px)] rounded-xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-0 text-[var(--color-tinta)] backdrop:bg-black/40"
+        className="m-auto w-[min(92vw,640px)] rounded-xl border border-[var(--color-linea)] bg-[var(--color-superficie)] p-0 text-[var(--color-tinta)] backdrop:bg-black/40"
       >
         {active ? (
           <div className="p-6">
@@ -302,7 +286,7 @@ export function SiteFooter({
         <div
           id="banner-cookies"
           role="note"
-          className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-sm rounded-xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-4 shadow-[0_8px_30px_var(--sombra-sutil)] md:left-4 md:right-auto"
+          className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-sm rounded-xl border border-[var(--color-linea)] bg-[var(--color-superficie)] p-4 shadow-[0_8px_30px_var(--sombra-sutil)] md:left-4 md:right-auto"
         >
           <script dangerouslySetInnerHTML={{ __html: guionSinParpadeo }} />
           <p className="text-xs leading-relaxed text-[var(--color-tinta-suave)]">

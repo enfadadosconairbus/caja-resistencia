@@ -28,7 +28,12 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+      // 'wasm-unsafe-eval' (30-sep-2026): el modelo del huelguista va comprimido con meshopt y su
+      // descompresor es WebAssembly. Esta directiva SOLO permite compilar WebAssembly; no abre
+      // eval() de JavaScript. Sin compresión, el modelo pasaba de 364 KB a 648 KB.
+      // challenges.cloudflare.com (1-oct-2026): Turnstile, el filtro antibots del buzón de
+      // sugerencias. Su script solo se pide al ABRIR el buzón, nunca al cargar la página.
+      `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://challenges.cloudflare.com${isDev ? " 'unsafe-eval'" : ""}`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self'",
@@ -36,7 +41,8 @@ const securityHeaders = [
       // Reproductores de vídeo embebidos (cobertura mediática). Solo el dominio
       // sin cookies de YouTube: el facade no carga nada de Google hasta que el
       // usuario pulsa play, y entonces lo hace en modo privacy-enhanced.
-      "frame-src 'self' https://www.youtube-nocookie.com",
+      // Turnstile pinta su comprobación en un iframe de challenges.cloudflare.com.
+      "frame-src 'self' https://www.youtube-nocookie.com https://challenges.cloudflare.com",
       "base-uri 'self'",
       "form-action 'self'",
       "frame-ancestors 'none'",

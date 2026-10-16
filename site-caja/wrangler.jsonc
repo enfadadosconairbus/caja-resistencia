@@ -17,7 +17,30 @@
     // Access inyecta en `Cf-Access-Jwt-Assertion` contra el JWKS del team domain, exigiendo esta
     // audiencia (AUD de la aplicación Access). Ambos son identificadores públicos, no secretos.
     "ACCESS_TEAM_DOMAIN": "royal-silence-f8d6.cloudflareaccess.com",
-    "ACCESS_AUD": "13cbf87765716b078a36f850b69ae0ca7677d0abe7130ccedb3b1e530979e0a1"
+    "ACCESS_AUD": "13cbf87765716b078a36f850b69ae0ca7677d0abe7130ccedb3b1e530979e0a1",
+    // Turnstile del buzón de sugerencias: la clave del SITIO es pública (va en el HTML). La
+    // secreta es un secret del Worker, `TURNSTILE_SECRET` (`wrangler secret put`); sin ella el
+    // buzón sigue funcionando con el campo trampa, el tiempo mínimo y el límite por ritmo.
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAFK-g025cLSTqar6"
+  },
+  // Buzón de sugerencias. El binding SOLO puede enviar a esta dirección (verificada en Email
+  // Routing): aunque alguien abusara del formulario, no podría mandar correo a terceros. Enviar
+  // a direcciones propias verificadas es gratis en todos los planes.
+  "send_email": [
+    { "name": "BUZON", "destination_address": "enfadadosconairbus.contacto@gmail.com" }
+  ],
+  // Freno contra envíos en ráfaga: 3 sugerencias por minuto y conexión. La IP solo es la llave
+  // de un contador efímero de Cloudflare; no se guarda en ningún sitio ni va en el correo.
+  "ratelimits": [
+    { "name": "LIMITE_BUZON", "namespace_id": "4201", "simple": { "limit": 3, "period": 60 } }
+  ],
+  // Lote mensual al proveedor (src/lib/lote-proveedor.ts). Los crons van en UTC y Madrid cambia
+  // de hora: el día 21 a las 6:00 UTC son las 8:00 en verano y las 7:00 en invierno. Por eso hay
+  // tres disparos y es el código el que decide: actúa el día 21 desde las 8:00 de Madrid, y los
+  // siguientes solo reintentan el correo si falló. OJO: los crons NO los aplica `npm run
+  // deploy:vinext` (versions upload); tras cambiarlos, `npx wrangler triggers deploy`.
+  "triggers": {
+    "crons": ["0 6 21 * *", "0 7 21 * *", "0 13 21 * *"]
   },
   // Entry propio (worker/index.ts): re-exporta el handler de vinext y publica la DO del contador.
   "main": "./worker/index.ts",

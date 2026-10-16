@@ -17,14 +17,15 @@
   "skip": "Saltar al contenido principal",
   "menu": "Menú",
   "close": "Cerrar",
-  "tienda": "Merchandising",
+  "tienda": "Material",
   "documentacion": "Documentación",
   "sobre": "Sobre este proyecto",
   "marca": "La caja de resistencia del movimiento",
   "temaOscuro": "Modo noche",
   "temaClaro": "Modo día",
   "contacto": "Contacto",
-  "gobernanza": "Gobernanza"
+  "gobernanza": "Gobernanza",
+  "campanas": "Campañas"
  },
  "exampleTag": "DATOS DE EJEMPLO — pendientes de datos reales verificados",
  "titularLabels": {
@@ -33,6 +34,83 @@
   "cif": "CIF",
   "domicilio": "Domicilio",
   "registro": "Datos registrales"
+ },
+ "ultimasNoticias": {
+  "kicker": "ÚLTIMAS NOTICIAS",
+  "enDirecto": "Huelga desconvocada",
+  "fecha": "5 de octubre de 2026",
+  "titulo": [
+   "La plantilla aprueba",
+   "el acuerdo en referéndum"
+  ],
+  "entradilla": "Con una participación del 87,33 %, el 76,76 % de los votos emitidos ha respaldado el acuerdo; el 20,26 % lo ha rechazado y el 2,98 % han sido abstenciones. Votaron 13.560 personas, de forma presencial y telemática, el 30 de septiembre y el 1 de octubre.",
+  "desconvocatoria": "El 5 de octubre, el Comité de Huelga —formado por CGT, ÚTIL y UGT— desconvocó formalmente la huelga indefinida, tras el respaldo mayoritario de la plantilla al acuerdo.",
+  "juicio": {
+   "kicker": "LO QUE QUEDA POR RESOLVER",
+   "dia": "4",
+   "mes": "nov 2026",
+   "titulo": "El juicio del 4 de noviembre",
+   "texto": [
+    "El referéndum cierra la negociación, pero no el recorrido judicial. La batalla sobre la legitimidad industrial del acuerdo está prácticamente decidida a favor de Airbus; la cuestión jurídica es otra muy distinta, y sigue abierta: si durante el procedimiento se vulneró el derecho fundamental de huelga y si hubo mala fe negocial.",
+    "Eso es lo que juzga la Audiencia Nacional el 4 de noviembre de 2026, en la vista sobre el fondo de la demanda de CGT. Ahí está ahora todo el protagonismo."
+   ]
+  },
+  "puntos": [
+   {
+    "etiqueta": "Salarios",
+    "texto": "IPC real más 2 puntos en enero de 2026 y de 2027 y en abril de 2028, y más 1,95 en abril de 2029: así se recupera el 7,95 % de poder adquisitivo en cuatro años. Además, cada año, un 0,5 % de revisión salarial individual y otro 0,5 % para promociones."
+   },
+   {
+    "etiqueta": "Paga única",
+    "texto": "2.000 € brutos no consolidables en octubre de 2026, para compensar el «efecto abril» a quienes estén contratados en la fecha de validación del acuerdo."
+   },
+   {
+    "etiqueta": "Teletrabajo, vacaciones y comedor",
+    "texto": "Se mantiene la política de trabajo a distancia y se respetan los acuerdos individuales, incluidos los del 40 % y los de dos días por semana. Vacaciones: dos semanas obligatorias y dos flexibles (antes, tres y una). Quien no tiene comedor gratuito pagará 3,50 € en lugar de 5 € desde el 1 de octubre."
+   },
+   {
+    "etiqueta": "Qué queda por desarrollar",
+    "texto": "Antes del 1 de noviembre, una comisión analizará las cargas de trabajo de Cádiz. Se abre un grupo de trabajo para un nuevo sistema de control del absentismo —la empresa retira su recurso ante el Tribunal Supremo— y la negociación de la política salarial (PG-121) empezará antes de que acabe 2026."
+   }
+  ],
+  "imagenAlt": "Infografía «Acuerdo aprobado en referéndum» con los diez puntos del acuerdo —salarios y recuperación del poder adquisitivo, complemento por incapacidad temporal, trabajo en remoto, vacaciones, comedor, transporte, flexibilidad horaria, proyecto Bromo, cargas de trabajo en Cádiz y política salarial— bajo una ilustración de trabajadores con el puño en alto frente a un avión A350.",
+  "ampliar": "Ampliar imagen",
+  "descargar": "Descargar imagen",
+  "cerrar": "Cerrar",
+  "guiaCta": "Lee la guía: los 14 puntos, uno a uno",
+  "enPrensa": "En la prensa",
+  "fuentesLabel": "Fuentes",
+  "fuentes": "Cinco Días · Press Digital · Artículo 14 — 1 de octubre de 2026",
+  "nota": "El detalle de cada punto, en la infografía (pulsa para ampliarla) y en la guía del acuerdo."
+ },
+ "negociacion": {
+  "kicker": "ESTADO DE LA NEGOCIACIÓN",
+  "title": [
+   "Evolución de",
+   "las propuestas"
+  ],
+  "periodo": "Comparativa cruzada · 1 de julio — 27 de agosto de 2026",
+  "plantillaLabel": "Plantilla",
+  "empresaLabel": "Empresa",
+  "economicoLabel": "Núcleo económico",
+  "laboralLabel": "Condiciones laborales",
+  "industrialLabel": "Futuro industrial",
+  "verDetalle": "Ver condiciones y futuro industrial",
+  "ocultarDetalle": "Ocultar detalle",
+  "fuentesLabel": "Fuentes",
+  "descargar": "Descargar infografía",
+  "paneles": {
+   "estado": {
+    "titulo": "Comparativa cruzada de propuestas",
+    "periodo": "1 jul — 27 ago 2026",
+    "alt": "Evolución de las propuestas para cerrar el conflicto en Airbus España — comparativa cruzada de la plantilla y la empresa, del 1 de julio al 27 de agosto de 2026."
+   },
+   "propuesta": {
+    "titulo": "Propuesta de acuerdo, pendiente de referéndum",
+    "periodo": "4 sep 2026",
+    "alt": "Resumen visual de la «propuesta de acuerdo» de la empresa, pendiente de referéndum: los diez puntos del planteamiento —salarios y poder adquisitivo, Bradford, teletrabajo, vacaciones, comedor, transporte, flexibilidad horaria, proyecto Bromo, cargas de trabajo en Cádiz y política salarial PG-121—."
+   }
+  }
  },
  "hero": {
   "kicker": "EL MEDIO DEL MOVIMIENTO · AIRBUS ESPAÑA",
@@ -55,11 +133,15 @@
   "filas": [
    {
     "k": "Primera huelga",
-    "v": "1–23 julio 2026"
+    "v": "1–24 julio 2026"
    },
    {
-    "k": "Inicio de movilización",
-    "v": "24 ago · paros de 3 h y asambleas · 25 ago · huelga indefinida"
+    "k": "Segunda huelga",
+    "v": "24 ago – 5 oct 2026 · paros de 3 h y asambleas el 24 ago · huelga indefinida desde el 25 ago"
+   },
+   {
+    "k": "Pendiente",
+    "v": "Juicio por vulneración del derecho de huelga y mala fe negocial · 4 nov 2026"
    },
    {
     "k": "Ámbito",
@@ -103,7 +185,7 @@
  "conflicto": {
   "kicker": "EL CONFLICTO",
   "title": "Cómo se llegó al conflicto actual.",
-  "intro": "La movilización de la plantilla de Airbus España —huelga del 1 al 23 de julio de 2026 y huelga indefinida convocada desde el 24 de agosto— se produce, según el manifiesto del movimiento, tras un deterioro progresivo de la confianza y discrepancias acumuladas sobre negociación salarial y condiciones laborales. Llega, además, en una etapa de fortaleza económica de la compañía. Estas son las reivindicaciones que sostiene el movimiento:",
+  "intro": "La movilización de la plantilla de Airbus España —primera huelga del 1 al 24 de julio de 2026 y segunda huelga del 24 de agosto al 5 de octubre— se produce, según el manifiesto del movimiento, tras un deterioro progresivo de la confianza y discrepancias acumuladas sobre negociación salarial y condiciones laborales. Llega, además, en una etapa de fortaleza económica de la compañía. Estas son las reivindicaciones que sostiene el movimiento:",
   "docManifiesto": {
    "v3": "Manifiesto de reivindicaciones - v3",
    "grupo": "Manifiesto al Grupo Airbus - julio 2026"
@@ -111,7 +193,7 @@
   "docManifiestoMeta": "PDF · {t} MB",
   "docManifiestoOtros": "Manifiesto en otros idiomas:",
   "docManifiestoOtroDoc": "{doc}:",
-  "docDossier": "Dossier de recuperación salarial - v10",
+  "docDossier": "Dossier de recuperación salarial - v11",
   "docDossierMeta": "PDF · 0,6 MB · ES",
   "points": [
    {
@@ -295,8 +377,7 @@
   ],
   "volver": "Volver a la portada",
   "metaTitle": "La caja",
-  "metaDescription": "Qué es la caja de resistencia, en qué se gasta, cómo aportar y cómo se rinden cuentas.",
-  "aviso": "AVISO — la caja ya recibe aportaciones por transferencia bancaria; el pago con tarjeta se activará pronto. Los documentos que rigen el fondo están pendientes de ratificación."
+  "metaDescription": "Qué es la caja de resistencia, en qué se gasta, cómo aportar y cómo se rinden cuentas."
  },
  "transparencia": {
   "kicker": "TRANSPARENCIA",
@@ -310,51 +391,31 @@
   },
   "actualizadoLabel": "Última actualización",
   "sinDatos": "SIN CIFRAS — el fondo todavía no está operativo",
-  "note": "Cifras verificadas por la Tesorería de ÚTIL a partir de los registros de ingresos y gastos del fondo; el saldo es lo recaudado menos los gastos ya imputados. Los gastos de camión y desplazamientos, aunque los adelante otra organización, se aprueban por la asamblea competente de la plantilla. Informe económico descargable cuando se ratifique el reglamento.",
+  "note": "Cifras conciliadas por la Tesorería de ÚTIL contra los extractos de la cuenta del fondo. El saldo es lo recaudado menos los gastos ya pagados. Una precisión: la cuenta tiene además 40 € que ÚTIL puso para abrirla y cubrir la comisión trimestral; ese dinero no es una aportación y no cuenta como recaudado. El informe económico descargable se publicará en los próximos días.",
   "reportCta": "Descargar informe (próximamente)",
   "detalle": {
    "titulo": "Desglose de gastos",
-   "camisetas": "Camisetas (producción)",
+   "tituloCampana": "Desglose de gastos — Campaña {campana}",
+   "camisetas": "Camisetas Así, No! (producción)",
    "camion": "Camión con equipo de sonido (marcha 12-sep)",
    "comision": "Comisión y mantenimiento de la cuenta",
-   "trenes": "Desplazamientos en tren Sevilla–Madrid (12-sep)",
-   "pendiente": "pendiente de imputar"
+   "pendiente": "pendiente de imputar",
+   "desplazamientos": "Desplazamientos a la marcha al Ministerio de Industria (12-sep)",
+   "chapas": "Chapas IPC+ (producción)",
+   "digital": "Infraestructura digital de la caja de resistencia"
   }
  },
  "muro": {
   "kicker": "RESISTENCIA COLECTIVA",
   "title": "Se construye aportación a aportación.",
-  "body": "Cada unidad de este muro representa una aportación. Ninguna sostiene la caja por sí sola; juntas, la hacen posible. Así se ve la fuerza de lo colectivo."
+  "body": "Este muro es el recuento real de aportaciones a la caja, no una ilustración. Ninguna sostiene la caja por sí sola; juntas, la hacen posible.",
+  "ariaLabel": "Muro de {total} aportaciones a la caja. Cada cuadro marcado representa {escala}."
  },
  "aportar": {
   "kicker": "APORTAR",
   "title": "Elige cómo quieres sostener la caja.",
-  "intro": "La transferencia bancaria y el Bizum donación ya están activos: puedes aportar ahora mismo con los datos de aquí abajo. El pago con tarjeta y wallet se activará en cuanto la pasarela esté validada.",
-  "amounts": [
-   "20 €",
-   "50 €",
-   "100 €",
-   "Otra cantidad"
-  ],
-  "vias": [
-   {
-    "t": "Transferencia bancaria",
-    "d": "Activa. Directa a la cuenta del fondo, sin intermediarios. Con el concepto que indicamos podemos reconocer tu aportación."
-   },
-   {
-    "t": "Bizum donación",
-    "d": "Activa. Desde la app de tu banco, en 20 segundos, con el código de donación a ONG. Todo el importe va a la caja."
-   },
-   {
-    "t": "Tarjeta y wallet",
-    "d": "Próximamente. Se activará cuando la pasarela esté validada a nombre del sindicato titular. Hasta entonces, usa la transferencia o el Bizum."
-   }
-  ],
-  "cta": "Aportar",
-  "placeholderNote": "El pago con tarjeta todavía no está activo. Puedes aportar por transferencia con los datos de la sección Aportar.",
+  "intro": "Dos vías, las dos activas: pago online con Stripe —tarjeta, Apple Pay o Google Pay, en medio minuto— o transferencia directa a la cuenta del fondo.",
   "canales": {
-   "kicker": "CÓMO LLEGA EL DINERO",
-   "title": "Varias vías a la caja.",
    "transferencia": {
     "t": "Transferencia bancaria",
     "d": "Directa a la cuenta del fondo. Sin comisiones de intermediarios y sin ningún tercero que pueda cortar la campaña.",
@@ -365,12 +426,32 @@
     "labelConcepto": "Concepto",
     "copiar": "Copiar IBAN",
     "copiado": "IBAN copiado",
-    "pendiente": "Se publicará en cuanto el sindicato titular constituya la cuenta del fondo. No se muestra ningún número sin verificar."
+    "pendiente": "Se publicará en cuanto el sindicato titular constituya la cuenta del fondo. No se muestra ningún número sin verificar.",
+    "importeLabel": "Importe sugerido",
+    "otra": "Otra",
+    "importeResumen": "Vas a transferir {importe}. Copia el IBAN y el concepto, y ponlos en tu app del banco.",
+    "importeSinElegir": "Elige un importe o escribe el tuyo. Aporta lo que puedas: la caja se sostiene con muchas aportaciones pequeñas.",
+    "copiarConcepto": "Copiar concepto",
+    "conceptoCopiado": "Concepto copiado"
    },
    "pasarela": {
-    "t": "Tarjeta y pago digital",
-    "d": "La vía cómoda: aportar en medio minuto desde el móvil, sin copiar un número de cuenta.",
-    "cta": "Aportar con tarjeta",
+    "t": "Pago online",
+    "d": "La vía rápida: desde el móvil y sin copiar un número de cuenta. Pagas en la página segura de Stripe; la caja nunca ve los datos de tu tarjeta.",
+    "importeLabel": "Importe",
+    "otra": "Otra",
+    "resumen": "Vas a aportar {importe}.",
+    "sinElegir": "Elige un importe o escribe el tuyo.",
+    "cta": "Aportar {importe}",
+    "ctaSinImporte": "Aportar",
+    "enviando": "Abriendo el pago…",
+    "metodosNota": "En la página de pago verás los métodos disponibles para tu dispositivo y tu banco.",
+    "bizumPausa": "Bizum solo está disponible mientras hay una campaña en curso (huelga, elecciones sindicales, negociación del convenio); entre campañas, aporta con tarjeta, Apple Pay, Google Pay o transferencia.",
+    "metodoPausado": "no disponible entre campañas",
+    "comision": "Stripe se queda {tarifa} de cada pago. Si prefieres que llegue íntegro, usa la transferencia.",
+    "limites": "El pago online va de {min} a {max}. Para aportaciones mayores, usa la transferencia o escribe a la comisión.",
+    "error": "No se pudo abrir el pago. Inténtalo de nuevo o usa la transferencia.",
+    "ok": "Gracias: tu aportación se ha completado y va camino de la caja.",
+    "cancelado": "Has cancelado el pago y no se ha cobrado nada. Puedes volver a intentarlo cuando quieras.",
     "pendiente": "Requiere que el titular jurídico exista: la cuenta de comercio se abre a su nombre, con su CIF y la verificación de sus responsables. No es un paso que se pueda adelantar."
    },
    "metodos": {
@@ -378,47 +459,11 @@
     "apple-pay": "Apple Pay",
     "google-pay": "Google Pay",
     "paypal": "PayPal",
-    "sepa": "Domiciliación SEPA"
+    "sepa": "Domiciliación SEPA",
+    "bizum": "Bizum",
+    "amazon-pay": "Amazon Pay",
+    "klarna": "Klarna"
    }
-  },
-  "selector": {
-   "kicker": "PAGO CON TARJETA",
-   "badge": "Próximamente",
-   "importe": "Importe",
-   "otra": "Otra",
-   "otraPlaceholder": "€",
-   "resumen": "Cuando la tarjeta esté activa, aportarías {importe} en un clic.",
-   "cta": "Aportar {importe} con tarjeta",
-   "bloqueado": "El pago con tarjeta todavía no está activo. Por ahora, aporta este importe por transferencia o Bizum con los datos de arriba."
-  },
-  "mock": {
-   "kicker": "SIMULACIÓN",
-   "title": "Así se vería al aportar.",
-   "aviso": "MOCK-UP — no es un formulario real, no acepta datos y no cobra. Solo muestra el aspecto que tendría el pago cuando la pasarela esté activa.",
-   "pagarCon": "Pagar con",
-   "oTarjeta": "o con tarjeta",
-   "numero": "Número de tarjeta",
-   "caducidad": "Caducidad",
-   "cvc": "CVC",
-   "titular": "Titular",
-   "boton": "Aportar {importe}",
-   "seguro": "Pago cifrado · El fondo no ve tu número de tarjeta"
-  },
-  "bizum": {
-   "badge": "Bizum · Donación",
-   "intro": "Aportación directa a la caja desde la app de tu banco, en 20 segundos. Todo el importe va a la caja y no necesitas dejar ningún dato. Es la vía más rápida para sostener la caja.",
-   "codigoLabel": "Código",
-   "copiar": "Copiar",
-   "copiado": "Copiado",
-   "nombreLabel": "A nombre de",
-   "nombreSub": "Sindicato titular de la caja · CIF {cif}",
-   "pasos": [
-    "Abre la app de tu banco y entra en Bizum.",
-    "Elige «Donar» / «Donaciones» / «ONG» (el nombre cambia según el banco).",
-    "Introduce el código {codigo}. Debe aparecer {nombre}.",
-    "Escribe el importe que quieras donar y confirma."
-   ],
-   "aviso": "La donación se realiza dentro de la app de tu banco: esta web no procesa el pago ni ve tus datos bancarios. Comprueba que el nombre que aparece es «{nombre}»; si no coincide, no confirmes y escríbenos a {email}."
   }
  },
  "internacional": {
@@ -430,21 +475,23 @@
   "comunicadosLabel": "Comunicados internacionales de solidaridad"
  },
  "tienda": {
-  "kicker": "MERCHANDISING",
-  "title": "Lleva la lucha puesta.",
-  "intro": "Cada camiseta sostiene la caja: la mitad de lo que aportas va directa al fondo. Se produce bajo pedido y la entrega el coordinador de logística de tu site.",
-  "metaTitle": "Merchandising",
-  "metaDescription": "Camiseta solidaria de la caja de resistencia: la mitad de tu aportación va directa al fondo.",
+  "kicker": "MATERIAL DE CAMPAÑA",
+  "title": "Lleva la lucha contigo.",
+  "intro": "Cada producto financia la caja de resistencia: descontados su coste y la comisión del pago, todo lo recaudado va al fondo, para esta campaña y las que vengan.",
+  "metaTitle": "Material de campaña",
+  "metaDescription": "Material de campaña de la caja de resistencia: descontados su coste y la comisión del pago, todo lo recaudado va al fondo.",
   "volver": "Volver a la portada",
   "producto": {
-   "nombre": "Camiseta de agradecimiento",
+   "nombre": "Camiseta Así, No!",
    "desc": "Modelo unisex · blanco · tallas XS a 5XL · 100% algodón.",
-   "alt": "Camiseta solidaria unisex de la caja de resistencia, color blanco."
+   "alt": "Camiseta unisex Así, No! de la caja de resistencia, en blanco."
   },
   "desglose": "A dónde va tu aportación",
   "costeLabel": "Coste de la camiseta",
+  "comisionLabel": "Comisión pasarela de pago ({tarifa})",
   "cajaLabel": "A la caja de resistencia",
-  "porcentaje": "El {pct}% de cada camiseta sostiene la caja",
+  "porcentaje": "El {pct} de cada camiseta sostiene la caja",
+  "repartoNota": "Por una camiseta comprada sola. En un pedido de varias, los 0,25 € fijos de la pasarela se pagan una sola vez y a la caja le llega algo más por camiseta.",
   "tallaLabel": "Talla",
   "tallaAviso": "Elige una talla para continuar.",
   "cantidadLabel": "Cantidad",
@@ -456,13 +503,15 @@
   "totalLabel": "Total",
   "nombreLabel": "Nombre y apellidos",
   "emailLabel": "Email",
+  "telefonoLabel": "Teléfono (opcional)",
+  "telefonoAyuda": "Solo para avisarte de la recogida si el correo no llega.",
   "siteLabel": "Centro de recogida",
   "sitePlaceholder": "Elige tu centro",
-  "entrega": "Producción bajo pedido (4-5 días laborables desde que confirmamos el pago). La entrega la realiza el coordinador del Grupo de Logística de tu centro; te avisamos por email cuando esté disponible.",
-  "legalNota": "Al continuar al pago aceptas las Condiciones de aportación y la Política de privacidad (enlaces al pie). Tus datos —nombre, email y centro— se usan solo para gestionar y entregarte este pedido.",
+  "entrega": "Fabricación bajo pedido, sin stock: las camisetas se producen en lotes mensuales que reúnen todos los pedidos confirmados. Te avisaremos por email en cuanto la tuya esté disponible, y te la entregará el coordinador del Grupo de Logística de tu centro.",
+  "legalNota": "Al continuar al pago aceptas las Condiciones de aportación y la Política de privacidad (enlaces al pie). Tus datos —nombre, email, centro y, si lo das, teléfono— se usan solo para gestionar y entregarte este pedido.",
   "pagarLabel": "Pagar de forma segura",
   "pagando": "Redirigiendo al pago…",
-  "pagoNota": "Pago seguro con tarjeta o Bizum a través de Stripe. No guardamos los datos de tu tarjeta.",
+  "pagoNota": "Pago seguro a través de Stripe: tarjeta, Apple Pay, Google Pay y otros métodos. No guardamos los datos de tu tarjeta.",
   "errorGenerico": "No se pudo iniciar el pago. Inténtalo de nuevo.",
   "pago": {
    "okTitulo": "¡Pago recibido!",
@@ -473,7 +522,7 @@
   },
   "proximamente": {
    "titulo": "Disponible muy pronto",
-   "texto": "Estamos activando el pago con tarjeta y Bizum. Vuelve en unos días para conseguir tu camiseta."
+   "texto": "Estamos activando el pago con tarjeta y Bizum. Vuelve en unos días."
   }
  },
  "donantes": {
@@ -496,27 +545,35 @@
   "items": [
    {
     "q": "¿Quién gestiona la caja?",
-    "a": "Una comisión de la propia plantilla, con control colectivo y trazabilidad de cada operación. Los responsables se harán públicos."
+    "a": "Una comisión de la propia plantilla, con control colectivo y trazabilidad de cada operación. Puedes contactar a través de enfadadosconairbus.contacto@gmail.com y syndicat.util.interempresas@airbus.com."
+   },
+   {
+    "q": "¿En qué se gasta el dinero?",
+    "a": "En lo que necesita la movilización y aprueba la asamblea: material, transporte, difusión y logística. Cada campaña publica su desglose de gastos —producción de cada material de campaña, desplazamientos a las marchas, infraestructura digital— en su ficha, dentro de Campañas."
    },
    {
     "q": "¿Cómo sé que el dinero se usa bien?",
-    "a": "Porque las cifras se derivan de datos verificados y se publican: recaudado, gastos, ayudas entregadas y criterios de reparto, con informes descargables."
+    "a": "Porque cada cifra que se publica sale de los extractos de la cuenta del fondo, conciliados por la Tesorería, y lleva su fecha de actualización: recaudado, gastos, saldo disponible y número de aportaciones, con el desglose de gastos de cada campaña. El informe económico descargable se publicará en los próximos días."
    },
    {
     "q": "¿Puedo aportar de forma anónima?",
-    "a": "Sí. Podrás elegir que tu aportación no figure públicamente. La información de los solicitantes de ayuda es siempre privada."
-   },
-   {
-    "q": "¿Puedo cancelar una aportación recurrente?",
-    "a": "Sí, en un clic y en cualquier momento, con acceso a tu historial de aportaciones."
+    "a": "Sí. En la web no aparece ningún nombre: el muro solo cuenta aportaciones. Tus datos de pago los ven Stripe o tu banco, y la Tesorería de ÚTIL solo para cuadrar las cuentas y, si lo pides, darte un justificante."
    },
    {
     "q": "¿Puedo aportar desde fuera de España?",
     "a": "Sí. La caja está pensada para recibir solidaridad nacional e internacional."
    },
    {
-    "q": "¿La calculadora del día de salario guarda mi sueldo?",
-    "a": "No. Funciona íntegramente en tu navegador; el importe que introduces no se envía ni se almacena."
+    "q": "¿Me desgrava?",
+    "a": "En general, no: una aportación a una caja de resistencia no suele contar como donativo deducible. Revisa tu situación particular antes de desgravar nada."
+   },
+   {
+    "q": "¿Por qué hay una sección para grandes donantes e instituciones?",
+    "a": "Porque una aportación grande —de otro sindicato, una asociación, una fundación o una persona— suele necesitar algo más que un botón: documentación sobre el conflicto y sobre cómo se gobierna el fondo, un justificante y, a veces, hablar antes con la comisión. Esa sección reúne todo eso. Además, el pago online llega hasta {max}; por encima se aporta por transferencia, que llega íntegra. Ninguna organización aparecerá como colaboradora sin su confirmación."
+   },
+   {
+    "q": "¿Qué pasa con la caja cuando acabe el conflicto?",
+    "a": "No se cierra. Paga lo que la movilización necesita y queda abierta para sostener a la plantilla en los conflictos que la asamblea decida."
    }
   ]
  },
@@ -543,45 +600,39 @@
    "cookies": "Política de cookies",
    "condiciones": "Condiciones de aportación"
   },
-  "rights": "Textos legales en propuesta, pendientes de validación jurídica.",
+  "creditos": "Huelguista animado: personaje modelado con Meshy, bajo licencia",
   "visitasLabel": "visitas",
   "visitasNota": "Contador propio. No usamos cookies ni analítica: solo se suma un número, sin guardar quién eres.",
-  "redes": "Canales",
-  "redesAsunto": "Contacto desde la web",
-  "redesNuevaPestana": "se abre en una pestaña nueva",
   "sobre": "Gobernanza",
   "contacto": {
    "heading": "Contacto",
-   "incidencias": "Incidencias de la web",
-   "tienda": "Caja de Resistencia",
-   "conflicto": "Conflicto y prensa",
+   "cajaWeb": "Caja de Resistencia e incidencias de la web",
    "gestion": "Gestión de la caja",
    "gestionPendiente": "pendiente — lo dará el sindicato"
-  }
+  },
+  "buzon": "Buzón de sugerencias"
  },
  "cookies": {
-  "text": "Solo usamos almacenamiento técnico para recordar tu idioma y si ya viste este aviso. Sin cookies de seguimiento ni analítica.",
+  "text": "Solo usamos almacenamiento técnico para recordar tus preferencias (idioma, modo día o noche y el huelguista animado) y si ya viste este aviso. Sin cookies de seguimiento ni analítica. YouTube, el antispam del buzón y el pago con Stripe solo se cargan si los usas.",
   "masInfo": "Más información",
   "cerrar": "Entendido"
  },
  "legalModals": {
   "aviso": {
    "title": "Aviso legal",
-   "body": "Titularidad del sitio. Esta web es la caja de resistencia del movimiento #EnfadadosconAirbus. Su titularidad jurídica la asume Sindicato Útil, que responde del fondo y firma estos textos legales. El movimiento en sí es independiente: no representa a Airbus ni utiliza su identidad corporativa, y tampoco es el canal general del sindicato titular ni de ninguna otra organización.\n\nResponsable. La entidad titular es Sindicato Útil (Unión de Trabajadores Independientes y Libres); sus datos identificativos figuran al pie de este aviso. La caja recibe aportaciones por transferencia bancaria y Bizum «Donación a ONG»; el pago con tarjeta se habilitará cuando la pasarela esté validada.\n\nObjeto. Gestionar la caja de resistencia: informar sobre el fondo, canalizar las aportaciones y, en su caso, la venta de artículos cuyo margen se destina a la caja (Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico).\n\nTransparencia. Las cifras de la caja se publican con su fecha de actualización y son trazables a movimientos reales; ninguna cifra se publica sin respaldo.\n\nPropiedad intelectual. Los textos propios de este sitio pueden reproducirse citando la fuente. Las marcas, nombres comerciales y signos distintivos de terceros que aparezcan pertenecen a sus titulares y se emplean únicamente a título informativo, para identificar a la empresa a la que se refiere el conflicto.\n\nEnlaces. El sitio puede enlazar a fuentes externas. No se responde del contenido de esos sitios ni de sus políticas.\n\nRetirada de contenido. Cualquier persona que considere que un contenido vulnera sus derechos puede solicitar su retirada en enfadadosconairbus.contacto@gmail.com, indicando el contenido concreto y el motivo. Se atenderá con diligencia.\n\nLegislación aplicable. Este aviso se rige por la legislación española.",
-   "nota": "Texto en propuesta. Pendiente de la revisión de un abogado y —en las Condiciones de aportación— del plazo de devolución y el régimen fiscal."
+   "body": "Titularidad del sitio. Esta web es la caja de resistencia del movimiento #EnfadadosconAirbus. Su titularidad jurídica la asume Sindicato Útil, que responde del fondo y firma estos textos legales. El movimiento en sí es independiente: no representa a Airbus ni utiliza su identidad corporativa, y tampoco es el canal general del sindicato titular ni de ninguna otra organización.\n\nResponsable. La entidad titular es Sindicato Útil (Unión de Trabajadores Independientes y Libres); sus datos identificativos figuran al pie de este aviso. La caja recibe aportaciones por transferencia bancaria y por pago online a través de Stripe (tarjeta, Apple Pay, Google Pay, Bizum y otros métodos).\n\nObjeto. Gestionar la caja de resistencia: informar sobre el fondo, canalizar las aportaciones y, en su caso, la venta de artículos cuyo margen se destina a la caja (Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico).\n\nTransparencia. Las cifras de la caja se publican con su fecha de actualización y son trazables a movimientos reales; ninguna cifra se publica sin respaldo.\n\nPropiedad intelectual. Los textos propios de este sitio pueden reproducirse citando la fuente. Las marcas, nombres comerciales y signos distintivos de terceros que aparezcan pertenecen a sus titulares y se emplean únicamente a título informativo, para identificar a la empresa a la que se refiere el conflicto.\n\nEnlaces. El sitio puede enlazar a fuentes externas. No se responde del contenido de esos sitios ni de sus políticas.\n\nRetirada de contenido. Cualquier persona que considere que un contenido vulnera sus derechos puede solicitar su retirada en enfadadosconairbus.contacto@gmail.com, indicando el contenido concreto y el motivo. Se atenderá con diligencia.\n\nLegislación aplicable. Este aviso se rige por la legislación española."
   },
   "privacidad": {
    "title": "Política de privacidad",
-   "body": "Este sitio está pensado para poder leerse sin dejar rastro. No hay analítica de terceros, ni píxeles, ni perfiles publicitarios.\n\nResponsable del tratamiento. La titularidad jurídica la asume Sindicato Útil (Unión de Trabajadores Independientes y Libres, CIF G10605053), con domicilio en Paseo John Lennon, s/n, 28906 Getafe. Contacto: enfadadosconairbus.contacto@gmail.com.\n\nQué datos se tratan.\n1. Ninguno, si usted solo navega. No se registran su IP, su navegador ni sus páginas vistas con fines de análisis. El servidor genera registros técnicos temporales, propios de cualquier alojamiento, que no se utilizan para elaborar perfiles.\n2. Contador de visitas. Se incrementa un número. No se guarda IP, identificador, cookie ni dato alguno que permita distinguir a una persona de otra: no hay tratamiento de datos personales.\n3. Si escribe a la dirección de contacto. Se tratará su dirección de correo y el contenido de su mensaje con la única finalidad de responderle. Base jurídica: su consentimiento al escribir. Conservación: mientras dure la conversación y el plazo legal exigible.\n4. Aportaciones por transferencia y Bizum. La transferencia se realiza desde su banco: esta web no procesa el pago ni ve sus datos bancarios. El Bizum «Donación a ONG» ocurre íntegramente dentro de la app de su banco, sin que la web intervenga. Solo se tratarán los datos que usted nos facilite al escribirnos, por ejemplo para pedir un justificante.\n5. Pedidos de la tienda. Si encarga un artículo, se tratan su nombre, su email y el centro de recogida elegido, junto con los datos del pedido y su estado de pago, con la única finalidad de gestionarlo y entregárselo. Base jurídica: la ejecución de esa compraventa a petición suya. Conservación: el tiempo necesario para la entrega y los plazos contables y fiscales exigibles.\n6. Pago con tarjeta. Todavía no está activo. Cuando se habilite la pasarela, esta política se ampliará antes de activarla, detallando qué datos se piden, con qué base jurídica, quién los trata y cuánto se conservan.\n\nPreferencias guardadas en su dispositivo. Se usa el almacenamiento local del navegador para recordar el idioma elegido, el modo de visualización (día o noche) y si ya vio el aviso de cookies. No sale de su equipo y no se comparte.\n\nDestinatarios. Los datos no se ceden ni se venden. La web se aloja y se sirve desde la infraestructura de Cloudflare, Inc., que actúa como encargado del tratamiento y aloja también la base de datos de los pedidos; puede procesar registros técnicos y esos datos en servidores dentro y fuera del Espacio Económico Europeo, con las garantías previstas en el RGPD.\n\nSus derechos. Puede solicitar acceso, rectificación, supresión, limitación, oposición y portabilidad escribiendo a enfadadosconairbus.contacto@gmail.com. Si considera que sus derechos no han sido atendidos, puede reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).\n\nMenores. Este sitio no está dirigido a menores de 14 años ni recoge datos de ellos conscientemente."
+   "body": "Este sitio está pensado para poder leerse sin dejar rastro. No hay analítica de terceros, ni píxeles, ni perfiles publicitarios.\n\nResponsable del tratamiento. La titularidad jurídica la asume Sindicato Útil (Unión de Trabajadores Independientes y Libres, CIF G10605053), con domicilio en Paseo John Lennon, s/n, 28906 Getafe. Contacto: enfadadosconairbus.contacto@gmail.com.\n\nQué datos se tratan.\n1. Ninguno, si usted solo navega. No se registran su IP, su navegador ni sus páginas vistas con fines de análisis. El servidor genera registros técnicos temporales, propios de cualquier alojamiento, que no se utilizan para elaborar perfiles.\n2. Contador de visitas. Se incrementa un número. No se guarda IP, identificador, cookie ni dato alguno que permita distinguir a una persona de otra: no hay tratamiento de datos personales.\n3. Si escribe a la dirección de contacto. Se tratará su dirección de correo y el contenido de su mensaje con la única finalidad de responderle. Base jurídica: su consentimiento al escribir. Conservación: mientras dure la conversación y el plazo legal exigible.\n4. Aportaciones por transferencia. La transferencia se realiza desde su banco: esta web no procesa el pago ni ve sus datos bancarios. Solo se tratarán los datos que usted nos facilite al escribirnos, por ejemplo para pedir un justificante.\n5. Pedidos de material de campaña. Si encarga un artículo, se tratan su nombre, su email, el centro de recogida elegido y, si lo facilita, su teléfono, junto con los datos del pedido y su estado de pago, con la única finalidad de gestionarlo, avisarle por correo del pago y de la recogida, y entregárselo. Base jurídica: la ejecución de esa compraventa a petición suya. Conservación: el tiempo necesario para la entrega y los plazos contables y fiscales exigibles.\n6. Pagos online (aportaciones y pedidos de material de campaña). Se realizan en la página de pago de Stripe (Stripe Payments Europe, Ltd., Irlanda), que recoge y trata los datos de su tarjeta o de su método de pago según su propia política de privacidad (stripe.com/es/privacy). Esta web no ve ni guarda esos datos. La entidad titular recibe de Stripe el importe, la fecha, el método de pago utilizado, su email y, si lo facilita, su nombre, con la única finalidad de registrar y conciliar la aportación o el pedido y, si lo pide, emitir su justificante. Base jurídica: su solicitud de aportar o de comprar y las obligaciones contables y fiscales de la entidad titular. Conservación: los plazos contables y fiscales exigibles.\n7. Buzón de sugerencias. Si nos envía una sugerencia, se trata su texto y, solo si lo facilita, el contacto que deje para que le respondamos. Llega por correo electrónico a la dirección de contacto y no se guarda en la web: no se registran su IP ni su navegador. Para frenar el spam automático, al abrir el buzón se carga Cloudflare Turnstile, que procesa la IP y datos técnicos de la conexión y del navegador con la única finalidad de distinguir a una persona de un programa, no para identificar ni perfilar a nadie. Base jurídica: su consentimiento al enviarla. Conservación: el tiempo necesario para estudiarla y, si lo pide, responderle.\n\nPreferencias guardadas en su dispositivo. Se usa el almacenamiento local del navegador para recordar el idioma elegido, el modo de visualización (día o noche), si ya vio el aviso de cookies y, si las cambia, sus preferencias sobre el huelguista animado (mostrarlo u ocultarlo, con o sin sonido). No sale de su equipo y no se comparte.\n\nDestinatarios. Los datos no se ceden ni se venden. La web se aloja y se sirve desde la infraestructura de Cloudflare, Inc., que actúa como encargado del tratamiento y aloja también la base de datos de los pedidos; puede procesar registros técnicos y esos datos en servidores dentro y fuera del Espacio Económico Europeo, con las garantías previstas en el RGPD. Los pagos online los procesa Stripe Payments Europe, Ltd. (ver punto 6), que puede tratar datos fuera del Espacio Económico Europeo con las garantías previstas en el RGPD. Los correos de los pedidos se envían a través de Resend, Inc. (Estados Unidos), y los pedidos se gestionan en una hoja de cálculo de Google (Google Ireland Ltd.); ambos actúan como encargados del tratamiento, con las garantías previstas en el RGPD para las transferencias internacionales.\n\nSus derechos. Puede solicitar acceso, rectificación, supresión, limitación, oposición y portabilidad escribiendo a enfadadosconairbus.contacto@gmail.com. Si considera que sus derechos no han sido atendidos, puede reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).\n\nMenores. Este sitio no está dirigido a menores de 14 años ni recoge datos de ellos conscientemente."
   },
   "cookies": {
    "title": "Política de cookies",
-   "body": "Este sitio no utiliza cookies de seguimiento, ni publicitarias, ni de analítica. No hay cookies de terceros.\n\nAlmacenamiento estrictamente necesario. Se guardan en su navegador, mediante almacenamiento local, tres preferencias: el idioma elegido, el modo de visualización (día o noche) y si ya vio este aviso. No identifican a nadie, no se envían a ningún servidor y puede borrarlas desde su navegador cuando quiera. Por su naturaleza técnica están exentas del deber de consentimiento previo (artículo 22.2 de la LSSI-CE).\n\nPeticiones a terceros. Ninguna. Todos los recursos —tipografías, imágenes y datos— se sirven desde este mismo dominio; su navegador no contacta con servidores de terceros al cargar la página.\n\nContador de visitas. Es propio y se limita a incrementar un número en el servidor. No emplea cookies ni almacena dato alguno de quien visita.\n\nCómo revocar. Basta con borrar el almacenamiento local del sitio desde las preferencias de su navegador. No perderá ningún contenido: solo volverá a preguntarle el idioma y a mostrarle el aviso."
+   "body": "Este sitio no utiliza cookies de seguimiento, ni publicitarias, ni de analítica, y navegar por él no instala ninguna cookie, ni propia ni de terceros.\n\nAlmacenamiento estrictamente necesario. Se guardan en su navegador, mediante almacenamiento local, estas preferencias: el idioma elegido, el modo de visualización (día o noche), si ya vio este aviso y, solo si usted las cambia, si prefiere ocultar al huelguista animado y si le ha activado el sonido. No identifican a nadie, no se envían a ningún servidor y puede borrarlas desde su navegador cuando quiera. Por su naturaleza técnica están exentas del deber de consentimiento previo (artículo 22.2 de la LSSI-CE).\n\nServicios de terceros que solo se activan si usted los usa. Al cargar cualquier página, su navegador no contacta con servidores de terceros: tipografías, imágenes, el modelo animado y los datos se sirven desde este mismo dominio. Solo en estos tres casos, y únicamente cuando usted realiza la acción, intervienen servicios externos que pueden usar cookies o almacenamiento en sus propios dominios:\n\n1. Buzón de sugerencias: Cloudflare Turnstile (Cloudflare, Inc.). Al abrir el buzón se carga desde challenges.cloudflare.com una verificación antispam. Procesa la IP y datos técnicos del navegador, y puede usar cookies o almacenamiento local en su propio dominio, con la única finalidad de distinguir a una persona de un programa automático; no se utiliza con fines publicitarios ni para seguirle entre sitios web. En este dominio no instala nada. Es una medida de seguridad estrictamente necesaria para prestar el servicio que usted solicita —enviar la sugerencia—, por lo que está exenta de consentimiento (artículo 22.2 de la LSSI-CE). Más información: cloudflare.com/turnstile-privacy-policy.\n\n2. Vídeos de la cobertura de prensa: YouTube (Google Ireland Ltd.). Cada vídeo se muestra como una imagen fija servida desde este dominio, y YouTube no se carga hasta que usted pulsa «reproducir»; entonces se usa su modo de privacidad mejorada (youtube-nocookie.com). Al reproducir, YouTube puede guardar cookies o datos en el almacenamiento de su navegador conforme a su propia política (policies.google.com/technologies/cookies). Si prefiere evitarlo, no pulse «reproducir».\n\n3. Aportaciones online: Stripe (Stripe Payments Europe, Ltd.). Al aportar con tarjeta u otro método de pago online, se le dirige a la página de pago de Stripe, fuera de este dominio. Allí Stripe utiliza sus propias cookies, necesarias para procesar el pago con seguridad y prevenir el fraude (stripe.com/legal/cookies-policy). Esta web no instala ninguna cookie de Stripe.\n\nContador de visitas. Es propio y se limita a incrementar un número en el servidor. No emplea cookies ni almacena dato alguno de quien visita.\n\nCómo revocar. Basta con borrar el almacenamiento local del sitio desde las preferencias de su navegador. No perderá ningún contenido: solo volverá a preguntarle el idioma y a mostrarle el aviso, y el huelguista volverá a aparecer, en silencio. Las cookies que YouTube, Cloudflare o Stripe hayan podido guardar en sus propios dominios se borran también desde la configuración de su navegador."
   },
   "condiciones": {
    "title": "Condiciones de aportación",
-   "body": "Estas condiciones regulan las aportaciones a la caja de resistencia. La caja ya puede recibir aportaciones por transferencia bancaria; el pago con tarjeta se habilitará cuando la pasarela esté validada.\n\nQué es una aportación. Una entrega voluntaria de dinero, sin contraprestación, destinada a sostener económicamente a quienes pierden salario por secundar la movilización. No es una compra, no es una inversión y no genera derecho alguno sobre el fondo ni sobre su gestión.\n\nQuién puede aportar. Cualquier persona mayor de edad con capacidad para disponer de los fondos que entrega, sea o no de la plantilla de Airbus España.\n\nDestino de los fondos. Íntegramente a los fines de la caja: ayudas a personas trabajadoras afectadas por la pérdida de salario y gastos directamente necesarios para gestionarla. Los criterios de reparto se publicarán junto con la constitución del fondo y no se aplicarán con carácter retroactivo.\n\nTransparencia y rendición de cuentas. Se publicará periódicamente lo recaudado, lo entregado, los gastos de gestión y el saldo pendiente de asignar, con su fecha de actualización. Ninguna cifra se publicará sin ser trazable a un movimiento real.\n\nDevoluciones. Podrá solicitar la devolución de una aportación escribiendo a enfadadosconairbus.contacto@gmail.com dentro de los [·] días naturales siguientes, siempre que no haya sido ya entregada como ayuda. Pasado ese plazo, la aportación es irrevocable por su propia naturaleza solidaria.\n\nAportaciones recurrentes. Podrán cancelarse en cualquier momento y sin justificación, desde el propio recibo o escribiendo a enfadadosconairbus.contacto@gmail.com. La cancelación surte efecto antes del siguiente cargo.\n\nJustificantes y fiscalidad. Se emitirá justificante de cada aportación. Las aportaciones a una caja de resistencia no tienen, con carácter general, la consideración de donativo deducible: consulte su situación particular antes de deducir nada. [·] (régimen fiscal aplicable, a confirmar por asesoría).\n\nTienda. Las ventas de artículos no son aportaciones: son compraventas, con sus propios derechos de desistimiento y garantía. Cada artículo indica qué parte del precio cubre coste y qué parte se destina a la caja. La venta de artículos en esta web se habilitará junto con la pasarela de pago.\n\nModificación. Estas condiciones podrán actualizarse. La versión aplicable a cada aportación será la vigente en el momento de realizarla, y las versiones anteriores quedarán accesibles.",
-   "nota": "Condiciones en propuesta. Quedan pendientes de la revisión de un abogado, que completará dos datos: el plazo de devolución (en días naturales) y el régimen fiscal aplicable."
+   "body": "Estas condiciones regulan las aportaciones a la caja de resistencia. La caja recibe aportaciones por transferencia bancaria y por pago online a través de Stripe. En los pagos online, Stripe descuenta su comisión (1,25 % + 0,25 € por pago); por transferencia, la aportación llega íntegra.\n\nQué es una aportación. Una entrega voluntaria de dinero, sin contraprestación, destinada a sostener económicamente a quienes pierden salario por secundar la movilización. No es una compra, no es una inversión y no genera derecho alguno sobre el fondo ni sobre su gestión.\n\nQuién puede aportar. Cualquier persona mayor de edad con capacidad para disponer de los fondos que entrega, sea o no de la plantilla de Airbus España.\n\nDestino de los fondos. Íntegramente a los fines de la caja: ayudas a personas trabajadoras afectadas por la pérdida de salario y gastos directamente necesarios para gestionarla. Los criterios de reparto se publicarán junto con la constitución del fondo y no se aplicarán con carácter retroactivo.\n\nTransparencia y rendición de cuentas. Se publicará periódicamente lo recaudado, lo entregado, los gastos de gestión y el saldo pendiente de asignar, con su fecha de actualización. Ninguna cifra se publicará sin ser trazable a un movimiento real.\n\nDevoluciones. Una aportación, una vez realizada, es irrevocable por su propia naturaleza solidaria y no admite devolución.\n\nJustificantes y fiscalidad. Se emitirá justificante de cada aportación. Las aportaciones a una caja de resistencia no tienen, con carácter general, la consideración de donativo deducible: consulte su situación particular antes de deducir nada.\n\nMaterial de campaña. Las ventas de artículos no son aportaciones: son compraventas, con sus propios derechos de desistimiento y garantía. Cada artículo indica qué parte del precio cubre coste y qué parte se destina a la caja. Los artículos se pagan online a través de Stripe.\n\nModificación. Estas condiciones podrán actualizarse. La versión aplicable a cada aportación será la vigente en el momento de realizarla, y las versiones anteriores quedarán accesibles."
   }
  },
  "documentacion": {
@@ -594,7 +645,7 @@
   "sitesHeading": "Actas por centro",
   "grupoLabel": "Resumen del grupo",
   "indiceHeading": "Índice de documentos",
-  "indiceResumen": "{n} documentos en {c} categorías. {d} se pueden descargar aquí; el resto se consultan en el grupo de Telegram.",
+  "indiceResumen": "{n} documentos en {c} categorías. {d} se pueden descargar aquí.",
   "indiceActualizado": "Índice actualizado: {fecha}",
   "indiceFuente": "Ver el índice completo",
   "indiceNota": "Lo cataloga a diario el Grupo Documentación en Telegram. Aquí se replica sin el nombre de quien subió cada documento ni sus reacciones. Las imágenes del índice no se replican.",
@@ -619,7 +670,7 @@
   "body": "La caja paga lo que la movilización necesita y queda abierta para lo que la plantilla decida defender. Tiene su propia página: qué es, en qué se gasta, cómo aportar y cómo se rinden cuentas.",
   "ctaPrimary": "Aportar",
   "ctaSecondary": "Conocer la caja",
-  "ctaTienda": "Ver la tienda"
+  "ctaTienda": "Ver el material de campaña"
  },
  "cronologia": {
   "kicker": "CRONOLOGÍA",
@@ -639,7 +690,7 @@
   "title": "La caja es de la plantilla.",
   "naturaleza": {
    "heading": "Naturaleza",
-   "body": "Esta web es la caja de resistencia del movimiento #EnfadadosconAirbus: un fondo común que paga lo que la movilización necesita y que queda abierto, como caja permanente, para sostener a la plantilla en los conflictos y negociaciones que decida la asamblea. Su primera partida ha financiado la movilización; el fondo no se cierra al terminarla.\n\nEl fondo lo gobiernan los Grupos de Trabajo de Comité de Huelga y Logística, con control colectivo y rendición de cuentas pública. Su titularidad jurídica —la entidad que aporta CIF, cuenta y firma los textos legales— la asume Sindicato Útil, que actúa como vehículo legal y fiscal. Ese papel no la convierte en dueña de la caja: el dinero es finalista y las decisiones son de la plantilla.\n\nEste sitio no representa a Airbus ni habla en su nombre, y tampoco es el canal general de una organización sindical: es la herramienta económica del movimiento."
+   "body": "Esta web es la caja de resistencia del movimiento #EnfadadosconAirbus: un fondo común que paga lo que la movilización necesita y que queda abierto, como caja permanente, para sostener a la plantilla en los conflictos y negociaciones que decida la asamblea. Su primera partida ha financiado la movilización; el fondo no se cierra al terminarla.\n\nEl fondo lo gobiernan los Grupos de Trabajo de Comité de Huelga y Logística, con control colectivo y rendición de cuentas pública. Su titular jurídico y fiscal es Sindicato Útil, que aporta el CIF y la cuenta bancaria y firma los textos legales. Los fondos tienen carácter finalista: se destinan exclusivamente a los fines que acuerde la asamblea competente.\n\nEste sitio no representa a Airbus ni habla en su nombre, y tampoco es el canal general de una organización sindical: es la herramienta económica del movimiento."
   },
   "criterio": {
    "heading": "Gobernanza y control",
@@ -653,8 +704,8 @@
    "coda": "El sindicato titular presta la cobertura jurídica; la voz y el control siguen siendo de la plantilla."
   },
   "privacidad": {
-   "heading": "Datos de quienes aportan y reciben",
-   "body": "El proyecto minimiza los datos personales. Quien aporta puede elegir que su aportación no figure públicamente. La información de quienes solicitan o reciben ayuda es siempre privada: no se publica, y solo la manejan los Grupos de Trabajo para resolver la solicitud."
+   "heading": "Datos de quienes aportan",
+   "body": "La web no recoge datos de quienes aportan: no hay registro ni formulario de aportantes, y no se publica ninguna lista con sus nombres. Si aporta con tarjeta o Bizum, el pago se hace en la página de Stripe, que solo comunica a la caja lo imprescindible para registrar la aportación y, si lo pide, emitir su justificante; si aporta por transferencia, la caja ve lo mismo que cualquier destinatario de una transferencia. Nada de ello se publica."
   },
   "correcciones": {
    "heading": "Correcciones y contacto",
@@ -662,12 +713,12 @@
   },
   "independencia": {
    "heading": "Independencia",
-   "body": "La caja es independiente de la empresa y de cualquier organización sindical concreta. El sindicato titular aporta el vehículo legal y fiscal; no dirige el fondo ni es su propietario. El movimiento #EnfadadosconAirbus pertenece a la plantilla y aspira a seguir siendo su voz en los potenciales conflictos y negociaciones futuras.\n\nLas marcas y nombres de terceros que aparezcan se usan solo para identificar a los actores del conflicto, sin ánimo de generar confusión sobre el origen de esta web."
+   "body": "La caja es independiente de la empresa y de cualquier organización sindical concreta. Sindicato Útil es su titular jurídico y fiscal; el destino de los fondos lo decide la asamblea competente. El movimiento #EnfadadosconAirbus pertenece a la plantilla y aspira a seguir siendo su voz en los potenciales conflictos y negociaciones futuras.\n\nLas marcas y nombres de terceros que aparezcan se usan solo para identificar a los actores del conflicto, sin ánimo de generar confusión sobre el origen de esta web."
   },
   "volver": "Volver a la portada",
   "reglamentoReparto": {
    "heading": "Reglamento de reparto",
-   "body": "Este reglamento fija en qué se emplea el dinero de la caja. Lo aprueba la asamblea competente y solo ella puede modificarlo.\n\nLos fondos se destinan a gastos directamente relacionados con la movilización: producción de material y cartelería de campaña (incluidas las camisetas), transporte y desplazamientos a las marchas, alquiler de equipos —como el camión con equipo de sonido de la marcha ante los Ministerios del 12 de septiembre de 2026—, comunicación y difusión, servicios profesionales y logística, y las comisiones y el mantenimiento de la cuenta. No pueden imputarse gastos personales ni ajenos a la actividad sindical.\n\nCada gasto se rinde ante la asamblea y se publica con su fecha, trazable a movimientos reales y respaldado por su justificante. Cuando una organización distinta adelanta un gasto de la movilización, la asamblea competente lo aprueba antes de imputarlo al fondo.\n\nAl terminar cada movilización, la caja no se cierra ni se reparte lo que sobra: el remanente permanece en el fondo, a disposición de las futuras movilizaciones de la plantilla de Airbus España asociadas a conflictos laborales y a sus negociaciones colectivas. Sindicato Útil no puede disponer de ese remanente sin la autorización de la asamblea competente; entre conflictos, el dinero queda inmovilizado y solo la asamblea competente puede acordar el cierre del fondo y el destino final del remanente.\n\nEl acuerdo de creación del fondo y este reglamento están en proceso de ratificación y firma; sus textos íntegros se publicarán aquí una vez firmados."
+   "body": "Este reglamento fija en qué se emplea el dinero de la caja. Lo aprueba la asamblea competente y solo ella puede modificarlo.\n\nLos fondos se destinan a gastos directamente relacionados con la movilización: producción de material y cartelería de campaña (incluidas las camisetas), transporte y desplazamientos a las marchas, alquiler de equipos —como el camión con equipo de sonido de la marcha ante los Ministerios del 12 de septiembre de 2026—, comunicación y difusión, servicios profesionales y logística, y las comisiones y el mantenimiento de la cuenta. No pueden imputarse gastos personales ni ajenos a la actividad sindical.\n\nCada gasto se rinde ante la asamblea y se publica con su fecha, trazable a movimientos reales y respaldado por su justificante. Cuando una organización distinta adelanta un gasto de la movilización, la asamblea competente lo aprueba antes de imputarlo al fondo.\n\nAl terminar cada movilización, la caja no se cierra ni se reparte lo que sobra: el remanente permanece en el fondo, a disposición de las futuras movilizaciones de la plantilla de Airbus España asociadas a conflictos laborales y a sus negociaciones colectivas. Sindicato Útil no puede disponer de ese remanente sin la autorización de la asamblea competente; entre conflictos, el dinero queda inmovilizado y solo la asamblea competente puede acordar el cierre del fondo y el destino final del remanente.\n\nLos textos íntegros del acuerdo de creación del fondo y de este reglamento se publicarán aquí en los próximos días."
   },
   "contactoCaja": {
    "heading": "Contacto de la gestión de la caja",
@@ -679,10 +730,398 @@
   "kicker": "DE DÓNDE VIENE ESTA CAJA",
   "title": "Primero, entiende el conflicto.",
   "body": "Esta caja nace del conflicto de la plantilla de Airbus España. Para decidir si aportar, conócelo: quiénes son, qué reclaman y por qué han llegado hasta aquí.",
-  "cta": "Conoce el conflicto — web del movimiento"
+  "cta": "Conoce el origen del conflicto"
  },
  "valores": {
   "resumen": "Solidaridad, independencia, transparencia y control colectivo sostienen la caja.",
   "cta": "Cómo se sostienen → Gobernanza"
+ },
+ "cartel": {
+  "alt": "Ilustración de campaña: un gorila gigante sostiene en alto un avión de hélices mientras alza el puño y grita ante una multitud de trabajadores y trabajadoras que responden con los puños en alto, al atardecer."
+ },
+ "campanas": {
+  "kicker": "CAMPAÑAS",
+  "title": "Una caja, muchas luchas.",
+  "intro": "La caja no se abrió para un conflicto ni se cierra cuando acaba. Cada campaña es una lucha que ha sostenido, con lo que costó y en qué se gastó. Lo que sobra de una pasa a la siguiente.",
+  "permanente": "No hace falta esperar a que haya huelga para aportar: la caja se alimenta poco a poco, y por eso está lista cuando hace falta.",
+  "acumulado": "En total, la caja lleva {recaudado} recaudados en {n} campañas.",
+  "estados": {
+   "en-curso": "En curso",
+   "pausada": "En pausa",
+   "cerrada": "Finalizada",
+   "prevista": "Prevista"
+  },
+  "coste": "Lo que ha costado",
+  "costeCerrada": "Lo que costó",
+  "desglose": "En qué se gastó",
+  "conseguidoLabel": "Qué se ha conseguido",
+  "desde": "Desde",
+  "hasta": "Hasta",
+  "abierta": "sigue abierta",
+  "sinFecha": "Cuando la asamblea la convoque",
+  "sinGastos": "Todavía no ha habido gastos.",
+  "ver": "Ver la campaña",
+  "volver": "Volver a Campañas",
+  "lemaPie": "El lema de la huelga",
+  "relato": "La cobertura de prensa completa sigue, de momento, en la web del movimiento.",
+  "relatoCta": "Ir a la web del movimiento",
+  "fichas": {
+   "huelga-2026": {
+    "nombre": "Huelga 2026 — Así, no!",
+    "corto": "Huelga 2026",
+    "lema": "Recuperar el poder adquisitivo perdido y que las decisiones se negocien, no se impongan.",
+    "conseguido": "Antes de la huelga, lo que la empresa ponía sobre la mesa era la continuación de años de recortes en las condiciones de trabajo, y la propuesta del CEO de reducir el teletrabajo al 20 % semanal fue el detonante de una movilización histórica. Esto es lo que había entonces y lo que recoge el acuerdo que la plantilla aprobó en referéndum el 1 de octubre, con el 76,76 % de los votos y una participación del 87,33 %.\n\nPor el camino, la plantilla tumbó en referéndum el preacuerdo de julio —un 12 % que en realidad eran un 10 % general más dos puntos que se iban a RSI y a promociones— y sostuvo la huelga cuando se le preguntó si quería pararla: el 31 de agosto, el 81,2 % votó seguir. Y cuando la empresa llevó su «propuesta final» al Ministerio de Industria en lugar de a las asambleas y convocó el referéndum por su cuenta, la Audiencia Nacional lo dejó en suspenso a petición de CGT. Las cautelares se levantaron el 24 de septiembre; el fondo —si se vulneró el derecho de huelga— se ve el 4 de noviembre.\n\nLa caja ha pagado lo que hacía falta para llegar hasta aquí: las camisetas, los trenes a las marchas de Sevilla y Madrid, el transporte al Ministerio.",
+    "comparativa": {
+     "tema": "Tema",
+     "antes": "Antes de la huelga",
+     "despues": "Tras la huelga",
+     "filas": [
+      {
+       "tema": "Salario",
+       "antes": "3 % de incremento general, más 0,5 % para RSI y 0,5 % para promociones, en 2026 y en 2027.",
+       "despues": "Acuerdo a cuatro años con el IPC real garantizado y recuperación del 7,95 % de poder adquisitivo: IPC real + 2 % en 2026, 2027 y 2028, e IPC real + 1,95 % en 2029. Cada año, además, 0,5 % de revisión salarial individual y 0,5 % para promociones."
+      },
+      {
+       "tema": "«Efecto abril»",
+       "antes": "Se introducía en 2027.",
+       "despues": "Se retrasa a 2028, y una paga única de 2.000 € brutos no consolidables, en octubre de 2026, lo compensa a quienes estén en plantilla cuando se valide el referéndum."
+      },
+      {
+       "tema": "Teletrabajo",
+       "antes": "Recorte al 20 % semanal a partir del 1 de septiembre de 2026: el detonante de la huelga.",
+       "despues": "Se mantiene la política actual y se respetan los acuerdos individuales, incluido el 40 % en remoto y los de dos días a distancia. También para las nuevas incorporaciones."
+      },
+      {
+       "tema": "Absentismo",
+       "antes": "El indicador Bradford para medir el absentismo.",
+       "despues": "La empresa retira su recurso ante el Tribunal Supremo, renuncia por completo a retirar el complemento por incapacidad temporal y devuelve en octubre lo descontado. El nuevo sistema de control del absentismo se negociará en un grupo de trabajo conjunto."
+      },
+      {
+       "tema": "Rutas de autobús",
+       "antes": "En peligro.",
+       "despues": "Se mantienen las rutas vigentes. Los ajustes, también los de agosto, se negocian en los Comités de Movilidad."
+      },
+      {
+       "tema": "Vacaciones",
+       "antes": "Tres semanas obligatorias en agosto.",
+       "despues": "Dos semanas obligatorias y dos flexibles (antes, tres y una), programadas entre trabajador y supervisor."
+      },
+      {
+       "tema": "Proyecto Bromo",
+       "antes": "Ninguna garantía para la plantilla afectada.",
+       "despues": "Quien pase a la joint venture conserva el Convenio Colectivo desde el primer día y hasta que haya uno nuevo, la antigüedad y el acceso pleno al mercado interno de empleo de Airbus, sin periodo de prueba."
+      },
+      {
+       "tema": "Cargas de trabajo en Cádiz",
+       "antes": "En riesgo.",
+       "despues": "Antes del 1 de noviembre de 2026, una comisión analizará los acuerdos vigentes y las necesidades futuras de actividad."
+      }
+     ],
+     "ademasTitulo": "Y lo que ni siquiera estaba sobre la mesa",
+     "ademas": [
+      "Comedor: para quien no lo tiene gratis, el precio baja de 5 € a 3,50 € desde el 1 de octubre, con revisión anual de tarifas.",
+      "Flexibilidad horaria voluntaria a la entrada y a la salida en los puestos que lo permitan.",
+      "Política salarial: revisión integral de la PG-121 para mejorar progresiones y promociones; de las condiciones de LMA, rodadores y ENDS; un nuevo catálogo de puestos y un nuevo sistema de retribución variable (PG-22). Las negociaciones empiezan antes de que acabe 2026."
+     ]
+    }
+   },
+   "elecciones-2027": {
+    "nombre": "Elecciones sindicales 2027",
+    "corto": "Elecciones sindicales 2027",
+    "lema": "Que la plantilla decida quién la representa, con medios para hacer campaña.",
+    "conseguido": ""
+   },
+   "convenio-viii": {
+    "nombre": "Negociación del VIII Convenio Colectivo",
+    "corto": "Negociación del VIII Convenio Colectivo",
+    "lema": "El convenio que vendrá después de este conflicto, con la caja ya llena.",
+    "conseguido": ""
+   }
+  },
+  "acumuladoUna": "En total, la caja lleva {recaudado} recaudados en una campaña.",
+  "cronologiaTitulo": "La cronología del conflicto",
+  "cronologiaTexto": "Los 66 hitos de esta lucha, del primer día de huelga hasta hoy. Cada uno con los documentos que lo sostienen y los medios que lo publicaron.",
+  "cronologiaCta": "Recorrer la cronología",
+  "docsTitulo": "Los documentos del conflicto",
+  "docsTexto": "El índice del grupo, las actas de las asambleas de los seis centros y los informes. Cada documento con su fecha y su descarga.",
+  "docsCta": "Abrir la documentación",
+  "refTitulo": "La propuesta que se vota",
+  "refTexto": "Punto por punto: qué plantea, qué falta por concretar y por qué importa. Informativo — no pide el voto.",
+  "refCta": "Leer la guía",
+  "prensaTitulo": "La prensa y la solidaridad",
+  "prensaTexto": "Los cortes de informativos donde el conflicto tuvo eco, y los comunicados de los sindicatos europeos que se pusieron de nuestro lado.",
+  "prensaCta": "Ver la cobertura"
+ },
+ "referendum": {
+  "meta": {
+   "title": "Guía de la propuesta · Referéndum",
+   "description": "Guía punto por punto de la «propuesta de acuerdo» que vota la plantilla de Airbus España: qué plantea, qué falta por concretar y por qué importa."
+  },
+  "hero": {
+   "kicker": "GUÍA DE LA PROPUESTA",
+   "titulo": [
+    "Lee la propuesta",
+    "con lupa"
+   ],
+   "intro": "La «propuesta de acuerdo» que se somete a referéndum detalla salarios, teletrabajo, absentismo, comedor y más. Esta guía la repasa punto por punto: qué plantea, qué queda por concretar y por qué importa, para poder decidir con toda la información.",
+   "cta": "Explorar los 14 puntos"
+  },
+  "estado": {
+   "etiqueta": "Estado de la votación",
+   "texto": "El referéndum se celebró el 30 de septiembre y el 1 de octubre, de forma telemática y presencial, con interventores de los sindicatos que participaron y la consultora externa PwC. Con una participación del 87,33 %, la plantilla aprobó el acuerdo: el 76,76 % de los votos emitidos fue «sí», el 20,26 % «no» y el 2,98 %, abstenciones. El fondo de la demanda de CGT se ve el 4 de noviembre."
+  },
+  "preguntaCentral": {
+   "kicker": "La pregunta central",
+   "titulo": "¿Qué se está aprobando exactamente?",
+   "cuerpo": [
+    "Una propuesta puede sonar bien y, a la vez, dejar para más adelante los detalles que deciden cómo se aplica en la práctica.",
+    "Pedir que las mejoras estén escritas, cuantificadas y garantizadas antes de votar no es rechazarlas: es asegurarse de que se cumplen."
+   ]
+  },
+  "guia": {
+   "kicker": "Guía interactiva · 14 puntos",
+   "titulo": "Punto por punto",
+   "intro": "Filtra por materia y despliega cada punto para ver qué plantea la propuesta, qué queda por concretar y por qué importa.",
+   "filtros": {
+    "todos": "Todos",
+    "mostrando": "Mostrando",
+    "puntosLabel": "puntos",
+    "categorias": {
+     "garantias": "Garantías",
+     "salario": "Salario",
+     "puestos": "Puestos y organización",
+     "tiempo": "Tiempo y conciliación",
+     "continuidad": "Continuidad",
+     "servicios": "Servicios"
+    }
+   },
+   "bloques": {
+    "propuesta": "La propuesta plantea",
+    "falta": "Falta concretar",
+    "importa": "Por qué importa",
+    "clave": "Clave"
+   },
+   "puntos": [
+    {
+     "id": "01",
+     "categoria": "garantias",
+     "titulo": "Vinculación del acuerdo",
+     "pregunta": "¿Qué queda blindado y hasta cuándo?",
+     "propuesta": "La empresa presenta el acuerdo como vinculante en todos sus términos; cualquier cambio en el convenio de 2028 exigiría un nuevo acuerdo entre las partes.",
+     "falta": "Se vota un «planteamiento», no el articulado definitivo del convenio, que se redacta después. Y la empresa avisa de que, si sale «no», no habrá más negociación hasta 2028: un «esto o nada» que condiciona el voto y cuya buena fe negociadora es, precisamente, lo que la Audiencia Nacional examina el 4 de noviembre.",
+     "importa": "Un acuerdo puede ser vinculante y aun así dejar el detalle para un texto posterior; y presentar el voto como sin alternativa presiona la decisión.",
+     "clave": "Vinculante no debería significar votar bajo la presión de «esto o nada»."
+    },
+    {
+     "id": "02",
+     "categoria": "garantias",
+     "titulo": "Publicación en el BOE",
+     "pregunta": "¿Qué documento se publica y con quién se pacta?",
+     "propuesta": "Si el referéndum sale positivo, el Ministerio de Trabajo publicará el planteamiento en el BOE «en su integridad», sin cambios.",
+     "falta": "El planteamiento «servirá de base» para el acuerdo definitivo que modificará los artículos del convenio; ese texto final se redacta después y no se especifica con qué parte social se pactaría.",
+     "importa": "El valor jurídico depende del texto final del convenio y de quién lo firma, no solo del planteamiento que se vota.",
+     "clave": "Publicar en el BOE no dice aún qué artículos se firman ni con quién."
+    },
+    {
+     "id": "03",
+     "categoria": "salario",
+     "titulo": "Cálculo del IPC",
+     "pregunta": "¿Cómo se calcula y qué pasa con la desviación?",
+     "propuesta": "El IPC inicial es la proyección del Banco de España (febrero); con el dato final del INE (diciembre) se regulariza la desviación, que se ajusta en el Incremento General del año siguiente. Los atrasos se pagan en un único pago en enero o febrero de 2027.",
+     "falta": "No hay topes ni suelos: una sobre-proyección se descuenta del incremento del año siguiente. Y en el propio ejemplo de la empresa no queda claro si el diferencial (el «delta») se consolida en la base anual o se abona solo como atraso puntual.",
+     "importa": "Sin suelo, un año de IPC bajo se apoya solo en el porcentaje fijo; y que el delta consolide o no cambia lo que se cobra en años sucesivos.",
+     "clave": "Importa no solo el IPC, sino si su corrección suma a la base o se queda en un pago suelto."
+    },
+    {
+     "id": "04",
+     "categoria": "salario",
+     "titulo": "Recuperación del poder adquisitivo · 7,95 %",
+     "pregunta": "¿De dónde sale y a quién llega?",
+     "propuesta": "El 7,95 % se reparte en cuatro años (2026 +2 %, 2027 +2 %, 2028 +2 %, 2029 +1,95 %, sobre el IPC real), más 0,5 % de RSI y 0,5 % de promociones cada año. Parte del 7,6 % de IPC 2020-2025 menos los incrementos generales pagados, elevado a 7,95 %.",
+     "falta": "El cálculo compara solo con los incrementos generales y excluye las subidas individuales, así que no mide la pérdida real de cada persona; y el 0,5 % de RSI y el 0,5 % de promociones son selectivos: no llegan a toda la plantilla por igual.",
+     "importa": "Un 7,95 % global no equivale a lo que recupera cada nómina.",
+     "clave": "El total importa menos que cómo se reparte y a quién llega."
+    },
+    {
+     "id": "05",
+     "categoria": "salario",
+     "titulo": "Retribución variable · PG225",
+     "pregunta": "¿Qué queda garantizado del variable?",
+     "propuesta": "La propuesta garantiza que no se reducirán los porcentajes de variable (V.1 12 %, V.2 10 %, VI 8 %, VIII 6 %) y plantea negociar un nuevo sistema, con revisión de la política salarial (PG-121D) antes de que acabe 2026.",
+     "falta": "Se blinda el porcentaje, pero no cómo se gana: el sistema nuevo («simplificar el modelo») está por negociar, y ahí es donde se decide lo que realmente se cobra.",
+     "importa": "Mantener el porcentaje no garantiza los criterios que deciden si se alcanza.",
+     "clave": "Protegido el cuánto, falta blindar el cómo."
+    },
+    {
+     "id": "06",
+     "categoria": "puestos",
+     "titulo": "Catálogo de puestos",
+     "pregunta": "¿Compromiso de resultado o de negociar?",
+     "propuesta": "Hay compromiso de negociar un nuevo catálogo de puestos y de revisar la PG-121D y las condiciones de LMA, rodadores y ENDs, con negociaciones que empezarían antes de fin de 2026.",
+     "falta": "Es un compromiso de negociar y analizar, con calendario de inicio pero sin resultado garantizado ni plazo de cierre.",
+     "importa": "Empezar a negociar en 2026 no asegura qué se acuerda ni cuándo.",
+     "clave": "Hay fecha de inicio, no de resultado."
+    },
+    {
+     "id": "07",
+     "categoria": "tiempo",
+     "titulo": "Teletrabajo · 40 %",
+     "pregunta": "¿Es un 40 % blindado?",
+     "propuesta": "Se aplica un 40 % de teletrabajo efectivo a la plantilla actual y a las nuevas incorporaciones; las ausencias justificadas no computan en ese 40 %, se respetan los acuerdos de 2 días y se añade la posibilidad de medio día.",
+     "falta": "Respetar los acuerdos vigentes mantiene su cláusula de retirada unilateral: cualquiera de las partes puede dejar sin efecto el teletrabajo, sin justificación y con un mes de preaviso. El 40 % no queda blindado frente a esa cláusula, y el reparto mensual o trimestral depende del mánager.",
+     "importa": "Un 40 % que puede retirarse unilateralmente con un mes de aviso no es un mínimo garantizado.",
+     "clave": "Sin quitar la retirada unilateral, el 40 % es reversible."
+    },
+    {
+     "id": "08",
+     "categoria": "tiempo",
+     "titulo": "Vacaciones",
+     "pregunta": "¿Qué pasa cuando no hay acuerdo?",
+     "propuesta": "Se mantienen 2 semanas obligatorias y 2 flexibles; el calendario se acuerda con el Comité de Empresa de cada centro, y la programación entre la persona y su responsable, ponderando «por igual» negocio y circunstancias personales.",
+     "falta": "«Ponderar por igual» no dice quién decide cuando la persona y el responsable no se ponen de acuerdo en las fechas.",
+     "importa": "El desempate es justo donde se juega la conciliación real.",
+     "clave": "Falta la regla para cuando no hay acuerdo."
+    },
+    {
+     "id": "09",
+     "categoria": "tiempo",
+     "titulo": "Nuevo sistema de absentismo",
+     "pregunta": "¿Qué se aprueba, exactamente?",
+     "propuesta": "La empresa ha retirado el recurso ante el Tribunal Supremo, suprime del todo la retirada del complemento por IT y devuelve los importes en octubre; el nuevo sistema se co-diseñaría con la representación social, con criterios acordados de forma transparente.",
+     "falta": "El daño inmediato se revierte, pero el reglamento nuevo todavía no existe: se aprueba el compromiso de co-diseñarlo, no sus criterios.",
+     "importa": "La garantía es de procedimiento (conjunto y transparente), no un sistema ya escrito.",
+     "clave": "Revertido lo de antes; el sistema nuevo está por escribir."
+    },
+    {
+     "id": "10",
+     "categoria": "continuidad",
+     "titulo": "Bromo y convenio local",
+     "pregunta": "¿Y cuando llegue el nuevo convenio?",
+     "propuesta": "Quien pase a la Joint Venture mantiene las condiciones del convenio local desde el día 1 y hasta que exista un nuevo convenio, con movilidad interna en Airbus, antigüedad, sin periodo de prueba, y transporte y comedor.",
+     "falta": "La protección dura «hasta que exista un nuevo convenio», cuyo contenido es futuro y desconocido.",
+     "importa": "Una garantía que termina cuando llegue el próximo convenio necesita saber qué traerá ese convenio.",
+     "clave": "Protegido hasta el nuevo convenio; falta saber qué dirá ese convenio."
+    },
+    {
+     "id": "11",
+     "categoria": "servicios",
+     "titulo": "Comedor · 3,50 €",
+     "pregunta": "¿Qué se blinda del precio?",
+     "propuesta": "Para quien no tiene acceso gratuito, el precio baja de 5 € a 3,5 € desde primeros de octubre, con revisión anual «manteniendo las condiciones más ventajosas»; quien ya come gratis lo mantiene.",
+     "falta": "La garantía es cualitativa («condiciones más ventajosas»), sin un tope numérico que impida que la revisión anual erosione la mejora.",
+     "importa": "Sin tope escrito, una revisión anual puede diluir el 3,5 € con el tiempo.",
+     "clave": "Una promesa de «lo más ventajoso» no es un precio con tope."
+    },
+    {
+     "id": "12",
+     "categoria": "servicios",
+     "titulo": "Servicio de transporte",
+     "pregunta": "¿Qué nivel de servicio se conserva?",
+     "propuesta": "Se mantienen las rutas vigentes y no está prevista ninguna reducción ni eliminación; los ajustes se harían por los Comités de Movilidad.",
+     "falta": "Se conservan las rutas, pero el nivel (frecuencias, paradas, agosto) queda sujeto a ajustes en comisión.",
+     "importa": "Mantener las rutas no es lo mismo que mantener el nivel de servicio.",
+     "clave": "Rutas garantizadas; frecuencias, a revisión."
+    },
+    {
+     "id": "13",
+     "categoria": "tiempo",
+     "titulo": "Flexibilidad horaria",
+     "pregunta": "¿Quién entra y quién decide?",
+     "propuesta": "Se identificarían los puestos objetivamente compatibles con flexibilidad voluntaria de entrada y salida, según criterios organizativos, productivos y de seguridad; la producción queda excluida.",
+     "falta": "Los criterios están nombrados, pero la lista de puestos que entran la identifica después la empresa; no hay relación cerrada.",
+     "importa": "Que los criterios sean objetivos no dice aún qué puestos se benefician.",
+     "clave": "Criterios sí; lista de puestos, pendiente."
+    },
+    {
+     "id": "14",
+     "categoria": "continuidad",
+     "titulo": "Cádiz · comisión paritaria",
+     "pregunta": "¿Qué podrá decidir?",
+     "propuesta": "Se crea una comisión paritaria específica (partes firmantes y Dirección) que analizará, antes del 1 de noviembre de 2026, los acuerdos vigentes y las necesidades futuras de carga de trabajo en Cádiz.",
+     "falta": "Tiene fecha y composición paritaria, pero su cometido es «analizar»: no se fija si podrá decidir ni con qué efecto.",
+     "importa": "Una comisión que solo analiza puede quedarse sin capacidad de resolver.",
+     "clave": "Paritaria y con fecha; falta capacidad de decidir."
+    }
+   ]
+  },
+  "antesDeVotar": {
+   "kicker": "Antes de votar",
+   "titulo": "También hay preguntas sobre la propia votación",
+   "items": [
+    {
+     "q": "¿Cómo se garantiza el voto telemático?",
+     "a": "El referéndum es telemático y presencial, con interventores de los sindicatos y la consultora PwC. Con voto a distancia, conviene explicar cómo se aseguran el secreto, la identidad y la verificación de cada voto."
+    },
+    {
+     "q": "¿Y la custodia durante los dos días?",
+     "a": "Al votarse en dos jornadas, sigue siendo pertinente explicar cómo se custodian urnas y sistemas durante la noche, ante los interventores de todas las partes."
+    },
+    {
+     "q": "¿Por qué dos días?",
+     "a": "Una convocatoria a dos jornadas necesita una razón clara y un procedimiento igual y transparente para todos los centros."
+    }
+   ]
+  },
+  "cierre": {
+   "kicker": "Una decisión informada",
+   "titulo": [
+    "Más claridad,",
+    "más garantías"
+   ],
+   "cuerpo": "Si la propuesta es mejorable, pedir precisión antes de aprobarla es una posición razonable. Comparte esta guía para que cada persona pueda revisar los puntos y decidir con toda la información.",
+   "compartir": "Compartir",
+   "copiado": "Enlace copiado",
+   "imprimir": "Imprimir / guardar PDF"
+  },
+  "nota": "Guía informativa del movimiento. Los importes y condiciones proceden de la documentación pública de la propuesta; donde falta detalle, se plantea como pregunta.",
+  "volver": "Volver a la portada"
+ },
+ "huelguista": {
+  "nombre": "Huelguista",
+  "saludar": "Saludar al huelguista",
+  "silbato": "Tocar el silbato",
+  "sonidoActivar": "Activar el sonido del huelguista",
+  "sonidoDesactivar": "Silenciar al huelguista",
+  "ocultar": "Ocultar al huelguista",
+  "mostrar": "Mostrar al huelguista",
+  "bocadillos": {
+   "saludo": [
+    "¡Hola! Aquí seguimos.",
+    "Esta caja la sostenemos entre todas y todos."
+   ],
+   "pan": "¿Un trozo? Aquí se comparte.",
+   "sol": "Crema, que el sol aprieta.",
+   "fresco": "¡Ah, qué fresquito!",
+   "voto": "Aquí se decide en asamblea.",
+   "baile": "¡Que no nos quiten la alegría!",
+   "asentir": "Tú lo has dicho.",
+   "recibido": "¡Recibido! Lo tendremos en cuenta.",
+   "invitacion": "¿Alguna idea para la caja? Déjala en el buzón."
+  },
+  "buzon": "Abrir el buzón de sugerencias"
+ },
+ "buzon": {
+  "titulo": "Buzón de sugerencias",
+  "intro": "¿Una idea para la caja, para la web o para el movimiento? Llega directamente a la coordinación.",
+  "anonimo": "Es anónimo: no pedimos tu nombre ni guardamos tu IP.",
+  "etiquetaTexto": "Tu sugerencia",
+  "placeholder": "Escribe aquí lo que quieras proponer…",
+  "etiquetaContacto": "Contacto, si quieres respuesta (opcional)",
+  "ayudaContacto": "Un correo o un teléfono. Solo lo usaremos para contestarte.",
+  "privacidad": "La sugerencia llega por correo a la coordinación y no se guarda en la web. Para frenar el spam usamos Turnstile, de Cloudflare. Más detalle en la política de privacidad, al pie de la página.",
+  "enviar": "Enviar",
+  "enviando": "Enviando…",
+  "cancelar": "Cancelar",
+  "cerrar": "Cerrar",
+  "gracias": "¡Recibido! Lo tendremos en cuenta.",
+  "contador": "{n} de {max} caracteres",
+  "errores": {
+   "corto": "Escribe al menos {min} caracteres.",
+   "largo": "Es demasiado larga. Recórtala un poco, por favor.",
+   "verificacion": "No hemos podido comprobar que no eres un robot. Vuelve a intentarlo.",
+   "ritmo": "Has enviado varias sugerencias seguidas. Espera un minuto y vuelve a probar.",
+   "envio": "No se ha podido enviar ahora mismo. Inténtalo en un rato o escríbenos a {email}.",
+   "red": "Parece que no hay conexión. Inténtalo de nuevo o escríbenos a {email}."
+  }
  }
 }

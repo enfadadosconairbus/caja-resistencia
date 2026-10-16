@@ -5,15 +5,15 @@ import { getDictionary, hasLocale, locales } from "../dictionaries";
 import { SiteNav } from "@/components/site-nav";
 import ARRANQUE from "@/config/arranque-huelga.json";
 import { ChapaHuelga } from "@/components/chapa-huelga";
-import { Aviso } from "@/components/aviso";
 import { SiteFooter } from "@/components/site-footer";
 import { MuroAportaciones } from "@/components/muro-aportaciones";
 import { AportarCanales } from "@/components/aportar-canales";
-import { AportarSelector } from "@/components/aportar-selector";
-import { FONDO, euros, eurosExacto, recuento, fondoOperativo, bizumPublicable, gastosTotal, saldoDisponible } from "@/config/fondo";
+import { FONDO, euros, eurosExacto, recuento, gastosTotal, saldoDisponible, type GastoLinea } from "@/config/fondo";
 import { redactorGmail } from "@/lib/gmail";
-import { AportarBizum } from "@/components/aportar-bizum";
-import { MaskText, Rise, Stagger, StaggerItem } from "@/components/motion";
+import { MaskText } from "@/components/motion";
+// Reveals en CSS puro, no framer: en la página del dinero la información no puede
+// depender de que hidrate React (ver `revelar.tsx`).
+import { Revelar, RevelarLista, RevelarItem } from "@/components/revelar";
 
 const SECTION = "mx-auto max-w-6xl px-5 py-20 md:py-28";
 
@@ -60,27 +60,35 @@ export default async function LaCaja({
 
   // Las cifras salen de config/fondo.ts; el diccionario solo pone las etiquetas.
   // Mientras no haya datos verificados, euros()/recuento() devuelven un guion.
+  // `senal: true` pinta la cifra en el teal de SEÑAL. Solo una la lleva, y a propósito:
+  // el saldo disponible es la que contesta «¿cuánto queda?», y si se señalan todas no
+  // se señala ninguna.
   const cifras = [
-    { k: d.transparencia.stats.recaudado, v: euros(FONDO.cifras.recaudado, lang) },
-    { k: d.transparencia.stats.gastos, v: euros(gastosTotal(FONDO.cifras), lang) },
-    { k: d.transparencia.stats.saldo, v: euros(saldoDisponible(FONDO.cifras), lang) },
-    { k: d.transparencia.stats.aportaciones, v: recuento(FONDO.cifras.aportaciones, lang) },
+    { k: d.transparencia.stats.recaudado, v: euros(FONDO.cifras.recaudado, lang), senal: false },
+    { k: d.transparencia.stats.gastos, v: euros(gastosTotal(), lang), senal: false },
+    { k: d.transparencia.stats.saldo, v: euros(saldoDisponible(), lang), senal: true },
+    { k: d.transparencia.stats.aportaciones, v: recuento(FONDO.cifras.aportaciones, lang), senal: false },
   ];
-  // Desglose de gastos: importe null = aprobado pero aún sin cifra («pendiente de imputar»).
-  const detalle = FONDO.cifras.detalleGastos.map((g) => ({
-    k: (d.transparencia.detalle as Record<string, string>)[g.clave] ?? g.clave,
-    v: g.importe === null ? d.transparencia.detalle.pendiente : eurosExacto(g.importe, lang),
-    pendiente: g.importe === null,
-  }));
+  // Desglose de gastos POR CAMPAÑA: una tarjeta por cada campaña que ya ha arrancado, con su
+  // nombre en el título. Las previstas no salen: no han gastado nada y una tarjeta vacía
+  // solo haría ruido. Importe null = aprobado pero aún sin cifra («pendiente de imputar»).
+  const fichas = d.campanas.fichas as Record<string, { corto: string }>;
+  const desgloses = FONDO.campanas
+    .filter((c) => c.estado !== "prevista")
+    .map((c) => ({
+      clave: c.clave,
+      titulo: d.transparencia.detalle.tituloCampana.replace("{campana}", fichas[c.clave]?.corto ?? c.clave),
+      lineas: c.gastos.map((g: GastoLinea) => ({
+        k: (d.transparencia.detalle as Record<string, string>)[g.clave] ?? g.clave,
+        v: g.importe === null ? d.transparencia.detalle.pendiente : eurosExacto(g.importe, lang),
+        pendiente: g.importe === null,
+      })),
+    }));
   const actualizado = FONDO.cifras.actualizado;
   // Canal de organizaciones/grandes donantes: correo dedicado si existe, si no el de la comisión.
   const contactoOrg = FONDO.contacto.organizaciones ?? FONDO.contacto.general;
   // El correo de "Hablar con la comisión" sale a la comisión Y al buzón de la web, en el mismo mail.
   const donantesDestinatarios = [contactoOrg, FONDO.redes.emailWeb].filter(Boolean).join(",");
-  // Bizum: el nombre lo resuelve la app del banco; lo mostramos igual (el limpio, sin sufijo).
-  const bizumNombre = FONDO.cuenta.titular ?? FONDO.titular.razonSocial ?? "";
-  const bizumCif = FONDO.titular.cif ?? "";
-  const bizumEmail = FONDO.redes.emailWeb ?? FONDO.redes.email ?? "";
 
   return (
     <div className="bg-[var(--color-fondo)] text-[var(--color-tinta)]">
@@ -101,12 +109,11 @@ export default async function LaCaja({
             hoyISO={hoyEnMadrid}
             inicioISO={ARRANQUE.inicio}
             pausaISO={ARRANQUE.pausa}
+            desconvocadaISO={ARRANQUE.desconvocada}
             zona={ARRANQUE.zona}
           />
         }
       />
-
-      <Aviso texto={d.caja.aviso} />
 
 
       <main id="main" tabIndex={-1}>
@@ -123,17 +130,19 @@ export default async function LaCaja({
               {d.caja.volver}
             </Link>
             <p className="kicker mt-8">{d.caja.kicker}</p>
+            {/* `immediate`: el titular se pinta en el primer render (ver portada). */}
             <MaskText
               as="h1"
+              immediate
               lines={d.caja.title}
               className="mt-4 max-w-3xl font-[family-name:var(--ff-display)] text-4xl font-extrabold leading-tight md:text-6xl"
             />
-            <Rise>
+            <Revelar>
               <p className="mt-6 max-w-3xl text-lg text-[var(--color-tinta-suave)]">{d.caja.body}</p>
-            </Rise>
+            </Revelar>
             {/* Valores en UNA línea; el desarrollo a fondo (independencia, control colectivo)
                 vive solo en /gobernanza para no repetirlo por toda la web. */}
-            <Rise>
+            <Revelar>
               <p className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-1 text-[var(--color-tinta-suave)]">
                 {d.valores.resumen}{" "}
                 <Link
@@ -143,7 +152,7 @@ export default async function LaCaja({
                   {d.valores.cta}
                 </Link>
               </p>
-            </Rise>
+            </Revelar>
           </div>
         </section>
 
@@ -161,57 +170,71 @@ export default async function LaCaja({
           </div>
           <MaskText
             as="h2"
+            immediate
             lines={d.transparencia.title}
             className="mt-4 max-w-3xl font-[family-name:var(--ff-display)] text-3xl font-bold leading-tight md:text-5xl"
           />
-          <Rise>
+          <Revelar>
             <p className="mt-6 max-w-3xl text-[var(--color-tinta-suave)]">{d.transparencia.intro}</p>
-          </Rise>
-          <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          </Revelar>
+          <RevelarLista className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {cifras.map((s) => (
-              <StaggerItem
+              <RevelarItem
                 key={s.k}
-                className="rounded-xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-6"
+                className="rounded-xl border border-[var(--color-linea)] bg-[var(--color-superficie)] p-6"
               >
-                <p className="font-[family-name:var(--ff-mono)] text-4xl font-medium tabular-nums text-[var(--color-tinta)]">
+                <p
+                  className={`font-[family-name:var(--ff-mono)] text-4xl font-medium tabular-nums ${
+                    s.senal ? "text-[var(--color-senal)]" : "text-[var(--color-tinta)]"
+                  }`}
+                >
                   {s.v}
                 </p>
                 <p className="mt-2 text-sm text-[var(--color-tinta-suave)]">{s.k}</p>
-              </StaggerItem>
+              </RevelarItem>
             ))}
-          </Stagger>
+          </RevelarLista>
 
-          {/* Desglose de gastos: en qué se ha ido el dinero, línea a línea. */}
-          <Rise>
-            <div className="mt-10 max-w-2xl rounded-xl border border-[var(--color-linea)] bg-[var(--color-superficie)] p-6">
-              <h3 className="font-[family-name:var(--ff-mono)] text-xs uppercase tracking-wider text-[var(--color-tinta-suave)]">
-                {d.transparencia.detalle.titulo}
-              </h3>
-              <dl className="mt-4">
-                {detalle.map((g) => (
-                  <div
-                    key={g.k}
-                    className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[var(--color-linea)] py-3 last:border-0"
-                  >
-                    <dt className="text-sm text-[var(--color-tinta)]">{g.k}</dt>
-                    <dd
-                      className={
-                        g.pendiente
-                          ? "font-[family-name:var(--ff-mono)] text-xs uppercase tracking-wider text-[var(--color-tinta-suave)]"
-                          : "font-[family-name:var(--ff-mono)] text-sm tabular-nums text-[var(--color-tinta)]"
-                      }
+          {/* Desglose de gastos: en qué se ha ido el dinero, línea a línea y campaña a campaña. */}
+          {desgloses.map((desglose, i) => (
+            <Revelar key={desglose.clave}>
+              <div
+                className={`${i === 0 ? "mt-10" : "mt-6"} max-w-2xl rounded-xl border border-[var(--color-linea)] bg-[var(--color-superficie)] p-6`}
+              >
+                <h3 className="font-[family-name:var(--ff-mono)] text-xs uppercase tracking-wider text-[var(--color-tinta-suave)]">
+                  {desglose.titulo}
+                </h3>
+                <dl className="mt-4">
+                  {desglose.lineas.map((g) => (
+                    /* Dos columnas fijas: concepto a la izquierda (se parte en varias líneas si
+                       hace falta) e importe SIEMPRE a la derecha, alineado. Antes era una fila
+                       flexible que se partía: en móvil, con un concepto largo, el importe bajaba
+                       debajo del texto y con uno corto se quedaba al lado, así que conceptos e
+                       importes parecían mezclados. Ahora los importes forman su propia columna. */
+                    <div
+                      key={g.k}
+                      className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 border-b border-[var(--color-linea)] py-3 last:border-0"
                     >
-                      {g.v}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </Rise>
+                      <dt className="text-sm leading-snug text-[var(--color-tinta)]">{g.k}</dt>
+                      <dd
+                        className={
+                          g.pendiente
+                            ? "max-w-[8.5rem] text-right font-[family-name:var(--ff-mono)] text-xs uppercase leading-snug tracking-wider text-[var(--color-tinta-suave)]"
+                            : "whitespace-nowrap text-right font-[family-name:var(--ff-mono)] text-sm tabular-nums text-[var(--color-tinta)]"
+                        }
+                      >
+                        {g.v}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </Revelar>
+          ))}
 
-          <Rise>
+          <Revelar>
             <p className="mt-6 max-w-3xl text-sm text-[var(--color-tinta-suave)]">{d.transparencia.note}</p>
-          </Rise>
+          </Revelar>
         </section>
 
         {/* ── MURO DE APORTACIONES (firma) ── */}
@@ -222,78 +245,41 @@ export default async function LaCaja({
             </p>
             <MaskText
               as="h2"
+              immediate
               lines={d.muro.title}
               className="mt-4 max-w-3xl font-[family-name:var(--ff-display)] text-3xl font-bold leading-tight md:text-5xl"
             />
-            <Rise>
+            <Revelar>
               <p className="mt-6 max-w-2xl text-[color-mix(in_srgb,var(--color-papel-fijo)_82%,transparent)]">
                 {d.muro.body}
               </p>
-            </Rise>
+            </Revelar>
             <div className="mt-12">
-              <MuroAportaciones ariaLabel={d.muro.body} />
+              <MuroAportaciones
+                aportaciones={FONDO.cifras.aportaciones}
+                s={d.muro}
+                lang={lang}
+              />
             </div>
           </div>
         </section>
 
-        {/* ── APORTAR (placeholder honesto, sin pago falso) ── */}
+        {/* ── APORTAR ── Dos vías y las dos cobran: pago online por Stripe (tarjeta, wallets,
+            Bizum…) y transferencia. Antes había tres tarjetas de «vías», un bloque aparte para
+            el código Bizum de ONG y una vista previa de tarjeta que no cobraba; con Stripe en
+            LIVE (1-oct-2026) todo eso se colapsa en este bloque. */}
         <section id="aportar" className={`${SECTION} scroll-mt-24`}>
           <p className="kicker">{d.aportar.kicker}</p>
           <MaskText
             as="h2"
+            immediate
             lines={d.aportar.title}
             className="mt-4 max-w-3xl font-[family-name:var(--ff-display)] text-3xl font-bold leading-tight md:text-5xl"
           />
-          <Rise>
+          <Revelar>
             <p className="mt-6 max-w-3xl text-[var(--color-tinta-suave)]">{d.aportar.intro}</p>
-          </Rise>
-          <Stagger className="mt-10 grid gap-6 md:grid-cols-3">
-            {d.aportar.vias.map((v) => (
-              <StaggerItem
-                key={v.t}
-                className="rounded-xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-6"
-              >
-                <h3 className="font-[family-name:var(--ff-display)] text-lg font-semibold">{v.t}</h3>
-                <p className="mt-2 text-sm text-[var(--color-tinta-suave)]">{v.d}</p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-          <div className="mt-16">
-            <p className="kicker">{d.aportar.canales.kicker}</p>
-            <MaskText
-              as="h3"
-              lines={d.aportar.canales.title}
-              className="mt-4 font-[family-name:var(--ff-display)] text-2xl font-bold leading-tight md:text-3xl"
-            />
-            <AportarCanales s={d.aportar.canales} />
-            {bizumPublicable && FONDO.bizum.codigo && bizumNombre && bizumCif && bizumEmail ? (
-              <>
-                <p className="mt-8 max-w-3xl text-[var(--color-tinta-suave)]">
-                  {d.aportar.bizum.intro}
-                </p>
-                <AportarBizum
-                  s={d.aportar.bizum}
-                  codigo={FONDO.bizum.codigo}
-                  nombre={bizumNombre}
-                  cif={bizumCif}
-                  email={bizumEmail}
-                />
-              </>
-            ) : null}
-          </div>
-
-          {/* Preview del pago con tarjeta: al final, tras los canales que sí operan. */}
-          <div className="mt-12">
-            <AportarSelector s={d.aportar.selector} lang={lang} />
-          </div>
-
-          {!fondoOperativo ? (
-            <Rise>
-              <p className="mt-8 rounded-lg border border-dashed border-[var(--color-acento-tinta)] bg-[color-mix(in_srgb,var(--color-acento)_6%,transparent)] px-5 py-4 font-[family-name:var(--ff-mono)] text-xs text-[var(--color-acento-tinta-fuerte)]">
-                {d.aportar.placeholderNote}
-              </p>
-            </Rise>
-          ) : null}
+          </Revelar>
+          <AportarCanales s={d.aportar.canales} lang={lang} />
         </section>
 
         {/* ── GRANDES DONANTES ── */}
@@ -302,22 +288,23 @@ export default async function LaCaja({
             <p className="kicker">{d.donantes.kicker}</p>
             <MaskText
               as="h2"
+              immediate
               lines={d.donantes.title}
               className="mt-4 max-w-3xl font-[family-name:var(--ff-display)] text-3xl font-bold leading-tight md:text-5xl"
             />
             <div className="mt-8 grid gap-10 lg:grid-cols-2">
               <div>
-                <Rise>
+                <Revelar>
                   <p className="text-[var(--color-tinta-suave)]">{d.donantes.body}</p>
-                </Rise>
-                <Stagger className="mt-6 space-y-3">
+                </Revelar>
+                <RevelarLista className="mt-6 space-y-3">
                   {d.donantes.bullets.map((b) => (
-                    <StaggerItem key={b} className="flex items-start gap-3">
+                    <RevelarItem key={b} className="flex items-start gap-3">
                       <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-acento)]" />
                       <span className="text-sm text-[var(--color-tinta)]">{b}</span>
-                    </StaggerItem>
+                    </RevelarItem>
                   ))}
-                </Stagger>
+                </RevelarLista>
               </div>
               <div className="rounded-xl border border-[var(--color-linea)] bg-[var(--color-fondo)] p-6">
                 <div className="flex flex-wrap gap-3">

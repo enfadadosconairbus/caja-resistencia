@@ -44,6 +44,29 @@ en el canal de Sevilla (`4336570469`), `Actas Asambleas San Pablo` 3822.
 
 ## ⭐ Flujo actual (rediseño 20-jul): HÍBRIDO nube + PC, cada 12 h
 
+> ### ⚠️ FASE 3 (29-sep-2026): todo esto publica ya en la WEB B
+>
+> Hasta hoy las tres vías escribían en `site` (la web del movimiento) y desplegaban en
+> Vercel. Las actas y los documentos se sirven ya desde
+> `/campanas/huelga-2026/documentacion` de la **Web B**, así que la fuente pasa a
+> `site-caja` y el despliegue a **Cloudflare Workers**. La Web A deja de recibir
+> novedades: va camino de ser un redirector 301.
+>
+> **Lo que hay que hacer una vez, y no lo puede hacer un script:**
+>
+> 1. Crear los secretos `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` en GitHub (los
+>    permisos exactos, más abajo). Sin ellos el bot commitea pero **no despliega**.
+> 2. Reinstalar las tareas de Windows desde ESTA carpeta:
+>    `powershell -ExecutionPolicy Bypass -File .\scripts\instalar-tareas.ps1`
+>    Se registran por nombre, así que reemplazan a las que apuntan a la Web A.
+>
+> **Un cambio de fondo, no de configuración: wrangler NO construye.** Vercel construía en
+> su nube a partir del push, así que bastaba `vercel --prod`. Wrangler sube lo que haya en
+> `dist/`, que solo existe después de `build:vinext`. Desplegar sin construir republica la
+> versión anterior **y termina con éxito**: la web se queda como estaba y nadie se entera.
+> Por eso tanto el workflow como `desplegar()` construyen primero y abortan si la
+> construcción falla.
+
 Reparto claro por tipo de contenido:
 
 - **TEXTO** (actas y *Resúmenes del grupo de Telegram*) → **lo publica la NUBE solo**.
@@ -68,7 +91,7 @@ Reparto claro por tipo de contenido:
 | Hora | Tarea | Qué hace |
 |---|---|---|
 | **17:00** | `CajaResistencia-DescargarDocs` | Silenciosa. Baja los documentos nuevos a `pendientes/`. **No** genera Excel: el delta se acumula. |
-| **20:00** | `CajaResistencia-RevisarPublicar` | **Interactiva.** Descarga lo nuevo, genera el Excel DELTA, te lo abre, espera a que revises y guardes, y **publica lo marcado** (copia a `public/docs/`, actualiza `actas.json`, commit + push + deploy en Vercel). |
+| **20:00** | `CajaResistencia-RevisarPublicar` | **Interactiva.** Descarga lo nuevo, genera el Excel DELTA, te lo abre, espera a que revises y guardes, y **publica lo marcado** (copia a `public/docs/`, actualiza `actas.json`, commit + push + deploy en Cloudflare). |
 
 ### El ciclo de las 20:00, paso a paso
 
@@ -341,9 +364,34 @@ la **cuenta** (miembro del canal), no un bot. Corre en un cron de GitHub Actions
    | `TG_API_ID` / `TG_API_HASH` | los de la cuenta dedicada (my.telegram.org) |
    | `TG_SESSION` | la cadena del paso 2 |
    | `TG_CANAL` | `https://t.me/+MnuqJDCAAgYyMGQ0` |
-   | `VERCEL_TOKEN` | uno nuevo en vercel.com/account/tokens |
-   | `VERCEL_ORG_ID` | `team_172Wv90sfFIrKD7inQ2O5cN0` |
-   | `VERCEL_PROJECT_ID` | `prj_gXnPOcYOm6fCkmu3YTQnbn9BsF9W` |
+   | `CLOUDFLARE_API_TOKEN` | uno nuevo (ver abajo) |
+   | `CLOUDFLARE_ACCOUNT_ID` | el de la cuenta del movimiento (`npx wrangler whoami`) |
+
+   **El token, con permisos de proyecto, no el OAuth de la máquina.** En CI no hay nadie
+   para volver a iniciar sesión, y esa sesión ya se ha cambiado de cuenta sola dos veces.
+
+   En [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens)
+   → **Create Token** → plantilla **«Edit Cloudflare Workers»** → *Use template*. Es la que
+   recomienda la propia documentación de Cloudflare para desplegar desde GitHub Actions, y
+   es menos frágil que elegir permisos a mano: la lista exacta que hace falta cambia con
+   cada capacidad nueva que usa el Worker.
+
+   En *Account Resources* déjalo en la cuenta del movimiento **y en ninguna otra**.
+
+   ⚠️ **Esta web usa D1** (la base de pedidos de la tienda), y según la versión de la
+   plantilla `D1:Edit` puede no venir incluido. Antes de guardar, mira la lista de permisos:
+   si no aparece **D1**, añádelo a mano con nivel **Edit**. Sin él, `wrangler deploy` falla
+   al resolver el binding `PEDIDOS_DB`.
+
+   **Pruébalo antes de pegarlo en GitHub**, en tu terminal y sin que el token salga de tu
+   máquina — `wrangler whoami` imprime los permisos que trae el token:
+
+   ```bash
+   CLOUDFLARE_API_TOKEN=<el-token> npx wrangler whoami
+   ```
+
+   Los secretos `VERCEL_*` ya no se usan: se pueden borrar del repo cuando la Web A deje de
+   desplegarse del todo.
 4. **La rama:** las Actions programadas se lanzan desde la **rama por defecto** (main). El
    workflow `.github/workflows/actas.yml` ya vive en `main` y hace checkout de la rama de
    trabajo. **El cron está EN PAUSA** (comentado) tras el incidente del volcado; se reactiva

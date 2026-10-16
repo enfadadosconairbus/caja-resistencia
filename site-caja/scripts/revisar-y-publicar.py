@@ -406,29 +406,55 @@ def refrescar_indice():
     return "índice de documentos refrescado"
 
 
+def en_repo(*partes):
+    """Ruta de git (relativa a la raíz del repo) para algo de ESTE sitio.
+
+    Iban escritas a pelo (`clientes/caja-resistencia/site/...`) y al copiar el sitio se
+    quedaron apuntando a la Web A: esta copia escribía los documentos AQUÍ y commiteaba
+    ALLÍ. Ahora salen de SITE, que ya se deriva de dónde está el propio fichero.
+    """
+    return SITE.joinpath(*partes).relative_to(REPO).as_posix()
+
+
 def desplegar(n):
     rama = git("rev-parse", "--abbrev-ref", "HEAD")
     log(refrescar_indice())
-    git("add", "clientes/caja-resistencia/site/public/docs",
-        "clientes/caja-resistencia/site/src/config/actas.json",
-        "clientes/caja-resistencia/site/src/config/documentos.json",
-        "clientes/caja-resistencia/site/src/config/internacional.json")
+    git("add", en_repo("public", "docs"),
+        en_repo("src", "config", "actas.json"),
+        en_repo("src", "config", "documentos.json"),
+        en_repo("src", "config", "internacional.json"))
     if not git("diff", "--staged", "--name-only"):
         return "No había cambios que commitear."
     git("commit", "-m", f"docs: publicar {n} documento(s) revisado(s)\n\n"
                         "Revisados a mano por la coordinación en el Excel de revisión y publicados\n"
                         "por scripts/revisar-y-publicar.py.\n\n"
-                        "Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>")
+                        "Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>")
     git("push", "origin", f"HEAD:{rama}")
-    # Si el CLI global no está en el PATH (p. ej. tras reinstalar Node), se cae a npx.
-    ultimo = ""
-    for cmd in ("vercel --prod --yes", "npx --yes vercel --prod --yes"):
-        r = subprocess.run(cmd, cwd=SITE, shell=True,
-                           capture_output=True, text=True, encoding="utf-8")
-        if r.returncode == 0:
-            return "Desplegado en https://caja-resistencia-demo.vercel.app"
-        ultimo = (r.stderr or r.stdout or "")[-500:]
-    raise RuntimeError(f"Vercel falló: {ultimo}")
+    return publicar_en_cloudflare()
+
+
+def publicar_en_cloudflare():
+    """Construye y despliega en Cloudflare Workers (fase 3).
+
+    DOS pasos, y el orden importa. Vercel construía en su nube a partir del push, así que
+    bastaba con `vercel --prod`. Wrangler sube lo que haya en `dist/`, que solo existe
+    después de `build:vinext`: desplegar sin construir republica la versión anterior y
+    termina con éxito, o sea que la web se queda como estaba y nadie se entera.
+    """
+    def paso(guion):
+        return subprocess.run(f"npm run {guion}", cwd=SITE, shell=True,
+                              capture_output=True, text=True, encoding="utf-8")
+
+    build = paso("build:vinext")
+    if build.returncode != 0:
+        raise RuntimeError("La CONSTRUCCIÓN falló, así que no se ha desplegado: la web "
+                           "sigue con la versión anterior.\n\n"
+                           + (build.stderr or build.stdout or "")[-700:])
+    deploy = paso("deploy:vinext")
+    if deploy.returncode != 0:
+        raise RuntimeError("Wrangler falló al desplegar (el commit y el push sí están "
+                           "hechos).\n\n" + (deploy.stderr or deploy.stdout or "")[-700:])
+    return "Desplegado en https://cajaderesistencia-asi-no.org"
 
 
 def main():

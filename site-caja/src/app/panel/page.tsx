@@ -2,6 +2,8 @@ import { headers } from "next/headers";
 import { env } from "cloudflare:workers";
 import { verificarAccess, CABECERA_ACCESS } from "@/lib/access";
 import type { EstadoPedido } from "@/config/pedidos";
+import { leerLote } from "@/lib/lote-proveedor";
+import { diaMadrid, fechaMadrid, loteDelMes, loteVencido, ultimoDia, type Lote } from "@/lib/lotes";
 
 // Datos en vivo desde D1: nunca cacheado, nunca prerenderizado.
 export const dynamic = "force-dynamic";
@@ -17,6 +19,7 @@ type FilaPedido = {
   donacion: number;
   total: number;
   estado: EstadoPedido;
+  lote: string | null;
 };
 
 const eur = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" });
@@ -42,12 +45,16 @@ function resumenLineas(json: string): string {
 const BADGE: Record<EstadoPedido, string> = {
   pendiente: "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-200",
   pagado: "bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-200",
+  listo: "bg-sky-100 text-sky-900 dark:bg-sky-950 dark:text-sky-200",
+  entregado: "bg-neutral-100 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300",
   anulado: "bg-neutral-200 text-neutral-600 line-through dark:bg-neutral-800 dark:text-neutral-400",
 };
 
 const ETIQUETA: Record<EstadoPedido, string> = {
   pendiente: "Pendiente",
   pagado: "Pagado",
+  listo: "Listo para recoger",
+  entregado: "Entregado",
   anulado: "Anulado",
 };
 
@@ -83,10 +90,19 @@ export default async function PanelPagina() {
   }
 
   const { results } = await env.PEDIDOS_DB.prepare(
-    `SELECT referencia, creado, nombre, email, site, lineas, unidades, donacion, total, estado
+    `SELECT referencia, creado, nombre, email, site, lineas, unidades, donacion, total, estado, lote
      FROM pedidos ORDER BY creado DESC`,
   ).all<FilaPedido>();
   const pedidos = results ?? [];
+
+  // Lote al proveedor: el último que ya tocaba cerrar y el que se está llenando ahora.
+  const vencido = loteVencido(new Date());
+  const estadoVencido = await leerLote(vencido.etiqueta);
+  const [a, m] = vencido.etiqueta.split("-").map(Number);
+  const siguiente = m === 12 ? loteDelMes(a + 1, 1) : loteDelMes(a, m + 1);
+  const esperando = pedidos.filter(
+    (p) => !p.lote && p.site && ["pagado", "listo", "entregado"].includes(p.estado),
+  );
 
   const pendientes = pedidos.filter((p) => p.estado === "pendiente");
   const pagados = pedidos.filter((p) => p.estado === "pagado");
@@ -121,6 +137,13 @@ export default async function PanelPagina() {
         <Metrica etiqueta="Camisetas pagadas" valor={String(unidadesPagadas)} />
       </section>
 
+      <LoteProveedor
+        vencido={vencido}
+        estado={estadoVencido}
+        siguiente={siguiente}
+        esperando={{ pedidos: esperando.length, uds: esperando.reduce((s, p) => s + p.unidades, 0) }}
+      />
+
       {pedidos.length === 0 ? (
         <p className="mt-16 text-center text-[var(--color-tinta-suave)]">Aún no hay pedidos registrados.</p>
       ) : (
@@ -136,6 +159,7 @@ export default async function PanelPagina() {
                 <th className="py-2 pr-3 text-right">Donación</th>
                 <th className="py-2 pr-3 text-right">Total</th>
                 <th className="py-2 pr-3">Estado</th>
+                <th className="py-2 pr-3">Lote</th>
                 <th className="py-2">Acciones</th>
               </tr>
             </thead>
@@ -161,6 +185,7 @@ export default async function PanelPagina() {
                       {ETIQUETA[p.estado]}
                     </span>
                   </td>
+                  <td className="py-3 pr-3 font-[family-name:var(--ff-mono)] text-xs">{p.lote ?? "—"}</td>
                   <td className="py-3">
                     <div className="flex flex-wrap gap-1.5">
                       {p.estado !== "pagado" && <AccionEstado referencia={p.referencia} estado="pagado" texto="Marcar pagado" />}
@@ -175,6 +200,67 @@ export default async function PanelPagina() {
         </div>
       )}
     </main>
+  );
+}
+
+/**
+ * Rutina del lote al proveedor: el día 21 a las 8:00 se cierra sola y manda el correo a la caja.
+ * Aquí se ve si salió, se baja el CSV y, si algo falló, se lanza a mano.
+ */
+function LoteProveedor({
+  vencido,
+  estado,
+  siguiente,
+  esperando,
+}: {
+  vencido: Lote;
+  estado: { cerrado: string; correo: string | null } | null;
+  siguiente: Lote;
+  esperando: { pedidos: number; uds: number };
+}) {
+  const boton =
+    "rounded-md border border-[var(--color-borde,#d4d4d4)] px-3 py-1.5 text-xs font-medium transition-colors hover:bg-[var(--color-tinta)] hover:text-[var(--color-fondo)]";
+  return (
+    <section className="mt-6 rounded-xl border border-[var(--color-borde,#e5e5e5)] p-4">
+      <div className="font-[family-name:var(--ff-mono)] text-xs uppercase tracking-wider text-[var(--color-tinta-suave)]">
+        Lote al proveedor · se cierra solo el día 21 a las 8:00
+      </div>
+      <p className="mt-2 text-sm">
+        <strong>Lote {vencido.etiqueta}</strong> (del {diaMadrid(vencido.desde)} al {ultimoDia(vencido)}, ambos incluidos):{" "}
+        {!estado
+          ? "sin cerrar."
+          : estado.correo
+            ? `cerrado; correo a la caja enviado el ${fechaMadrid(estado.correo)}.`
+            : "cerrado, pero el correo NO salió."}
+      </p>
+      <p className="mt-1 text-sm text-[var(--color-tinta-suave)]">
+        Esperando al lote {siguiente.etiqueta}, que se cierra el {diaMadrid(siguiente.corte)}: {esperando.pedidos} pedidos ·{" "}
+        {esperando.uds} camisetas, hasta ahora.
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {estado && (
+          <a href={`/panel/lote?etiqueta=${vencido.etiqueta}`} className={boton}>
+            Bajar CSV del lote {vencido.etiqueta}
+          </a>
+        )}
+        {(!estado || !estado.correo) && (
+          <form action="/panel/lote" method="post">
+            <input type="hidden" name="accion" value="cerrar" />
+            <button type="submit" className={boton}>
+              Cerrar lote {vencido.etiqueta} y mandar el correo
+            </button>
+          </form>
+        )}
+        {estado?.correo && (
+          <form action="/panel/lote" method="post">
+            <input type="hidden" name="accion" value="reenviar" />
+            <button type="submit" className={boton}>
+              Reenviar el correo
+            </button>
+          </form>
+        )}
+      </div>
+    </section>
   );
 }
 

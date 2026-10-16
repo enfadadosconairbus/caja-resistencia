@@ -13,7 +13,7 @@
 #   3) CajaResistencia-RevisarPublicar · 20:00 · INTERACTIVA (necesita sesión iniciada)
 #      Descarga lo nuevo, genera el Excel DELTA, te lo abre, espera a que lo revises y
 #      guardes, y publica en la web lo que hayas marcado (copia a public/docs, actualiza
-#      actas.json, refresca el índice, commit + push + deploy en Vercel).
+#      actas.json, refresca el índice, commit + push + deploy en Cloudflare).
 #
 # Sigue siendo la vía para lo que NO está en el índice del grupo (manifiestos por idioma,
 # solidaridad internacional, actas escaneadas por centro).
@@ -21,10 +21,23 @@
 # Las actas y los resúmenes del grupo NO pasan por aquí: los publica solo el bot de la
 # nube (GitHub Actions, cada 12 h).
 #
+# ── FASE 3 (29-sep-2026) ──
+# Este fichero es la copia de la WEB B y las rutas salen de dónde está él ($siteDir), así
+# que ejecutarlo apunta las tres tareas a site-caja. Las tareas se registran POR NOMBRE:
+# ejecutar esto REEMPLAZA las que hoy apuntan a la Web A. Es lo que se busca, pero conviene
+# saberlo — después de correrlo, el flujo de las 20:00 publica en la caja, no en la web del
+# movimiento. Para comprobarlo sin publicar nada:
+#
+#   Get-ScheduledTask CajaResistencia-* | ForEach-Object {
+#     "$($_.TaskName) -> $($_.Actions.WorkingDirectory)" }
+#
 # Uso (una vez):   powershell -ExecutionPolicy Bypass -File .\scripts\instalar-tareas.ps1
 # Requisitos:      Python + `pip install telethon openpyxl`, Node (para la tarea 1),
 #                  scripts/actas.session (login hecho), scripts/tg.local.json con
-#                  {api_id, api_hash, canal}, y `vercel` con sesión iniciada (vercel login).
+#                  {api_id, api_hash, canal}, y wrangler con sesión iniciada en la cuenta
+#                  correcta —`npx wrangler whoami` tiene que decir
+#                  enfadadosconairbus.contacto@gmail.com— o CLOUDFLARE_API_TOKEN en el
+#                  entorno. Ya no hace falta `vercel login`.
 
 $ErrorActionPreference = "Stop"
 $scriptDir = $PSScriptRoot
@@ -55,7 +68,7 @@ $publicarIndice = Join-Path $scriptDir "publicar-indice.mjs"
 if (-not $node) {
   Write-Warning "No encuentro node.exe en el PATH: me salto 'CajaResistencia-IndiceDiario'."
 } elseif (-not (Test-Path $publicarIndice)) {
-  Write-Warning "No existe $publicarIndice: me salto la tarea del indice."
+  Write-Warning "No existe ${publicarIndice}: me salto la tarea del indice."
 } else {
   $n0 = "CajaResistencia-IndiceDiario"
   Unregister-ScheduledTask -TaskName $n0 -Confirm:$false -ErrorAction SilentlyContinue

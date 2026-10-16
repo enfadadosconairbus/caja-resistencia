@@ -57,6 +57,7 @@ export function ChapaHuelga({
   hoyISO,
   inicioISO,
   pausaISO,
+  desconvocadaISO,
   zona,
 }: {
   s: ChapaStrings;
@@ -64,6 +65,8 @@ export function ChapaHuelga({
   inicioISO: string;
   /** Fecha de pausa (ISO). Desde ella la huelga sigue vigente pero pausada. `null` = activa. */
   pausaISO?: string | null;
+  /** Fecha de desconvocatoria (ISO). Desde ella la chapa no se pinta. `null` = sigue convocada. */
+  desconvocadaISO?: string | null;
   zona: string;
 }) {
   // La portada puede generarse estática (fecha del build), así que el estado se recalcula
@@ -81,6 +84,11 @@ export function ChapaHuelga({
 
   // La pausa gana a «en curso»: una vez arrancada, si hay fecha de pausa y ya llegó, la
   // huelga sigue vigente pero pausada. Se reanuda poniendo `pausa` a null en el config.
+  // Huelga desconvocada (5-oct-2026): fuera la chapa. Va DESPUÉS de los hooks —React exige
+  // llamarlos siempre en el mismo orden— y se decide con el mismo `hoy`, así que servidor y
+  // cliente coinciden y no hay desajuste de hidratación.
+  if (desconvocadaISO && hoy >= desconvocadaISO) return null;
+
   let estado = estadoDe(hoy, inicioISO);
   if (estado === "curso" && pausaISO && hoy >= pausaISO) estado = "pausada";
 
@@ -117,9 +125,13 @@ export function ChapaHuelga({
             caliente ? "bg-[var(--color-papel-fijo)]" : "bg-[var(--color-acento)]"
           }`}
         />
+        {/* Sin `opacity-90` en caliente: el papel sobre el rojo da 4,69:1, pero rebajado
+            al 90 % caía a 3,89:1 y suspendía AA — en la chapa que anuncia el estado de
+            la huelga, que es lo más urgente de la página. La jerarquía entre la etiqueta
+            y el resto la hace el peso, no la transparencia. (26-sep-2026) */}
         <span className="font-semibold uppercase tracking-wider">{s.etiqueta}</span>
-        <span className={caliente ? "opacity-90" : ""}>{texto}</span>
-        <span className={`hidden sm:inline ${caliente ? "opacity-90" : ""}`}>{detalle}</span>
+        <span>{texto}</span>
+        <span className="hidden sm:inline">{detalle}</span>
       </p>
     </div>
   );

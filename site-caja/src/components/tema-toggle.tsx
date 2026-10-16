@@ -14,8 +14,13 @@ const subscribe = (cb: () => void) => {
   };
 };
 const leerCliente = () => document.documentElement.classList.contains("dark");
-/** En el servidor no hay `localStorage`: se pinta el modo claro, que es el defecto. */
-const leerServidor = () => false;
+/**
+ * En el servidor no hay `localStorage`: se pinta el modo OSCURO, que es el defecto de esta
+ * web desde el 26-sep-2026 (excepción a D-09; el porqué, en `lib/tema.ts`). Tiene que decir
+ * lo mismo que la clase que el layout pone en `<html>`, o el interruptor sale con el icono
+ * cambiado hasta que hidrata.
+ */
+const leerServidor = () => true;
 
 export function TemaToggle({ label }: { label: { oscuro: string; claro: string } }) {
   const oscuro = React.useSyncExternalStore(subscribe, leerCliente, leerServidor);

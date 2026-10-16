@@ -19,7 +19,7 @@
  *   node scripts/publicar-indice.mjs --dry-run    # dice qué haría, sin tocar nada
  */
 import { copyFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
-import { join, extname } from "node:path";
+import { join, extname, relative, sep } from "node:path";
 import { spawnSync } from "node:child_process";
 import { cargarIndice } from "../src/lib/indice-parse.ts";
 import {
@@ -75,11 +75,25 @@ function sincronizar() {
   }
 }
 
+/**
+ * Ruta de git (relativa a la raíz del repo) para algo de ESTE sitio.
+ *
+ * Antes iban escritas a pelo: `clientes/caja-resistencia/site/...`. Al copiar el sitio a
+ * `site-caja` esas rutas se quedaron apuntando a la Web A, así que esta copia escribía los
+ * documentos AQUÍ y commiteaba ALLÍ — o sea, no commiteaba nada de lo que acababa de hacer
+ * y de paso se llevaba por delante cualquier cambio suelto de la otra web. Nunca llegó a
+ * ejecutarse (las tareas de Windows apuntaban a la Web A), pero era una trampa armada.
+ *
+ * Ahora sale de `SITE`, que ya se deriva de la posición del propio fichero: el script
+ * funciona esté donde esté, y copiarlo a un tercer sitio no vuelve a romperlo.
+ */
+const enRepo = (...partes) => relative(REPO, join(SITE, ...partes)).split(sep).join("/");
+
 function desplegar(n, hitos = 0) {
-  git("add", "clientes/caja-resistencia/site/public/docs",
-      "clientes/caja-resistencia/site/src/config/documentos.json",
-      "clientes/caja-resistencia/site/src/config/hitos.json",
-      "clientes/caja-resistencia/site/scripts/hitos-candidatos.json");
+  git("add", enRepo("public", "docs"),
+      enRepo("src", "config", "documentos.json"),
+      enRepo("src", "config", "hitos.json"),
+      enRepo("scripts", "hitos-candidatos.json"));
   if (!git("diff", "--staged", "--name-only")) return "sin cambios que commitear";
   const que = [n ? `${n} documento(s)` : null, hitos ? `${hitos} hito(s)` : null]
     .filter(Boolean).join(" y ");
@@ -90,20 +104,45 @@ function desplegar(n, hitos = 0) {
       "son factuales, sin la lectura del movimiento.\n\n" +
       "Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>");
   git("push", "origin", `HEAD:${git("rev-parse", "--abbrev-ref", "HEAD")}`);
-  for (const cmd of ["vercel --prod --yes", "npx --yes vercel --prod --yes"]) {
-    const r = spawnSync(cmd, { cwd: SITE, shell: true, encoding: "utf8" });
-    if (r.status === 0) return "desplegado en Vercel";
+  return publicarEnCloudflare();
+}
+
+/**
+ * Despliegue en Cloudflare Workers (fase 3).
+ *
+ * Diferencia importante con Vercel, y la razón de que aquí haya DOS pasos: Vercel
+ * construía en su nube a partir del push, así que bastaba con `vercel --prod`. Wrangler
+ * sube lo que encuentre en `dist/`, que solo existe después de `build:vinext`. Si se
+ * despliega sin construir, se vuelve a publicar la versión anterior sin avisar de nada:
+ * el comando termina con éxito y la web se queda como estaba.
+ */
+function publicarEnCloudflare() {
+  const paso = (guion) =>
+    spawnSync("npm", ["run", guion], { cwd: SITE, shell: true, encoding: "utf8" });
+
+  const build = paso("build:vinext");
+  if (build.status !== 0) {
+    console.log((build.stderr || build.stdout || "").trim().split("\n").slice(-12).join("\n"));
+    return "commit y push hechos; la CONSTRUCCIÓN falló, así que no se ha desplegado " +
+           "(la web sigue con la versión anterior; mira el error de arriba)";
   }
-  return "commit y push hechos; el despliegue de Vercel falló (lánzalo a mano: vercel --prod)";
+  const deploy = paso("deploy:vinext");
+  if (deploy.status === 0) return "desplegado en Cloudflare";
+  console.log((deploy.stderr || deploy.stdout || "").trim().split("\n").slice(-12).join("\n"));
+  return "commit y push hechos; el despliegue falló (lánzalo a mano: " +
+         "npm run build:vinext && npm run deploy:vinext)";
 }
 
 if (COMMIT && !DRY) sincronizar();
 
 const indice = await cargarIndice(fetcher);
-const { excluir } = leerOverrides();
+const { excluir, excluirCategorias } = leerOverrides();
 const publicados = mapaArchivos(indice);
 
+// Una sección retirada entera (`excluirCategorias`) tampoco se descarga: si no, lo que se
+// borró de /docs volvería a publicarse en la siguiente pasada.
 const pendientes = indice.categorias
+  .filter((c) => !excluirCategorias.has(c.slug))
   .flatMap((c) => c.documentos)
   .filter((d) => d.msgId != null)
   .filter((d) => !excluir.has(String(d.msgId)))
@@ -160,8 +199,8 @@ for (const [id, doc] of porId) {
 
 // Los metadatos de autoría se borran ANTES de copiar, sobre el original de `pendientes/`.
 // Lo que entra en `public/docs` sale a producción tal cual, y un PDF enseña su campo Autor a
-// dos clics desde el navegador: por aquí pasaron matrículas de Airbus (kosita2, C90170,
-// C01037), que dentro de la empresa señalan por dónde salió el documento. Este era el agujero
+// dos clics desde el navegador: por aquí pasaron matrículas de Airbus, que dentro de la
+// empresa señalan por dónde salió el documento. Este era el agujero
 // —`revisar-y-publicar.py` sí limpiaba, esta vía no— y por él se colaron 81 documentos.
 // Va aquí, en el único punto por el que pasan todos, para que no dependa de que nadie se
 // acuerde. Si el limpiador no está, no se publica: un día sin documentos nuevos se arregla,

@@ -5,7 +5,21 @@
  * del catálogo, y el pago se confirma por webhook firmado, no por la redirección de vuelta.
  */
 
+import { SITE_URL } from "@/lib/site-url";
+
 const API = "https://api.stripe.com/v1";
+
+/**
+ * Nombre que se ve ARRIBA de la página de pago de Stripe. Sin esto sale el de la cuenta,
+ * «Sindicato UTIL», que es la entidad jurídica pero no lo que la gente reconoce. Según Stripe,
+ * `branding_settings.display_name` solo cambia esa cabecera: los términos, los recibos y el
+ * extracto siguen con el nombre de la cuenta, que es lo que tiene que constar legalmente.
+ */
+const NOMBRE_EN_PAGO = "Caja de Resistencia – Trabajadores Airbus España";
+
+/** Y a su lado, el escudo de la web en vez del icono genérico de tienda. Stripe lo descarga
+ *  de la URL, así que tiene que ser pública: `apple-icon.png` (180×180, cuadrado) ya lo es. */
+const ICONO_EN_PAGO = `${SITE_URL}/apple-icon.png`;
 
 export type LineaCheckout = { nombre: string; unitAmount: number; cantidad: number };
 
@@ -22,6 +36,8 @@ export async function crearCheckoutSession(
     paymentMethodTypes?: string[];
     /** Datos del pedido; se leen en el webhook para crear el pedido ya pagado. */
     metadata?: Record<string, string>;
+    /** Texto del botón de Stripe: «Donar» para aportaciones, «Pagar» (defecto) para la tienda. */
+    submitType?: "donate" | "pay";
   },
 ): Promise<{ id: string; url: string }> {
   const p = new URLSearchParams();
@@ -30,6 +46,7 @@ export async function crearCheckoutSession(
   p.set("cancel_url", opts.cancelUrl);
   if (opts.email) p.set("customer_email", opts.email);
   if (opts.locale) p.set("locale", opts.locale);
+  if (opts.submitType) p.set("submit_type", opts.submitType);
   opts.paymentMethodTypes?.forEach((m, i) => p.set(`payment_method_types[${i}]`, m));
   // El pedido viaja en metadata (y se copia al PaymentIntent) → el webhook lo materializa.
   for (const [k, v] of Object.entries(opts.metadata ?? {})) {
@@ -43,15 +60,34 @@ export async function crearCheckoutSession(
     p.set(`line_items[${i}][price_data][product_data][name]`, l.nombre);
   });
 
-  const res = await fetch(`${API}/checkout/sessions`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${secretKey}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: p.toString(),
-  });
-  const data = (await res.json()) as { id?: string; url?: string; error?: { message?: string } };
+  const crear = async (cuerpo: URLSearchParams) => {
+    const res = await fetch(`${API}/checkout/sessions`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${secretKey}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: cuerpo.toString(),
+    });
+    const data = (await res.json()) as {
+      id?: string;
+      url?: string;
+      error?: { message?: string; param?: string };
+    };
+    return { res, data };
+  };
+
+  /* El nombre y el icono son cosméticos: si Stripe rechazara `branding_settings` (no se fija versión de API,
+     y una cuenta con versión antigua no lo conoce, o no pudiera bajar el icono), se reintenta sin
+     ellos. Un adorno de más no puede costar una aportación. */
+  const conMarca = new URLSearchParams(p);
+  conMarca.set("branding_settings[display_name]", NOMBRE_EN_PAGO);
+  conMarca.set("branding_settings[icon][type]", "url");
+  conMarca.set("branding_settings[icon][url]", ICONO_EN_PAGO);
+  let { res, data } = await crear(conMarca);
+  if (!res.ok && data.error?.param?.startsWith("branding_settings")) {
+    ({ res, data } = await crear(p));
+  }
   if (!res.ok || !data.id || !data.url) {
     throw new Error(data.error?.message ?? `Stripe respondió ${res.status}`);
   }

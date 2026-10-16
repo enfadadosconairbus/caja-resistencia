@@ -199,6 +199,8 @@ export function leerOverrides() {
   const ov = existsSync(OVERRIDES) ? JSON.parse(readFileSync(OVERRIDES, "utf8")) : {};
   return {
     excluir: new Set(Object.keys(ov.excluir ?? {}).filter((k) => /^\d+$/.test(k))),
+    // Secciones enteras fuera (por slug), incluido lo que el grupo catalogue en ellas después.
+    excluirCategorias: new Set(Object.keys(ov.excluirCategorias ?? {})),
     titulos: Object.fromEntries(Object.entries(ov.titulos ?? {}).filter(([k]) => /^\d+$/.test(k))),
     anadir: Object.entries(ov.anadir ?? {}).map(([k, d]) => ({
       ...d,
@@ -215,7 +217,7 @@ export function leerOverrides() {
  */
 export function construirSnapshot(indice) {
   const archivos = mapaArchivos(indice);
-  const { excluir, titulos, anadir } = leerOverrides();
+  const { excluir, excluirCategorias, titulos, anadir } = leerOverrides();
 
   // Lo que el índice ya cataloga gana: si el grupo acabó catalogando un adelantado, la
   // entrada de `anadir` se ignora sola en vez de esperar a que alguien la retire a mano
@@ -225,6 +227,11 @@ export function construirSnapshot(indice) {
 
   let ocultos = 0;
   const categorias = indice.categorias
+    .filter((c) => {
+      const fuera = excluirCategorias.has(c.slug);
+      if (fuera) ocultos += c.documentos.length;
+      return !fuera;
+    })
     .map((c) => ({
       ...c,
       documentos: [
@@ -255,6 +262,7 @@ export function construirSnapshot(indice) {
       capturado: new Date().toISOString(),
       archivos,
       excluidos: [...excluir],
+      categoriasExcluidas: [...excluirCategorias],
       titulos,
       anadidos: anadir,
     },

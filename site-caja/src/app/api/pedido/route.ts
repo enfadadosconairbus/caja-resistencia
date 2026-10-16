@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { env } from "cloudflare:workers";
-import { CAMISETA, MAX_UNIDADES, SITES, TIENDA_ACTIVA } from "@/config/pedidos";
+import { CAMISETA, MAX_UNIDADES, SITES, TELEFONO_RE, TIENDA_ACTIVA } from "@/config/pedidos";
 import { SITE_URL } from "@/lib/site-url";
 import { crearCheckoutSession, type LineaCheckout } from "@/lib/stripe";
 
@@ -9,7 +9,8 @@ import { crearCheckoutSession, type LineaCheckout } from "@/lib/stripe";
  * Se valida todo en servidor (tallas, cantidades, tope, precio — el navegador nunca decide el
  * dinero), se crea una Checkout Session de Stripe (tarjeta + Bizum) con el pedido en `metadata`,
  * y se devuelve su URL. El pedido se materializa YA PAGADO en el webhook (`checkout.session.
- * completed`). Las transferencias quedan solo para donaciones sin producto (otro bloque).
+ * completed`). Las aportaciones sin producto van por `/api/donacion`, separadas a propósito:
+ * una camiseta es una compraventa y una aportación no tiene contraprestación (Art. 5).
  */
 export const dynamic = "force-dynamic";
 
@@ -30,6 +31,7 @@ export async function POST(request: Request) {
     nombre?: unknown;
     email?: unknown;
     site?: unknown;
+    telefono?: unknown;
     lang?: unknown;
   };
   try {
@@ -41,6 +43,8 @@ export async function POST(request: Request) {
   const nombre = typeof body.nombre === "string" ? body.nombre.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim() : "";
   const site = typeof body.site === "string" ? body.site.trim() : "";
+  // Opcional: vacío vale; si viene, tiene que parecer un teléfono.
+  const telefono = typeof body.telefono === "string" ? body.telefono.trim() : "";
   const lineasRaw = Array.isArray(body.lineas) ? (body.lineas as LineaEntrada[]) : [];
   const lang = (LOCALES as readonly string[]).includes(body.lang as string)
     ? (body.lang as string)
@@ -48,6 +52,7 @@ export async function POST(request: Request) {
 
   if (!nombre) return error("Indica tu nombre.");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return error("Revisa tu email.");
+  if (telefono && !TELEFONO_RE.test(telefono)) return error("Revisa tu teléfono.");
 
   // Normaliza líneas: agrupa por talla válida, cantidades enteras positivas.
   const porTalla = new Map<string, number>();
@@ -79,18 +84,21 @@ export async function POST(request: Request) {
     const sesion = await crearCheckoutSession(stripeKey, {
       lineas: lineasCheckout,
       email,
-      successUrl: `${SITE_URL}/${lang}/tienda?pago=ok`,
-      cancelUrl: `${SITE_URL}/${lang}/tienda?pago=cancelado`,
+      successUrl: `${SITE_URL}/${lang}/material?pago=ok`,
+      cancelUrl: `${SITE_URL}/${lang}/material?pago=cancelado`,
       locale: lang,
       // Sin `paymentMethodTypes`: Stripe ofrece los métodos ACTIVADOS en el dashboard
       // (tarjeta + Bizum cuando lo actives), sin fallar si alguno no está habilitado.
       metadata: {
+        tipo: "pedido",
         lineas: JSON.stringify(lineas),
         unidades: String(unidades),
         total: String(total),
         site,
         nombre,
         email,
+        telefono,
+        lang,
       },
     });
     return NextResponse.json(

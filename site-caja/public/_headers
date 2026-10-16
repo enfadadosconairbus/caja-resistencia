@@ -1,0 +1,27 @@
+# Los documentos NO se indexan, aunque la web sí (decisión de la coordinación, 13-ago-2026).
+#
+# Hay material interno de Airbus en public/docs (tablas salariales, política de trabajo a
+# distancia) y Google indexa PDFs extrayendo su texto, incluso pasando OCR a los escaneados.
+# Indexarlos convierte «documentos que circulan en un grupo privado» en «documentos
+# buscables por una frase exacta», y eso multiplica la presión de la empresa por encontrar
+# quién los sacó. Siguen a un clic para quien entra en la web; no salen en búsquedas.
+#
+# `noarchive` va aparte de `noindex`: sin él, el buscador puede seguir sirviendo su copia
+# en caché del documento aunque no lo liste.
+#
+# POR QUÉ AQUÍ Y NO EN next.config.ts. La regla está en `headers()` desde que se copió el
+# sitio, y en Vercel funcionaba también sobre los ficheros de public/. En Cloudflare NO:
+# los assets estáticos los sirve el binding ASSETS sin pasar por el Worker, así que
+# `headers()` solo alcanza a las rutas que pinta el Worker. Medido el 29-sep-2026 contra
+# producción: /es traía las seis cabeceras de seguridad y /docs/*.pdf no traía ninguna.
+/docs/*
+  X-Robots-Tag: noindex, noarchive
+
+# Cache content-hashed assets immutably (lo generaba vinext en dist/client/_headers).
+#
+# OJO: `public/_headers` NO se fusiona con el que genera vinext — lo SUSTITUYE. Si esta
+# regla no estuviera aquí, los ficheros con hash en el nombre dejarían de cachearse para
+# siempre y cada visita se los volvería a bajar. Comprobado construyendo: la primera
+# versión de este fichero se llevó la regla por delante.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

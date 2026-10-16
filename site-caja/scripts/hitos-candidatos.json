@@ -1,6 +1,6 @@
 {
   "nota": "Candidatos a hito de la cronología. NADA de esto está publicado: los hitos se escriben a mano en src/config/hitos.json, con su texto y su lectura. Esto solo evita que se pase algo por alto. Para que un candidato deje de proponerse sin subirlo, añade su 'pdf' (documentos) o su 'clave' (prensa) a scripts/hitos-descartados.json con el motivo.",
-  "generado": "2026-08-27T10:25:00.995Z",
+  "generado": "2026-10-16T15:36:34.502Z",
   "candidatos": [
     {
       "senal": "documento",
@@ -27,22 +27,10 @@
       "categoria": "Cartas abiertas",
       "pdf": "/docs/enfado-orgullo-e-incertidumbre-carta-abierta-a-los-trabajadores.pdf",
       "resumen": "",
-      "yaHayHitoEseDia": false
-    },
-    {
-      "senal": "prensa",
-      "fecha": "2026-08-26",
-      "tema": "huelga indefinida",
-      "medios": [
-        "CGT Andalucía, Ceuta y Melilla",
-        "ABC",
-        "La Razón",
-        "Aviación Digital"
-      ],
-      "clave": "2026-08-26|huelga indefinida"
+      "yaHayHitoEseDia": true
     }
   ],
   "porDocumento": 3,
-  "porPrensa": 1,
-  "repetidos": 11
+  "porPrensa": 0,
+  "repetidos": 10
 }

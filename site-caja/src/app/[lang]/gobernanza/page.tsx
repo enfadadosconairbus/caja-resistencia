@@ -70,7 +70,10 @@ export default async function Gobernanza({
     day: "2-digit",
   }).format(new Date());
   const s = d.sobre;
-  const gestion = FONDO.contacto.general;
+  // La gestión de la caja se atiende en dos sitios: el canal del sindicato titular y el correo del
+  // movimiento (1-oct-2026, lo pidió la coordinación). El enlace escribe a los dos a la vez, como el de
+  // grandes donantes de «La caja»: así lo ve quien tenga que contestar, esté en un sitio o en otro.
+  const gestion = [FONDO.contacto.general, FONDO.redes.emailWeb].filter((e): e is string => Boolean(e));
 
   return (
     <div className="bg-[var(--color-fondo)] text-[var(--color-tinta)]">
@@ -91,6 +94,7 @@ export default async function Gobernanza({
             hoyISO={hoyEnMadrid}
             inicioISO={ARRANQUE.inicio}
             pausaISO={ARRANQUE.pausa}
+            desconvocadaISO={ARRANQUE.desconvocada}
             zona={ARRANQUE.zona}
           />
         }
@@ -162,14 +166,18 @@ export default async function Gobernanza({
               {/* ── CONTACTO DE LA GESTIÓN DE LA CAJA (comisión gestora / sindicato) ── */}
               <Seccion heading={s.contactoCaja.heading}>
                 <p>{s.contactoCaja.body}</p>
-                {gestion ? (
+                {gestion.length ? (
                   <a
-                    href={redactorGmail(gestion, s.contactoCaja.heading)}
+                    href={redactorGmail(gestion.join(","), s.contactoCaja.heading)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 inline-block font-[family-name:var(--ff-mono)] text-sm text-[var(--color-acento-tinta)] underline underline-offset-4 not-italic"
                   >
-                    {gestion}
+                    {gestion.map((e) => (
+                      <span key={e} className="block">
+                        {e}
+                      </span>
+                    ))}
                   </a>
                 ) : (
                   <p className="mt-2 rounded-lg border border-dashed border-[var(--color-linea)] px-4 py-3 font-[family-name:var(--ff-mono)] text-xs not-italic text-[var(--color-tinta-suave)]">

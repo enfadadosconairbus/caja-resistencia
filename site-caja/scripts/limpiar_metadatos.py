@@ -11,11 +11,11 @@ navegador. En `public/docs/` había 30 de 94 con ese campo relleno (auditoría d
 
   · `tablas-salariales-2021/2022/2023.pdf`, `politica-trabajo-a-distancia-airbus.pdf`
     y `comunicado-conjunto-cgt-ugt-y-util...pdf` llevaban **matrículas de Airbus**
-    (C90170, C01037, C22539, kosita2). Ese código identifica al empleado dentro de
+    (códigos de empleado). Ese código identifica al empleado dentro de
     la empresa: publicar un documento interno con la matrícula de quien lo generó
     señala por dónde salió.
-  · Otros llevaban nombres y apellidos de compañeros (ESTEVEZ CUADRADO Lorena,
-    Saez Campos Gonzalo [ES], Vidal Marc [ES], Penalva del Rio Fernando [ES]...).
+  · Otros llevaban nombres y apellidos de compañeros en el campo
+    Autor.
   · Los seis ficheros del manifiesto iban firmados `Vercingetorix`: seudónimo, pero
     reutilizable —enlaza entre sí todo lo salido del mismo ordenador— y con la hora
     exacta de creación, que dibuja un patrón horario.

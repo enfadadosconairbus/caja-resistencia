@@ -14,6 +14,7 @@ type NavStrings = {
   documentacion: string;
   sobre: string;
   faq: string;
+  campanas: string;
   gobernanza: string;
   contacto: string;
   aportar: string;
@@ -62,13 +63,30 @@ export function SiteNav({
   nav,
   pagina = "portada",
   cintillo,
+  sufijo,
 }: {
   lang: string;
   nav: NavStrings;
-  pagina?: "portada" | "caja" | "tienda" | "gobernanza";
+  pagina?: "portada" | "caja" | "campanas" | "tienda" | "gobernanza";
   /** Cintillo de huelga: va DENTRO de la cabecera sticky para quedarse fijo con la barra. */
   cintillo?: React.ReactNode;
+  /** Sufijo de ruta para el cambio de idioma, cuando no se puede derivar de `pagina`. */
+  sufijo?: string;
 }) {
+  // El cambio de idioma mantiene la página en la que estás. Las rutas con parámetro —la
+  // ficha de una campaña— no se pueden derivar de `pagina`, así que la componen ellas y la
+  // pasan hecha en `sufijo`.
+  const sufijoIdioma =
+    sufijo ??
+    (pagina === "caja"
+      ? "/la-caja"
+      : pagina === "campanas"
+        ? "/campanas"
+        : pagina === "tienda"
+          ? "/material"
+          : pagina === "gobernanza"
+            ? "/gobernanza"
+            : "");
   const enPortada = pagina === "portada";
   const [open, setOpen] = React.useState(false);
   // Fuera de la portada el enlace activo es la propia página, y no cambia: estado inicial,
@@ -78,8 +96,9 @@ export function SiteNav({
   const ancla = (id: string) => (enPortada ? `#${id}` : `/${lang}#${id}`);
   const links = [
     { href: `/${lang}/la-caja`, id: "caja", label: nav.caja },
+    { href: `/${lang}/campanas`, id: "campanas", label: nav.campanas },
     { href: `/${lang}/gobernanza`, id: "gobernanza", label: nav.gobernanza },
-    { href: `/${lang}/tienda`, id: "tienda", label: nav.tienda },
+    { href: `/${lang}/material`, id: "tienda", label: nav.tienda },
     { href: ancla("faq"), id: "faq", label: nav.faq },
   ];
   // El botón Aportar lleva siempre a la caja; en la propia página de la caja es un ancla local.
@@ -120,15 +139,34 @@ export function SiteNav({
         aria-label="Principal"
         className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3"
       >
+        {/* `min-w-0` y no `shrink-0` (1-oct-2026): con el bloque sin poder encoger, la página
+            medía 465 px en un móvil de 375 y todo lo fijo al borde derecho —el huelguista, su
+            botón para volver a mostrarlo— quedaba FUERA de la pantalla. El subtítulo parte en dos
+            líneas; para el título, ver la cuenta junto al botón del tema, más abajo. */}
         <Link
           href={`/${lang}`}
-          className="shrink-0 leading-tight text-[var(--color-tinta)]"
+          className="flex min-w-0 items-center gap-3 leading-tight text-[var(--color-tinta)]"
         >
-          <span className="block whitespace-nowrap font-[family-name:var(--ff-display)] text-lg font-extrabold tracking-tight">
-            #EnfadadosconAirbus
-          </span>
-          <span className="block font-[family-name:var(--ff-mono)] text-xs font-medium text-[var(--color-acento-tinta)]">
-            {nav.marca}
+          {/* El escudo del movimiento. 44 px = la mitad larga de la barra (68 px), que es
+              la altura que pidió la coordinación. `aria-hidden` porque el nombre va escrito
+              justo al lado: anunciarlo dos veces a un lector de pantalla es ruido. El PNG
+              lleva el fondo blanco recortado — el original venía en cuadrado opaco y sobre
+              la barra casi negra era un bloque. */}
+          <img
+            src="/img/logo-asi-no.png"
+            alt=""
+            aria-hidden="true"
+            width={44}
+            height={44}
+            className="h-11 w-11 shrink-0 object-contain"
+          />
+          <span className="block min-w-0">
+            <span className="block whitespace-nowrap font-[family-name:var(--ff-display)] text-[17px] font-extrabold tracking-tight min-[400px]:text-lg">
+              #EnfadadosconAirbus
+            </span>
+            <span className="block text-balance font-[family-name:var(--ff-mono)] text-[11px] font-medium leading-snug text-[var(--color-acento-tinta)] sm:text-xs">
+              {nav.marca}
+            </span>
           </span>
         </Link>
 
@@ -156,7 +194,7 @@ export function SiteNav({
               );
             })}
           </ul>
-          <LocaleSwitcher current={lang} pagina={pagina} />
+          <LocaleSwitcher current={lang} sufijo={sufijoIdioma} />
           <TemaToggle label={{ oscuro: nav.temaOscuro, claro: nav.temaClaro }} />
           <MagneticButton
             href={aportarHref}
@@ -176,12 +214,17 @@ export function SiteNav({
             referencia de móvil, y buena parte de la plantilla entra desde ahí. */}
         <div className="flex items-center gap-3 xl:hidden">
           <span className="hidden sm:block">
-            <LocaleSwitcher current={lang} pagina={pagina} />
+            <LocaleSwitcher current={lang} sufijo={sufijoIdioma} />
           </span>
-          {/* El tema sí se queda en la barra a 375 px, al revés que el idioma: son 36 px
-              y la cuenta de arriba deja sitio (193 + 36 + 12 + 64 = 305 de 335). Meterlo
-              en el desplegable obligaría a abrir un menú para bajar el brillo. */}
-          <TemaToggle label={{ oscuro: nav.temaOscuro, claro: nav.temaClaro }} />
+          {/* El tema también baja al desplegable por debajo de `sm` (1-oct-2026). Antes se
+              quedaba arriba con esta cuenta: 193 + 36 + 12 + 64 = 305 de 335. Estaba mal: medido
+              en el navegador, logo + título son 249 (44 + 12 + 193), así que con el tema y el
+              «Menú» (106) la barra pedía 371 px de 335 y la página se iba en horizontal. Sin el
+              tema caben 299; y por debajo de 400 px el título pasa de 18 a 17 px, para que a
+              360 (el Android más común) tampoco se salga. */}
+          <span className="hidden sm:block">
+            <TemaToggle label={{ oscuro: nav.temaOscuro, claro: nav.temaClaro }} />
+          </span>
           <button
             type="button"
             aria-expanded={open}
@@ -231,8 +274,9 @@ export function SiteNav({
             </li>
             {/* Contrapartida de lo anterior: por debajo de `sm` el idioma se elige aquí,
                 porque arriba no cabe. De `sm` para arriba sigue en la barra y aquí sobra. */}
-            <li className="mt-3 border-t border-[var(--color-linea)] pt-3 sm:hidden">
-              <LocaleSwitcher current={lang} pagina={pagina} />
+            <li className="mt-3 flex items-center justify-between gap-3 border-t border-[var(--color-linea)] pt-3 sm:hidden">
+              <LocaleSwitcher current={lang} sufijo={sufijoIdioma} />
+              <TemaToggle label={{ oscuro: nav.temaOscuro, claro: nav.temaClaro }} />
             </li>
           </ul>
         </div>
@@ -243,15 +287,12 @@ export function SiteNav({
 
 function LocaleSwitcher({
   current,
-  pagina,
+  sufijo,
 }: {
   current: string;
-  pagina: "portada" | "caja" | "tienda" | "gobernanza";
+  /** Ruta a la que salta el cambio de idioma, ya compuesta por quien renderiza la barra. */
+  sufijo: string;
 }) {
-  // El cambio de idioma mantiene la página en la que estás, no te devuelve a la portada.
-  const sufijo =
-    pagina === "caja" ? "/la-caja" : pagina === "tienda" ? "/tienda"
-    : pagina === "gobernanza" ? "/gobernanza" : "";
   return (
     <div className="flex items-center gap-1" role="group" aria-label="Idioma">
       {LOCALES.map((l) => {

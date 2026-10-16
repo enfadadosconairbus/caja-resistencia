@@ -26,11 +26,11 @@ export async function generateMetadata({
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
   const d = await getDictionary(lang);
-  const languages = Object.fromEntries(locales.map((l) => [l, `/${l}/tienda`]));
+  const languages = Object.fromEntries(locales.map((l) => [l, `/${l}/material`]));
   return {
     title: `${d.tienda.metaTitle} · ${d.meta.title}`,
     description: d.tienda.metaDescription,
-    alternates: { canonical: `/${lang}/tienda`, languages: { ...languages, "x-default": "/es/tienda" } },
+    alternates: { canonical: `/${lang}/material`, languages: { ...languages, "x-default": "/es/material" } },
   };
 }
 
@@ -71,6 +71,7 @@ export default async function TiendaPagina({
             hoyISO={hoyEnMadrid}
             inicioISO={ARRANQUE.inicio}
             pausaISO={ARRANQUE.pausa}
+            desconvocadaISO={ARRANQUE.desconvocada}
             zona={ARRANQUE.zona}
           />
         }
@@ -90,6 +91,7 @@ export default async function TiendaPagina({
           <p className="kicker mt-8">{d.tienda.kicker}</p>
           <MaskText
             as="h1"
+            immediate
             lines={d.tienda.title}
             className="mt-4 max-w-3xl font-[family-name:var(--ff-display)] text-4xl font-extrabold leading-tight md:text-6xl"
           />
@@ -113,7 +115,7 @@ export default async function TiendaPagina({
                 {pago === "ok" ? d.tienda.pago.okTexto : d.tienda.pago.canceladoTexto}
               </p>
               <Link
-                href={`/${lang}/tienda`}
+                href={`/${lang}/material`}
                 className="mt-3 inline-block font-[family-name:var(--ff-mono)] text-xs uppercase tracking-wider text-[var(--color-acento-tinta)] underline underline-offset-4"
               >
                 {d.tienda.pago.cerrar}

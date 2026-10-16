@@ -13,7 +13,7 @@ const RUTAS = [
   { path: "", prioridad: 1 },
   { path: "/la-caja", prioridad: 0.9 },
   { path: "/gobernanza", prioridad: 0.7 },
-  { path: "/tienda", prioridad: 0.6 },
+  { path: "/material", prioridad: 0.6 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
