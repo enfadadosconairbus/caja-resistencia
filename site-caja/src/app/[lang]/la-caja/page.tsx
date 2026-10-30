@@ -8,12 +8,14 @@ import { ChapaHuelga } from "@/components/chapa-huelga";
 import { SiteFooter } from "@/components/site-footer";
 import { MuroAportaciones } from "@/components/muro-aportaciones";
 import { AportarCanales } from "@/components/aportar-canales";
-import { FONDO, euros, eurosExacto, recuento, gastosTotal, saldoDisponible, type GastoLinea } from "@/config/fondo";
+import { FONDO } from "@/config/fondo";
 import { redactorGmail } from "@/lib/gmail";
 import { MaskText } from "@/components/motion";
 // Reveals en CSS puro, no framer: en la página del dinero la información no puede
 // depender de que hidrate React (ver `revelar.tsx`).
 import { Revelar, RevelarLista, RevelarItem } from "@/components/revelar";
+import { PanelTransparencia, type Movimiento, type TextosPanel } from "@/components/panel-transparencia";
+import RECAUDACION from "@/config/recaudacion.json";
 
 const SECTION = "mx-auto max-w-6xl px-5 py-20 md:py-28";
 
@@ -58,32 +60,17 @@ export default async function LaCaja({
     day: "2-digit",
   }).format(new Date());
 
-  // Las cifras salen de config/fondo.ts; el diccionario solo pone las etiquetas.
-  // Mientras no haya datos verificados, euros()/recuento() devuelven un guion.
-  // `senal: true` pinta la cifra en el teal de SEÑAL. Solo una la lleva, y a propósito:
-  // el saldo disponible es la que contesta «¿cuánto queda?», y si se señalan todas no
-  // se señala ninguna.
-  const cifras = [
-    { k: d.transparencia.stats.recaudado, v: euros(FONDO.cifras.recaudado, lang), senal: false },
-    { k: d.transparencia.stats.gastos, v: euros(gastosTotal(), lang), senal: false },
-    { k: d.transparencia.stats.saldo, v: euros(saldoDisponible(), lang), senal: true },
-    { k: d.transparencia.stats.aportaciones, v: recuento(FONDO.cifras.aportaciones, lang), senal: false },
-  ];
-  // Desglose de gastos POR CAMPAÑA: una tarjeta por cada campaña que ya ha arrancado, con su
-  // nombre en el título. Las previstas no salen: no han gastado nada y una tarjeta vacía
-  // solo haría ruido. Importe null = aprobado pero aún sin cifra («pendiente de imputar»).
+  // Panel de transparencia: los datos detallados salen de config/fondo.ts (gastos con sus
+  // pagos fechados) y de config/recaudacion.json (recaudación diaria AGREGADA, sin nombres).
+  // `scripts/check-panel.mjs` comprueba que todo cuadra al céntimo con las cifras publicadas.
+  // Las campañas previstas no salen: no han gastado nada.
   const fichas = d.campanas.fichas as Record<string, { corto: string }>;
-  const desgloses = FONDO.campanas
-    .filter((c) => c.estado !== "prevista")
-    .map((c) => ({
-      clave: c.clave,
-      titulo: d.transparencia.detalle.tituloCampana.replace("{campana}", fichas[c.clave]?.corto ?? c.clave),
-      lineas: c.gastos.map((g: GastoLinea) => ({
-        k: (d.transparencia.detalle as Record<string, string>)[g.clave] ?? g.clave,
-        v: g.importe === null ? d.transparencia.detalle.pendiente : eurosExacto(g.importe, lang),
-        pendiente: g.importe === null,
-      })),
-    }));
+  const campanasPanel = FONDO.campanas.filter((c) => c.estado !== "prevista");
+  const movimientos: Movimiento[] = campanasPanel.flatMap((c) =>
+    c.gastos.flatMap((g) =>
+      (g.pagos ?? []).map((p) => ({ fecha: p.fecha, importe: p.importe, campana: c.clave, concepto: g.clave, tipo: g.tipo })),
+    ),
+  );
   const actualizado = FONDO.cifras.actualizado;
   // Canal de organizaciones/grandes donantes: correo dedicado si existe, si no el de la comisión.
   const contactoOrg = FONDO.contacto.organizaciones ?? FONDO.contacto.general;
@@ -177,60 +164,17 @@ export default async function LaCaja({
           <Revelar>
             <p className="mt-6 max-w-3xl text-[var(--color-tinta-suave)]">{d.transparencia.intro}</p>
           </Revelar>
-          <RevelarLista className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {cifras.map((s) => (
-              <RevelarItem
-                key={s.k}
-                className="rounded-xl border border-[var(--color-linea)] bg-[var(--color-superficie)] p-6"
-              >
-                <p
-                  className={`font-[family-name:var(--ff-mono)] text-4xl font-medium tabular-nums ${
-                    s.senal ? "text-[var(--color-senal)]" : "text-[var(--color-tinta)]"
-                  }`}
-                >
-                  {s.v}
-                </p>
-                <p className="mt-2 text-sm text-[var(--color-tinta-suave)]">{s.k}</p>
-              </RevelarItem>
-            ))}
-          </RevelarLista>
-
-          {/* Desglose de gastos: en qué se ha ido el dinero, línea a línea y campaña a campaña. */}
-          {desgloses.map((desglose, i) => (
-            <Revelar key={desglose.clave}>
-              <div
-                className={`${i === 0 ? "mt-10" : "mt-6"} max-w-2xl rounded-xl border border-[var(--color-linea)] bg-[var(--color-superficie)] p-6`}
-              >
-                <h3 className="font-[family-name:var(--ff-mono)] text-xs uppercase tracking-wider text-[var(--color-tinta-suave)]">
-                  {desglose.titulo}
-                </h3>
-                <dl className="mt-4">
-                  {desglose.lineas.map((g) => (
-                    /* Dos columnas fijas: concepto a la izquierda (se parte en varias líneas si
-                       hace falta) e importe SIEMPRE a la derecha, alineado. Antes era una fila
-                       flexible que se partía: en móvil, con un concepto largo, el importe bajaba
-                       debajo del texto y con uno corto se quedaba al lado, así que conceptos e
-                       importes parecían mezclados. Ahora los importes forman su propia columna. */
-                    <div
-                      key={g.k}
-                      className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 border-b border-[var(--color-linea)] py-3 last:border-0"
-                    >
-                      <dt className="text-sm leading-snug text-[var(--color-tinta)]">{g.k}</dt>
-                      <dd
-                        className={
-                          g.pendiente
-                            ? "max-w-[8.5rem] text-right font-[family-name:var(--ff-mono)] text-xs uppercase leading-snug tracking-wider text-[var(--color-tinta-suave)]"
-                            : "whitespace-nowrap text-right font-[family-name:var(--ff-mono)] text-sm tabular-nums text-[var(--color-tinta)]"
-                        }
-                      >
-                        {g.v}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </Revelar>
-          ))}
+          {actualizado ? (
+            <PanelTransparencia
+              lang={lang}
+              corte={actualizado}
+              dias={RECAUDACION.dias}
+              movimientos={movimientos}
+              campanas={campanasPanel.map((c) => ({ clave: c.clave, nombre: fichas[c.clave]?.corto ?? c.clave }))}
+              conceptos={d.transparencia.detalle as Record<string, string>}
+              t={d.transparencia.panel as TextosPanel}
+            />
+          ) : null}
 
           <Revelar>
             <p className="mt-6 max-w-3xl text-sm text-[var(--color-tinta-suave)]">{d.transparencia.note}</p>

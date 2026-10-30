@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Image from "next/image";
 
 /**
@@ -15,6 +15,9 @@ type Props = {
   ampliarLabel: string;
   descargarLabel: string;
   cerrarLabel: string;
+  /** Contenido superpuesto en la esquina superior izquierda de la imagen (p. ej. un CTA).
+      Va por encima del botón de ampliar (z-10) para que reciba sus propios clics. */
+  overlay?: ReactNode;
 };
 
 export function UltimaHoraImagen({
@@ -24,27 +27,36 @@ export function UltimaHoraImagen({
   ampliarLabel,
   descargarLabel,
   cerrarLabel,
+  overlay,
 }: Props) {
   const [ampliada, setAmpliada] = useState(false);
 
   return (
     <figure className="rise-in m-0 mt-10" style={{ animationDelay: "0.3s" }}>
-      <button
-        type="button"
-        onClick={() => setAmpliada(true)}
-        className="group block w-full cursor-zoom-in overflow-hidden rounded-xl border border-white/12"
-        aria-label={ampliarLabel}
-      >
-        <Image
-          src={src}
-          alt={alt}
-          width={1600}
-          height={900}
-          sizes="(min-width: 1024px) 1024px, 100vw"
-          className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.02]"
-          priority
-        />
-      </button>
+      {/* Contenedor relativo: la imagen (clic = ampliar) y, encima, el overlay opcional. */}
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setAmpliada(true)}
+          className="group block w-full cursor-zoom-in overflow-hidden rounded-xl border border-white/12"
+          aria-label={ampliarLabel}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            width={1600}
+            height={900}
+            sizes="(min-width: 1024px) 1024px, 100vw"
+            className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.02]"
+            priority
+          />
+        </button>
+        {overlay ? (
+          <div className="absolute left-3 top-3 z-10 max-w-[calc(100%-1.5rem)] md:left-6 md:top-6">
+            {overlay}
+          </div>
+        ) : null}
+      </div>
 
       <div className="mt-4">
         <a

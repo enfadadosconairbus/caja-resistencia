@@ -403,6 +403,78 @@
    "desplazamientos": "Desplazamientos a la marcha al Ministerio de Industria (12-sep)",
    "chapas": "Chapas IPC+ (producción)",
    "digital": "Infraestructura digital de la caja de resistencia"
+  },
+  "panel": {
+   "filtros": "Filtros del panel",
+   "campana": "Campaña",
+   "todasCampanas": "Todas las campañas",
+   "tipo": "Tipo de gasto",
+   "periodo": "Periodo",
+   "todo": "Todo",
+   "restablecer": "Quitar filtros",
+   "corte": "Datos a {fecha}",
+   "kpi": {
+    "recaudado": "Recaudado",
+    "gastado": "Gastado",
+    "saldo": "Saldo disponible",
+    "saldoCierre": "Saldo al cierre del periodo",
+    "aportaciones": "Aportaciones",
+    "media": "Aportación media: {v}",
+    "pctGastado": "{v} de lo recaudado hasta entonces",
+    "notaCampana": "Lo recaudado y el saldo son de toda la caja: las aportaciones no van a una campaña concreta, solo los gastos."
+   },
+   "evolucion": {
+    "titulo": "Evolución del dinero",
+    "sub": "Acumulado día a día. Arrastra sobre el gráfico para elegir un periodo.",
+    "recaudado": "Recaudado",
+    "gastos": "Gastado",
+    "saldo": "Saldo",
+    "elegido": "Periodo elegido"
+   },
+   "conceptos": {
+    "titulo": "Gastos por concepto",
+    "sub": "Pulsa un concepto para filtrar por su tipo de gasto."
+   },
+   "cascada": {
+    "titulo": "De lo recaudado al saldo",
+    "sub": "Cuánto entra, en qué se va y cuánto queda.",
+    "recaudado": "Recaudado",
+    "saldo": "Saldo",
+    "neto": "Neto del periodo"
+   },
+   "diario": {
+    "titulo": "Aportaciones por semana",
+    "sub": "De lunes a domingo. Pulsa una semana para ver solo esa semana.",
+    "aportaciones": "{n} aportaciones",
+    "pocas": "menos de 5 aportaciones",
+    "otros": "otros ingresos"
+   },
+   "tabla": {
+    "titulo": "Movimientos de gasto",
+    "fecha": "Fecha",
+    "concepto": "Concepto",
+    "tipo": "Tipo",
+    "campana": "Campaña",
+    "importe": "Importe",
+    "total": "Total",
+    "vacio": "Ningún gasto con estos filtros.",
+    "csv": "Descargar CSV",
+    "verDiario": "Ver la recaudación por semana en tabla",
+    "dia": "Semana",
+    "recaudado": "Recaudado",
+    "nAport": "Aportaciones",
+    "sub": "Agrupados por concepto. Pulsa uno para ver sus pagos.",
+    "ultimoPago": "Último pago",
+    "pagos": "{n} pagos",
+    "unPago": "1 pago",
+    "verPagos": "Ver los pagos de {concepto}"
+   },
+   "tipos": {
+    "material": "Material de campaña",
+    "desplazamientos": "Desplazamientos",
+    "infraestructura": "Infraestructura digital",
+    "comisiones": "Comisiones bancarias"
+   }
   }
  },
  "muro": {

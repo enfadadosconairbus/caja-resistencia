@@ -12,6 +12,7 @@
   "internacional": "Solidaridad internacional",
   "donantes": "Grandes donantes",
   "faq": "Preguntas",
+  "referendum": "Referéndum",
   "termometro": "Termómetro",
   "aportar": "Aportar",
   "skip": "Saltar al contenido principal",
@@ -543,7 +544,6 @@
    "privacidad": "Política de privacidad",
    "cookies": "Política de cookies"
   },
-  "rights": "Textos legales en propuesta, pendientes de validación jurídica.",
   "visitasLabel": "visitas",
   "visitasNota": "Contador propio. No usamos cookies ni analítica: solo se suma un número, sin guardar quién eres.",
   "redes": "Canales",
@@ -560,8 +560,7 @@
  "legalModals": {
   "aviso": {
    "title": "Aviso legal",
-   "body": "Titularidad del sitio. Este sitio web es una iniciativa de trabajadoras y trabajadores de Airbus España agrupados en el movimiento #EnfadadosconAirbus. Es independiente: no representa a Airbus, no está promovido por la compañía y no utiliza su identidad corporativa. Tampoco es un sitio sindical: no representa a ninguna organización sindical, aunque informa de lo que estas publican.\n\nResponsable. Este sitio es una iniciativa informativa del movimiento, sin ánimo de lucro y sin entidad titular constituida. No recauda fondos ni ofrece servicios: se publica exclusivamente con fines informativos (Ley 34/2002, de servicios de la sociedad de la información). La caja de resistencia se gestiona en una web aparte, con su propia entidad titular.\n\nObjeto. Informar sobre el conflicto laboral en Airbus España: reivindicaciones, repercusión pública y documentación que el propio movimiento comparte.\n\nContenidos y veracidad. La información se elabora a partir de documentos del movimiento y de fuentes públicas, y se cita su origen. Los datos del apartado «Termómetro» proceden de un seguimiento independiente de terceros, se identifican como tales y se ofrecen como estimación, no como cifra oficial de ninguna empresa. Si detecta un error, escriba a enfadadosconairbus.contacto@gmail.com y se corregirá o se retirará el contenido.\n\nPropiedad intelectual. Los textos propios de este sitio pueden reproducirse citando la fuente. Los documentos descargables pertenecen a sus autores y se difunden por interés informativo del conflicto. Las marcas, nombres comerciales y signos distintivos de terceros que aparezcan pertenecen a sus titulares y se emplean únicamente a título informativo, para identificar a la empresa a la que se refiere el conflicto.\n\nEnlaces. El sitio enlaza a fuentes externas (medios, canales del movimiento, paneles de seguimiento). No se responde del contenido de esos sitios ni de sus políticas.\n\nRetirada de contenido. Cualquier persona que considere que un contenido vulnera sus derechos puede solicitar su retirada en enfadadosconairbus.contacto@gmail.com, indicando el contenido concreto y el motivo. Se atenderá con diligencia.\n\nLegislación aplicable. Este aviso se rige por la legislación española.",
-   "nota": "Texto en propuesta, pendiente de validación jurídica."
+   "body": "Titularidad del sitio. Este sitio web es una iniciativa de trabajadoras y trabajadores de Airbus España agrupados en el movimiento #EnfadadosconAirbus. Es independiente: no representa a Airbus, no está promovido por la compañía y no utiliza su identidad corporativa. Tampoco es un sitio sindical: no representa a ninguna organización sindical, aunque informa de lo que estas publican.\n\nResponsable. Este sitio es una iniciativa informativa del movimiento, sin ánimo de lucro y sin entidad titular constituida. No recauda fondos ni ofrece servicios: se publica exclusivamente con fines informativos (Ley 34/2002, de servicios de la sociedad de la información). La caja de resistencia se gestiona en una web aparte, con su propia entidad titular.\n\nObjeto. Informar sobre el conflicto laboral en Airbus España: reivindicaciones, repercusión pública y documentación que el propio movimiento comparte.\n\nContenidos y veracidad. La información se elabora a partir de documentos del movimiento y de fuentes públicas, y se cita su origen. Los datos del apartado «Termómetro» proceden de un seguimiento independiente de terceros, se identifican como tales y se ofrecen como estimación, no como cifra oficial de ninguna empresa. Si detecta un error, escriba a enfadadosconairbus.contacto@gmail.com y se corregirá o se retirará el contenido.\n\nPropiedad intelectual. Los textos propios de este sitio pueden reproducirse citando la fuente. Los documentos descargables pertenecen a sus autores y se difunden por interés informativo del conflicto. Las marcas, nombres comerciales y signos distintivos de terceros que aparezcan pertenecen a sus titulares y se emplean únicamente a título informativo, para identificar a la empresa a la que se refiere el conflicto.\n\nEnlaces. El sitio enlaza a fuentes externas (medios, canales del movimiento, paneles de seguimiento). No se responde del contenido de esos sitios ni de sus políticas.\n\nRetirada de contenido. Cualquier persona que considere que un contenido vulnera sus derechos puede solicitar su retirada en enfadadosconairbus.contacto@gmail.com, indicando el contenido concreto y el motivo. Se atenderá con diligencia.\n\nLegislación aplicable. Este aviso se rige por la legislación española."
   },
   "privacidad": {
    "title": "Política de privacidad",
@@ -659,39 +658,275 @@
  },
  "ultimasNoticias": {
   "kicker": "ÚLTIMAS NOTICIAS",
-  "enDirecto": "En seguimiento",
-  "fecha": "18 de septiembre de 2026",
+  "enDirecto": "Huelga desconvocada",
+  "fecha": "5 de octubre de 2026",
   "titulo": [
-   "La Audiencia Nacional",
-   "suspende el referéndum"
+   "La plantilla aprueba",
+   "el acuerdo en referéndum"
   ],
-  "entradilla": "La Sala de lo Social de la Audiencia Nacional ha acordado medidas cautelarísimas que dejan en suspenso la consulta que Airbus había convocado para el 24 y 25 de septiembre, cuando la plantilla debía ratificar la «propuesta de acuerdo» del 4 de septiembre.",
+  "entradilla": "Con una participación del 87,33 %, el 76,76 % de los votos emitidos ha respaldado el acuerdo; el 20,26 % lo ha rechazado y el 2,98 % han sido abstenciones. Votaron 13.560 personas, de forma presencial y telemática, el 30 de septiembre y el 1 de octubre.",
+  "desconvocatoria": "El 5 de octubre, el Comité de Huelga —formado por CGT, ÚTIL y UGT— desconvocó formalmente la huelga indefinida, tras el respaldo mayoritario de la plantilla al acuerdo.",
+  "juicio": {
+   "kicker": "LO QUE QUEDA POR RESOLVER",
+   "dia": "4",
+   "mes": "nov 2026",
+   "titulo": "El juicio del 4 de noviembre",
+   "texto": [
+    "El referéndum cierra la negociación, pero no el recorrido judicial. La batalla sobre la legitimidad industrial del acuerdo está prácticamente decidida a favor de Airbus; la cuestión jurídica es otra muy distinta, y sigue abierta: si durante el procedimiento se vulneró el derecho fundamental de huelga y si hubo mala fe negocial.",
+    "Eso es lo que juzga la Audiencia Nacional el 4 de noviembre de 2026, en la vista sobre el fondo de la demanda de CGT. Ahí está ahora todo el protagonismo."
+   ]
+  },
   "puntos": [
    {
-    "etiqueta": "Qué queda en suspenso",
-    "texto": "El referéndum del 24 y 25 de septiembre sobre la última propuesta de la empresa —firmada el 4 de septiembre con ATP, CCOO y SIPA—: IPC real y una recuperación del poder adquisitivo del 7,95 % repartida hasta 2029, con el acuerdo de teletrabajo vigente intacto."
+    "etiqueta": "Salarios",
+    "texto": "IPC real más 2 puntos en enero de 2026 y de 2027 y en abril de 2028, y más 1,95 en abril de 2029: así se recupera el 7,95 % de poder adquisitivo en cuatro años. Además, cada año, un 0,5 % de revisión salarial individual y otro 0,5 % para promociones."
    },
    {
-    "etiqueta": "Quién lo paraliza",
-    "texto": "La Sala de lo Social de la Audiencia Nacional, que ha estimado las medidas cautelares solicitadas por CGT dentro de su demanda de conflicto colectivo."
+    "etiqueta": "Paga única",
+    "texto": "2.000 € brutos no consolidables en octubre de 2026, para compensar el «efecto abril» a quienes estén contratados en la fecha de validación del acuerdo."
    },
    {
-    "etiqueta": "Sobre qué motivo",
-    "texto": "CGT alega vulneración del derecho fundamental de huelga y mala fe negociadora durante las conversaciones. El referéndum queda paralizado a la espera de la vista sobre las medidas cautelares, prevista para el 24 de septiembre."
+    "etiqueta": "Teletrabajo, vacaciones y comedor",
+    "texto": "Se mantiene la política de trabajo a distancia y se respetan los acuerdos individuales, incluidos los del 40 % y los de dos días por semana. Vacaciones: dos semanas obligatorias y dos flexibles (antes, tres y una). Quien no tiene comedor gratuito pagará 3,50 € en lugar de 5 € desde el 1 de octubre."
    },
    {
-    "etiqueta": "Qué no cambia",
-    "texto": "La convocatoria de huelga indefinida sigue en pie: es un derecho colectivo de ejercicio individual."
+    "etiqueta": "Qué queda por desarrollar",
+    "texto": "Antes del 1 de noviembre, una comisión analizará las cargas de trabajo de Cádiz. Se abre un grupo de trabajo para un nuevo sistema de control del absentismo —la empresa retira su recurso ante el Tribunal Supremo— y la negociación de la política salarial (PG-121) empezará antes de que acabe 2026."
    }
   ],
-  "imagenAlt": "Ilustración editorial: una urna de votación precintada con una banda roja que dice «SUSPENDIDO», un mazo judicial que desciende sobre ella y, al fondo, siluetas de trabajadores en huelga con pancartas.",
+  "imagenAlt": "Infografía «Acuerdo aprobado en referéndum» con los diez puntos del acuerdo —salarios y recuperación del poder adquisitivo, complemento por incapacidad temporal, trabajo en remoto, vacaciones, comedor, transporte, flexibilidad horaria, proyecto Bromo, cargas de trabajo en Cádiz y política salarial— bajo una ilustración de trabajadores con el puño en alto frente a un avión A350.",
   "ampliar": "Ampliar imagen",
   "descargar": "Descargar imagen",
   "cerrar": "Cerrar",
+  "guiaCta": "Lee la guía: los 14 puntos, uno a uno",
   "enPrensa": "En la prensa",
   "fuentesLabel": "Fuentes",
-  "fuentes": "El Economista (Industria) · Forbes · Press Digital · Aviación Digital · Demócrata — 18 de septiembre de 2026",
-  "nota": "Noticia en desarrollo. Se actualizará conforme avance el procedimiento judicial."
+  "fuentes": "Cinco Días · Press Digital · Artículo 14 — 1 de octubre de 2026",
+  "nota": "El detalle de cada punto, en la infografía (pulsa para ampliarla) y en la guía del acuerdo."
+ },
+ "referendum": {
+  "meta": {
+   "title": "Guía de la propuesta · Referéndum",
+   "description": "Guía punto por punto de la «propuesta de acuerdo» que vota la plantilla de Airbus España: qué plantea, qué falta por concretar y por qué importa."
+  },
+  "hero": {
+   "kicker": "GUÍA DE LA PROPUESTA",
+   "titulo": [
+    "Lee la propuesta",
+    "con lupa"
+   ],
+   "intro": "La «propuesta de acuerdo» que se somete a referéndum detalla salarios, teletrabajo, absentismo, comedor y más. Esta guía la repasa punto por punto: qué plantea, qué queda por concretar y por qué importa, para poder decidir con toda la información.",
+   "cta": "Explorar los 14 puntos"
+  },
+  "estado": {
+   "etiqueta": "Estado de la votación",
+   "texto": "El referéndum se celebró el 30 de septiembre y el 1 de octubre, de forma telemática y presencial, con interventores de los sindicatos que participaron y la consultora externa PwC. Con una participación del 87,33 %, la plantilla aprobó el acuerdo: el 76,76 % de los votos emitidos fue «sí», el 20,26 % «no» y el 2,98 %, abstenciones. El fondo de la demanda de CGT se ve el 4 de noviembre."
+  },
+  "preguntaCentral": {
+   "kicker": "La pregunta central",
+   "titulo": "¿Qué se está aprobando exactamente?",
+   "cuerpo": [
+    "Una propuesta puede sonar bien y, a la vez, dejar para más adelante los detalles que deciden cómo se aplica en la práctica.",
+    "Pedir que las mejoras estén escritas, cuantificadas y garantizadas antes de votar no es rechazarlas: es asegurarse de que se cumplen."
+   ]
+  },
+  "guia": {
+   "kicker": "Guía interactiva · 14 puntos",
+   "titulo": "Punto por punto",
+   "intro": "Filtra por materia y despliega cada punto para ver qué plantea la propuesta, qué queda por concretar y por qué importa.",
+   "filtros": {
+    "todos": "Todos",
+    "mostrando": "Mostrando",
+    "puntosLabel": "puntos",
+    "categorias": {
+     "garantias": "Garantías",
+     "salario": "Salario",
+     "puestos": "Puestos y organización",
+     "tiempo": "Tiempo y conciliación",
+     "continuidad": "Continuidad",
+     "servicios": "Servicios"
+    }
+   },
+   "bloques": {
+    "propuesta": "La propuesta plantea",
+    "falta": "Falta concretar",
+    "importa": "Por qué importa",
+    "clave": "Clave"
+   },
+   "puntos": [
+    {
+     "id": "01",
+     "categoria": "garantias",
+     "titulo": "Vinculación del acuerdo",
+     "pregunta": "¿Qué queda blindado y hasta cuándo?",
+     "propuesta": "La empresa presenta el acuerdo como vinculante en todos sus términos; cualquier cambio en el convenio de 2028 exigiría un nuevo acuerdo entre las partes.",
+     "falta": "Se vota un «planteamiento», no el articulado definitivo del convenio, que se redacta después. Y la empresa avisa de que, si sale «no», no habrá más negociación hasta 2028: un «esto o nada» que condiciona el voto y cuya buena fe negociadora es, precisamente, lo que la Audiencia Nacional examina el 4 de noviembre.",
+     "importa": "Un acuerdo puede ser vinculante y aun así dejar el detalle para un texto posterior; y presentar el voto como sin alternativa presiona la decisión.",
+     "clave": "Vinculante no debería significar votar bajo la presión de «esto o nada»."
+    },
+    {
+     "id": "02",
+     "categoria": "garantias",
+     "titulo": "Publicación en el BOE",
+     "pregunta": "¿Qué documento se publica y con quién se pacta?",
+     "propuesta": "Si el referéndum sale positivo, el Ministerio de Trabajo publicará el planteamiento en el BOE «en su integridad», sin cambios.",
+     "falta": "El planteamiento «servirá de base» para el acuerdo definitivo que modificará los artículos del convenio; ese texto final se redacta después y no se especifica con qué parte social se pactaría.",
+     "importa": "El valor jurídico depende del texto final del convenio y de quién lo firma, no solo del planteamiento que se vota.",
+     "clave": "Publicar en el BOE no dice aún qué artículos se firman ni con quién."
+    },
+    {
+     "id": "03",
+     "categoria": "salario",
+     "titulo": "Cálculo del IPC",
+     "pregunta": "¿Cómo se calcula y qué pasa con la desviación?",
+     "propuesta": "El IPC inicial es la proyección del Banco de España (febrero); con el dato final del INE (diciembre) se regulariza la desviación, que se ajusta en el Incremento General del año siguiente. Los atrasos se pagan en un único pago en enero o febrero de 2027.",
+     "falta": "No hay topes ni suelos: una sobre-proyección se descuenta del incremento del año siguiente. Y en el propio ejemplo de la empresa no queda claro si el diferencial (el «delta») se consolida en la base anual o se abona solo como atraso puntual.",
+     "importa": "Sin suelo, un año de IPC bajo se apoya solo en el porcentaje fijo; y que el delta consolide o no cambia lo que se cobra en años sucesivos.",
+     "clave": "Importa no solo el IPC, sino si su corrección suma a la base o se queda en un pago suelto."
+    },
+    {
+     "id": "04",
+     "categoria": "salario",
+     "titulo": "Recuperación del poder adquisitivo · 7,95 %",
+     "pregunta": "¿De dónde sale y a quién llega?",
+     "propuesta": "El 7,95 % se reparte en cuatro años (2026 +2 %, 2027 +2 %, 2028 +2 %, 2029 +1,95 %, sobre el IPC real), más 0,5 % de RSI y 0,5 % de promociones cada año. Parte del 7,6 % de IPC 2020-2025 menos los incrementos generales pagados, elevado a 7,95 %.",
+     "falta": "El cálculo compara solo con los incrementos generales y excluye las subidas individuales, así que no mide la pérdida real de cada persona; y el 0,5 % de RSI y el 0,5 % de promociones son selectivos: no llegan a toda la plantilla por igual.",
+     "importa": "Un 7,95 % global no equivale a lo que recupera cada nómina.",
+     "clave": "El total importa menos que cómo se reparte y a quién llega."
+    },
+    {
+     "id": "05",
+     "categoria": "salario",
+     "titulo": "Retribución variable · PG225",
+     "pregunta": "¿Qué queda garantizado del variable?",
+     "propuesta": "La propuesta garantiza que no se reducirán los porcentajes de variable (V.1 12 %, V.2 10 %, VI 8 %, VIII 6 %) y plantea negociar un nuevo sistema, con revisión de la política salarial (PG-121D) antes de que acabe 2026.",
+     "falta": "Se blinda el porcentaje, pero no cómo se gana: el sistema nuevo («simplificar el modelo») está por negociar, y ahí es donde se decide lo que realmente se cobra.",
+     "importa": "Mantener el porcentaje no garantiza los criterios que deciden si se alcanza.",
+     "clave": "Protegido el cuánto, falta blindar el cómo."
+    },
+    {
+     "id": "06",
+     "categoria": "puestos",
+     "titulo": "Catálogo de puestos",
+     "pregunta": "¿Compromiso de resultado o de negociar?",
+     "propuesta": "Hay compromiso de negociar un nuevo catálogo de puestos y de revisar la PG-121D y las condiciones de LMA, rodadores y ENDs, con negociaciones que empezarían antes de fin de 2026.",
+     "falta": "Es un compromiso de negociar y analizar, con calendario de inicio pero sin resultado garantizado ni plazo de cierre.",
+     "importa": "Empezar a negociar en 2026 no asegura qué se acuerda ni cuándo.",
+     "clave": "Hay fecha de inicio, no de resultado."
+    },
+    {
+     "id": "07",
+     "categoria": "tiempo",
+     "titulo": "Teletrabajo · 40 %",
+     "pregunta": "¿Es un 40 % blindado?",
+     "propuesta": "Se aplica un 40 % de teletrabajo efectivo a la plantilla actual y a las nuevas incorporaciones; las ausencias justificadas no computan en ese 40 %, se respetan los acuerdos de 2 días y se añade la posibilidad de medio día.",
+     "falta": "Respetar los acuerdos vigentes mantiene su cláusula de retirada unilateral: cualquiera de las partes puede dejar sin efecto el teletrabajo, sin justificación y con un mes de preaviso. El 40 % no queda blindado frente a esa cláusula, y el reparto mensual o trimestral depende del mánager.",
+     "importa": "Un 40 % que puede retirarse unilateralmente con un mes de aviso no es un mínimo garantizado.",
+     "clave": "Sin quitar la retirada unilateral, el 40 % es reversible."
+    },
+    {
+     "id": "08",
+     "categoria": "tiempo",
+     "titulo": "Vacaciones",
+     "pregunta": "¿Qué pasa cuando no hay acuerdo?",
+     "propuesta": "Se mantienen 2 semanas obligatorias y 2 flexibles; el calendario se acuerda con el Comité de Empresa de cada centro, y la programación entre la persona y su responsable, ponderando «por igual» negocio y circunstancias personales.",
+     "falta": "«Ponderar por igual» no dice quién decide cuando la persona y el responsable no se ponen de acuerdo en las fechas.",
+     "importa": "El desempate es justo donde se juega la conciliación real.",
+     "clave": "Falta la regla para cuando no hay acuerdo."
+    },
+    {
+     "id": "09",
+     "categoria": "tiempo",
+     "titulo": "Nuevo sistema de absentismo",
+     "pregunta": "¿Qué se aprueba, exactamente?",
+     "propuesta": "La empresa ha retirado el recurso ante el Tribunal Supremo, suprime del todo la retirada del complemento por IT y devuelve los importes en octubre; el nuevo sistema se co-diseñaría con la representación social, con criterios acordados de forma transparente.",
+     "falta": "El daño inmediato se revierte, pero el reglamento nuevo todavía no existe: se aprueba el compromiso de co-diseñarlo, no sus criterios.",
+     "importa": "La garantía es de procedimiento (conjunto y transparente), no un sistema ya escrito.",
+     "clave": "Revertido lo de antes; el sistema nuevo está por escribir."
+    },
+    {
+     "id": "10",
+     "categoria": "continuidad",
+     "titulo": "Bromo y convenio local",
+     "pregunta": "¿Y cuando llegue el nuevo convenio?",
+     "propuesta": "Quien pase a la Joint Venture mantiene las condiciones del convenio local desde el día 1 y hasta que exista un nuevo convenio, con movilidad interna en Airbus, antigüedad, sin periodo de prueba, y transporte y comedor.",
+     "falta": "La protección dura «hasta que exista un nuevo convenio», cuyo contenido es futuro y desconocido.",
+     "importa": "Una garantía que termina cuando llegue el próximo convenio necesita saber qué traerá ese convenio.",
+     "clave": "Protegido hasta el nuevo convenio; falta saber qué dirá ese convenio."
+    },
+    {
+     "id": "11",
+     "categoria": "servicios",
+     "titulo": "Comedor · 3,50 €",
+     "pregunta": "¿Qué se blinda del precio?",
+     "propuesta": "Para quien no tiene acceso gratuito, el precio baja de 5 € a 3,5 € desde primeros de octubre, con revisión anual «manteniendo las condiciones más ventajosas»; quien ya come gratis lo mantiene.",
+     "falta": "La garantía es cualitativa («condiciones más ventajosas»), sin un tope numérico que impida que la revisión anual erosione la mejora.",
+     "importa": "Sin tope escrito, una revisión anual puede diluir el 3,5 € con el tiempo.",
+     "clave": "Una promesa de «lo más ventajoso» no es un precio con tope."
+    },
+    {
+     "id": "12",
+     "categoria": "servicios",
+     "titulo": "Servicio de transporte",
+     "pregunta": "¿Qué nivel de servicio se conserva?",
+     "propuesta": "Se mantienen las rutas vigentes y no está prevista ninguna reducción ni eliminación; los ajustes se harían por los Comités de Movilidad.",
+     "falta": "Se conservan las rutas, pero el nivel (frecuencias, paradas, agosto) queda sujeto a ajustes en comisión.",
+     "importa": "Mantener las rutas no es lo mismo que mantener el nivel de servicio.",
+     "clave": "Rutas garantizadas; frecuencias, a revisión."
+    },
+    {
+     "id": "13",
+     "categoria": "tiempo",
+     "titulo": "Flexibilidad horaria",
+     "pregunta": "¿Quién entra y quién decide?",
+     "propuesta": "Se identificarían los puestos objetivamente compatibles con flexibilidad voluntaria de entrada y salida, según criterios organizativos, productivos y de seguridad; la producción queda excluida.",
+     "falta": "Los criterios están nombrados, pero la lista de puestos que entran la identifica después la empresa; no hay relación cerrada.",
+     "importa": "Que los criterios sean objetivos no dice aún qué puestos se benefician.",
+     "clave": "Criterios sí; lista de puestos, pendiente."
+    },
+    {
+     "id": "14",
+     "categoria": "continuidad",
+     "titulo": "Cádiz · comisión paritaria",
+     "pregunta": "¿Qué podrá decidir?",
+     "propuesta": "Se crea una comisión paritaria específica (partes firmantes y Dirección) que analizará, antes del 1 de noviembre de 2026, los acuerdos vigentes y las necesidades futuras de carga de trabajo en Cádiz.",
+     "falta": "Tiene fecha y composición paritaria, pero su cometido es «analizar»: no se fija si podrá decidir ni con qué efecto.",
+     "importa": "Una comisión que solo analiza puede quedarse sin capacidad de resolver.",
+     "clave": "Paritaria y con fecha; falta capacidad de decidir."
+    }
+   ]
+  },
+  "antesDeVotar": {
+   "kicker": "Antes de votar",
+   "titulo": "También hay preguntas sobre la propia votación",
+   "items": [
+    {
+     "q": "¿Cómo se garantiza el voto telemático?",
+     "a": "El referéndum es telemático y presencial, con interventores de los sindicatos y la consultora PwC. Con voto a distancia, conviene explicar cómo se aseguran el secreto, la identidad y la verificación de cada voto."
+    },
+    {
+     "q": "¿Y la custodia durante los dos días?",
+     "a": "Al votarse en dos jornadas, sigue siendo pertinente explicar cómo se custodian urnas y sistemas durante la noche, ante los interventores de todas las partes."
+    },
+    {
+     "q": "¿Por qué dos días?",
+     "a": "Una convocatoria a dos jornadas necesita una razón clara y un procedimiento igual y transparente para todos los centros."
+    }
+   ]
+  },
+  "cierre": {
+   "kicker": "Una decisión informada",
+   "titulo": [
+    "Más claridad,",
+    "más garantías"
+   ],
+   "cuerpo": "Si la propuesta es mejorable, pedir precisión antes de aprobarla es una posición razonable. Comparte esta guía para que cada persona pueda revisar los puntos y decidir con toda la información.",
+   "compartir": "Compartir",
+   "copiado": "Enlace copiado",
+   "imprimir": "Imprimir / guardar PDF"
+  },
+  "nota": "Guía informativa del movimiento. Los importes y condiciones proceden de la documentación pública de la propuesta; donde falta detalle, se plantea como pregunta.",
+  "volver": "Volver a la portada"
  },
  "negociacion": {
   "kicker": "ESTADO DE LA NEGOCIACIÓN",

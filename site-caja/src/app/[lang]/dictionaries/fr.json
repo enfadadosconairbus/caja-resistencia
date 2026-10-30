@@ -403,6 +403,78 @@
    "desplazamientos": "Déplacements pour la marche au ministère de l'Industrie (12 sept.)",
    "chapas": "Badges IPC+ (production)",
    "digital": "Infrastructure numérique de la caisse de résistance"
+  },
+  "panel": {
+   "filtros": "Filtres du tableau de bord",
+   "campana": "Campagne",
+   "todasCampanas": "Toutes les campagnes",
+   "tipo": "Type de dépense",
+   "periodo": "Période",
+   "todo": "Tout",
+   "restablecer": "Effacer les filtres",
+   "corte": "Données au {fecha}",
+   "kpi": {
+    "recaudado": "Récolté",
+    "gastado": "Dépensé",
+    "saldo": "Solde disponible",
+    "saldoCierre": "Solde en fin de période",
+    "aportaciones": "Versements",
+    "media": "Versement moyen : {v}",
+    "pctGastado": "{v} de ce qui avait été récolté",
+    "notaCampana": "Les sommes récoltées et le solde appartiennent à toute la caisse : les versements ne vont pas à une campagne précise, seules les dépenses."
+   },
+   "evolucion": {
+    "titulo": "Évolution de l'argent",
+    "sub": "Cumul jour par jour. Faites glisser sur le graphique pour choisir une période.",
+    "recaudado": "Récolté",
+    "gastos": "Dépensé",
+    "saldo": "Solde",
+    "elegido": "Période choisie"
+   },
+   "conceptos": {
+    "titulo": "Dépenses par poste",
+    "sub": "Touchez un poste pour filtrer par son type de dépense."
+   },
+   "cascada": {
+    "titulo": "Des sommes récoltées au solde",
+    "sub": "Ce qui entre, où ça va et ce qui reste.",
+    "recaudado": "Récolté",
+    "saldo": "Solde",
+    "neto": "Net de la période"
+   },
+   "diario": {
+    "titulo": "Versements par semaine",
+    "sub": "Du lundi au dimanche. Touchez une semaine pour ne voir qu'elle.",
+    "aportaciones": "{n} versements",
+    "pocas": "moins de 5 versements",
+    "otros": "autres recettes"
+   },
+   "tabla": {
+    "titulo": "Mouvements de dépenses",
+    "fecha": "Date",
+    "concepto": "Poste",
+    "tipo": "Type",
+    "campana": "Campagne",
+    "importe": "Montant",
+    "total": "Total",
+    "vacio": "Aucune dépense avec ces filtres.",
+    "csv": "Télécharger le CSV",
+    "verDiario": "Voir la collecte par semaine en tableau",
+    "dia": "Semaine",
+    "recaudado": "Récolté",
+    "nAport": "Versements",
+    "sub": "Regroupées par poste. Touchez-en un pour voir ses paiements.",
+    "ultimoPago": "Dernier paiement",
+    "pagos": "{n} paiements",
+    "unPago": "1 paiement",
+    "verPagos": "Voir les paiements de {concepto}"
+   },
+   "tipos": {
+    "material": "Matériel de campagne",
+    "desplazamientos": "Déplacements",
+    "infraestructura": "Infrastructure numérique",
+    "comisiones": "Frais bancaires"
+   }
   }
  },
  "muro": {

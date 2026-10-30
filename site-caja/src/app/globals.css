@@ -609,3 +609,28 @@ html.dark {
   pointer-events: none;
   z-index: -1;
 }
+
+/* ── Panel de transparencia (/la-caja) ──────────────────────────────────────────────
+   Colores de los gráficos, por PAPEL y no por tono. Validados con el validador de dataviz
+   (CVD, contraste y separación) contra la tarjeta clara (#fff) y la oscura (#1a3050):
+   entra = azul, sale = naranja, saldo = verde agua. En claro el verde agua queda a 2,8:1
+   sobre blanco: lo compensan la leyenda, la etiqueta al final de la línea y la tabla.
+   Rejilla, velo y pista son un escalón por encima de la tarjeta, nunca más. */
+:root {
+  --viz-entra: #2a78d6;
+  --viz-sale: #eb6834;
+  --viz-saldo: #1baf7a;
+  --viz-rejilla: #e6e6e0;
+  --viz-apagado: #cfcfc8;
+  --viz-pista: #ecece6;
+  --viz-velo: color-mix(in srgb, var(--color-superficie) 72%, transparent);
+}
+html.dark {
+  --viz-entra: #3987e5;
+  --viz-sale: #d95926;
+  --viz-saldo: #199e70;
+  --viz-rejilla: #2a4469;
+  --viz-apagado: #3a5680;
+  --viz-pista: #24405f;
+  --viz-velo: color-mix(in srgb, var(--color-superficie) 72%, transparent);
+}

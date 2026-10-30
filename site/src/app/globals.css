@@ -134,6 +134,11 @@
      papel sobre cielo claro. */
   --color-papel-fijo: #f7f4ee;
   --color-tinta-fija: #1a1d21;
+  /* Y el rojo que va ENCIMA de una banda oscura fija (la de «Últimas noticias»). La
+     `--color-acento-tinta` se invierte con el tema: en modo papel es #c0392b, pensado para
+     fondo claro, y sobre la banda oscura daba 2,95:1 en todos sus textos rojos —el kicker,
+     «En la prensa», las etiquetas—. Medido el 1-oct-2026. Es el mismo valor que la Web B. */
+  --color-acento-fijo: #ff7f61;
 
   /* Semáforo de riesgo del termómetro (ver termometro.tsx). */
   --color-riesgo-ambar: #8f5d14;        /* 4,65:1 sobre superficie */
@@ -171,10 +176,12 @@
 html.dark {
   color-scheme: dark;
 
-  --color-fondo: #14161a;        /* grafito, no negro puro */
-  --color-superficie: #1e2229;   /* tarjeta: un escalón por encima del fondo */
-  --color-tinta: #ece8e0;        /* papel cálido como tinta — 14,8:1 */
-  --color-tinta-suave: #a5a8ae;  /* 7,6:1 sobre fondo · 6,7:1 sobre superficie */
+  /* NOCHE AZUL (30-sep-2026): el grafito pasa al azul marino del dossier «Same Sky,
+     Different Pay», el mismo que la Web B. El color va en notas (tintas), no en superficies. */
+  --color-fondo: #101e33;        /* azul marino, no negro */
+  --color-superficie: #1a3050;   /* tarjeta: un escalón por encima del fondo */
+  --color-tinta: #f4f8ff;        /* 15,7:1 sobre fondo · 13,2:1 sobre superficie */
+  --color-tinta-suave: #a3b6d0;  /* 8,1:1 sobre fondo · 6,4:1 sobre superficie */
 
   /* Los rellenos NO se tocan: el blanco sobre #c0392b da 5,4:1 en los dos modos.
      Aclararlos rompería los botones «Aportar» de toda la web. */
@@ -183,15 +190,16 @@ html.dark {
   --color-confianza: #24425f;
 
   /* La tinta sí se aclara. */
-  --color-acento-tinta: #e8705e;         /* 5,96:1 sobre fondo · 5,25:1 sobre superficie */
-  --color-acento-tinta-fuerte: #f3a093;  /* 8,8:1 — hover más claro, no más oscuro */
-  --color-confianza-tinta: #8fb6d8;      /* 7,7:1 sobre superficie */
+  /* #e8705e se quedaba en 4,37:1 sobre la tarjeta azul: sube al coral de la Web B. */
+  --color-acento-tinta: #ff7f61;         /* 6,7:1 sobre fondo · 5,7:1 sobre superficie */
+  --color-acento-tinta-fuerte: #ffa48d;  /* hover más claro, no más oscuro */
+  --color-confianza-tinta: #5aaeff;      /* «sky» de Same Sky · 5,6:1 sobre superficie */
 
-  --color-linea: #303540;
+  --color-linea: #2f4a72;
 
-  --color-riesgo-ambar: #d9a441;        /* 7,1:1 sobre superficie */
-  --color-riesgo-ambar-fuerte: #e8bb6a; /* 8,9:1 — aquí «fuerte» es más claro */
-  --color-riesgo-verde: #6fbf73;        /* 7,4:1 sobre superficie */
+  --color-riesgo-ambar: #d9a441;        /* 5,9:1 sobre superficie */
+  --color-riesgo-ambar-fuerte: #e8bb6a; /* 7,4:1 — aquí «fuerte» es más claro */
+  --color-riesgo-verde: #6fbf73;        /* 5,9:1 sobre superficie */
 
   --sombra-sutil: rgba(0, 0, 0, 0.5);
   --sombra-media: rgba(0, 0, 0, 0.65);

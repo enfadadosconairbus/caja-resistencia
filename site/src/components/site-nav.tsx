@@ -14,6 +14,7 @@ type NavStrings = {
   documentacion: string;
   sobre: string;
   faq: string;
+  referendum: string;
   aportar: string;
   /** Tooltip del botón Aportar mientras la caja se segrega a su propio sitio. */
   aportarPronto: string;
@@ -70,7 +71,7 @@ export function SiteNav({
 }: {
   lang: string;
   nav: NavStrings;
-  pagina?: "portada" | "documentacion" | "sobre";
+  pagina?: "portada" | "documentacion" | "sobre" | "referendum";
   /** Cintillo de huelga: va DENTRO de la cabecera sticky para quedarse fijo con la barra. */
   cintillo?: React.ReactNode;
 }) {
@@ -83,6 +84,7 @@ export function SiteNav({
   const ancla = (id: string) => (enPortada ? `#${id}` : `/${lang}#${id}`);
   const links = [
     { href: ancla("conflicto"), id: "conflicto", label: nav.conflicto },
+    { href: `/${lang}/referendum`, id: "referendum", label: nav.referendum },
     { href: ancla("internacional"), id: "internacional", label: nav.internacional },
     { href: `/${lang}/documentacion`, id: "documentacion", label: nav.documentacion },
     { href: `/${lang}/sobre-el-proyecto`, id: "sobre", label: nav.sobre },
@@ -250,12 +252,13 @@ function LocaleSwitcher({
   pagina,
 }: {
   current: string;
-  pagina: "portada" | "documentacion" | "sobre";
+  pagina: "portada" | "documentacion" | "sobre" | "referendum";
 }) {
   // El cambio de idioma mantiene la página en la que estás, no te devuelve a la portada.
   const sufijo =
     pagina === "documentacion" ? "/documentacion"
-    : pagina === "sobre" ? "/sobre-el-proyecto" : "";
+    : pagina === "sobre" ? "/sobre-el-proyecto"
+    : pagina === "referendum" ? "/referendum" : "";
   return (
     <div className="flex items-center gap-1" role="group" aria-label="Idioma">
       {LOCALES.map((l) => {

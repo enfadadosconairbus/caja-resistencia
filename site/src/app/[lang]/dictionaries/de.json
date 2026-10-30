@@ -12,6 +12,7 @@
   "internacional": "Internationale Solidarität",
   "donantes": "Großspender",
   "faq": "FAQ",
+  "referendum": "Referendum",
   "termometro": "Barometer",
   "aportar": "Beitragen",
   "skip": "Zum Hauptinhalt springen",
@@ -543,7 +544,6 @@
    "privacidad": "Datenschutzerklärung",
    "cookies": "Cookie-Richtlinie"
   },
-  "rights": "Rechtstexte im Entwurf, ausstehende rechtliche Prüfung.",
   "visitasLabel": "Besuche",
   "visitasNota": "Eigener Zähler. Keine Cookies, keine Analytik: Es wird nur eine Zahl erhöht, ohne etwas über Sie zu speichern.",
   "redes": "Kanäle",
@@ -560,8 +560,7 @@
  "legalModals": {
   "aviso": {
    "title": "Impressum",
-   "body": "Dies ist eine Übersetzung zu Informationszwecken. Bei Abweichungen ist die spanische Fassung maßgeblich.\n\nVerantwortlicher. Diese Seite ist eine informative Initiative der Bewegung, gemeinnützig und ohne eingerichtete Trägereinrichtung. Sie sammelt keine Gelder und bietet keine Dienste: sie wird ausschließlich zu Informationszwecken veröffentlicht (spanisches Gesetz 34/2002 über Dienste der Informationsgesellschaft). Die Solidaritätskasse wird auf einer separaten Seite mit eigener Trägereinrichtung betrieben.\n\nZweck. Über den Arbeitskonflikt bei Airbus Spanien informieren: Forderungen, öffentliche Resonanz und Dokumentation, die die Bewegung selbst teilt.\n\nZweck. Information über den Arbeitskonflikt bei Airbus Spanien: Forderungen, öffentliche Resonanz, von der Bewegung selbst geteilte Dokumentation und, sobald er besteht, die Funktionsweise des Solidaritätsfonds.\n\nInhalte und Richtigkeit. Die Informationen werden aus Dokumenten der Bewegung und aus öffentlichen Quellen erstellt, deren Herkunft angegeben wird. Die Daten im Abschnitt «Thermometer» stammen aus einer unabhängigen Beobachtung Dritter, werden als solche gekennzeichnet und als Schätzung angeboten, nicht als offizielle Zahl irgendeines Unternehmens. Wenn Sie einen Fehler feststellen, schreiben Sie an enfadadosconairbus.contacto@gmail.com; der Inhalt wird korrigiert oder entfernt.\n\nGeistiges Eigentum. Die eigenen Texte dieser Website dürfen unter Angabe der Quelle vervielfältigt werden. Die herunterladbaren Dokumente gehören ihren Urhebern und werden im Informationsinteresse des Konflikts verbreitet. Marken, Handelsnamen und Kennzeichen Dritter, die hier erscheinen, gehören ihren Inhabern und werden ausschließlich zu Informationszwecken verwendet, um das Unternehmen zu benennen, auf das sich der Konflikt bezieht.\n\nLinks. Die Website verlinkt auf externe Quellen (Medien, Kanäle der Bewegung, Monitoring-Dashboards). Für die Inhalte dieser Seiten und deren Richtlinien wird keine Verantwortung übernommen.\n\nEntfernung von Inhalten. Wer der Auffassung ist, dass ein Inhalt seine Rechte verletzt, kann dessen Entfernung unter enfadadosconairbus.contacto@gmail.com beantragen und dabei den konkreten Inhalt und den Grund angeben. Anträge werden sorgfältig bearbeitet.\n\nAnwendbares Recht. Dieser Hinweis unterliegt spanischem Recht.",
-   "nota": "Textentwurf, ausstehende rechtliche Prüfung."
+   "body": "Dies ist eine Übersetzung zu Informationszwecken. Bei Abweichungen ist die spanische Fassung maßgeblich.\n\nVerantwortlicher. Diese Seite ist eine informative Initiative der Bewegung, gemeinnützig und ohne eingerichtete Trägereinrichtung. Sie sammelt keine Gelder und bietet keine Dienste: sie wird ausschließlich zu Informationszwecken veröffentlicht (spanisches Gesetz 34/2002 über Dienste der Informationsgesellschaft). Die Solidaritätskasse wird auf einer separaten Seite mit eigener Trägereinrichtung betrieben.\n\nZweck. Über den Arbeitskonflikt bei Airbus Spanien informieren: Forderungen, öffentliche Resonanz und Dokumentation, die die Bewegung selbst teilt.\n\nZweck. Information über den Arbeitskonflikt bei Airbus Spanien: Forderungen, öffentliche Resonanz, von der Bewegung selbst geteilte Dokumentation und, sobald er besteht, die Funktionsweise des Solidaritätsfonds.\n\nInhalte und Richtigkeit. Die Informationen werden aus Dokumenten der Bewegung und aus öffentlichen Quellen erstellt, deren Herkunft angegeben wird. Die Daten im Abschnitt «Thermometer» stammen aus einer unabhängigen Beobachtung Dritter, werden als solche gekennzeichnet und als Schätzung angeboten, nicht als offizielle Zahl irgendeines Unternehmens. Wenn Sie einen Fehler feststellen, schreiben Sie an enfadadosconairbus.contacto@gmail.com; der Inhalt wird korrigiert oder entfernt.\n\nGeistiges Eigentum. Die eigenen Texte dieser Website dürfen unter Angabe der Quelle vervielfältigt werden. Die herunterladbaren Dokumente gehören ihren Urhebern und werden im Informationsinteresse des Konflikts verbreitet. Marken, Handelsnamen und Kennzeichen Dritter, die hier erscheinen, gehören ihren Inhabern und werden ausschließlich zu Informationszwecken verwendet, um das Unternehmen zu benennen, auf das sich der Konflikt bezieht.\n\nLinks. Die Website verlinkt auf externe Quellen (Medien, Kanäle der Bewegung, Monitoring-Dashboards). Für die Inhalte dieser Seiten und deren Richtlinien wird keine Verantwortung übernommen.\n\nEntfernung von Inhalten. Wer der Auffassung ist, dass ein Inhalt seine Rechte verletzt, kann dessen Entfernung unter enfadadosconairbus.contacto@gmail.com beantragen und dabei den konkreten Inhalt und den Grund angeben. Anträge werden sorgfältig bearbeitet.\n\nAnwendbares Recht. Dieser Hinweis unterliegt spanischem Recht."
   },
   "privacidad": {
    "title": "Datenschutzerklärung",
@@ -659,39 +658,275 @@
  },
  "ultimasNoticias": {
   "kicker": "NEUESTE NACHRICHTEN",
-  "enDirecto": "Wird aktualisiert",
-  "fecha": "18. September 2026",
+  "enDirecto": "Streik beendet",
+  "fecha": "5. Oktober 2026",
   "titulo": [
-   "Der Nationale Gerichtshof",
-   "stoppt das Referendum"
+   "Die Belegschaft stimmt",
+   "der Vereinbarung zu"
   ],
-  "entradilla": "Die Sozialkammer der Audiencia Nacional hat einstweilige Eilmaßnahmen erlassen, die die von Airbus für den 24. und 25. September angesetzte Abstimmung aussetzen, bei der die Belegschaft den „Einigungsvorschlag“ vom 4. September bestätigen sollte.",
+  "entradilla": "Bei einer Beteiligung von 87,33 % haben 76,76 % der abgegebenen Stimmen die Vereinbarung unterstützt; 20,26 % haben sie abgelehnt, 2,98 % waren Enthaltungen. 13.560 Beschäftigte haben am 30. September und 1. Oktober abgestimmt, in Präsenz und online.",
+  "desconvocatoria": "Am 5. Oktober hat das Streikkomitee aus CGT, ÚTIL und UGT den unbefristeten Streik offiziell beendet, nachdem die Belegschaft der Vereinbarung mehrheitlich zugestimmt hatte.",
+  "juicio": {
+   "kicker": "WAS NOCH ZU ENTSCHEIDEN IST",
+   "dia": "4",
+   "mes": "Nov. 2026",
+   "titulo": "Der Prozess am 4. November",
+   "texto": [
+    "Das Referendum beendet die Verhandlungen, aber nicht den Rechtsweg. Der Streit um die industrielle Legitimität der Vereinbarung ist praktisch zugunsten von Airbus entschieden; die juristische Frage ist eine ganz andere und weiterhin offen: ob während des Verfahrens das Grundrecht auf Streik verletzt und ob in bösem Glauben verhandelt wurde.",
+    "Darüber verhandelt die Audiencia Nacional am 4. November 2026 in der Hauptverhandlung über die Klage der CGT. Dort liegt jetzt das ganze Gewicht."
+   ]
+  },
   "puntos": [
    {
-    "etiqueta": "Was ausgesetzt ist",
-    "texto": "Das Referendum am 24. und 25. September über das jüngste Angebot des Unternehmens —am 4. September mit ATP, CCOO und SIPA unterzeichnet—: realer VPI und eine Rückgewinnung der Kaufkraft von 7,95 %, verteilt bis 2029, wobei die geltende Telearbeitsvereinbarung vollständig erhalten bleibt."
+    "etiqueta": "Löhne",
+    "texto": "Reale Inflation plus 2 Punkte im Januar 2026 und 2027 und im April 2028, plus 1,95 im April 2029: So werden 7,95 % der verlorenen Kaufkraft in vier Jahren zurückgewonnen. Dazu jedes Jahr 0,5 % individuelle Gehaltsüberprüfung und weitere 0,5 % für Beförderungen."
    },
    {
-    "etiqueta": "Wer es stoppt",
-    "texto": "Die Sozialkammer der Audiencia Nacional, die den von der Gewerkschaft CGT im Rahmen ihrer Kollektivklage beantragten einstweiligen Maßnahmen stattgegeben hat."
+    "etiqueta": "Einmalzahlung",
+    "texto": "2.000 € brutto, nicht tabellenwirksam, im Oktober 2026, als Ausgleich für den „April-Effekt“ für alle, die zum Zeitpunkt der Bestätigung der Vereinbarung beschäftigt sind."
    },
    {
-    "etiqueta": "Aus welchem Grund",
-    "texto": "Die CGT macht eine Verletzung des Grundrechts auf Streik und unredliches Verhalten in den Verhandlungen geltend. Die Abstimmung ist bis zur Anhörung über die einstweiligen Maßnahmen ausgesetzt, die für den 24. September angesetzt ist."
+    "etiqueta": "Homeoffice, Urlaub und Kantine",
+    "texto": "Die bisherige Homeoffice-Regelung bleibt, individuelle Vereinbarungen werden respektiert – auch die mit 40 % und die mit zwei Tagen pro Woche. Urlaub: zwei feste und zwei flexible Wochen (bisher drei und eine). Wer keinen kostenlosen Kantinenzugang hat, zahlt ab 1. Oktober 3,50 € statt 5 €."
    },
    {
-    "etiqueta": "Was unverändert bleibt",
-    "texto": "Der Aufruf zum unbefristeten Streik bleibt in Kraft: Er ist ein kollektives Recht, das individuell ausgeübt wird."
+    "etiqueta": "Was noch umzusetzen ist",
+    "texto": "Vor dem 1. November prüft eine Kommission die Arbeitsauslastung in Cádiz. Eine Arbeitsgruppe soll ein neues System zur Kontrolle von Fehlzeiten aushandeln – das Unternehmen zieht seine Revision vor dem Obersten Gerichtshof zurück –, und die Verhandlungen über die Gehaltspolitik (PG-121) beginnen noch vor Ende 2026."
    }
   ],
-  "imagenAlt": "Redaktionelle Illustration: eine mit einem roten Band „SUSPENDIDO“ (ausgesetzt) versiegelte Wahlurne, ein darauf niedersausender Richterhammer und im Hintergrund Silhouetten streikender Beschäftigter mit Transparenten.",
+  "imagenAlt": "Infografik „Vereinbarung im Referendum angenommen“ mit den zehn Punkten der Vereinbarung – Löhne und Kaufkraftrückgewinnung, Zuschlag bei Arbeitsunfähigkeit, Homeoffice, Urlaub, Kantine, Verkehr, flexible Arbeitszeiten, Projekt Bromo, Arbeitsauslastung in Cádiz und Gehaltspolitik – unter einer Illustration von Beschäftigten mit erhobener Faust vor einem A350. Der Text im Bild ist auf Spanisch.",
   "ampliar": "Bild vergrößern",
   "descargar": "Bild herunterladen",
   "cerrar": "Schließen",
+  "guiaCta": "Zum Leitfaden: die 14 Punkte einzeln",
   "enPrensa": "In der Presse",
   "fuentesLabel": "Quellen",
-  "fuentes": "El Economista (Industria) · Forbes · Press Digital · Aviación Digital · Demócrata — 18. September 2026",
-  "nota": "Meldung in Entwicklung. Sie wird im Verlauf des Gerichtsverfahrens aktualisiert."
+  "fuentes": "Cinco Días · Press Digital · Artículo 14 — 1. Oktober 2026",
+  "nota": "Die Einzelheiten zu jedem Punkt stehen in der Infografik (zum Vergrößern anklicken; auf Spanisch) und im Leitfaden zur Vereinbarung."
+ },
+ "referendum": {
+  "meta": {
+   "title": "Leitfaden zum Vorschlag · Referendum",
+   "description": "Ein Leitfaden Punkt für Punkt zum «Einigungsvorschlag», über den die Belegschaft von Airbus Spanien abstimmt: was er vorsieht, was noch zu konkretisieren ist und warum das wichtig ist."
+  },
+  "hero": {
+   "kicker": "LEITFADEN ZUM VORSCHLAG",
+   "titulo": [
+    "Den Vorschlag",
+    "genau lesen"
+   ],
+   "intro": "Der «Einigungsvorschlag», über den abgestimmt wird, regelt Gehälter, Telearbeit, Fehlzeiten, Kantine und mehr. Dieser Leitfaden geht ihn Punkt für Punkt durch: was er vorsieht, was noch zu konkretisieren ist und warum es zählt — damit man mit allen Informationen entscheiden kann.",
+   "cta": "Die 14 Punkte erkunden"
+  },
+  "estado": {
+   "etiqueta": "Stand der Abstimmung",
+   "texto": "Das Referendum fand am 30. September und 1. Oktober statt, online und in Präsenz, mit Beobachtern aller teilnehmenden Gewerkschaften und der externen Beratungsgesellschaft PwC. Bei einer Beteiligung von 87,33 % hat die Belegschaft die Vereinbarung angenommen: 76,76 % der abgegebenen Stimmen lauteten „Ja“, 20,26 % „Nein“, 2,98 % waren Enthaltungen. Der Kern der Klage der CGT wird am 4. November verhandelt."
+  },
+  "preguntaCentral": {
+   "kicker": "Die zentrale Frage",
+   "titulo": "Was genau wird hier beschlossen?",
+   "cuerpo": [
+    "Ein Vorschlag kann gut klingen und zugleich die Details, die über die praktische Umsetzung entscheiden, auf später verschieben.",
+    "Zu verlangen, dass die Verbesserungen vor der Abstimmung schriftlich, beziffert und garantiert sind, heißt nicht, sie abzulehnen: Es heißt sicherzustellen, dass sie auch eingehalten werden."
+   ]
+  },
+  "guia": {
+   "kicker": "Interaktiver Leitfaden · 14 Punkte",
+   "titulo": "Punkt für Punkt",
+   "intro": "Nach Thema filtern und jeden Punkt aufklappen, um zu sehen, was der Vorschlag vorsieht, was noch zu konkretisieren ist und warum es zählt.",
+   "filtros": {
+    "todos": "Alle",
+    "mostrando": "Angezeigt",
+    "puntosLabel": "Punkte",
+    "categorias": {
+     "garantias": "Garantien",
+     "salario": "Gehalt",
+     "puestos": "Stellen & Organisation",
+     "tiempo": "Zeit & Vereinbarkeit",
+     "continuidad": "Kontinuität",
+     "servicios": "Leistungen"
+    }
+   },
+   "bloques": {
+    "propuesta": "Was der Vorschlag vorsieht",
+    "falta": "Noch zu konkretisieren",
+    "importa": "Warum es zählt",
+    "clave": "Kernpunkt"
+   },
+   "puntos": [
+    {
+     "id": "01",
+     "categoria": "garantias",
+     "titulo": "Verbindlichkeit der Einigung",
+     "pregunta": "Was ist festgeschrieben, und bis wann?",
+     "propuesta": "Das Unternehmen stellt die Einigung als in allen Punkten verbindlich dar; jede Änderung im Tarifvertrag 2028 würde eine neue Einigung zwischen den Parteien erfordern.",
+     "falta": "Abgestimmt wird über einen «Rahmen», nicht über den endgültigen Wortlaut des Tarifvertrags, der erst danach verfasst wird. Und das Unternehmen warnt, dass es bei Ablehnung bis 2028 keine weiteren Verhandlungen geben wird: ein «das oder nichts», das die Abstimmung beeinflusst und dessen Verhandlungstreue gerade die Audiencia Nacional am 4. November prüft.",
+     "importa": "Eine Einigung kann verbindlich sein und dennoch das Detail einem späteren Text überlassen; und die Abstimmung als alternativlos darzustellen, setzt die Entscheidung unter Druck.",
+     "clave": "Verbindlich sollte nicht heißen, unter dem Druck von «das oder nichts» abzustimmen."
+    },
+    {
+     "id": "02",
+     "categoria": "garantias",
+     "titulo": "Veröffentlichung im BOE",
+     "pregunta": "Welches Dokument wird veröffentlicht, und mit wem verhandelt?",
+     "propuesta": "Bei positivem Referendum veröffentlicht das Arbeitsministerium den Rahmen «vollständig» und unverändert im BOE.",
+     "falta": "Der Rahmen «dient als Grundlage» für die endgültige Einigung, die die Artikel des Tarifvertrags ändert; dieser endgültige Text wird später verfasst, und es wird nicht angegeben, mit welcher Gewerkschaftsseite er unterzeichnet würde.",
+     "importa": "Der rechtliche Wert hängt vom endgültigen Tarifvertragstext und davon ab, wer ihn unterschreibt, nicht nur vom abgestimmten Rahmen.",
+     "clave": "Eine Veröffentlichung im BOE sagt noch nicht, welche Artikel unterschrieben werden, oder mit wem."
+    },
+    {
+     "id": "03",
+     "categoria": "salario",
+     "titulo": "VPI-Berechnung",
+     "pregunta": "Wie wird er berechnet, und was geschieht mit der Abweichung?",
+     "propuesta": "Der anfängliche VPI ist die Projektion der Bank von Spanien (Februar); mit der Endzahl des INE (Dezember) wird die Abweichung ausgeglichen und in der Allgemeinen Erhöhung des Folgejahres angepasst. Die Nachzahlungen erfolgen als Einmalzahlung im Januar oder Februar 2027.",
+     "falta": "Es gibt weder Ober- noch Untergrenzen: eine Überprojektion wird von der Erhöhung des Folgejahres abgezogen. Und im Beispiel des Unternehmens selbst bleibt unklar, ob die Differenz (das «Delta») in die Jahresbasis einfließt oder nur als einmalige Nachzahlung ausgezahlt wird.",
+     "importa": "Ohne Untergrenze stützt sich ein Jahr mit niedrigem VPI nur auf den festen Prozentsatz; und ob das Delta einfließt oder nicht, ändert, was in den Folgejahren gezahlt wird.",
+     "clave": "Es zählt nicht nur der VPI, sondern ob seine Korrektur die Basis erhöht oder eine Einmalzahlung bleibt."
+    },
+    {
+     "id": "04",
+     "categoria": "salario",
+     "titulo": "Rückgewinnung der Kaufkraft · 7,95 %",
+     "pregunta": "Woher kommt er, und wen erreicht er?",
+     "propuesta": "Die 7,95 % verteilen sich auf vier Jahre (2026 +2 %, 2027 +2 %, 2028 +2 %, 2029 +1,95 %, auf den realen VPI), plus 0,5 % RSI und 0,5 % Beförderungen pro Jahr. Sie gehen von den 7,6 % VPI 2020-2025 abzüglich der gezahlten allgemeinen Erhöhungen aus, angehoben auf 7,95 %.",
+     "falta": "Die Berechnung vergleicht nur mit den allgemeinen Erhöhungen und schließt individuelle Anhebungen aus, misst also nicht den tatsächlichen Verlust jeder Person; und die 0,5 % RSI und 0,5 % Beförderungen sind selektiv: Sie erreichen nicht die gesamte Belegschaft gleichermaßen.",
+     "importa": "Ein globaler Wert von 7,95 % entspricht nicht dem, was jede Lohnabrechnung zurückgewinnt.",
+     "clave": "Die Summe zählt weniger als ihre Verteilung und wen sie erreicht."
+    },
+    {
+     "id": "05",
+     "categoria": "salario",
+     "titulo": "Variable Vergütung · PG225",
+     "pregunta": "Was ist bei der variablen Vergütung garantiert?",
+     "propuesta": "Der Vorschlag garantiert, dass die Prozentsätze der variablen Vergütung nicht gesenkt werden (V.1 12 %, V.2 10 %, VI 8 %, VIII 6 %), und schlägt vor, ein neues System zu verhandeln, mit einer Überarbeitung der Gehaltsrichtlinie (PG-121D) vor Ende 2026.",
+     "falta": "Der Prozentsatz ist festgeschrieben, aber nicht, wie er verdient wird: das neue System («das Modell vereinfachen») ist noch zu verhandeln, und dort entscheidet sich, was tatsächlich gezahlt wird.",
+     "importa": "Den Prozentsatz zu halten garantiert nicht die Kriterien, die über das Erreichen entscheiden.",
+     "clave": "Das Wie-viel ist geschützt; das Wie nicht."
+    },
+    {
+     "id": "06",
+     "categoria": "puestos",
+     "titulo": "Stellenkatalog",
+     "pregunta": "Ergebniszusage oder Zusage zu verhandeln?",
+     "propuesta": "Es gibt die Zusage, einen neuen Stellenkatalog zu verhandeln und die PG-121D sowie die Bedingungen von LMA, Rodadores und ENDs zu überarbeiten, mit Verhandlungen, die vor Ende 2026 beginnen würden.",
+     "falta": "Es ist eine Zusage zu verhandeln und zu analysieren, mit Startdatum, aber ohne garantiertes Ergebnis oder Abschlussfrist.",
+     "importa": "2026 mit dem Verhandeln zu beginnen, sichert nicht, was vereinbart wird, oder wann.",
+     "clave": "Es gibt ein Startdatum, kein Ergebnis."
+    },
+    {
+     "id": "07",
+     "categoria": "tiempo",
+     "titulo": "Telearbeit · 40 %",
+     "pregunta": "Ist das 40 % festgeschrieben?",
+     "propuesta": "Ein effektiver Telearbeitsanteil von 40 % gilt für die aktuelle Belegschaft und für Neueinstellungen; gerechtfertigte Abwesenheiten zählen nicht zu diesen 40 %, die 2-Tage-Vereinbarungen werden respektiert und ein halber Tag kommt hinzu.",
+     "falta": "Die bestehenden Vereinbarungen zu respektieren erhält ihre Klausel zum einseitigen Widerruf: jede der Parteien kann die Telearbeit ohne Begründung und mit einem Monat Vorankündigung aufheben. Die 40 % sind vor dieser Klausel nicht geschützt, und die monatliche oder vierteljährliche Verteilung hängt von der Führungskraft ab.",
+     "importa": "40 %, die einseitig mit einem Monat Vorankündigung entzogen werden können, sind kein garantiertes Minimum.",
+     "clave": "Ohne Streichung des einseitigen Widerrufs sind die 40 % widerrufbar."
+    },
+    {
+     "id": "08",
+     "categoria": "tiempo",
+     "titulo": "Urlaub",
+     "pregunta": "Was geschieht, wenn keine Einigung erzielt wird?",
+     "propuesta": "Zwei Pflichtwochen und zwei flexible Wochen bleiben erhalten; der Kalender wird mit dem Betriebsrat jedes Standorts vereinbart und die Planung zwischen der Person und ihrer Führungskraft, wobei Geschäft und persönliche Umstände «gleichermaßen» abgewogen werden.",
+     "falta": "«Gleichermaßen abwägen» sagt nicht, wer entscheidet, wenn Person und Führungskraft sich nicht über die Termine einigen.",
+     "importa": "Die Entscheidung bei Uneinigkeit ist genau der Punkt, an dem sich die tatsächliche Vereinbarkeit entscheidet.",
+     "clave": "Es fehlt die Regel für den Fall, dass keine Einigung besteht."
+    },
+    {
+     "id": "09",
+     "categoria": "tiempo",
+     "titulo": "Neues Fehlzeitensystem",
+     "pregunta": "Was genau wird beschlossen?",
+     "propuesta": "Das Unternehmen hat seine Revision vor dem Obersten Gerichtshof zurückgenommen, hebt den Entzug der Zulage bei Arbeitsunfähigkeit vollständig auf und erstattet die Beträge im Oktober; das neue System würde mit der Arbeitnehmervertretung mitgestaltet, mit transparent vereinbarten Kriterien.",
+     "falta": "Der unmittelbare Schaden wird behoben, aber das neue Regelwerk existiert noch nicht: beschlossen wird die Zusage, es mitzugestalten, nicht seine Kriterien.",
+     "importa": "Die Garantie ist prozeduraler Art (gemeinsam und transparent), kein bereits geschriebenes System.",
+     "clave": "Das Frühere ist behoben; das neue System ist noch zu schreiben."
+    },
+    {
+     "id": "10",
+     "categoria": "continuidad",
+     "titulo": "Bromo und lokaler Tarifvertrag",
+     "pregunta": "Und wenn der neue Tarifvertrag kommt?",
+     "propuesta": "Wer in das Joint Venture wechselt, behält die Bedingungen des lokalen Tarifvertrags ab Tag eins und bis ein neuer Tarifvertrag besteht, mit interner Mobilität bei Airbus, Betriebszugehörigkeit, ohne Probezeit sowie Transport und Kantine.",
+     "falta": "Der Schutz gilt «bis ein neuer Tarifvertrag besteht», dessen Inhalt künftig und unbekannt ist.",
+     "importa": "Eine Garantie, die mit dem nächsten Tarifvertrag endet, muss wissen, was dieser Tarifvertrag bringt.",
+     "clave": "Geschützt bis zum neuen Tarifvertrag; was er sagen wird, bleibt unbekannt."
+    },
+    {
+     "id": "11",
+     "categoria": "servicios",
+     "titulo": "Kantine · 3,50 €",
+     "pregunta": "Was wird beim Preis festgeschrieben?",
+     "propuesta": "Für Beschäftigte ohne kostenlosen Zugang sinkt der Preis ab Anfang Oktober von 5 € auf 3,5 €, mit einer jährlichen Überprüfung, die «die vorteilhaftesten Bedingungen» erhält; wer bereits kostenlos isst, behält es.",
+     "falta": "Die Garantie ist qualitativ («vorteilhafteste Bedingungen»), ohne eine zahlenmäßige Obergrenze, die verhindert, dass die jährliche Überprüfung die Verbesserung aushöhlt.",
+     "importa": "Ohne schriftliche Obergrenze kann eine jährliche Überprüfung die 3,5 € mit der Zeit verwässern.",
+     "clave": "Ein Versprechen des «Vorteilhaftesten» ist kein Preis mit Obergrenze."
+    },
+    {
+     "id": "12",
+     "categoria": "servicios",
+     "titulo": "Transportdienst",
+     "pregunta": "Welches Serviceniveau bleibt erhalten?",
+     "propuesta": "Die aktuellen Strecken bleiben erhalten, und es ist keine Kürzung oder Streichung vorgesehen; Anpassungen würden über die Mobilitätsausschüsse erfolgen.",
+     "falta": "Die Strecken bleiben erhalten, aber das Niveau (Frequenzen, Haltestellen, August) unterliegt einer Anpassung im Ausschuss.",
+     "importa": "Die Strecken zu erhalten ist nicht dasselbe wie das Serviceniveau zu erhalten.",
+     "clave": "Strecken garantiert; Frequenzen, zur Überprüfung."
+    },
+    {
+     "id": "13",
+     "categoria": "tiempo",
+     "titulo": "Gleitzeit",
+     "pregunta": "Wer ist einbezogen, und wer entscheidet?",
+     "propuesta": "Es würden die Stellen ermittelt, die objektiv mit einer freiwilligen Gleitzeit bei Arbeitsbeginn und -ende vereinbar sind, nach organisatorischen, produktiven und Sicherheitskriterien; die Produktion ist ausgenommen.",
+     "falta": "Die Kriterien sind benannt, aber die Liste der einbezogenen Stellen wird später vom Unternehmen erstellt; es gibt keine geschlossene Liste.",
+     "importa": "Dass die Kriterien objektiv sind, sagt noch nicht, welche Stellen profitieren.",
+     "clave": "Kriterien ja; die Liste der Stellen steht aus."
+    },
+    {
+     "id": "14",
+     "categoria": "continuidad",
+     "titulo": "Cádiz · paritätischer Ausschuss",
+     "pregunta": "Was wird er entscheiden können?",
+     "propuesta": "Es wird ein spezifischer paritätischer Ausschuss (unterzeichnende Parteien und Leitung) eingerichtet, um vor dem 1. November 2026 die geltenden Vereinbarungen und den künftigen Arbeitsbedarf in Cádiz zu analysieren.",
+     "falta": "Er hat ein Datum und eine paritätische Zusammensetzung, aber seine Aufgabe ist zu «analysieren»: ob er entscheiden kann, und mit welcher Wirkung, ist nicht festgelegt.",
+     "importa": "Ein Ausschuss, der nur analysiert, kann am Ende nichts entscheiden können.",
+     "clave": "Paritätisch und terminiert; die Entscheidungsbefugnis fehlt."
+    }
+   ]
+  },
+  "antesDeVotar": {
+   "kicker": "Vor der Abstimmung",
+   "titulo": "Auch zur Abstimmung selbst gibt es Fragen",
+   "items": [
+    {
+     "q": "Wie wird die Online-Abstimmung abgesichert?",
+     "a": "Das Referendum findet online und in Präsenz statt, mit Gewerkschaftsbeobachtern und der Beratungsgesellschaft PwC. Bei der Fernabstimmung sollte erklärt werden, wie Geheimhaltung, Identität und Überprüfung jeder Stimme sichergestellt werden."
+    },
+    {
+     "q": "Und die Verwahrung während der zwei Tage?",
+     "a": "Da über zwei Tage abgestimmt wird, bleibt zu erklären, wie Wahlurnen und Systeme über Nacht verwahrt werden, vor den Beobachtern aller Parteien."
+    },
+    {
+     "q": "Warum zwei Tage?",
+     "a": "Eine Abstimmung an zwei Tagen braucht einen klaren Grund und ein transparentes Verfahren, das für alle Standorte gleich ist."
+    }
+   ]
+  },
+  "cierre": {
+   "kicker": "Eine informierte Entscheidung",
+   "titulo": [
+    "Mehr Klarheit,",
+    "mehr Garantien"
+   ],
+   "cuerpo": "Wenn der Vorschlag verbesserungsfähig ist, ist es eine vernünftige Haltung, vor der Zustimmung Präzision zu verlangen. Teile diesen Leitfaden, damit alle die Punkte durchgehen und mit allen Informationen entscheiden können.",
+   "compartir": "Teilen",
+   "copiado": "Link kopiert",
+   "imprimir": "Drucken / als PDF speichern"
+  },
+  "nota": "Informationsleitfaden der Bewegung. Beträge und Bedingungen stammen aus der öffentlichen Dokumentation des Vorschlags; wo Details fehlen, wird die Frage gestellt.",
+  "volver": "Zurück zur Startseite"
  },
  "negociacion": {
   "kicker": "VERHANDLUNGSSTAND",

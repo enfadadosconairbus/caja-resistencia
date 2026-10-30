@@ -12,6 +12,7 @@
   "internacional": "Solidarité internationale",
   "donantes": "Grands donateurs",
   "faq": "FAQ",
+  "referendum": "Référendum",
   "termometro": "Thermomètre",
   "aportar": "Contribuer",
   "skip": "Aller au contenu principal",
@@ -543,7 +544,6 @@
    "privacidad": "Politique de confidentialité",
    "cookies": "Politique de cookies"
   },
-  "rights": "Textes légaux en projet, en attente de validation juridique.",
   "visitasLabel": "visites",
   "visitasNota": "Compteur maison. Ni cookies ni analytique : on incrémente un nombre, sans rien conserver sur vous.",
   "redes": "Canaux",
@@ -560,8 +560,7 @@
  "legalModals": {
   "aviso": {
    "title": "Mentions légales",
-   "body": "Ceci est une traduction à titre informatif. En cas de divergence, la version espagnole fait foi.\n\nResponsable. Ce site est une initiative d'information du mouvement, sans but lucratif et sans entité titulaire constituée. Il ne collecte pas de fonds et n'offre pas de services : il est publié uniquement à titre informatif (loi espagnole 34/2002 sur les services de la société de l'information). La caisse de résistance est gérée sur un site distinct, avec sa propre entité titulaire.\n\nObjet. Informer sur le conflit du travail chez Airbus Espagne : revendications, retentissement public et documentation que le mouvement lui-même partage.\n\nObjet. Informer sur le conflit du travail chez Airbus Espagne : revendications, retentissement public, documentation que le mouvement lui-même partage et, lorsqu'elle existera, le fonctionnement de la caisse de résistance.\n\nContenus et véracité. L'information est élaborée à partir de documents du mouvement et de sources publiques, dont l'origine est citée. Les données de la section « Thermomètre » proviennent d'un suivi indépendant de tiers, sont identifiées comme telles et sont fournies à titre d'estimation, non comme chiffre officiel d'une quelconque entreprise. Si vous constatez une erreur, écrivez à enfadadosconairbus.contacto@gmail.com : le contenu sera corrigé ou retiré.\n\nPropriété intellectuelle. Les textes propres à ce site peuvent être reproduits en citant la source. Les documents téléchargeables appartiennent à leurs auteurs et sont diffusés dans l'intérêt informatif du conflit. Les marques, noms commerciaux et signes distinctifs de tiers qui y figurent appartiennent à leurs titulaires et sont employés uniquement à titre informatif, pour identifier l'entreprise concernée par le conflit.\n\nLiens. Le site renvoie à des sources externes (médias, canaux du mouvement, tableaux de suivi). Il n'est pas répondu du contenu de ces sites ni de leurs politiques.\n\nRetrait de contenu. Toute personne estimant qu'un contenu porte atteinte à ses droits peut en demander le retrait à enfadadosconairbus.contacto@gmail.com, en indiquant le contenu concret et le motif. La demande sera traitée avec diligence.\n\nLégislation applicable. Le présent avis est régi par la législation espagnole.",
-   "nota": "Texte en projet, en attente de validation juridique."
+   "body": "Ceci est une traduction à titre informatif. En cas de divergence, la version espagnole fait foi.\n\nResponsable. Ce site est une initiative d'information du mouvement, sans but lucratif et sans entité titulaire constituée. Il ne collecte pas de fonds et n'offre pas de services : il est publié uniquement à titre informatif (loi espagnole 34/2002 sur les services de la société de l'information). La caisse de résistance est gérée sur un site distinct, avec sa propre entité titulaire.\n\nObjet. Informer sur le conflit du travail chez Airbus Espagne : revendications, retentissement public et documentation que le mouvement lui-même partage.\n\nObjet. Informer sur le conflit du travail chez Airbus Espagne : revendications, retentissement public, documentation que le mouvement lui-même partage et, lorsqu'elle existera, le fonctionnement de la caisse de résistance.\n\nContenus et véracité. L'information est élaborée à partir de documents du mouvement et de sources publiques, dont l'origine est citée. Les données de la section « Thermomètre » proviennent d'un suivi indépendant de tiers, sont identifiées comme telles et sont fournies à titre d'estimation, non comme chiffre officiel d'une quelconque entreprise. Si vous constatez une erreur, écrivez à enfadadosconairbus.contacto@gmail.com : le contenu sera corrigé ou retiré.\n\nPropriété intellectuelle. Les textes propres à ce site peuvent être reproduits en citant la source. Les documents téléchargeables appartiennent à leurs auteurs et sont diffusés dans l'intérêt informatif du conflit. Les marques, noms commerciaux et signes distinctifs de tiers qui y figurent appartiennent à leurs titulaires et sont employés uniquement à titre informatif, pour identifier l'entreprise concernée par le conflit.\n\nLiens. Le site renvoie à des sources externes (médias, canaux du mouvement, tableaux de suivi). Il n'est pas répondu du contenu de ces sites ni de leurs politiques.\n\nRetrait de contenu. Toute personne estimant qu'un contenu porte atteinte à ses droits peut en demander le retrait à enfadadosconairbus.contacto@gmail.com, en indiquant le contenu concret et le motif. La demande sera traitée avec diligence.\n\nLégislation applicable. Le présent avis est régi par la législation espagnole."
   },
   "privacidad": {
    "title": "Politique de confidentialité",
@@ -659,39 +658,275 @@
  },
  "ultimasNoticias": {
   "kicker": "DERNIÈRES NOUVELLES",
-  "enDirecto": "En cours",
-  "fecha": "18 septembre 2026",
+  "enDirecto": "Grève levée",
+  "fecha": "5 octobre 2026",
   "titulo": [
-   "L'Audiencia Nacional",
-   "suspend le référendum"
+   "Le personnel approuve",
+   "l'accord par référendum"
   ],
-  "entradilla": "La chambre sociale de l'Audiencia Nacional a ordonné des mesures conservatoires en urgence qui suspendent la consultation qu'Airbus avait convoquée les 24 et 25 septembre, au cours de laquelle le personnel devait ratifier la « proposition d'accord » du 4 septembre.",
+  "entradilla": "Avec une participation de 87,33 %, 76,76 % des suffrages exprimés ont soutenu l'accord ; 20,26 % l'ont rejeté et 2,98 % étaient des abstentions. 13 560 personnes ont voté, en présentiel et en ligne, les 30 septembre et 1er octobre.",
+  "desconvocatoria": "Le 5 octobre, le comité de grève — composé de la CGT, d'ÚTIL et de l'UGT — a formellement levé la grève illimitée, après le soutien majoritaire du personnel à l'accord.",
+  "juicio": {
+   "kicker": "CE QUI RESTE À TRANCHER",
+   "dia": "4",
+   "mes": "nov. 2026",
+   "titulo": "Le procès du 4 novembre",
+   "texto": [
+    "Le référendum clôt la négociation, mais pas le parcours judiciaire. La bataille sur la légitimité industrielle de l'accord est pratiquement tranchée en faveur d'Airbus ; la question juridique est tout autre, et reste ouverte : le droit fondamental de grève a-t-il été violé pendant la procédure, et l'entreprise a-t-elle négocié de mauvaise foi ?",
+    "C'est ce que juge l'Audiencia Nacional le 4 novembre 2026, lors de l'audience sur le fond de la demande de la CGT. C'est là que se joue désormais l'essentiel."
+   ]
+  },
   "puntos": [
    {
-    "etiqueta": "Ce qui est suspendu",
-    "texto": "Le référendum des 24 et 25 septembre sur la dernière proposition de l'entreprise —signée le 4 septembre avec ATP, CCOO et SIPA— : IPC réel et une récupération du pouvoir d'achat de 7,95 % répartie jusqu'en 2029, l'accord de télétravail actuel restant intégralement maintenu."
+    "etiqueta": "Salaires",
+    "texto": "Inflation réelle plus 2 points en janvier 2026 et 2027 et en avril 2028, puis plus 1,95 en avril 2029 : c'est ainsi que 7,95 % du pouvoir d'achat perdu est récupéré en quatre ans. En plus, chaque année, 0,5 % de révision salariale individuelle et 0,5 % pour les promotions."
    },
    {
-    "etiqueta": "Qui la bloque",
-    "texto": "La chambre sociale de l'Audiencia Nacional, qui a fait droit aux mesures conservatoires demandées par la CGT dans le cadre de sa demande de conflit collectif."
+    "etiqueta": "Prime unique",
+    "texto": "2 000 € bruts non consolidables en octobre 2026, pour compenser l'« effet avril » pour toutes les personnes employées à la date de validation de l'accord."
    },
    {
-    "etiqueta": "Pour quel motif",
-    "texto": "La CGT invoque une atteinte au droit fondamental de grève et une mauvaise foi dans la négociation. La consultation est gelée dans l'attente de l'audience sur les mesures conservatoires, prévue le 24 septembre."
+    "etiqueta": "Télétravail, congés et cantine",
+    "texto": "La politique actuelle de télétravail est maintenue et les accords individuels sont respectés, y compris ceux à 40 % et ceux à deux jours par semaine. Congés : deux semaines obligatoires et deux flexibles (avant, trois et une). Pour qui n'a pas accès gratuitement à la cantine, le repas passe de 5 € à 3,50 € dès le 1er octobre."
    },
    {
-    "etiqueta": "Ce qui ne change pas",
-    "texto": "L'appel à la grève illimitée reste en vigueur : c'est un droit collectif d'exercice individuel."
+    "etiqueta": "Ce qui reste à mettre en œuvre",
+    "texto": "Avant le 1er novembre, une commission examinera les charges de travail à Cadix. Un groupe de travail s'ouvre pour négocier un nouveau système de contrôle de l'absentéisme — l'entreprise retire son recours devant la Cour suprême — et la négociation de la politique salariale (PG-121) commencera avant la fin de 2026."
    }
   ],
-  "imagenAlt": "Illustration éditoriale : une urne scellée par une bande rouge portant la mention « SUSPENDIDO » (suspendu), un marteau de juge s'abattant sur elle et, en arrière-plan, des silhouettes de grévistes brandissant des pancartes.",
+  "imagenAlt": "Infographie « Accord approuvé par référendum » résumant les dix points de l'accord — salaires et récupération du pouvoir d'achat, complément d'incapacité temporaire, télétravail, congés, cantine, transport, horaires flexibles, projet Bromo, charges de travail à Cadix et politique salariale — sous une illustration de travailleurs levant le poing devant un avion A350. Le texte de l'image est en espagnol.",
   "ampliar": "Agrandir l'image",
   "descargar": "Télécharger l'image",
   "cerrar": "Fermer",
+  "guiaCta": "Lire le guide : les 14 points, un par un",
   "enPrensa": "Dans la presse",
   "fuentesLabel": "Sources",
-  "fuentes": "El Economista (Industria) · Forbes · Press Digital · Aviación Digital · Demócrata — 18 septembre 2026",
-  "nota": "Information en développement. Elle sera mise à jour au fil de la procédure judiciaire."
+  "fuentes": "Cinco Días · Press Digital · Artículo 14 — 1er octobre 2026",
+  "nota": "Le détail de chaque point figure dans l'infographie (cliquez pour l'agrandir ; en espagnol) et dans le guide de l'accord."
+ },
+ "referendum": {
+  "meta": {
+   "title": "Guide de la proposition · Référendum",
+   "description": "Guide point par point de la « proposition d'accord » soumise au vote du personnel d'Airbus Espagne : ce qu'elle prévoit, ce qu'il reste à préciser et pourquoi cela compte."
+  },
+  "hero": {
+   "kicker": "GUIDE DE LA PROPOSITION",
+   "titulo": [
+    "Lisez la proposition",
+    "à la loupe"
+   ],
+   "intro": "La « proposition d'accord » soumise à référendum détaille salaires, télétravail, absentéisme, cantine et plus encore. Ce guide la passe en revue point par point : ce qu'elle prévoit, ce qu'il reste à préciser et pourquoi cela compte, pour pouvoir décider en toute connaissance de cause.",
+   "cta": "Explorer les 14 points"
+  },
+  "estado": {
+   "etiqueta": "État du vote",
+   "texto": "Le référendum a eu lieu les 30 septembre et 1er octobre, en ligne et en présentiel, avec des observateurs de tous les syndicats participants et le cabinet externe PwC. Avec une participation de 87,33 %, le personnel a approuvé l'accord : 76,76 % des suffrages exprimés ont été « oui », 20,26 % « non » et 2,98 % des abstentions. Le fond de la demande de la CGT est examiné le 4 novembre."
+  },
+  "preguntaCentral": {
+   "kicker": "La question centrale",
+   "titulo": "Qu'approuve-t-on exactement ?",
+   "cuerpo": [
+    "Une proposition peut sembler bonne et, en même temps, renvoyer à plus tard les détails qui décident de son application concrète.",
+    "Demander que les améliorations soient écrites, chiffrées et garanties avant de voter, ce n'est pas les rejeter : c'est s'assurer qu'elles seront tenues."
+   ]
+  },
+  "guia": {
+   "kicker": "Guide interactif · 14 points",
+   "titulo": "Point par point",
+   "intro": "Filtrez par thème et dépliez chaque point pour voir ce que prévoit la proposition, ce qu'il reste à préciser et pourquoi cela compte.",
+   "filtros": {
+    "todos": "Tous",
+    "mostrando": "Affichage de",
+    "puntosLabel": "points",
+    "categorias": {
+     "garantias": "Garanties",
+     "salario": "Salaire",
+     "puestos": "Postes et organisation",
+     "tiempo": "Temps et conciliation",
+     "continuidad": "Continuité",
+     "servicios": "Services"
+    }
+   },
+   "bloques": {
+    "propuesta": "Ce que prévoit la proposition",
+    "falta": "Reste à préciser",
+    "importa": "Pourquoi cela compte",
+    "clave": "L'essentiel"
+   },
+   "puntos": [
+    {
+     "id": "01",
+     "categoria": "garantias",
+     "titulo": "Caractère contraignant de l'accord",
+     "pregunta": "Qu'est-ce qui est verrouillé, et jusqu'à quand ?",
+     "propuesta": "L'entreprise présente l'accord comme contraignant dans tous ses termes ; tout changement dans la convention de 2028 exigerait un nouvel accord entre les parties.",
+     "falta": "Ce que l'on vote est un « cadre », pas la rédaction définitive de la convention, qui est rédigée ensuite. Et l'entreprise prévient qu'en cas de rejet il n'y aura pas de nouvelle négociation avant 2028 : un « c'est ça ou rien » qui conditionne le vote, et dont la bonne foi dans la négociation est précisément ce que l'Audiencia Nacional examine le 4 novembre.",
+     "importa": "Un accord peut être contraignant et laisser malgré tout le détail à un texte ultérieur ; et présenter le vote comme sans alternative fait pression sur la décision.",
+     "clave": "Contraignant ne devrait pas signifier voter sous la pression du « c'est ça ou rien »."
+    },
+    {
+     "id": "02",
+     "categoria": "garantias",
+     "titulo": "Publication au BOE",
+     "pregunta": "Quel document est publié, et négocié avec qui ?",
+     "propuesta": "Si le référendum est positif, le ministère du Travail publiera le cadre au BOE « dans son intégralité », sans changements.",
+     "falta": "Le cadre « servira de base » à l'accord définitif qui modifiera les articles de la convention ; ce texte final est rédigé plus tard, et l'on ne précise pas avec quelle partie syndicale il serait signé.",
+     "importa": "La valeur juridique dépend du texte final de la convention et de qui le signe, pas seulement du cadre soumis au vote.",
+     "clave": "Publier au BOE ne dit pas encore quels articles sont signés, ni avec qui."
+    },
+    {
+     "id": "03",
+     "categoria": "salario",
+     "titulo": "Calcul de l'IPC",
+     "pregunta": "Comment est-il calculé, et qu'advient-il de l'écart ?",
+     "propuesta": "L'IPC initial est la projection de la Banque d'Espagne (février) ; avec le chiffre final de l'INE (décembre), l'écart est régularisé et ajusté sur l'Augmentation Générale de l'année suivante. Les arriérés sont versés en un seul paiement en janvier ou février 2027.",
+     "falta": "Il n'y a ni plafonds ni planchers : une sur-projection est déduite de l'augmentation de l'année suivante. Et dans l'exemple même de l'entreprise, on ne voit pas clairement si le différentiel (le « delta ») est consolidé dans la base annuelle ou versé seulement comme un arriéré ponctuel.",
+     "importa": "Sans plancher, une année à faible IPC ne repose que sur le pourcentage fixe ; et que le delta se consolide ou non change ce qui est perçu les années suivantes.",
+     "clave": "Ce qui compte, ce n'est pas seulement l'IPC, mais si sa correction s'ajoute à la base ou reste un versement ponctuel."
+    },
+    {
+     "id": "04",
+     "categoria": "salario",
+     "titulo": "Récupération du pouvoir d'achat · 7,95 %",
+     "pregunta": "D'où vient-il, et à qui parvient-il ?",
+     "propuesta": "Les 7,95 % sont répartis sur quatre ans (2026 +2 %, 2027 +2 %, 2028 +2 %, 2029 +1,95 %, sur l'IPC réel), plus 0,5 % de RSI et 0,5 % de promotions chaque année. Ils partent des 7,6 % d'IPC 2020-2025 moins les augmentations générales versées, portés à 7,95 %.",
+     "falta": "Le calcul ne compare qu'aux augmentations générales et exclut les hausses individuelles, il ne mesure donc pas la perte réelle de chacun ; et les 0,5 % de RSI et 0,5 % de promotions sont sélectifs : ils ne parviennent pas à tout le personnel de la même façon.",
+     "importa": "Un 7,95 % global n'équivaut pas à ce que récupère chaque fiche de paie.",
+     "clave": "Le total compte moins que la façon dont il est réparti et à qui il parvient."
+    },
+    {
+     "id": "05",
+     "categoria": "salario",
+     "titulo": "Rémunération variable · PG225",
+     "pregunta": "Qu'est-ce qui est garanti sur la part variable ?",
+     "propuesta": "La proposition garantit que les pourcentages de la part variable ne seront pas réduits (V.1 12 %, V.2 10 %, VI 8 %, VIII 6 %) et propose de négocier un nouveau système, avec une révision de la politique salariale (PG-121D) avant la fin de 2026.",
+     "falta": "Le pourcentage est verrouillé, mais pas la façon de l'obtenir : le nouveau système (« simplifier le modèle ») reste à négocier, et c'est là que se décide ce qui est réellement perçu.",
+     "importa": "Maintenir le pourcentage ne garantit pas les critères qui décident s'il est atteint.",
+     "clave": "Le combien est protégé ; le comment ne l'est pas."
+    },
+    {
+     "id": "06",
+     "categoria": "puestos",
+     "titulo": "Catalogue des postes",
+     "pregunta": "Engagement de résultat, ou de négocier ?",
+     "propuesta": "Il y a un engagement à négocier un nouveau catalogue des postes et à réviser la PG-121D et les conditions des LMA, rodadores et ENDs, avec des négociations qui commenceraient avant la fin de 2026.",
+     "falta": "C'est un engagement à négocier et analyser, avec une date de début mais sans résultat garanti ni délai de clôture.",
+     "importa": "Commencer à négocier en 2026 n'assure pas ce qui est convenu, ni quand.",
+     "clave": "Il y a une date de début, pas de résultat."
+    },
+    {
+     "id": "07",
+     "categoria": "tiempo",
+     "titulo": "Télétravail · 40 %",
+     "pregunta": "Le 40 % est-il verrouillé ?",
+     "propuesta": "Un taux de télétravail effectif de 40 % s'applique au personnel actuel et aux nouvelles recrues ; les absences justifiées ne comptent pas dans ce 40 %, les accords de 2 jours sont respectés et une demi-journée est ajoutée.",
+     "falta": "Respecter les accords existants conserve leur clause de retrait unilatéral : chacune des parties peut annuler le télétravail, sans justification et avec un mois de préavis. Le 40 % n'est pas protégé de cette clause, et la répartition mensuelle ou trimestrielle dépend du manager.",
+     "importa": "Un 40 % qui peut être retiré unilatéralement avec un mois de préavis n'est pas un minimum garanti.",
+     "clave": "Sans supprimer le retrait unilatéral, le 40 % est réversible."
+    },
+    {
+     "id": "08",
+     "categoria": "tiempo",
+     "titulo": "Congés",
+     "pregunta": "Que se passe-t-il en l'absence d'accord ?",
+     "propuesta": "Deux semaines obligatoires et deux semaines flexibles sont maintenues ; le calendrier est convenu avec le comité d'entreprise de chaque centre, et la programmation entre la personne et son responsable, en pondérant « à parts égales » les besoins de l'entreprise et les circonstances personnelles.",
+     "falta": "« Pondérer à parts égales » ne dit pas qui décide lorsque la personne et le responsable ne s'accordent pas sur les dates.",
+     "importa": "Le départage est précisément là où se joue la conciliation réelle.",
+     "clave": "La règle pour l'absence d'accord manque."
+    },
+    {
+     "id": "09",
+     "categoria": "tiempo",
+     "titulo": "Nouveau système d'absentéisme",
+     "pregunta": "Qu'approuve-t-on, exactement ?",
+     "propuesta": "L'entreprise a retiré son recours devant le Tribunal suprême, supprime entièrement le retrait du complément d'IT et rembourse les montants en octobre ; le nouveau système serait co-conçu avec la représentation du personnel, avec des critères convenus de façon transparente.",
+     "falta": "Le dommage immédiat est réparé, mais le nouveau règlement n'existe pas encore : ce que l'on approuve, c'est l'engagement à le co-concevoir, pas ses critères.",
+     "importa": "La garantie est de procédure (conjointe et transparente), pas un système déjà écrit.",
+     "clave": "L'ancien préjudice est réparé ; le nouveau système reste à écrire."
+    },
+    {
+     "id": "10",
+     "categoria": "continuidad",
+     "titulo": "Bromo et convention locale",
+     "pregunta": "Et à l'arrivée de la nouvelle convention ?",
+     "propuesta": "Ceux qui passent à la Joint Venture conservent les conditions de la convention locale dès le premier jour et jusqu'à l'existence d'une nouvelle convention, avec mobilité interne chez Airbus, ancienneté, sans période d'essai, ainsi que transport et cantine.",
+     "falta": "La protection dure « jusqu'à l'existence d'une nouvelle convention », dont le contenu est futur et inconnu.",
+     "importa": "Une garantie qui prend fin à l'arrivée de la prochaine convention doit savoir ce que cette convention apportera.",
+     "clave": "Protégé jusqu'à la nouvelle convention ; ce qu'elle dira reste inconnu."
+    },
+    {
+     "id": "11",
+     "categoria": "servicios",
+     "titulo": "Cantine · 3,50 €",
+     "pregunta": "Qu'est-ce qui est verrouillé sur le prix ?",
+     "propuesta": "Pour ceux qui n'ont pas d'accès gratuit, le prix passe de 5 € à 3,5 € à partir de début octobre, avec une révision annuelle « maintenant les conditions les plus avantageuses » ; ceux qui mangent déjà gratuitement le conservent.",
+     "falta": "La garantie est qualitative (« conditions les plus avantageuses »), sans plafond chiffré empêchant la révision annuelle d'éroder l'amélioration.",
+     "importa": "Sans plafond écrit, une révision annuelle peut diluer les 3,5 € avec le temps.",
+     "clave": "Une promesse du « plus avantageux » n'est pas un prix plafonné."
+    },
+    {
+     "id": "12",
+     "categoria": "servicios",
+     "titulo": "Service de transport",
+     "pregunta": "Quel niveau de service est conservé ?",
+     "propuesta": "Les itinéraires actuels sont maintenus et aucune réduction ni suppression n'est prévue ; les ajustements se feraient par les comités de mobilité.",
+     "falta": "Les itinéraires sont conservés, mais le niveau (fréquences, arrêts, août) reste soumis à ajustement en commission.",
+     "importa": "Maintenir les itinéraires n'est pas la même chose que maintenir le niveau de service.",
+     "clave": "Itinéraires garantis ; fréquences, à revoir."
+    },
+    {
+     "id": "13",
+     "categoria": "tiempo",
+     "titulo": "Flexibilité horaire",
+     "pregunta": "Qui est concerné, et qui décide ?",
+     "propuesta": "On identifierait les postes objectivement compatibles avec une flexibilité volontaire des heures d'arrivée et de départ, selon des critères organisationnels, productifs et de sécurité ; la production est exclue.",
+     "falta": "Les critères sont nommés, mais la liste des postes concernés est identifiée ensuite par l'entreprise ; il n'y a pas de liste fermée.",
+     "importa": "Que les critères soient objectifs ne dit pas encore quels postes en bénéficient.",
+     "clave": "Des critères, oui ; la liste des postes, en attente."
+    },
+    {
+     "id": "14",
+     "categoria": "continuidad",
+     "titulo": "Cádiz · commission paritaire",
+     "pregunta": "Que pourra-t-elle décider ?",
+     "propuesta": "On crée une commission paritaire spécifique (parties signataires et Direction) pour analyser, avant le 1er novembre 2026, les accords en vigueur et les besoins futurs de charge de travail à Cádiz.",
+     "falta": "Elle a une date et une composition paritaire, mais son rôle est d'« analyser » : si elle peut décider, et avec quel effet, n'est pas fixé.",
+     "importa": "Une commission qui ne fait qu'analyser peut se retrouver incapable de trancher.",
+     "clave": "Paritaire et datée ; le pouvoir de décider manque."
+    }
+   ]
+  },
+  "antesDeVotar": {
+   "kicker": "Avant de voter",
+   "titulo": "Il y a aussi des questions sur le vote lui-même",
+   "items": [
+    {
+     "q": "Comment le vote en ligne est-il garanti ?",
+     "a": "Le référendum se tient en ligne et en présentiel, avec des observateurs syndicaux et le cabinet PwC. Avec le vote à distance, il faut expliquer comment sont assurés le secret, l'identité et la vérification de chaque vote."
+    },
+    {
+     "q": "Et la garde pendant les deux jours ?",
+     "a": "Le vote se déroulant sur deux jours, il reste pertinent d'expliquer comment les urnes et les systèmes sont gardés la nuit, devant les observateurs de toutes les parties."
+    },
+    {
+     "q": "Pourquoi deux jours ?",
+     "a": "Un vote sur deux journées a besoin d'une raison claire et d'une procédure transparente, identique pour tous les centres."
+    }
+   ]
+  },
+  "cierre": {
+   "kicker": "Une décision éclairée",
+   "titulo": [
+    "Plus de clarté,",
+    "plus de garanties"
+   ],
+   "cuerpo": "Si la proposition est perfectible, demander des précisions avant de l'approuver est une position raisonnable. Partagez ce guide pour que chacun puisse revoir les points et décider en toute connaissance de cause.",
+   "compartir": "Partager",
+   "copiado": "Lien copié",
+   "imprimir": "Imprimer / enregistrer en PDF"
+  },
+  "nota": "Guide d'information du mouvement. Les montants et conditions proviennent de la documentation publique de la proposition ; là où le détail manque, la question est posée.",
+  "volver": "Retour à l'accueil"
  },
  "negociacion": {
   "kicker": "ÉTAT DE LA NÉGOCIATION",

@@ -7,7 +7,7 @@ import { Canales } from "@/components/canales";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { ConflictoCards } from "@/components/conflicto-cards";
 import { InformeDestacado } from "@/components/informe-destacado";
-import { Termometro } from "@/components/termometro";
+// import { Termometro } from "@/components/termometro"; // sección «Punto de ruptura» retirada 25-sep-2026; restaurar junto con su <section> si el tercero actualiza el análisis
 import { CoberturaVideo } from "@/components/cobertura-video";
 import COBERTURA_VIDEO from "@/config/cobertura-video.json";
 import { DocumentacionAvance } from "@/components/documentacion-avance";
@@ -17,43 +17,52 @@ import { SenderoCronologia } from "@/components/sendero-cronologia";
 import { Plegable } from "@/components/plegable";
 import HITOS from "@/config/hitos.json";
 import { MuroAportaciones } from "@/components/muro-aportaciones";
-import { NegociacionHero } from "@/components/negociacion-hero";
 import { UltimaHoraImagen } from "@/components/ultima-hora-imagen";
 import { FONDO, WEB_CAJA_PUENTE_URL } from "@/config/fondo";
 import { redactorGmail } from "@/lib/gmail";
 import INTERNACIONAL from "@/config/internacional.json";
 import ARRANQUE from "@/config/arranque-huelga.json";
-import NEGOCIACION from "@/config/negociacion.json";
 import { ChapaHuelga } from "@/components/chapa-huelga";
 import { MaskText, Rise } from "@/components/motion";
 
 const SECTION = "mx-auto max-w-6xl px-5 py-20 md:py-28";
 
 /**
- * Cobertura de prensa de la última hora (suspensión del referéndum, 18-sep-2026).
+ * Cobertura de prensa de la última hora (levantamiento de las cautelares y nueva
+ * convocatoria del referéndum para el 30-sep y 1-oct, 24-sep-2026).
  * Los enlaces no dependen del idioma; la etiqueta del panel vive en el diccionario.
- * Los cinco medios cubren el auto de medidas cautelarísimas de la Audiencia Nacional.
  */
-const PRENSA_ULTIMA_HORA: { medio: string; url: string }[] = [
+const PRENSA_ULTIMA_HORA: { medio: string; url: string; fecha: string }[] = [
   {
-    medio: "El Economista",
-    url: "https://www.eleconomista.es/industria/noticias/14014914/09/26/la-audiencia-nacional-suspende-provisionalmente-el-referendum-de-airbus-sobre-la-huelga-indefinida.html",
+    medio: "ABC",
+    url: "https://www.abc.es/economia/sindicatos-desconvocan-huelga-airbus-tras-apoyo-mayoritario-20261005193333-nt.html",
+    fecha: "2026-10-05",
   },
   {
-    medio: "Forbes",
-    url: "https://forbes.es/ultima-hora/1023802/la-audiencia-nacional-suspende-provisionalmente-el-referendum-sobre-la-ultima-propuesta-de-airbus/",
+    medio: "Cinco Días",
+    url: "https://cincodias.elpais.com/companias/2026-10-05/el-comite-de-huelga-desconvoca-el-paro-de-la-plantilla-de-airbus-tras-la-validacion-del-preacuerdo-laboral.html",
+    fecha: "2026-10-05",
+  },
+  {
+    // Es del 2-oct (cuenta el fin del conflicto; aún no la desconvocatoria formal).
+    medio: "Industry Talks",
+    url: "https://industrytalks.es/fin-al-conflicto-laboral-en-airbus-los-empleados-aceptan-la-ultima-propuesta-y-zanjan-tres-meses-de-paros/",
+    fecha: "2026-10-02",
+  },
+  {
+    medio: "Cinco Días",
+    url: "https://cincodias.elpais.com/companias/2026-10-01/la-plantilla-de-airbus-en-espana-valida-el-preacuerdo-laboral-de-industria-y-pone-fin-a-la-huelga.html",
+    fecha: "2026-10-01",
   },
   {
     medio: "Press Digital",
-    url: "https://www.pressdigital.es/articulo/economia/2026-09-18/6020093-audiencia-nacional-suspende-provisionalmente-referendum-sobre-ultima-propuesta-airbus",
+    url: "https://www.pressdigital.es/articulo/economia/2026-10-01/6036267-plantilla-airbus-acepta-mayoria-ultima-propuesta-poner-fin-conflicto-espana",
+    fecha: "2026-10-01",
   },
   {
-    medio: "Infobae",
-    url: "https://www.infobae.com/espana/agencias/2026/09/18/audiencia-nacional-frena-temporalmente-referendum-de-airbus-tras-medidas-cautelares-de-cgt/",
-  },
-  {
-    medio: "Demócrata",
-    url: "https://www.democrata.es/economia/la-audiencia-nacional-frena-de-forma-temporal-la-consulta-sobre-la-ultima-oferta-de-airbus/",
+    medio: "Artículo 14",
+    url: "https://www.articulo14.es/economia/los-trabajadores-de-airbus-avalan-el-acuerdo-laboral-que-la-empresa-alcanzo-con-industria-20261001.html",
+    fecha: "2026-10-01",
   },
 ];
 
@@ -141,6 +150,7 @@ export default async function Home({
             hoyISO={hoyEnMadrid}
             inicioISO={ARRANQUE.inicio}
             pausaISO={ARRANQUE.pausa}
+            desconvocadaISO={ARRANQUE.desconvocada}
             zona={ARRANQUE.zona}
           />
         }
@@ -152,6 +162,10 @@ export default async function Home({
             18-sep-2026: la Sala de lo Social de la Audiencia Nacional suspende, en
             cautelarísimas, el referéndum del 24-25 de septiembre. Misma banda oscura que
             la negociación (tinta-fija / papel-fijo) para que las dos lean como un bloque. */}
+        {/* 1-oct-2026: la plantilla aprueba el acuerdo en referéndum (87,33 % de participación;
+            76,76 % sí, 20,26 % no, 2,98 % abstenciones). Esta banda pasa a contarlo, con la
+            infografía del movimiento, y «Estado de la negociación» se retira de la portada: la
+            negociación terminó. El componente y su config siguen en el repo, sin usar. */}
         <section
           id="ultimas-noticias"
           className="border-b border-[var(--color-linea)] bg-[var(--color-tinta-fija)] text-[var(--color-papel-fijo)]"
@@ -162,7 +176,7 @@ export default async function Home({
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-12">
               <div>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <p className="kicker !mb-0 flex items-center gap-2 !text-[var(--color-acento-tinta)]">
+                  <p className="kicker !mb-0 flex items-center gap-2 !text-[var(--color-acento-fijo)]">
                     {/* Punto pulsante: señal de «última hora» con el acento de la marca. */}
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-acento)] opacity-75" />
@@ -189,11 +203,19 @@ export default async function Home({
                 >
                   {d.ultimasNoticias.entradilla}
                 </p>
+                {/* 5-oct-2026: desconvocatoria formal. Párrafo propio, con raya de acento, para
+                    que se lea como lo último que ha pasado sin tapar el resultado del referéndum. */}
+                <p
+                  className="rise-in mt-5 max-w-3xl border-l-2 border-[var(--color-acento-fijo)] pl-4 text-base font-semibold leading-relaxed text-[var(--color-papel-fijo)] md:text-lg"
+                  style={{ animationDelay: "0.3s" }}
+                >
+                  {d.ultimasNoticias.desconvocatoria}
+                </p>
               </div>
 
               {/* En la prensa · enlaces externos (nueva pestaña) a la cobertura de la noticia. */}
               <aside className="rise-in lg:pt-1" style={{ animationDelay: "0.3s" }}>
-                <p className="kicker !mb-0 !text-[var(--color-acento-tinta)]">{d.ultimasNoticias.enPrensa}</p>
+                <p className="kicker !mb-0 !text-[var(--color-acento-fijo)]">{d.ultimasNoticias.enPrensa}</p>
                 <ul className="mt-4 space-y-2">
                   {PRENSA_ULTIMA_HORA.map((f) => (
                     <li key={f.url}>
@@ -203,7 +225,12 @@ export default async function Home({
                         rel="noopener noreferrer"
                         className="group flex items-center justify-between gap-3 rounded-lg border border-white/12 px-4 py-3 transition-colors hover:border-white/30 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-confianza-tinta)]"
                       >
-                        <span className="text-sm font-medium text-[var(--color-papel-fijo)]">{f.medio}</span>
+                        <span className="text-sm font-medium text-[var(--color-papel-fijo)]">
+                          {f.medio}
+                          <span className="ml-2 font-[family-name:var(--ff-mono)] text-[11px] font-normal text-[color-mix(in_srgb,var(--color-papel-fijo)_65%,transparent)]">
+                            {new Intl.DateTimeFormat(lang, { day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(f.fecha))}
+                          </span>
+                        </span>
                         <svg
                           width="15"
                           height="15"
@@ -214,7 +241,7 @@ export default async function Home({
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           aria-hidden="true"
-                          className="shrink-0 text-[var(--color-acento-tinta)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          className="shrink-0 text-[var(--color-acento-fijo)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         >
                           <path d="M7 17 17 7M8 7h9v9" />
                         </svg>
@@ -225,54 +252,62 @@ export default async function Home({
               </aside>
             </div>
 
-            {/* Ilustración de última hora (encargo del cliente, 18-sep). A sangre sobre la
+            {/* ── EL JUICIO DEL 4-N · lo que queda por resolver ──
+                Va justo debajo del titular y por ENCIMA de la infografía a propósito: el
+                acuerdo cierra la negociación, no el recorrido judicial, y eso tiene que leerse
+                antes que el detalle de lo pactado. La fecha grande hace de ancla visual. */}
+            <section
+              aria-labelledby="juicio-4n"
+              className="rise-in mt-10 rounded-xl border border-[color-mix(in_srgb,var(--color-acento-fijo)_45%,transparent)] bg-[color-mix(in_srgb,var(--color-acento-fijo)_8%,transparent)] p-6 md:p-8"
+              style={{ animationDelay: "0.3s" }}
+            >
+              <div className="grid gap-5 md:grid-cols-[auto_minmax(0,1fr)] md:items-start md:gap-10">
+                <p className="flex items-baseline gap-3 text-[var(--color-acento-fijo)] md:block" aria-hidden="true">
+                  <span className="block font-[family-name:var(--ff-display)] text-6xl font-extrabold leading-none md:text-7xl">
+                    {d.ultimasNoticias.juicio.dia}
+                  </span>
+                  <span className="block font-[family-name:var(--ff-mono)] text-xs font-semibold uppercase tracking-wider md:mt-2">
+                    {d.ultimasNoticias.juicio.mes}
+                  </span>
+                </p>
+                <div>
+                  <p className="kicker !mb-0 !text-[var(--color-acento-fijo)]">{d.ultimasNoticias.juicio.kicker}</p>
+                  <h3
+                    id="juicio-4n"
+                    className="mt-3 font-[family-name:var(--ff-display)] text-2xl font-bold leading-tight md:text-3xl"
+                  >
+                    {d.ultimasNoticias.juicio.titulo}
+                  </h3>
+                  {d.ultimasNoticias.juicio.texto.map((parrafo, i) => (
+                    <p
+                      key={i}
+                      className="mt-3 max-w-3xl text-base leading-relaxed text-[color-mix(in_srgb,var(--color-papel-fijo)_88%,transparent)] md:text-lg"
+                    >
+                      {parrafo}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Ilustración de última hora (encargo del cliente, 24-sep). A sangre sobre la
                 banda oscura, con clic-para-ampliar y descarga como las infografías. */}
+            {/* El CTA a la guía va superpuesto en la esquina superior de la ilustración
+                (zona libre del cartel), no como botón aparte debajo. */}
             <UltimaHoraImagen
-              src="/img/ultima-hora-referendum-suspendido.webp"
+              src="/img/ultima-hora-acuerdo-aprobado.webp"
               alt={d.ultimasNoticias.imagenAlt}
-              descarga="ultima-hora-referendum-suspendido.webp"
+              descarga="acuerdo-aprobado-en-referendum.webp"
               ampliarLabel={d.ultimasNoticias.ampliar}
               descargarLabel={d.ultimasNoticias.descargar}
               cerrarLabel={d.ultimasNoticias.cerrar}
             />
-
-            {/* Cuatro claves. Rejilla con separadores de un píxel (gap-px sobre un fondo
-                claro tenue): cada celda recupera el fondo de la banda y entre ellas queda
-                una raya fina, sin marcos. */}
-            <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-white/12 bg-white/12 sm:grid-cols-2">
-              {d.ultimasNoticias.puntos.map((p, i) => (
-                <div
-                  key={p.etiqueta}
-                  className="rise-in bg-[var(--color-tinta-fija)] p-6 md:p-7"
-                  style={{ animationDelay: `${0.35 + i * 0.08}s` }}
-                >
-                  <p className="font-[family-name:var(--ff-mono)] text-[11px] font-semibold uppercase tracking-wider text-[var(--color-acento-tinta)]">
-                    {p.etiqueta}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-[color-mix(in_srgb,var(--color-papel-fijo)_82%,transparent)] md:text-base">
-                    {p.texto}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Las fuentes ya no van como texto al pie: cada medio es ahora un enlace en el
-                panel «En la prensa» de la cabecera. Aquí solo queda la nota de seguimiento. */}
-            <p
-              className="rise-in mt-8 font-[family-name:var(--ff-mono)] text-[11px] italic leading-relaxed text-[color-mix(in_srgb,var(--color-papel-fijo)_50%,transparent)]"
-              style={{ animationDelay: "0.6s" }}
-            >
-              {d.ultimasNoticias.nota}
-            </p>
+            {/* 1-oct-2026: fuera el botón a la guía, las cuatro claves del acuerdo y la nota
+                de pie (petición de la coordinación: «ya no aplica»). La banda termina en la infografía.
+                Las cadenas `guiaCta`, `puntos` y `nota` siguen en los diccionarios. */}
           </div>
         </section>
 
-        {/* ── HERO · estado de la negociación ── */}
-        <NegociacionHero
-          imagenes={NEGOCIACION.imagenes}
-          fuentes={NEGOCIACION.fuentes}
-          s={d.negociacion}
-        />
 
         {/* ── HERO · above-the-fold · reveals CSS (LCP sano) ── */}
         <section className="relative overflow-hidden border-b border-[var(--color-linea)]">
@@ -470,12 +505,16 @@ export default async function Home({
           </div>
         </section>
 
-        {/* ── TERMÓMETRO · datos de dashboard de terceros (incluye el punto de ruptura) ── */}
+        {/* ── TERMÓMETRO · «Punto de ruptura · impacto estimado a la empresa» ──
+            RETIRADO (25-sep-2026, petición de la coordinación): el análisis es de un tercero, está
+            fechado el 16-jul y no recoge la segunda convocatoria. Se deja comentado (con su
+            import y el componente/config intactos) para reactivarlo si el tercero lo actualiza.
         <section id="termometro" className="border-t border-[var(--color-linea)]">
           <div className={SECTION}>
             <Termometro s={d.termometro} lang={lang} />
           </div>
         </section>
+        */}
 
         {/* ── COBERTURA EN VÍDEO · los cortes de informativos ──
             Va pegada al termómetro (que CUANTIFICA la cobertura): aquí se VE. No se aloja

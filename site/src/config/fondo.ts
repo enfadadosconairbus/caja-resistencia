@@ -248,11 +248,7 @@ export function pendientes(): PendienteFondo[] {
     });
   }
 
-  lista.push({
-    clave: "legal",
-    que: "Revisión de los textos legales por abogado (LSSI-CE, RGPD, fiscalidad de aportaciones)",
-    dependeDe: "profesional",
-  });
+  // Revisión legal por abogado: hecha (1-oct-2026). Ya no es un pendiente.
   lista.push({
     clave: "traducciones",
     que: "Revisión humana de las traducciones EN/FR/DE antes de publicarlas como definitivas",

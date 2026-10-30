@@ -403,6 +403,78 @@
    "desplazamientos": "Anreise zur Demo am Industrieministerium (12. Sep.)",
    "chapas": "Buttons IPC+ (Produktion)",
    "digital": "Digitale Infrastruktur des Streikfonds"
+  },
+  "panel": {
+   "filtros": "Filter des Dashboards",
+   "campana": "Kampagne",
+   "todasCampanas": "Alle Kampagnen",
+   "tipo": "Art der Ausgabe",
+   "periodo": "Zeitraum",
+   "todo": "Alles",
+   "restablecer": "Filter zurücksetzen",
+   "corte": "Stand: {fecha}",
+   "kpi": {
+    "recaudado": "Eingenommen",
+    "gastado": "Ausgegeben",
+    "saldo": "Verfügbarer Saldo",
+    "saldoCierre": "Saldo am Ende des Zeitraums",
+    "aportaciones": "Beiträge",
+    "media": "Durchschnittlicher Beitrag: {v}",
+    "pctGastado": "{v} des bis dahin Eingenommenen",
+    "notaCampana": "Eingenommenes und Saldo gehören dem ganzen Fonds: Beiträge gehen nicht an eine bestimmte Kampagne, nur die Ausgaben."
+   },
+   "evolucion": {
+    "titulo": "Entwicklung des Geldes",
+    "sub": "Kumuliert, Tag für Tag. Über das Diagramm ziehen, um einen Zeitraum zu wählen.",
+    "recaudado": "Eingenommen",
+    "gastos": "Ausgegeben",
+    "saldo": "Saldo",
+    "elegido": "Gewählter Zeitraum"
+   },
+   "conceptos": {
+    "titulo": "Ausgaben nach Posten",
+    "sub": "Einen Posten antippen, um nach seiner Ausgabenart zu filtern."
+   },
+   "cascada": {
+    "titulo": "Vom Eingenommenen zum Saldo",
+    "sub": "Was hereinkommt, wofür es ausgegeben wird und was bleibt.",
+    "recaudado": "Eingenommen",
+    "saldo": "Saldo",
+    "neto": "Netto im Zeitraum"
+   },
+   "diario": {
+    "titulo": "Beiträge pro Woche",
+    "sub": "Montag bis Sonntag. Eine Woche antippen, um nur diese zu sehen.",
+    "aportaciones": "{n} Beiträge",
+    "pocas": "weniger als 5 Beiträge",
+    "otros": "sonstige Einnahmen"
+   },
+   "tabla": {
+    "titulo": "Ausgabenbewegungen",
+    "fecha": "Datum",
+    "concepto": "Posten",
+    "tipo": "Art",
+    "campana": "Kampagne",
+    "importe": "Betrag",
+    "total": "Summe",
+    "vacio": "Keine Ausgaben mit diesen Filtern.",
+    "csv": "CSV herunterladen",
+    "verDiario": "Wöchentliche Einnahmen als Tabelle ansehen",
+    "dia": "Woche",
+    "recaudado": "Eingenommen",
+    "nAport": "Beiträge",
+    "sub": "Nach Posten gruppiert. Einen antippen, um seine Zahlungen zu sehen.",
+    "ultimoPago": "Letzte Zahlung",
+    "pagos": "{n} Zahlungen",
+    "unPago": "1 Zahlung",
+    "verPagos": "Zahlungen für {concepto} anzeigen"
+   },
+   "tipos": {
+    "material": "Kampagnenmaterial",
+    "desplazamientos": "Reisen",
+    "infraestructura": "Digitale Infrastruktur",
+    "comisiones": "Bankgebühren"
+   }
   }
  },
  "muro": {

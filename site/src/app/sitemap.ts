@@ -6,14 +6,33 @@ import { SAME_SKY } from "@/config/informes";
  * /sitemap.xml con las rutas por idioma + alternates hreflang.
  * (Solo se sirve como Allow cuando SITE_INDEXABLE=true — ver robots.ts.
  * En demo/pilotaje la web es NOINDEX.)
+ *
+ * ── FASE 3 (29-sep-2026): ESTE SITEMAP ANUNCIA REDIRECCIONES, Y ESO ESTÁ BIEN ──
+ *
+ * Desde hoy esta web es un redirector 301 a la caja de resistencia: ninguna de estas URLs
+ * devuelve ya una página. Parece raro seguir publicándolas, pero es justo lo que hay que
+ * hacer en una mudanza: el sitemap es la lista por la que el buscador vuelve a pedir las
+ * URLs antiguas, y al pedirlas se encuentra el 301 y traspasa el posicionamiento. Si se
+ * vacía el sitemap el día del cambio, el buscador se queda sin saber qué tiene que volver
+ * a mirar y la transferencia se alarga meses.
+ *
+ * Se retira cuando el buscador haya asimilado el cambio (Search Console deja de listar las
+ * URLs antiguas como indexadas), no antes.
+ *
+ * Por eso aquí se AÑADEN rutas en vez de quitarlas: `referendum` y `sobre-el-proyecto`
+ * existían y redirigen, pero nunca estuvieron en esta lista, así que el buscador no tenía
+ * motivo para volver a pedirlas. `la-caja` y `tienda` llevaban semanas dando 404 —se
+ * fueron a la Web B en el split de agosto y nadie tocó esta lista—; ahora redirigen bien.
  */
 const locales = ["es", "en", "fr", "de"];
 
-/** Las tres páginas de cada idioma: portada, La caja y Tienda. */
+/** Todas las rutas que esta web llegó a servir. Hoy, todas redirigen. */
 const RUTAS = [
   { path: "", prioridad: 1 },
   { path: "/la-caja", prioridad: 0.9 },
   { path: "/documentacion", prioridad: 0.8 },
+  { path: "/referendum", prioridad: 0.8 },
+  { path: "/sobre-el-proyecto", prioridad: 0.7 },
   { path: "/tienda", prioridad: 0.6 },
 ];
 

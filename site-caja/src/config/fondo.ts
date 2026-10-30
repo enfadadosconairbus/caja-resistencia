@@ -68,10 +68,30 @@ export interface Pasarela {
 }
 
 /** Una línea del desglose de gastos. `importe: null` = aprobado pero aún sin imputar. */
+/**
+ * Tipo de gasto: la dimensión por la que filtra el panel de transparencia de /la-caja.
+ * Agrupa conceptos (`clave`): las camisetas y las chapas son «material»; los trenes y los
+ * autobuses, «desplazamientos». Etiquetas en `panel.tipos` de los diccionarios.
+ */
+export type TipoGasto = "material" | "desplazamientos" | "infraestructura" | "comisiones";
+
+/** Un cargo en la cuenta, tal como sale en el extracto: fecha de la operación e importe. */
+export interface Pago {
+  fecha: string;
+  importe: number;
+}
+
 export interface GastoLinea {
   /** Clave de i18n de la etiqueta (dictionaries → transparencia.detalle). */
   clave: string;
+  tipo: TipoGasto;
   importe: Dato<number>;
+  /**
+   * Los cargos que suman `importe`, con su fecha del extracto. Los usa el panel para la
+   * evolución en el tiempo y la tabla de movimientos. Tienen que sumar `importe` al
+   * céntimo: lo comprueba `scripts/check-panel.mjs`.
+   */
+  pagos?: Pago[];
 }
 
 /**
@@ -250,6 +270,34 @@ export const FONDO: Fondo = {
   // Código Bizum «Donación a ONG» del titular (Sindicato Útil). Ver [[bizum-tienda-caja]].
   bizum: { codigo: "14867" },
   /**
+   * Corte de 27-oct-2026 (último movimiento de los extractos de Globalcaja):
+   *   saldo real de la cuenta                    15.125,04
+   *   − 40 € de ÚTIL (no son aportación)         15.085,04  = saldo publicado
+   *   + gastos (sin cargos nuevos desde el 13-oct) 17.098,61
+   *   = recaudado                                32.183,65
+   * El listado de transferencias suma 32.014,65 (1.109); los 169,00 € de diferencia son los
+   * del corte anterior. Lo nuevo son 54,45 €: 35,00 de chapas por transferencia (6) y 19,45 de
+   * un abono de Stripe, el pedido de 20 € del 16-oct menos 0,55 de comisión. Stripe se abona
+   * neto, así que entra por lo que llega a la cuenta y cuenta como una aportación.
+   *
+   * OJO al leer los extractos: «movimientos» solo trae cargos y su columna Saldo NO es
+   * histórica, el banco la recalcula hacia atrás desde el saldo del momento de la descarga.
+   * El saldo de la última fila es el de ese día, no el de la fecha de la fila.
+   *
+   * Corte de 13-oct-2026 (extractos de Globalcaja: movimientos de cargo + transferencias recibidas):
+   *   saldo real de la cuenta                    15.070,59
+   *   − 40 € de ÚTIL (no son aportación)         15.030,59  = saldo publicado
+   *   + gastos hasta el 13-oct                   17.098,61
+   *   = recaudado                                32.129,20
+   * Gastos nuevos desde el 2-oct: camión de sonido de la marcha del 12-sep (1.754,50, 13-oct),
+   * segundo pago de camisetas (394,79, 13-oct) y un transporte de la marcha (46,00, 7-oct).
+   * El listado de transferencias suma 31.960,20 (1.102, hasta el 8-oct); los 169,00 € de
+   * diferencia (98 al 2-oct + 71 desde entonces) se cuentan como ingreso por la regla del 6-oct.
+   * Su origen sigue sin identificar: NO son abonos de Stripe, que sí salen en el listado de
+   * transferencias. Entre el 2 y el 13-oct hay unos 35 apuntes que no están en ninguno de los
+   * dos extractos, y los 71 € están fechados el 13-oct solo por convención (fecha real desconocida).
+   * Lo que sigue es el corte ANTERIOR, del 2-oct:
+   *
    * Corte de 2-oct-2026 (extractos de Globalcaja descargados juntos tras el 2-oct):
    *   saldo real de la cuenta                    17.184,88
    *   − 40 € de ÚTIL (no son aportación)         17.144,88  = saldo publicado
@@ -280,9 +328,9 @@ export const FONDO: Fondo = {
    * es la liquidación de 7,00 € del 25-sep.
    */
   cifras: {
-    actualizado: "2026-10-02",
-    recaudado: 32048.2,
-    aportaciones: 1101,
+    actualizado: "2026-10-27",
+    recaudado: 32183.65,
+    aportaciones: 1109,
   },
 
   /**
@@ -308,20 +356,45 @@ export const FONDO: Fondo = {
       // ficha del conflicto (fila «Pendiente») y en «Últimas noticias», no en el estado.
       // La etiqueta del estado «cerrada» se lee «Finalizada» (diccionarios).
       estado: "cerrada",
-      // Ordenadas de mayor a menor importe. Corte 1/2-oct-2026 (extractos de Globalcaja; las
+      // Ordenadas de mayor a menor importe. Corte 13-oct-2026 (extractos de Globalcaja; las
       // etiquetas son las que da Tesorería en la columna de comentarios).
       // El material de campaña va POR PRODUCTO, una línea por cada uno (la coordinación, 6-oct-2026:
       // cambia la decisión del 5-oct de agruparlo). Un producto nuevo = una clave nueva aquí y
       // su etiqueta en `transparencia.detalle` de los cuatro diccionarios.
-      // El camión de sonido de la marcha del 12-sep NO aparece: a 1-oct aún no ha salido de la
-      // cuenta, y se quita de la web hasta que se pague (la coordinación, 6-oct-2026). Al volver:
-      // `{ clave: "camion", importe: 1754.5 }` (la etiqueta sigue en los diccionarios).
+      // El camión de sonido de la marcha del 12-sep se pagó el 13-oct (1.754,50, el importe que
+      // la coordinación dejó apartado el 6-oct): vuelve a la web.
       gastos: [
-        { clave: "camisetas", importe: 9339.95 }, // 11-sep · MRS2002 fra. 89 (1.869 uds, IVA incl.)
-        { clave: "desplazamientos", importe: 5214.22 }, // OUIGO ×4 9-sep (4.845,00) + 3 transferencias 15/17/21-sep (369,22)
-        { clave: "chapas", importe: 326.0 }, // 1-oct · chapas IPC+
-        { clave: "digital", importe: 16.15 }, // 1-oct · infraestructura digital de la caja
-        { clave: "comision", importe: 7.0 }, // 25-sep · liq. cta. vista (la trimestral de 30 € aún no se ha cobrado)
+        // MRS2002 fra. 89 (1.869 uds, IVA incl.) + segundo pago de camisetas del 13-oct (394,79)
+        {
+          clave: "camisetas",
+          tipo: "material",
+          importe: 9734.74,
+          pagos: [
+            { fecha: "2026-09-11", importe: 9339.95 },
+            { fecha: "2026-10-13", importe: 394.79 },
+          ],
+        },
+        // OUIGO ×4 el 9-sep (4.845,00) + 4 transferencias de transporte (415,22)
+        {
+          clave: "desplazamientos",
+          tipo: "desplazamientos",
+          importe: 5260.22,
+          pagos: [
+            { fecha: "2026-09-09", importe: 2340.0 },
+            { fecha: "2026-09-09", importe: 2250.0 },
+            { fecha: "2026-09-09", importe: 125.0 },
+            { fecha: "2026-09-09", importe: 130.0 },
+            { fecha: "2026-09-15", importe: 83.68 },
+            { fecha: "2026-09-17", importe: 39.7 },
+            { fecha: "2026-09-21", importe: 245.84 },
+            { fecha: "2026-10-07", importe: 46.0 },
+          ],
+        },
+        { clave: "camion", tipo: "desplazamientos", importe: 1754.5, pagos: [{ fecha: "2026-10-13", importe: 1754.5 }] },
+        { clave: "chapas", tipo: "material", importe: 326.0, pagos: [{ fecha: "2026-10-01", importe: 326.0 }] },
+        { clave: "digital", tipo: "infraestructura", importe: 16.15, pagos: [{ fecha: "2026-10-01", importe: 16.15 }] },
+        // liq. cta. vista (la trimestral de 30 € aún no se ha cobrado)
+        { clave: "comision", tipo: "comisiones", importe: 7.0, pagos: [{ fecha: "2026-09-25", importe: 7.0 }] },
       ],
     },
     {

@@ -2,7 +2,7 @@
   "nota": "Cronología del conflicto. Validada por la coordinación el 10-ago-2026. Cada hito cita el documento que lo sostiene —descargable desde esta misma web— y los medios que lo publicaron. El texto lleva la LECTURA DEL MOVIMIENTO por decisión expresa de la coordinación, también en los hitos que nombran a sindicatos, y las traducciones la mantienen: suavizar al traducir sería cambiar la postura por la puerta de atrás.",
   "eje": {
     "desde": "2026-06-18",
-    "hasta": "2026-09-25"
+    "hasta": "2026-10-01"
   },
   "hitos": [
     {
@@ -1630,32 +1630,39 @@
       "fecha": "2026-09-24",
       "tipo": "negociacion",
       "titulo": {
-        "es": "Vista de las medidas cautelares",
-        "en": "Hearing on the interim measures",
-        "fr": "Audience sur les mesures conservatoires",
-        "de": "Anhörung über die einstweiligen Maßnahmen"
+        "es": "La Audiencia Nacional levanta las cautelares",
+        "en": "Spain's National Court lifts the injunction",
+        "fr": "L'Audiencia Nacional lève les mesures conservatoires",
+        "de": "Der Nationale Gerichtshof hebt die Eilmaßnahmen auf"
       },
       "texto": {
-        "es": "La Audiencia Nacional celebra la vista sobre las medidas cautelares pedidas por CGT. De ella depende que se confirme o se levante la suspensión del referéndum. Coincide con el primer día para el que estaba convocada la consulta.",
-        "en": "The Audiencia Nacional holds the hearing on the interim measures requested by CGT. Whether the suspension of the referendum is confirmed or lifted depends on it. It falls on the first day for which the ballot had been called.",
-        "fr": "L'Audiencia Nacional tient l'audience sur les mesures conservatoires demandées par la CGT. C'est d'elle que dépend la confirmation ou la levée de la suspension du référendum. Elle coïncide avec le premier jour pour lequel la consultation avait été convoquée.",
-        "de": "Die Audiencia Nacional hält die Anhörung über die von der CGT beantragten einstweiligen Maßnahmen ab. Von ihr hängt ab, ob die Aussetzung des Referendums bestätigt oder aufgehoben wird. Sie fällt auf den ersten Tag, für den die Abstimmung angesetzt war."
-      }
+        "es": "En la vista sobre las medidas cautelares, la Sala de lo Social rechaza mantenerlas y da vía libre al referéndum. Queda pendiente el fondo de la demanda de CGT sobre la vulneración del derecho de huelga, con vista señalada para el 4 de noviembre.",
+        "en": "At the hearing on the interim measures, the Social Chamber declines to keep them in place and clears the way for the referendum. The substance of CGT's claim over the alleged breach of the right to strike remains pending, with a hearing set for 4 November.",
+        "fr": "Lors de l'audience sur les mesures conservatoires, la chambre sociale refuse de les maintenir et ouvre la voie au référendum. Le fond de la demande de la CGT sur l'atteinte au droit de grève reste en suspens, avec une audience fixée au 4 novembre.",
+        "de": "In der Anhörung über die einstweiligen Maßnahmen lehnt es die Sozialkammer ab, sie aufrechtzuerhalten, und macht den Weg für das Referendum frei. Der Kern der Klage der CGT über die mutmaßliche Verletzung des Streikrechts bleibt offen; die Anhörung ist für den 4. November angesetzt."
+      },
+      "prensa": [
+        "Forbes",
+        "Press Digital",
+        "elDiario.es",
+        "Infodefensa",
+        "El Español"
+      ]
     },
     {
-      "fecha": "2026-09-24",
+      "fecha": "2026-09-30",
       "tipo": "votacion",
       "titulo": {
-        "es": "Referéndum convocado (24 y 25 de septiembre)",
-        "en": "Referendum called (24 and 25 September)",
-        "fr": "Référendum convoqué (24 et 25 septembre)",
-        "de": "Referendum angesetzt (24. und 25. September)"
+        "es": "Referéndum convocado (30 de septiembre y 1 de octubre)",
+        "en": "Referendum called (30 September and 1 October)",
+        "fr": "Référendum convoqué (30 septembre et 1er octobre)",
+        "de": "Referendum angesetzt (30. September und 1. Oktober)"
       },
       "texto": {
-        "es": "Fechas en las que la empresa había convocado a la plantilla a votar la «propuesta de acuerdo» del 4 de septiembre —firmada con ATP, CCOO y SIPA—: IPC real y recuperación del 7,95 % del poder adquisitivo hasta 2029, con el teletrabajo vigente intacto. La consulta queda en suspenso por las medidas cautelarísimas de la Audiencia Nacional.",
-        "en": "The dates on which the company had called the workforce to vote on the «proposed agreement» of 4 September —signed with ATP, CCOO and SIPA—: real CPI and a 7.95 % recovery of purchasing power to 2029, with the current remote-work arrangement kept intact. The ballot is on hold owing to the National Court's urgent interim measures.",
-        "fr": "Dates auxquelles l'entreprise avait convoqué le personnel pour voter la « proposition d'accord » du 4 septembre —signée avec ATP, CCOO et SIPA— : IPC réel et récupération de 7,95 % du pouvoir d'achat jusqu'en 2029, le télétravail actuel restant intact. La consultation est suspendue en raison des mesures conservatoires de l'Audiencia Nacional.",
-        "de": "Termine, zu denen das Unternehmen die Belegschaft zur Abstimmung über den «Einigungsvorschlag» vom 4. September —mit ATP, CCOO und SIPA unterzeichnet— aufgerufen hatte: realer VPI und eine Rückgewinnung der Kaufkraft von 7,95 % bis 2029, bei unverändertem Telearbeitsmodell. Die Abstimmung ist wegen der Eilmaßnahmen der Audiencia Nacional ausgesetzt."
+        "es": "Tras levantarse las cautelares, Airbus vuelve a convocar el referéndum para el 30 de septiembre y el 1 de octubre. Toda la plantilla vota la «propuesta de acuerdo» del 4 de septiembre: IPC real y recuperación del 7,95 % del poder adquisitivo hasta 2029, paga única de 2.000 € y mejoras en teletrabajo, vacaciones y transporte.",
+        "en": "After the injunction is lifted, Airbus calls the referendum again for 30 September and 1 October. The whole workforce votes on the «proposed agreement» of 4 September: real CPI and a 7.95 % recovery of purchasing power to 2029, a €2,000 one-off payment and improvements to remote work, holidays and transport.",
+        "fr": "Après la levée des mesures conservatoires, Airbus convoque de nouveau le référendum pour les 30 septembre et 1er octobre. L'ensemble du personnel vote la « proposition d'accord » du 4 septembre : IPC réel et récupération de 7,95 % du pouvoir d'achat jusqu'en 2029, prime unique de 2 000 € et améliorations du télétravail, des congés et du transport.",
+        "de": "Nach der Aufhebung der Eilmaßnahmen setzt Airbus das Referendum erneut für den 30. September und den 1. Oktober an. Die gesamte Belegschaft stimmt über den «Einigungsvorschlag» vom 4. September ab: realer VPI und eine Rückgewinnung der Kaufkraft von 7,95 % bis 2029, eine Einmalzahlung von 2.000 € sowie Verbesserungen bei Telearbeit, Urlaub und Transport."
       }
     }
   ]

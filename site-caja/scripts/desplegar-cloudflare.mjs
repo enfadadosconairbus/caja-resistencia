@@ -46,6 +46,7 @@ import { setTimeout as dormir } from "node:timers/promises";
 import { existsSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { comprobarCuenta, entornoCaja } from "./cuenta-cloudflare.mjs";
 
 const SITE = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONFIG = join(SITE, "dist", "server", "wrangler.json");
@@ -74,6 +75,13 @@ const viejo = ["src", "public", "worker", "wrangler.jsonc", "vite.config.ts", "p
   .find(Boolean);
 if (viejo) salir(`El build es anterior a ${viejo.slice(SITE.length + 1)}. Ejecuta antes \`npm run build:vinext\`.`);
 
+// ¿Va a publicar en la cuenta de la caja? Con el token propio (`npm run cloudflare:token`) no
+// depende de qué sesión de wrangler haya abierta en el PC; sin él, se exige que sea la de la caja.
+const problemaCuenta = comprobarCuenta(SITE);
+if (problemaCuenta) salir(problemaCuenta);
+const { env: ENTORNO, conToken } = entornoCaja();
+console.log(conToken ? "· Cuenta de la caja (token propio)." : "· Cuenta de la caja (sesión de wrangler).");
+
 // `shell: true` NO entrecomilla los argumentos, y cmd.exe se atraganta con los parentesis y los
 // espacios: el mensaje "deploy:vinext (reparto)" tumbaba el reparto de trafico sin decir por que.
 const entrecomillar = (a) => (/^[\w@%.:/\-]+$/.test(a) ? a : `"${a.replace(/"/g, '\\"')}"`);
@@ -83,7 +91,7 @@ const wrangler = (args, callado = false) => {
     cwd: SITE,
     shell: true,
     encoding: "utf8",
-    env: { ...process.env, FORCE_COLOR: "0" },
+    env: ENTORNO,
   });
   const salida = `${r.stdout ?? ""}${r.stderr ?? ""}`;
   if (!callado) process.stdout.write(salida);

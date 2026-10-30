@@ -19,18 +19,41 @@ Una sola pieza en Cloudflare: **frontend Next.js (vía vinext) + middleware i18n
 - **Contador de visitas:** Durable Object `VisitasCounter`. Se crea solo en el primer deploy
   (migración `v1`), arranca en 0 y cuenta solo esta web.
 
-## 1. Login (una vez por máquina)
+## 1. La cuenta de la caja: token propio (una vez por máquina)
+
+En este PC conviven dos cuentas de Cloudflare (la caja y las tiendas de mrs2002) y el
+`wrangler login` es uno para todo el ordenador: si otra sesión entra con mrs2002, la caja no
+puede publicar. Por eso la caja usa **su propio token**, guardado en la variable de usuario de
+Windows `CAJA_CLOUDFLARE_API_TOKEN` y que solo usan los scripts de este sitio
+(`scripts/cuenta-cloudflare.mjs`). El token nunca va en el repo.
+
+**Crear el token** (en el navegador, con la sesión de **enfadadosconairbus.contacto@gmail.com**):
+
+1. dash.cloudflare.com → icono de perfil → **My Profile → API Tokens → Create Token**.
+2. Plantilla **Edit Cloudflare Workers** → **Use template**.
+3. Añade un permiso más con **+ Add more**: **Account · D1 · Edit** (migraciones de la base de pedidos).
+4. **Account Resources:** Include → *Enfadadosconairbus.contacto@gmail.com's Account*.
+   **Zone Resources:** Include → Specific zone → `cajaderesistencia-asi-no.org`.
+5. **Continue to summary → Create Token** y copia el token (solo se enseña una vez).
+
+**Guardarlo** (en una terminal, desde `clientes/caja-resistencia/site-caja`). Lo pide sin
+mostrarlo, no queda en el historial y comprueba que entra en la cuenta de la caja:
 
 ```bash
-npx wrangler login
+npm run cloudflare:token
 ```
 
-Abre el navegador → inicia sesión con **enfadadosconairbus.contacto@gmail.com** → autoriza.
-Comprueba que estás en la cuenta correcta:
+Desde ahí, `npm run deploy:vinext` publica en la caja aunque wrangler tenga abierta otra cuenta.
+Para cualquier otro comando de wrangler con la cuenta de la caja:
 
 ```bash
-npx wrangler whoami
+npm run wrangler:caja -- whoami
 ```
+
+**Sin token** sigue funcionando con el inicio de sesión de wrangler (`npx wrangler login` con
+la cuenta de la caja), pero el despliegue se niega si la sesión abierta es de otra cuenta.
+
+Si el token caduca o se revoca: crea otro igual y vuelve a ejecutar `npm run cloudflare:token`.
 
 ## 2. Antes de desplegar (comprobaciones)
 

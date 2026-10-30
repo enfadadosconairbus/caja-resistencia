@@ -15,8 +15,10 @@
     "build:vinext": "vinext build",
     "start:vinext": "wrangler dev --config dist/server/wrangler.json",
     "deploy:vinext": "node scripts/desplegar-cloudflare.mjs",
-    "deploy:vinext:completo": "vinext-cloudflare deploy --config dist/server/wrangler.json",
-    "buzon:secreto": "node scripts/poner-secreto-turnstile.mjs"
+    "deploy:vinext:completo": "node scripts/con-cuenta-caja.mjs vinext-cloudflare deploy --config dist/server/wrangler.json",
+    "buzon:secreto": "node scripts/poner-secreto-turnstile.mjs",
+    "wrangler:caja": "node scripts/con-cuenta-caja.mjs wrangler",
+    "cloudflare:token": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/guardar-token-cloudflare.ps1"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

@@ -1,0 +1,27 @@
+{
+  "nota": "Recaudación DIARIA agregada, sin nombres: suma de importes y número de aportaciones de cada día, del listado de transferencias recibidas de Globalcaja (corte 27-oct-2026). Nunca se guarda aquí quién aporta. «otros» son ingresos que el banco abonó por otra vía y que no salen en el listado de transferencias; se suman para que lo recaudado cuadre con el saldo real (decisión de la coordinación, 6-oct-2026). La suma total debe ser FONDO.cifras.recaudado y el recuento de transferencias, FONDO.cifras.aportaciones: lo comprueba scripts/check-panel.mjs.",
+  "dias": [
+    { "fecha": "2026-09-03", "importe": 7438.0, "aportaciones": 334, "via": "transferencia" },
+    { "fecha": "2026-09-04", "importe": 10496.0, "aportaciones": 386, "via": "transferencia" },
+    { "fecha": "2026-09-05", "importe": 2617.2, "aportaciones": 64, "via": "transferencia" },
+    { "fecha": "2026-09-06", "importe": 937.0, "aportaciones": 48, "via": "transferencia" },
+    { "fecha": "2026-09-07", "importe": 4167.0, "aportaciones": 147, "via": "transferencia" },
+    { "fecha": "2026-09-08", "importe": 2645.0, "aportaciones": 37, "via": "transferencia" },
+    { "fecha": "2026-09-09", "importe": 520.0, "aportaciones": 24, "via": "transferencia" },
+    { "fecha": "2026-09-10", "importe": 1450.0, "aportaciones": 27, "via": "transferencia" },
+    { "fecha": "2026-09-11", "importe": 525.0, "aportaciones": 12, "via": "transferencia" },
+    { "fecha": "2026-09-12", "importe": 45.0, "aportaciones": 4, "via": "transferencia" },
+    { "fecha": "2026-09-13", "importe": 210.0, "aportaciones": 3, "via": "transferencia" },
+    { "fecha": "2026-09-14", "importe": 115.0, "aportaciones": 9, "via": "transferencia" },
+    { "fecha": "2026-09-15", "importe": 40.0, "aportaciones": 1, "via": "transferencia" },
+    { "fecha": "2026-09-16", "importe": 50.0, "aportaciones": 2, "via": "transferencia" },
+    { "fecha": "2026-09-18", "importe": 620.0, "aportaciones": 2, "via": "transferencia" },
+    { "fecha": "2026-10-02", "importe": 75.0, "aportaciones": 1, "via": "transferencia" },
+    { "fecha": "2026-10-02", "importe": 98.0, "aportaciones": 0, "via": "otros" },
+    { "fecha": "2026-10-08", "importe": 10.0, "aportaciones": 1, "via": "transferencia" },
+    { "fecha": "2026-10-13", "importe": 71.0, "aportaciones": 0, "via": "otros" },
+    { "fecha": "2026-10-22", "importe": 8.0, "aportaciones": 1, "via": "transferencia" },
+    { "fecha": "2026-10-26", "importe": 30.45, "aportaciones": 3, "via": "transferencia" },
+    { "fecha": "2026-10-27", "importe": 16.0, "aportaciones": 3, "via": "transferencia" }
+  ]
+}

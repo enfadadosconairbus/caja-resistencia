@@ -62,6 +62,7 @@ export function ChapaHuelga({
   hoyISO,
   inicioISO,
   pausaISO,
+  desconvocadaISO,
   zona,
 }: {
   s: ChapaStrings;
@@ -69,6 +70,8 @@ export function ChapaHuelga({
   inicioISO: string;
   /** Fecha de pausa (ISO). Desde ella la huelga sigue vigente pero pausada. `null` = activa. */
   pausaISO?: string | null;
+  /** Fecha de desconvocatoria (ISO). Desde ella la chapa no se pinta. `null` = sigue convocada. */
+  desconvocadaISO?: string | null;
   zona: string;
 }) {
   const [hoy, setHoy] = React.useState(hoyISO);
@@ -82,6 +85,11 @@ export function ChapaHuelga({
 
   // La pausa gana a «en curso»: una vez arrancada, si hay fecha de pausa y ya llegó, la
   // huelga sigue vigente pero pausada. Se reanuda poniendo `pausa` a null en el config.
+  // Huelga desconvocada (5-oct-2026): fuera la chapa. Va DESPUÉS de los hooks —React exige
+  // llamarlos siempre en el mismo orden— y se decide con el mismo `hoy`, así que servidor y
+  // cliente coinciden y no hay desajuste de hidratación.
+  if (desconvocadaISO && hoy >= desconvocadaISO) return null;
+
   let estado = estadoDe(hoy, inicioISO);
   if (estado === "curso" && pausaISO && hoy >= pausaISO) estado = "pausada";
 

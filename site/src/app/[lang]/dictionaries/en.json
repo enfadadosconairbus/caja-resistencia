@@ -12,6 +12,7 @@
   "internacional": "International solidarity",
   "donantes": "Major donors",
   "faq": "FAQ",
+  "referendum": "Referendum",
   "termometro": "Thermometer",
   "aportar": "Contribute",
   "skip": "Skip to main content",
@@ -543,7 +544,6 @@
    "privacidad": "Privacy policy",
    "cookies": "Cookie policy"
   },
-  "rights": "Draft legal texts, pending legal validation.",
   "visitasLabel": "visits",
   "visitasNota": "Our own counter. No cookies, no analytics: it just adds one to a number, with nothing stored about you.",
   "redes": "Channels",
@@ -560,8 +560,7 @@
  "legalModals": {
   "aviso": {
    "title": "Legal notice",
-   "body": "This is a translation for information purposes. The Spanish version is the binding one in the event of any discrepancy.\n\nController. This site is an informational initiative of the movement, non-profit and with no established holding entity. It does not collect funds or offer services: it is published for information only (Spanish Law 34/2002 on information society services). The resistance fund is run on a separate site, with its own holding entity.\n\nPurpose. To inform about the Airbus Spain labour dispute: demands, public impact and documentation the movement itself shares.\n\nPurpose. To report on the labour dispute at Airbus Spain: demands, public impact, documentation shared by the movement itself and, once it exists, the running of the resistance fund.\n\nContent and accuracy. The information is compiled from the movement's documents and from public sources, and its origin is cited. The data in the «Thermometer» section come from independent third-party monitoring, are identified as such and are offered as an estimate, not as any company's official figure. If you spot an error, write to enfadadosconairbus.contacto@gmail.com and the content will be corrected or withdrawn.\n\nIntellectual property. The site's own texts may be reproduced citing the source. Downloadable documents belong to their authors and are distributed in the informational interest of the dispute. Third-party trade marks, trade names and distinctive signs appearing here belong to their owners and are used solely for information purposes, to identify the company the dispute concerns.\n\nLinks. The site links to external sources (media, movement channels, monitoring dashboards). No responsibility is taken for the content of those sites or their policies.\n\nContent removal. Anyone who considers that a piece of content infringes their rights may request its removal at enfadadosconairbus.contacto@gmail.com, stating the specific content and the reason. Requests will be handled diligently.\n\nApplicable law. This notice is governed by Spanish law.",
-   "nota": "Draft text, pending legal validation."
+   "body": "This is a translation for information purposes. The Spanish version is the binding one in the event of any discrepancy.\n\nController. This site is an informational initiative of the movement, non-profit and with no established holding entity. It does not collect funds or offer services: it is published for information only (Spanish Law 34/2002 on information society services). The resistance fund is run on a separate site, with its own holding entity.\n\nPurpose. To inform about the Airbus Spain labour dispute: demands, public impact and documentation the movement itself shares.\n\nPurpose. To report on the labour dispute at Airbus Spain: demands, public impact, documentation shared by the movement itself and, once it exists, the running of the resistance fund.\n\nContent and accuracy. The information is compiled from the movement's documents and from public sources, and its origin is cited. The data in the «Thermometer» section come from independent third-party monitoring, are identified as such and are offered as an estimate, not as any company's official figure. If you spot an error, write to enfadadosconairbus.contacto@gmail.com and the content will be corrected or withdrawn.\n\nIntellectual property. The site's own texts may be reproduced citing the source. Downloadable documents belong to their authors and are distributed in the informational interest of the dispute. Third-party trade marks, trade names and distinctive signs appearing here belong to their owners and are used solely for information purposes, to identify the company the dispute concerns.\n\nLinks. The site links to external sources (media, movement channels, monitoring dashboards). No responsibility is taken for the content of those sites or their policies.\n\nContent removal. Anyone who considers that a piece of content infringes their rights may request its removal at enfadadosconairbus.contacto@gmail.com, stating the specific content and the reason. Requests will be handled diligently.\n\nApplicable law. This notice is governed by Spanish law."
   },
   "privacidad": {
    "title": "Privacy policy",
@@ -659,39 +658,275 @@
  },
  "ultimasNoticias": {
   "kicker": "LATEST NEWS",
-  "enDirecto": "Developing",
-  "fecha": "18 September 2026",
+  "enDirecto": "Strike called off",
+  "fecha": "5 October 2026",
   "titulo": [
-   "Spain's National Court",
-   "suspends the referendum"
+   "Workers approve",
+   "the agreement in a referendum"
   ],
-  "entradilla": "The Social Chamber of the Audiencia Nacional has granted urgent interim measures that put on hold the ballot Airbus had called for 24 and 25 September, in which the workforce was to ratify the «proposed agreement» of 4 September.",
+  "entradilla": "With a turnout of 87.33%, 76.76% of the votes cast backed the agreement; 20.26% rejected it and 2.98% were abstentions. 13,560 people voted, in person and online, on 30 September and 1 October.",
+  "desconvocatoria": "On 5 October, the Strike Committee — made up of CGT, ÚTIL and UGT — formally called off the indefinite strike, after the workforce backed the agreement by a large majority.",
+  "juicio": {
+   "kicker": "STILL TO BE DECIDED",
+   "dia": "4",
+   "mes": "Nov 2026",
+   "titulo": "The 4 November trial",
+   "texto": [
+    "The referendum closes the negotiation, but not the legal process. The battle over the industrial legitimacy of the agreement has all but been decided in Airbus's favour; the legal question is a very different one, and it remains open: whether the fundamental right to strike was violated during the process, and whether the company bargained in bad faith.",
+    "That is what Spain's National High Court (Audiencia Nacional) hears on 4 November 2026, at the hearing on the substance of CGT's claim. That is where all the attention now lies."
+   ]
+  },
   "puntos": [
    {
-    "etiqueta": "What is on hold",
-    "texto": "The 24–25 September referendum on the company's latest offer —signed on 4 September with ATP, CCOO and SIPA—: real CPI plus a 7.95% recovery of purchasing power spread until 2029, with the current remote-work agreement kept fully intact."
+    "etiqueta": "Pay",
+    "texto": "Real CPI plus 2 points in January 2026 and 2027 and in April 2028, and plus 1.95 in April 2029: that is how 7.95% of lost purchasing power is recovered over four years. On top of that, every year, a 0.5% individual pay review and another 0.5% for promotions."
    },
    {
-    "etiqueta": "Who halted it",
-    "texto": "The Social Chamber of the Audiencia Nacional, which upheld the interim measures requested by the CGT union as part of its collective-dispute claim."
+    "etiqueta": "One-off payment",
+    "texto": "€2,000 gross, non-consolidated, in October 2026, to make up for the 'April effect' for everyone employed on the date the agreement is validated."
    },
    {
-    "etiqueta": "On what grounds",
-    "texto": "CGT alleges a breach of the fundamental right to strike and bad faith during the negotiations. The ballot is frozen pending the hearing on the interim measures, set for 24 September."
+    "etiqueta": "Remote work, holidays and canteen",
+    "texto": "The current remote-work policy stays and individual agreements are respected, including those for 40% remote work and those for two days a week. Holidays: two mandatory weeks and two flexible ones (previously three and one). Those without free canteen access will pay €3.50 instead of €5 from 1 October."
    },
    {
-    "etiqueta": "What does not change",
-    "texto": "The open-ended strike call remains in force: it is a collective right exercised individually."
+    "etiqueta": "Still to be worked out",
+    "texto": "Before 1 November, a committee will review workloads at Cádiz. A working group opens to negotiate a new absenteeism control system — the company withdraws its appeal to the Supreme Court — and talks on pay policy (PG-121) will begin before the end of 2026."
    }
   ],
-  "imagenAlt": "Editorial illustration: a ballot box sealed with a red band reading “SUSPENDIDO” (suspended), a judge's gavel coming down over it and, in the background, silhouettes of striking workers holding placards.",
+  "imagenAlt": "Infographic 'Agreement approved in referendum' summarising the ten points of the agreement — pay and purchasing-power recovery, sick-leave supplement, remote work, holidays, canteen, transport, flexible hours, Project Bromo, workloads at Cádiz and pay policy — beneath an illustration of workers raising their fists in front of an A350 aircraft. The text in the image is in Spanish.",
   "ampliar": "Enlarge image",
   "descargar": "Download image",
   "cerrar": "Close",
+  "guiaCta": "Read the guide: all 14 points, one by one",
   "enPrensa": "In the press",
   "fuentesLabel": "Sources",
-  "fuentes": "El Economista (Industria) · Forbes · Press Digital · Aviación Digital · Demócrata — 18 September 2026",
-  "nota": "Developing story. It will be updated as the court proceedings advance."
+  "fuentes": "Cinco Días · Press Digital · Artículo 14 — 1 October 2026",
+  "nota": "The detail of each point is in the infographic (click to enlarge; in Spanish) and in the guide to the agreement."
+ },
+ "referendum": {
+  "meta": {
+   "title": "Guide to the proposal · Referendum",
+   "description": "A point-by-point guide to the «proposed agreement» that the Airbus Spain workforce votes on: what it offers, what is left to specify and why it matters."
+  },
+  "hero": {
+   "kicker": "GUIDE TO THE PROPOSAL",
+   "titulo": [
+    "Read the proposal",
+    "closely"
+   ],
+   "intro": "The «proposed agreement» put to a referendum sets out pay, remote work, absence, canteen and more. This guide goes through it point by point: what it offers, what is left to specify and why it matters, so you can decide with all the information.",
+   "cta": "Explore the 14 points"
+  },
+  "estado": {
+   "etiqueta": "Vote status",
+   "texto": "The referendum took place on 30 September and 1 October, online and in person, with observers from every participating union and the external consultancy PwC. With a turnout of 87.33%, the workforce approved the agreement: 76.76% of the votes cast were 'yes', 20.26% 'no' and 2.98% abstentions. The substance of CGT's claim is heard on 4 November."
+  },
+  "preguntaCentral": {
+   "kicker": "The central question",
+   "titulo": "What exactly is being approved?",
+   "cuerpo": [
+    "A proposal can sound good and, at the same time, leave for later the details that decide how it works in practice.",
+    "Asking for the improvements to be written down, quantified and guaranteed before voting is not rejecting them: it is making sure they are delivered."
+   ]
+  },
+  "guia": {
+   "kicker": "Interactive guide · 14 points",
+   "titulo": "Point by point",
+   "intro": "Filter by topic and open each point to see what the proposal offers, what is left to specify and why it matters.",
+   "filtros": {
+    "todos": "All",
+    "mostrando": "Showing",
+    "puntosLabel": "points",
+    "categorias": {
+     "garantias": "Guarantees",
+     "salario": "Pay",
+     "puestos": "Roles & organisation",
+     "tiempo": "Time & work-life",
+     "continuidad": "Continuity",
+     "servicios": "Services"
+    }
+   },
+   "bloques": {
+    "propuesta": "What the proposal offers",
+    "falta": "Left to specify",
+    "importa": "Why it matters",
+    "clave": "Key point"
+   },
+   "puntos": [
+    {
+     "id": "01",
+     "categoria": "garantias",
+     "titulo": "Binding nature of the agreement",
+     "pregunta": "What is locked in, and until when?",
+     "propuesta": "The company presents the agreement as binding in all its terms; any change in the 2028 collective agreement would require a new agreement between the parties.",
+     "falta": "What is voted on is a «framework», not the final wording of the collective agreement, which is drafted afterwards. And the company warns that, if it is rejected, there will be no further negotiation until 2028: a «this or nothing» that conditions the vote, and whose good faith in bargaining is precisely what the Audiencia Nacional examines on 4 November.",
+     "importa": "An agreement can be binding and still leave the detail to a later text; and presenting the vote as having no alternative puts pressure on the decision.",
+     "clave": "Binding should not mean voting under the pressure of «this or nothing»."
+    },
+    {
+     "id": "02",
+     "categoria": "garantias",
+     "titulo": "Publication in the BOE",
+     "pregunta": "Which document is published, and negotiated with whom?",
+     "propuesta": "If the referendum passes, the Ministry of Labour will publish the framework in the BOE «in full», with no changes.",
+     "falta": "The framework «will serve as the basis» for the final agreement that amends the collective agreement's articles; that final text is drafted later, and it is not specified which union side would sign it.",
+     "importa": "The legal value depends on the final collective-agreement text and on who signs it, not just on the framework being voted.",
+     "clave": "Publishing in the BOE does not yet say which articles are signed, or with whom."
+    },
+    {
+     "id": "03",
+     "categoria": "salario",
+     "titulo": "CPI calculation",
+     "pregunta": "How is it calculated, and what happens with the deviation?",
+     "propuesta": "The initial CPI is the Bank of Spain's projection (February); with the INE's final figure (December) the deviation is settled and adjusted in the following year's General Increase. Arrears are paid in a single payment in January or February 2027.",
+     "falta": "There are no caps or floors: an over-projection is deducted from the next year's increase. And in the company's own example it is not clear whether the differential (the «delta») is consolidated into the annual base or paid only as a one-off arrear.",
+     "importa": "Without a floor, a low-CPI year relies only on the fixed percentage; and whether the delta consolidates or not changes what is paid in later years.",
+     "clave": "What matters is not only the CPI, but whether its correction adds to the base or stays a one-off payment."
+    },
+    {
+     "id": "04",
+     "categoria": "salario",
+     "titulo": "Recovery of purchasing power · 7.95%",
+     "pregunta": "Where does it come from, and who does it reach?",
+     "propuesta": "The 7.95% is spread over four years (2026 +2%, 2027 +2%, 2028 +2%, 2029 +1.95%, on real CPI), plus 0.5% RSI and 0.5% promotions each year. It starts from the 7.6% of 2020–2025 CPI minus the general increases paid, raised to 7.95%.",
+     "falta": "The calculation compares only against general increases and excludes individual raises, so it does not measure each person's real loss; and the 0.5% RSI and 0.5% promotions are selective: they do not reach the whole workforce equally.",
+     "importa": "A headline 7.95% is not the same as what each payslip recovers.",
+     "clave": "The total matters less than how it is split and who it reaches."
+    },
+    {
+     "id": "05",
+     "categoria": "salario",
+     "titulo": "Variable pay · PG225",
+     "pregunta": "What is guaranteed about variable pay?",
+     "propuesta": "The proposal guarantees that the variable-pay percentages will not be reduced (V.1 12%, V.2 10%, VI 8%, VIII 6%) and proposes negotiating a new system, with a review of the salary policy (PG-121D) before the end of 2026.",
+     "falta": "The percentage is locked in, but not how it is earned: the new system («to simplify the model») is still to be negotiated, and that is where what is actually paid is decided.",
+     "importa": "Keeping the percentage does not guarantee the criteria that decide whether it is reached.",
+     "clave": "The how-much is protected; the how is not."
+    },
+    {
+     "id": "06",
+     "categoria": "puestos",
+     "titulo": "Job catalogue",
+     "pregunta": "A commitment to a result, or to negotiate?",
+     "propuesta": "There is a commitment to negotiate a new job catalogue and to review PG-121D and the terms for LMA, rodadores and ENDs, with talks starting before the end of 2026.",
+     "falta": "It is a commitment to negotiate and analyse, with a start date but no guaranteed result or closing deadline.",
+     "importa": "Starting to negotiate in 2026 does not ensure what is agreed, or when.",
+     "clave": "There is a start date, not a finish."
+    },
+    {
+     "id": "07",
+     "categoria": "tiempo",
+     "titulo": "Remote work · 40%",
+     "pregunta": "Is the 40% locked in?",
+     "propuesta": "A 40% effective remote-work rate applies to the current workforce and new hires; justified absences do not count towards that 40%, the 2-day agreements are respected and a half-day option is added.",
+     "falta": "Respecting the existing agreements keeps their unilateral-withdrawal clause: either party can cancel remote work, with no justification and one month's notice. The 40% is not shielded from that clause, and the monthly or quarterly distribution depends on the manager.",
+     "importa": "A 40% that can be withdrawn unilaterally with one month's notice is not a guaranteed minimum.",
+     "clave": "Without removing the unilateral withdrawal, the 40% is reversible."
+    },
+    {
+     "id": "08",
+     "categoria": "tiempo",
+     "titulo": "Holidays",
+     "pregunta": "What happens when there is no agreement?",
+     "propuesta": "Two obligatory weeks and two flexible weeks are kept; the calendar is agreed with each site's works council, and the scheduling between the person and their supervisor, weighing business and personal circumstances «equally».",
+     "falta": "«Weighing equally» does not say who decides when the person and the supervisor do not agree on the dates.",
+     "importa": "The tie-break is exactly where real work-life balance is decided.",
+     "clave": "The rule for when there is no agreement is missing."
+    },
+    {
+     "id": "09",
+     "categoria": "tiempo",
+     "titulo": "New absence system",
+     "pregunta": "What exactly is being approved?",
+     "propuesta": "The company has withdrawn its appeal before the Supreme Court, fully reverses the withdrawal of the sick-leave top-up and refunds the amounts in October; the new system would be co-designed with the workers' representatives, with criteria agreed transparently.",
+     "falta": "The immediate harm is undone, but the new rulebook does not yet exist: what is approved is the commitment to co-design it, not its criteria.",
+     "importa": "The guarantee is procedural (joint and transparent), not an already-written system.",
+     "clave": "The old harm is reversed; the new system is yet to be written."
+    },
+    {
+     "id": "10",
+     "categoria": "continuidad",
+     "titulo": "Bromo and local agreement",
+     "pregunta": "And when the new agreement arrives?",
+     "propuesta": "Those moving to the Joint Venture keep the local agreement's terms from day one and until a new agreement exists, with internal mobility within Airbus, seniority, no probation, and transport and canteen.",
+     "falta": "The protection lasts «until a new agreement exists», whose content is future and unknown.",
+     "importa": "A guarantee that ends when the next agreement arrives needs to know what that agreement will bring.",
+     "clave": "Protected until the new agreement; what it will say is still unknown."
+    },
+    {
+     "id": "11",
+     "categoria": "servicios",
+     "titulo": "Canteen · €3.50",
+     "pregunta": "What is locked in about the price?",
+     "propuesta": "For those without free access, the price drops from €5 to €3.5 from early October, with an annual review «keeping the most advantageous conditions»; those who already eat free keep it.",
+     "falta": "The guarantee is qualitative («most advantageous conditions»), with no numeric cap to stop the annual review from eroding the improvement.",
+     "importa": "With no written cap, an annual review can dilute the €3.5 over time.",
+     "clave": "A promise of «the most advantageous» is not a price with a cap."
+    },
+    {
+     "id": "12",
+     "categoria": "servicios",
+     "titulo": "Transport service",
+     "pregunta": "What level of service is kept?",
+     "propuesta": "The current routes are kept and no reduction or removal is foreseen; adjustments would be made by the Mobility Committees.",
+     "falta": "The routes are kept, but the level (frequencies, stops, August) is subject to adjustment in committee.",
+     "importa": "Keeping the routes is not the same as keeping the level of service.",
+     "clave": "Routes guaranteed; frequencies, up for review."
+    },
+    {
+     "id": "13",
+     "categoria": "tiempo",
+     "titulo": "Flexible hours",
+     "pregunta": "Who qualifies, and who decides?",
+     "propuesta": "The posts objectively compatible with voluntary flexible start and end times would be identified, according to organisational, productive and safety criteria; production is excluded.",
+     "falta": "The criteria are named, but the list of eligible posts is identified later by the company; there is no closed list.",
+     "importa": "That the criteria are objective does not yet say which posts benefit.",
+     "clave": "Criteria yes; list of posts, pending."
+    },
+    {
+     "id": "14",
+     "categoria": "continuidad",
+     "titulo": "Cádiz · joint committee",
+     "pregunta": "What will it be able to decide?",
+     "propuesta": "A specific joint committee (signatory parties and management) is created to analyse, before 1 November 2026, the current agreements and future workload needs in Cádiz.",
+     "falta": "It has a date and a joint composition, but its remit is to «analyse»: whether it can decide, and with what effect, is not set.",
+     "importa": "A committee that only analyses can end up unable to resolve anything.",
+     "clave": "Joint and dated; the power to decide is missing."
+    }
+   ]
+  },
+  "antesDeVotar": {
+   "kicker": "Before you vote",
+   "titulo": "There are also questions about the vote itself",
+   "items": [
+    {
+     "q": "How is the online vote safeguarded?",
+     "a": "The referendum is held online and in person, with union observers and the consultancy PwC. With remote voting, it should be explained how the secrecy, identity and verification of each vote are ensured."
+    },
+    {
+     "q": "And custody over the two days?",
+     "a": "As the vote runs over two days, it is still worth explaining how ballot boxes and systems are kept overnight, before the observers of all parties."
+    },
+    {
+     "q": "Why two days?",
+     "a": "A two-day vote needs a clear reason and a transparent procedure that is the same for every site."
+    }
+   ]
+  },
+  "cierre": {
+   "kicker": "An informed decision",
+   "titulo": [
+    "More clarity,",
+    "more guarantees"
+   ],
+   "cuerpo": "If the proposal can be improved, asking for precision before approving it is a reasonable position. Share this guide so everyone can review the points and decide with all the information.",
+   "compartir": "Share",
+   "copiado": "Link copied",
+   "imprimir": "Print / save as PDF"
+  },
+  "nota": "Informational guide by the movement. The amounts and conditions come from the public documentation of the proposal; where detail is missing, it is raised as a question.",
+  "volver": "Back to the homepage"
  },
  "negociacion": {
   "kicker": "NEGOTIATION STATUS",

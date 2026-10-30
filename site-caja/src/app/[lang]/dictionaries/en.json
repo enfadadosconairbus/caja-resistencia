@@ -403,6 +403,78 @@
    "desplazamientos": "Travel to the march on the Ministry of Industry (12 Sep)",
    "chapas": "IPC+ badges (production)",
    "digital": "Digital infrastructure for the resistance fund"
+  },
+  "panel": {
+   "filtros": "Dashboard filters",
+   "campana": "Campaign",
+   "todasCampanas": "All campaigns",
+   "tipo": "Type of expense",
+   "periodo": "Period",
+   "todo": "All",
+   "restablecer": "Clear filters",
+   "corte": "Data as of {fecha}",
+   "kpi": {
+    "recaudado": "Raised",
+    "gastado": "Spent",
+    "saldo": "Available balance",
+    "saldoCierre": "Balance at end of period",
+    "aportaciones": "Contributions",
+    "media": "Average contribution: {v}",
+    "pctGastado": "{v} of what had been raised by then",
+    "notaCampana": "Money raised and the balance belong to the whole fund: contributions don't go to a specific campaign, only expenses do."
+   },
+   "evolucion": {
+    "titulo": "How the money has moved",
+    "sub": "Running totals, day by day. Drag across the chart to pick a period.",
+    "recaudado": "Raised",
+    "gastos": "Spent",
+    "saldo": "Balance",
+    "elegido": "Selected period"
+   },
+   "conceptos": {
+    "titulo": "Spending by item",
+    "sub": "Tap an item to filter by its type of expense."
+   },
+   "cascada": {
+    "titulo": "From money raised to balance",
+    "sub": "What comes in, where it goes and what is left.",
+    "recaudado": "Raised",
+    "saldo": "Balance",
+    "neto": "Net for the period"
+   },
+   "diario": {
+    "titulo": "Contributions per week",
+    "sub": "Monday to Sunday. Tap a week to see that week only.",
+    "aportaciones": "{n} contributions",
+    "pocas": "fewer than 5 contributions",
+    "otros": "other income"
+   },
+   "tabla": {
+    "titulo": "Expense transactions",
+    "fecha": "Date",
+    "concepto": "Item",
+    "tipo": "Type",
+    "campana": "Campaign",
+    "importe": "Amount",
+    "total": "Total",
+    "vacio": "No expenses match these filters.",
+    "csv": "Download CSV",
+    "verDiario": "See weekly fundraising as a table",
+    "dia": "Week",
+    "recaudado": "Raised",
+    "nAport": "Contributions",
+    "sub": "Grouped by item. Tap one to see its payments.",
+    "ultimoPago": "Last payment",
+    "pagos": "{n} payments",
+    "unPago": "1 payment",
+    "verPagos": "Show the payments for {concepto}"
+   },
+   "tipos": {
+    "material": "Campaign materials",
+    "desplazamientos": "Travel",
+    "infraestructura": "Digital infrastructure",
+    "comisiones": "Bank fees"
+   }
   }
  },
  "muro": {

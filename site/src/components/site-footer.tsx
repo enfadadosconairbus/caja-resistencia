@@ -37,7 +37,6 @@ type FooterStrings = {
   tagline: string;
   independence: string;
   legal: Record<LegalKey, string>;
-  rights: string;
   visitasLabel: string;
   visitasNota: string;
   /** Etiqueta de la fila de canales (Telegram, Instagram, correo). */
@@ -177,9 +176,6 @@ export function SiteFooter({
                 </li>
               ))}
             </ul>
-            <p className="mt-4 max-w-sm font-[family-name:var(--ff-mono)] text-xs text-[var(--color-tinta-suave)]">
-              {footer.rights}
-            </p>
           </div>
         </div>
       </footer>

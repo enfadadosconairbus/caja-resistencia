@@ -1,7 +1,7 @@
 {
   "fuente": "https://telegra.ph/Indice-de-documentos---EnfadadosconAirbus-07-14",
   "actualizado": "10/08/2026 07:03",
-  "total": 121,
+  "total": 120,
   "categorias": [
     {
       "slug": "reivindicaciones-y-manifiestos",
@@ -224,21 +224,6 @@
           "porque": "Aprobado en la revisión del 16-09-2026 y no catalogado en el índice del grupo.",
           "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)",
           "msgId": 54549
-        },
-        {
-          "categoria": "datos-economicos-y-salariales",
-          "titulo": "El engaño del presupuesto de promociones",
-          "fichero": "el-engano-del-presupuesto-de-promociones.pdf",
-          "formato": "PDF",
-          "fecha": "2026-08-18",
-          "resumen": "",
-          "grupoUrl": null,
-          "versiones": 0,
-          "pdf": "/docs/el-engano-del-presupuesto-de-promociones.pdf",
-          "meta": "PDF · 950 KB",
-          "porque": "Aprobado en la revisión del Excel entre jul y ago de 2026 y publicado a una sección que el rediseño del 09-ago había retirado: el fichero estaba en /docs pero no se listaba en ninguna parte.",
-          "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)",
-          "msgId": null
         },
         {
           "titulo": "Documento de resultados de Airbus para el primer semestre de 2026, incluyendo informaci…",
@@ -1458,7 +1443,7 @@
       ]
     }
   ],
-  "capturado": "2026-09-18T18:05:57.208Z",
+  "capturado": "2026-09-28T16:49:48.447Z",
   "archivos": {
     "1974": {
       "pdf": "/docs/panfleto-1974.pdf",
@@ -2610,21 +2595,6 @@
       "versiones": 0,
       "pdf": "/docs/consolidar-y-avanzar-o-la-huelga-como-fin.pdf",
       "meta": "PDF · 149 KB",
-      "porque": "Aprobado en la revisión del Excel entre jul y ago de 2026 y publicado a una sección que el rediseño del 09-ago había retirado: el fichero estaba en /docs pero no se listaba en ninguna parte.",
-      "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)",
-      "msgId": null
-    },
-    {
-      "categoria": "datos-economicos-y-salariales",
-      "titulo": "El engaño del presupuesto de promociones",
-      "fichero": "el-engano-del-presupuesto-de-promociones.pdf",
-      "formato": "PDF",
-      "fecha": "2026-08-18",
-      "resumen": "",
-      "grupoUrl": null,
-      "versiones": 0,
-      "pdf": "/docs/el-engano-del-presupuesto-de-promociones.pdf",
-      "meta": "PDF · 950 KB",
       "porque": "Aprobado en la revisión del Excel entre jul y ago de 2026 y publicado a una sección que el rediseño del 09-ago había retirado: el fichero estaba en /docs pero no se listaba en ninguna parte.",
       "quitarCuando": "el Grupo Documentación lo catalogue (entonces se ignora solo)",
       "msgId": null
